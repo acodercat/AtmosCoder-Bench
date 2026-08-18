@@ -1,0 +1,10 @@
+model,core_accuracy,trap_accuracy,trap_gap_pp,setting
+gpt-5.5 (reasoning),97.6,96.0,3,reasoning
+Gemini-3.1-Pro (reasoning),96.0,96.5,3,reasoning
+DeepSeek-V4-flash (reasoning),91.1,87.1,6,reasoning
+gpt-5.5,90.8,88.6,7,non-reasoning
+Qwen-3.6-27B (reasoning),88.5,82.1,11,reasoning
+DeepSeek-V4-flash,81.7,72.6,21,non-reasoning
+Qwen-3.6-27B,79.4,73.1,21,non-reasoning
+Qwen-3.5-9B (reasoning),76.9,64.7,29,reasoning
+Qwen-3.5-9B,63.4,57.2,36,non-reasoning

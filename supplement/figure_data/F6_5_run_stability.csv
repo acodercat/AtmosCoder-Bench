@@ -1,0 +1,17 @@
+model,pass_at_3,all_at_3,spread
+Qwen-3.5-9B,79.1,43.6,35.6
+DeepSeek-V4-flash,91.5,69.5,22.0
+Qwen-2.5-72B,52.5,31.9,20.6
+Qwen-3.6-27B,89.0,68.6,20.4
+Qwen-3.5-9B (reasoning),85.6,67.2,18.3
+DeepSeek-V4-pro,89.9,75.5,14.4
+Kimi K2.6,96.1,82.1,14.0
+Qwen-3.5-397B,95.9,83.3,12.6
+Qwen-3.6-27B (reasoning),94.0,83.3,10.8
+DeepSeek-V4-flash (reasoning),96.1,85.3,10.8
+gpt-5.5,94.7,85.6,9.2
+Kimi K2.6 (reasoning),97.7,89.2,8.5
+Qwen-3.5-397B (reasoning),96.1,88.8,7.3
+DeepSeek-V4-pro (reasoning),96.3,89.9,6.4
+gpt-5.5 (reasoning),99.5,94.7,4.8
+Gemini-3.1-Pro (reasoning),97.2,94.5,2.8

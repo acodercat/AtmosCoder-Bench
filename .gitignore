@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.py[oc]
+.venv/
+
+# Private credentials — copy models.example.toml to models.toml and fill in
+models.toml
+
+# Raw per-run evaluation records (deposited separately; ~5 GB)
+experiments/
+
+# OS noise
+.DS_Store

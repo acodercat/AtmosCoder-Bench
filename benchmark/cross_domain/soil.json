@@ -1,0 +1,1729 @@
+[
+  {
+    "id": "soil_215",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "A stressed soil element has normal stress +150 kN/m² and shear stress -50 kN/m² on plane AD, and normal stress +50 kN/m² and shear stress +50 kN/m² on the perpendicular plane AB. Determine the major principal stress.",
+    "code": "import math\n\ndef solve(sigma_AD=150.0, tau_AD=-50.0, sigma_AB=50.0, tau_AB=50.0):\n    # Two perpendicular planes:\n    # Plane AD: normal stress sigma_x, shear tau\n    # Plane AB: normal stress sigma_y, shear -tau (complementary)\n    sigma_x = sigma_AD  # kN/m^2\n    sigma_y = sigma_AB  # kN/m^2\n    tau = abs(tau_AD)   # magnitude of shear stress on the planes\n\n    # Center and radius of Mohr's circle\n    center = (sigma_x + sigma_y) / 2.0\n    radius = math.sqrt(((sigma_x - sigma_y) / 2.0) ** 2 + tau ** 2)\n\n    sigma_1 = center + radius  # major principal stress\n\n    return {\n        \"1\": {\"value\": sigma_1, \"unit\": \"kN/m^2\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "170.71067811865476",
+        "unit": ""
+      }
+    ],
+    "category": "effective_stress",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c23",
+      "label": "das-c23-ex10.2a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_1",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "For a moist soil sample, the following are given: total volume V = 1.2 m^3, total mass M = 2350 kg, moisture content w = 8.6%, and specific gravity of soil solids Gs = 2.71. Determine the moist density.",
+    "code": "def solve(V=1.2, M=2350.0, w=8.6, Gs=2.71):\n    # Moist density = total mass / total volume\n    moist_density = M / V  # kg/m^3\n    return {\n        \"1\": {\"value\": moist_density, \"unit\": \"kg/m^3\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "1958.3333333333335",
+        "unit": ""
+      }
+    ],
+    "category": "phase_relations",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c4",
+      "label": "das-c4-Ex3.2a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_102",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "For a falling-head permeability test, the following values are given: length of specimen = 200 mm; area of soil specimen = 1000 mm^2; area of standpipe = 40 mm^2; at time t = 0, the head difference is 500 mm; at time t = 180 sec, the head difference is 300 mm. Determine the hydraulic conductivity of the soil in cm/sec.",
+    "code": "import math\n\ndef solve(length_mm=200.0, area_specimen_mm2=1000.0, area_standpipe_mm2=40.0,\n          head_initial_mm=500.0, head_final_mm=300.0, time_sec=180.0):\n    # Convert to cm units\n    L = length_mm / 10.0            # cm\n    A = area_specimen_mm2 / 100.0   # cm^2\n    a = area_standpipe_mm2 / 100.0  # cm^2\n    h1 = head_initial_mm / 10.0     # cm\n    h2 = head_final_mm / 10.0       # cm\n    t = time_sec                    # sec\n\n    # Falling head formula: k = (a * L) / (A * t) * ln(h1/h2)\n    k = (a * L) / (A * t) * math.log(h1 / h2)\n\n    return {\"1\": {\"value\": k, \"unit\": \"cm/sec\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.0022703361056266255",
+        "unit": ""
+      }
+    ],
+    "category": "permeability_seepage",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c14",
+      "label": "das-c14-ex7.2",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_236",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "For a normally consolidated clay layer in the field, the following values are given: thickness of clay layer = 8.5 ft; void ratio, e0 = 0.8; compression index, Cc = 0.28; average effective pressure on the clay layer, sigma0' = 2650 lb/ft^2; increase in effective stress, Delta sigma' = 970 lb/ft^2; secondary compression index, C_alpha = 0.02. What is the total consolidation settlement of the clay layer five years after the completion of primary consolidation settlement? Note: Time for completion of primary settlement = 1.5 years.",
+    "code": "import math\n\ndef solve(H_ft=8.5, e0=0.8, Cc=0.28, sigma0=2650.0, delta_sigma=970.0,\n          C_alpha=0.02, t1_years=1.5, t2_years=5.0):\n    # Primary consolidation settlement (normally consolidated clay)\n    Sc_primary = (Cc * H_ft / (1.0 + e0)) * math.log10((sigma0 + delta_sigma) / sigma0)\n\n    # Void ratio at end of primary consolidation\n    delta_e = Cc * math.log10((sigma0 + delta_sigma) / sigma0)\n    ep = e0 - delta_e\n\n    # Secondary compression index (modified)\n    C_alpha_prime = C_alpha / (1.0 + ep)\n\n    # Time: t2 is measured five years AFTER completion of primary settlement\n    t1 = t1_years\n    t2 = t1_years + t2_years\n\n    # Secondary consolidation settlement\n    Ss = C_alpha_prime * H_ft * math.log10(t2 / t1)\n\n    # Total settlement\n    S_total = Sc_primary + Ss\n\n    return {\n        \"1\": {\"value\": S_total, \"unit\": \"ft\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.2405507369420145",
+        "unit": ""
+      }
+    ],
+    "category": "consolidation_settlement",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c29",
+      "label": "das-c29-Ex11.11",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_126",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "The properties of seven different clayey soils are shown below. Sensitivity, S_t, refers to the loss of strength when the soil is remolded or disturbed. It is defined as the ratio of the undisturbed strength (τ_f-undisturbed) to the remolded strength (τ_f-remolded) at the same moisture content. From the given data, estimate τ_f-remolded for the clay soils. Data: Beauharnois: undisturbed shear strength = 18 kN/m², sensitivity S_t = 14; Detroit I: undisturbed shear strength = 17 kN/m², sensitivity S_t = 2.5; Horten: undisturbed shear strength = 41 kN/m², sensitivity S_t = 17; Gosport: undisturbed shear strength = 29 kN/m², sensitivity S_t = 2.2; Mexico City: undisturbed shear strength = 46 kN/m², sensitivity S_t = 5.3; Shellhaven: undisturbed shear strength = 36 kN/m², sensitivity S_t = 7.6; St. Thuribe: undisturbed shear strength = 38 kN/m², sensitivity S_t = 150.",
+    "code": "def solve(\n    beauharnois_tau_undisturbed=18.0, beauharnois_St=14.0,\n    detroit_tau_undisturbed=17.0, detroit_St=2.5,\n    horten_tau_undisturbed=41.0, horten_St=17.0,\n    gosport_tau_undisturbed=29.0, gosport_St=2.2,\n    mexico_tau_undisturbed=46.0, mexico_St=5.3,\n    shellhaven_tau_undisturbed=36.0, shellhaven_St=7.6,\n    stthuribe_tau_undisturbed=38.0, stthuribe_St=150.0,\n):\n    # Sensitivity S_t = tau_undisturbed / tau_remolded\n    # => tau_remolded = tau_undisturbed / S_t\n    soils = [\n        (beauharnois_tau_undisturbed, beauharnois_St),\n        (detroit_tau_undisturbed, detroit_St),\n        (horten_tau_undisturbed, horten_St),\n        (gosport_tau_undisturbed, gosport_St),\n        (mexico_tau_undisturbed, mexico_St),\n        (shellhaven_tau_undisturbed, shellhaven_St),\n        (stthuribe_tau_undisturbed, stthuribe_St),\n    ]\n\n    result = {}\n    for i, (tau_undisturbed, St) in enumerate(soils, start=1):\n        tau_remolded = tau_undisturbed / St\n        result[str(i)] = {\"value\": tau_remolded, \"unit\": \"kN/m^2\"}\n\n    return result",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "1.2857142857142858",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "6.8",
+        "unit": ""
+      },
+      {
+        "sub": "3",
+        "value": "2.411764705882353",
+        "unit": ""
+      },
+      {
+        "sub": "4",
+        "value": "13.18181818181818",
+        "unit": ""
+      },
+      {
+        "sub": "5",
+        "value": "8.679245283018869",
+        "unit": ""
+      },
+      {
+        "sub": "6",
+        "value": "4.736842105263158",
+        "unit": ""
+      },
+      {
+        "sub": "7",
+        "value": "0.25333333333333335",
+        "unit": ""
+      }
+    ],
+    "category": "shear_strength",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c8",
+      "label": "das-c8-4.C.1c",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_216",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "A stressed soil element has normal stress +150 kN/m² and shear stress -50 kN/m² on plane AD, and normal stress +50 kN/m² and shear stress +50 kN/m² on the perpendicular plane AB. Determine the minor principal stress.",
+    "code": "def solve(sigma_AD=150.0, tau_AD=-50.0, sigma_AB=50.0, tau_AB=50.0):\n    import math\n\n    # Normal stresses on two perpendicular planes and shear stress magnitude.\n    # For a valid stress state, |tau_AD| == |tau_AB| (complementary shear).\n    tau = abs(tau_AD)  # shear stress magnitude on the planes\n\n    # Center of Mohr's circle\n    center = (sigma_AD + sigma_AB) / 2.0\n\n    # Radius of Mohr's circle\n    radius = math.sqrt(((sigma_AD - sigma_AB) / 2.0) ** 2 + tau ** 2)\n\n    # Minor principal stress\n    sigma_min = center - radius\n\n    return {\n        \"1\": {\"value\": sigma_min, \"unit\": \"kN/m^2\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "29.289321881345245",
+        "unit": ""
+      }
+    ],
+    "category": "effective_stress",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c23",
+      "label": "das-c23-ex10.2b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_2",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "For a moist soil sample, the following are given: total volume V = 1.2 m^3, total mass M = 2350 kg, moisture content w = 8.6%, and specific gravity of soil solids Gs = 2.71. Determine the dry density.",
+    "code": "def solve(V=1.2, M=2350.0, w=8.6, Gs=2.71):\n    # V: total volume in m^3\n    # M: total mass in kg\n    # w: moisture content in percent\n    # Gs: specific gravity of soil solids (unused for dry density here)\n\n    # Convert moisture content from percent to fraction\n    w_frac = w / 100.0\n\n    # Total (moist) density\n    rho_total = M / V  # kg/m^3\n\n    # Dry density: rho_d = rho_total / (1 + w)\n    rho_dry = rho_total / (1.0 + w_frac)  # kg/m^3\n\n    return {\n        \"1\": {\"value\": rho_dry, \"unit\": \"kg/m^3\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "1803.2535297728668",
+        "unit": ""
+      }
+    ],
+    "category": "phase_relations",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c4",
+      "label": "das-c4-Ex3.2b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_103",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "For a falling-head permeability test, the following are given: length of specimen = 15 in., area of specimen = 3 in.^2, and k = 0.0688 in./min. What should be the area of the standpipe for the head to drop from 25 to 12 in. in 8 min.?",
+    "code": "import math\n\ndef solve(L=15.0, A=3.0, k=0.0688, h1=25.0, h2=12.0, t=8.0):\n    # Falling-head permeability equation:\n    # k = (a * L) / (A * t) * ln(h1 / h2)\n    # Solve for standpipe area a:\n    # a = (k * A * t) / (L * ln(h1 / h2))\n    a = (k * A * t) / (L * math.log(h1 / h2))\n    return {\n        \"1\": {\"value\": a, \"unit\": \"in.^2\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.14997905053433833",
+        "unit": ""
+      }
+    ],
+    "category": "permeability_seepage",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c14",
+      "label": "das-c14-ex7.3",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_237",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "The degree of consolidation at depth z is given by U_z = 1 - sum from m = 0 to infinity of [(2/M) sin(M z / H_dr) exp(-M^2 T_v)], where M = (pi/2)(2m + 1). Determine the degree of consolidation U_z at z = H_dr/3 and T_v = 0.3.",
+    "code": "import math\n\ndef solve(z_over_Hdr=1.0/3.0, Tv=0.3, num_terms=1000):\n    # U_z = 1 - sum_{m=0}^inf [(2/M) sin(M z/Hdr) exp(-M^2 Tv)]\n    # M = (pi/2)(2m+1)\n    total = 0.0\n    for m in range(num_terms):\n        M = (math.pi / 2.0) * (2 * m + 1)\n        term = (2.0 / M) * math.sin(M * z_over_Hdr) * math.exp(-M**2 * Tv)\n        total += term\n    Uz = 1.0 - total\n    return {\"1\": {\"value\": Uz, \"unit\": \"dimensionless\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.6957841039943858",
+        "unit": ""
+      }
+    ],
+    "category": "consolidation_settlement",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c29",
+      "label": "das-c29-Ex11.12",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_243",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "Following are the results of four drained direct shear tests on an overconsolidated clay. Diameter of specimen = 50 mm. Height of specimen = 25 mm. Test 1: normal force N = 150 N, shear force at failure Speak = 157.5 N, residual shear force Sresidual = 44.2 N. Test 2: normal force N = 250 N, shear force at failure Speak = 199.9 N, residual shear force Sresidual = 56.6 N. Test 3: normal force N = 350 N, shear force at failure Speak = 257.6 N, residual shear force Sresidual = 102.9 N. Test 4: normal force N = 550 N, shear force at failure Speak = 363.4 N, residual shear force Sresidual = 144.5 N. Determine the relationships for peak shear strength τf and residual shear strength τr.",
+    "code": "import math\n\ndef solve(diameter_mm=50.0, height_mm=25.0,\n          N1=150.0, Speak1=157.5, Sres1=44.2,\n          N2=250.0, Speak2=199.9, Sres2=56.6,\n          N3=350.0, Speak3=257.6, Sres3=102.9,\n          N4=550.0, Speak4=363.4, Sres4=144.5):\n    # Area of specimen in m^2\n    area = math.pi / 4.0 * (diameter_mm / 1000.0) ** 2  # m^2\n\n    normals = [N1, N2, N3, N4]\n    peaks = [Speak1, Speak2, Speak3, Speak4]\n    resids = [Sres1, Sres2, Sres3, Sres4]\n\n    # Convert forces (N) to stresses (kPa): stress = force(N)/area(m^2) = Pa; /1000 = kPa\n    sigma = [n / area / 1000.0 for n in normals]\n    tau_peak = [s / area / 1000.0 for s in peaks]\n    tau_res = [s / area / 1000.0 for s in resids]\n\n    def linfit(x, y):\n        n = len(x)\n        sx = sum(x); sy = sum(y)\n        sxx = sum(xi*xi for xi in x)\n        sxy = sum(xi*yi for xi, yi in zip(x, y))\n        slope = (n*sxy - sx*sy) / (n*sxx - sx*sx)\n        intercept = (sy - slope*sx) / n\n        return slope, intercept\n\n    slope_p, c_p = linfit(sigma, tau_peak)\n    slope_r, c_r = linfit(sigma, tau_res)\n\n    phi_peak = math.degrees(math.atan(slope_p))\n    phi_res = math.degrees(math.atan(slope_r))\n\n    return {\n        \"1\": {\"value\": c_p, \"unit\": \"kPa\"},        # peak cohesion c\n        \"2\": {\"value\": phi_peak, \"unit\": \"deg\"},   # peak friction angle\n        \"3\": {\"value\": c_r, \"unit\": \"kPa\"},        # residual cohesion c\n        \"4\": {\"value\": phi_res, \"unit\": \"deg\"},    # residual friction angle\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "38.21901330567901",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "27.55169264964857",
+        "unit": ""
+      },
+      {
+        "sub": "3",
+        "value": "0.6271614214638959",
+        "unit": ""
+      },
+      {
+        "sub": "4",
+        "value": "14.79173829530066",
+        "unit": ""
+      }
+    ],
+    "category": "shear_strength",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c32",
+      "label": "das-c32-ex12.2",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_217",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "Consider a point load P = 5 kN applied on the surface of a homogeneous, elastic, isotropic half-space. Given x = 3 m and y = 4 m. Calculate the vertical stress increase Δσz at z = 0, 2 m, 4 m, 6 m, 10 m, and 20 m. Use Boussinesq’s equation Δσz = (3P/(2π)) z³/(r² + z²)^(5/2), where r = sqrt(x² + y²).",
+    "code": "import math\n\ndef solve(P=5.0, x=3.0, y=4.0):\n    # P in kN, x and y in m\n    r = math.sqrt(x**2 + y**2)  # radial distance in m\n    z_values = [0.0, 2.0, 4.0, 6.0, 10.0, 20.0]  # depths in m\n\n    results = {}\n    for i, z in enumerate(z_values, start=1):\n        # Boussinesq's equation: Δσz = (3P/(2π)) * z³ / (r² + z²)^(5/2)\n        numerator = 3.0 * P * z**3\n        denominator = 2.0 * math.pi * (r**2 + z**2)**2.5\n        delta_sigma_z = numerator / denominator  # kN/m² = kPa\n        results[str(i)] = {\"value\": delta_sigma_z, \"unit\": \"kPa\"}\n\n    return results",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.0",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "0.0042170270126038936",
+        "unit": ""
+      },
+      {
+        "sub": "3",
+        "value": "0.014194879915761557",
+        "unit": ""
+      },
+      {
+        "sub": "4",
+        "value": "0.017743551620425645",
+        "unit": ""
+      },
+      {
+        "sub": "5",
+        "value": "0.0136658408336098",
+        "unit": ""
+      },
+      {
+        "sub": "6",
+        "value": "0.005128956935141626",
+        "unit": ""
+      }
+    ],
+    "category": "effective_stress",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c23",
+      "label": "das-c23-ex10.3",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_3",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "For a moist soil sample, the following are given: total volume V = 1.2 m^3, total mass M = 2350 kg, moisture content w = 8.6%, and specific gravity of soil solids Gs = 2.71. Determine the void ratio.",
+    "code": "def solve(V=1.2, M=2350.0, w=8.6, Gs=2.71):\n    # Physical constants\n    rho_w = 1000.0  # density of water, kg/m^3\n\n    # Convert moisture content to fraction\n    w_frac = w / 100.0\n\n    # Mass of solids and water\n    M_solids = M / (1.0 + w_frac)  # kg\n\n    # Volume of solids\n    V_solids = M_solids / (Gs * rho_w)  # m^3\n\n    # Volume of voids\n    V_voids = V - V_solids  # m^3\n\n    # Void ratio\n    e = V_voids / V_solids\n\n    return {\n        \"1\": {\"value\": e, \"unit\": \"dimensionless\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.5028391489361701",
+        "unit": ""
+      }
+    ],
+    "category": "phase_relations",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c4",
+      "label": "das-c4-Ex3.2c",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_128",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "The hydraulic conductivity of a sand at a void ratio of 0.8 is 0.047 cm/sec. Estimate its hydraulic conductivity at a void ratio of 0.5. Use the relationship k1/k2 = [e1^3/(1+e1)]/[e2^3/(1+e2)].",
+    "code": "def solve(k1=0.047, e1=0.8, e2=0.5):\n    # k1/k2 = [e1^3/(1+e1)] / [e2^3/(1+e2)]\n    f1 = e1**3 / (1 + e1)\n    f2 = e2**3 / (1 + e2)\n    k2 = k1 * f2 / f1\n    return {\"1\": {\"value\": k2, \"unit\": \"cm/sec\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.013769531249999996",
+        "unit": ""
+      }
+    ],
+    "category": "permeability_seepage",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c15",
+      "label": "das-c15-ex7.7",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_240",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "Following are the results of a laboratory consolidation test on a soil specimen obtained from the field: dry mass of specimen = 128 g, height of specimen at the beginning of the test = 2.54 cm, Gs = 2.75, area of the specimen = 30.68 cm^2, and density of water = 1 g/cm^3. Effective pressure, sigma' (ton/ft^2), and final height of specimen at the end of consolidation (cm) are: 0, 2.540; 0.5, 2.488; 1, 2.465; 2, 2.431; 4, 2.389; 8, 2.324; 16, 2.225; 32, 2.115. Calculate the height of solids Hs and the void ratio e corresponding to each listed effective pressure.",
+    "code": "def solve(\n    dry_mass=128.0,          # g\n    H0=2.54,                 # cm, initial height\n    Gs=2.75,\n    area=30.68,              # cm^2\n    rho_water=1.0,           # g/cm^3\n    pressures=(0, 0.5, 1, 2, 4, 8, 16, 32),          # ton/ft^2\n    heights=(2.540, 2.488, 2.465, 2.431, 2.389, 2.324, 2.225, 2.115),  # cm\n):\n    # Height of solids: Hs = Ws / (Gs * rho_water * A)\n    Hs = dry_mass / (Gs * rho_water * area)  # cm\n\n    result = {}\n    idx = 1\n    # Report Hs first\n    result[str(idx)] = {\"value\": Hs, \"unit\": \"cm\"}\n    idx += 1\n\n    # Void ratio for each pressure: e = Hv / Hs = (H - Hs) / Hs\n    for H in heights:\n        Hv = H - Hs\n        e = Hv / Hs\n        result[str(idx)] = {\"value\": e, \"unit\": \"dimensionless\"}\n        idx += 1\n\n    return result",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "1.5171269408557544",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "0.6742171875",
+        "unit": ""
+      },
+      {
+        "sub": "3",
+        "value": "0.639941875",
+        "unit": ""
+      },
+      {
+        "sub": "4",
+        "value": "0.624781640625",
+        "unit": ""
+      },
+      {
+        "sub": "5",
+        "value": "0.602370859375",
+        "unit": ""
+      },
+      {
+        "sub": "6",
+        "value": "0.5746869531249998",
+        "unit": ""
+      },
+      {
+        "sub": "7",
+        "value": "0.5318428124999999",
+        "unit": ""
+      },
+      {
+        "sub": "8",
+        "value": "0.46658789062500006",
+        "unit": ""
+      },
+      {
+        "sub": "9",
+        "value": "0.39408242187500014",
+        "unit": ""
+      }
+    ],
+    "category": "consolidation_settlement",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c27",
+      "label": "das-c27-ex11.3",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_265",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "A specimen of saturated sand was consolidated under an all-around pressure of 105 kN/m². The axial stress was then increased and drainage was prevented. The specimen failed when the axial deviator stress reached 70 kN/m². The pore water pressure at failure was 50 kN/m². Determine the drained friction angle, φ′.",
+    "code": "import math\n\ndef solve(consolidation_pressure=105.0, deviator_stress_at_failure=70.0, pore_pressure_at_failure=50.0):\n    # Total stresses at failure\n    sigma3_total = consolidation_pressure          # minor principal total stress\n    sigma1_total = sigma3_total + deviator_stress_at_failure  # major principal total stress\n\n    # Effective stresses at failure\n    u = pore_pressure_at_failure\n    sigma3_eff = sigma3_total - u\n    sigma1_eff = sigma1_total - u\n\n    # For c' = 0 (sand), sin(phi') = (sigma1' - sigma3') / (sigma1' + sigma3')\n    sin_phi = (sigma1_eff - sigma3_eff) / (sigma1_eff + sigma3_eff)\n    phi_rad = math.asin(sin_phi)\n    phi_deg = math.degrees(phi_rad)\n\n    return {\n        \"1\": {\"value\": phi_deg, \"unit\": \"degrees\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "22.88538047615857",
+        "unit": ""
+      }
+    ],
+    "category": "shear_strength",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c34",
+      "label": "das-c34-ex12.8b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_218",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "For a point load P = 5 kN applied on the surface of a homogeneous, elastic, isotropic half-space, calculate the vertical stress increase Δσz at z = 2 m, y = 3 m, and x = 0, 1, 2, 3, and 4 m. Use Boussinesq’s equation Δσz = (3P/(2π)) z³/(r² + z²)^(5/2), where r = sqrt(x² + y²).",
+    "code": "import math\n\ndef solve(P=5.0, z=2.0, y=3.0, x_values=(0.0, 1.0, 2.0, 3.0, 4.0)):\n    # P in kN, z, y, x in meters\n    results = {}\n    for i, x in enumerate(x_values, start=1):\n        r = math.sqrt(x**2 + y**2)\n        delta_sigma_z = (3.0 * P / (2.0 * math.pi)) * z**3 / (r**2 + z**2)**2.5\n        results[str(i)] = {\"value\": delta_sigma_z, \"unit\": \"kN/m^2\"}\n    return results",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.03134317567927439",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "0.026042416988106838",
+        "unit": ""
+      },
+      {
+        "sub": "3",
+        "value": "0.016027990422317583",
+        "unit": ""
+      },
+      {
+        "sub": "4",
+        "value": "0.008412879639354177",
+        "unit": ""
+      },
+      {
+        "sub": "5",
+        "value": "0.0042170270126038936",
+        "unit": ""
+      }
+    ],
+    "category": "effective_stress",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c23",
+      "label": "das-c23-ex10.4",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_5",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "For a moist soil sample, the following are given: total volume V = 1.2 m^3, total mass M = 2350 kg, moisture content w = 8.6%, and specific gravity of soil solids Gs = 2.71. Determine the degree of saturation.",
+    "code": "def solve(V=1.2, M=2350.0, w=8.6, Gs=2.71):\n    # Physical constants\n    rho_w = 1000.0  # kg/m^3, density of water\n\n    # Convert moisture content from percent to fraction\n    w_frac = w / 100.0\n\n    # Mass of solids and water\n    # M = Ms + Mw, Mw = w * Ms  => M = Ms(1 + w)\n    Ms = M / (1.0 + w_frac)\n    Mw = M - Ms\n\n    # Volume of solids\n    Vs = Ms / (Gs * rho_w)\n\n    # Volume of water\n    Vw = Mw / rho_w\n\n    # Volume of voids\n    Vv = V - Vs\n\n    # Degree of saturation\n    S = Vw / Vv  # fraction\n    S_percent = S * 100.0\n\n    return {\n        \"1\": {\"value\": S_percent, \"unit\": \"%\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "46.3488176075933",
+        "unit": ""
+      }
+    ],
+    "category": "phase_relations",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c4",
+      "label": "das-c4-Ex3.2e",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_129",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "Estimate the hydraulic conductivity of a sand using k = (1.99 × 10^4) [100 / Σ(fi/(Dli^0.404 Dsi^0.595))]^2 (1/SF1)^2 [e^3/(1+e)], where e is the void ratio, SF1 = 7, fi is the fraction of particles between two consecutive sieves in percent, and Dli and Dsi are the larger and smaller sieve openings in cm for that fraction. The void ratio of the sand is 0.6. Sieve data: No. 30 opening = 0.06 cm, percent passing = 100; No. 40 opening = 0.0425 cm, percent passing = 96; No. 60 opening = 0.02 cm, percent passing = 84; No. 100 opening = 0.015 cm, percent passing = 50; No. 200 opening = 0.0075 cm, percent passing = 0. Fractions of particles between consecutive sieves are: between Nos. 30 and 40 = 4%; between Nos. 40 and 60 = 12%; between Nos. 60 and 100 = 34%; between Nos. 100 and 200 = 50%.",
+    "code": "def solve(\n    e=0.6,\n    SF1=7,\n    C=1.99e4,\n    # Sieve openings (cm)\n    D_no30=0.06,\n    D_no40=0.0425,\n    D_no60=0.02,\n    D_no100=0.015,\n    D_no200=0.0075,\n    # Fractions between consecutive sieves (%)\n    f_30_40=4.0,\n    f_40_60=12.0,\n    f_60_100=34.0,\n    f_100_200=50.0,\n    exp_l=0.404,\n    exp_s=0.595,\n):\n    # Each fraction: (fi, Dlarger, Dsmaller)\n    fractions = [\n        (f_30_40, D_no30, D_no40),\n        (f_40_60, D_no40, D_no60),\n        (f_60_100, D_no60, D_no100),\n        (f_100_200, D_no100, D_no200),\n    ]\n\n    summation = 0.0\n    for fi, Dli, Dsi in fractions:\n        summation += fi / (Dli ** exp_l * Dsi ** exp_s)\n\n    bracket = 100.0 / summation\n    k = C * (bracket ** 2) * (1.0 / SF1) ** 2 * (e ** 3 / (1.0 + e))\n\n    return {\"1\": {\"value\": k, \"unit\": \"cm/s\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.00962926635123213",
+        "unit": ""
+      }
+    ],
+    "category": "permeability_seepage",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c15",
+      "label": "das-c15-ex7.8",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_241",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "A soil profile has water content w = 32%, plastic limit PL = 23%, liquid limit LL = 51%. At point A, the present effective pressure is computed from a 2.5 m layer with unit weight 15.6 kN/m^3 and a 5 m layer with total unit weight 19 kN/m^3 below the water table; use gamma_w = 9.81 kN/m^3. Using sigma_c'/pa = 10^[1.11 - 1.62(LI)], where pa = 100 kN/m^2 and LI = (w - PL)/(LL - PL), estimate the preconsolidation pressure sigma_c' and overconsolidation ratio OCR at point A.",
+    "code": "def solve(w=32.0, PL=23.0, LL=51.0,\n          layer1_thickness=2.5, layer1_unit_weight=15.6,\n          layer2_thickness=5.0, layer2_unit_weight=19.0,\n          pa=100.0, coeff_a=1.11, coeff_b=1.62):\n    # Physical constants\n    gamma_w = 9.81  # kN/m^3\n\n    # Liquidity index (percent values cancel in ratio)\n    LI = (w - PL) / (LL - PL)\n\n    # Present effective vertical stress at point A\n    # Layer 1: above water table (use given unit weight)\n    sigma_layer1 = layer1_thickness * layer1_unit_weight\n    # Layer 2: below water table (submerged/effective)\n    sigma_layer2 = layer2_thickness * (layer2_unit_weight - gamma_w)\n    sigma_present = sigma_layer1 + sigma_layer2  # kN/m^2\n\n    # Preconsolidation pressure\n    sigma_c = pa * (10.0 ** (coeff_a - coeff_b * LI))  # kN/m^2\n\n    # Overconsolidation ratio\n    OCR = sigma_c / sigma_present\n\n    return {\n        \"1\": {\"value\": sigma_c, \"unit\": \"kN/m^2\"},\n        \"2\": {\"value\": OCR, \"unit\": \"dimensionless\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "388.40580693395646",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "4.572169593101313",
+        "unit": ""
+      }
+    ],
+    "category": "consolidation_settlement",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c27",
+      "label": "das-c27-ex11.5",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_266",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "Previous triaxial test results on a normally consolidated clay have shown that the parameter Af is about 0.81 and φ′ is about 28°. If a consolidated-undrained test is conducted with the same soil with σ3 = 70 kN/m², what will be the approximate deviator stress [(Δσd)f] at failure?",
+    "code": "import math\n\ndef solve(Af=0.81, phi_deg=28.0, sigma3=70.0):\n    # Physical constants (none needed beyond math here)\n\n    # Convert friction angle to radians\n    phi = math.radians(phi_deg)\n    sin_phi = math.sin(phi)\n\n    # For a consolidated-undrained test on normally consolidated clay,\n    # the pore pressure at failure: (Δu)f = Af * (Δσd)f\n    #\n    # Effective stresses at failure:\n    #   σ1' = σ1 - u = (σ3 + (Δσd)f) - Af*(Δσd)f\n    #   σ3' = σ3 - u = σ3 - Af*(Δσd)f\n    #\n    # Failure criterion (c' = 0 for NC clay):\n    #   sin(φ') = (σ1' - σ3') / (σ1' + σ3')\n    #\n    # Note: σ1' - σ3' = (σ3 + (Δσd)f - Af*Δσd) - (σ3 - Af*Δσd) = (Δσd)f\n    #\n    # σ1' + σ3' = (σ3 + Δσd - Af*Δσd) + (σ3 - Af*Δσd)\n    #           = 2*σ3 + Δσd - 2*Af*Δσd\n    #           = 2*σ3 + Δσd*(1 - 2*Af)\n    #\n    # sin(φ') = Δσd / (2*σ3 + Δσd*(1 - 2*Af))\n    #\n    # Solve for Δσd:\n    #   sin_phi * (2*σ3 + Δσd*(1 - 2*Af)) = Δσd\n    #   2*σ3*sin_phi + Δσd*sin_phi*(1 - 2*Af) = Δσd\n    #   2*σ3*sin_phi = Δσd - Δσd*sin_phi*(1 - 2*Af)\n    #   2*σ3*sin_phi = Δσd*(1 - sin_phi*(1 - 2*Af))\n    #   Δσd = 2*σ3*sin_phi / (1 - sin_phi*(1 - 2*Af))\n\n    numerator = 2.0 * sigma3 * sin_phi\n    denominator = 1.0 - sin_phi * (1.0 - 2.0 * Af)\n    delta_sigma_d = numerator / denominator\n\n    return {\n        \"1\": {\"value\": delta_sigma_d, \"unit\": \"kN/m^2\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "50.90808259233078",
+        "unit": ""
+      }
+    ],
+    "category": "shear_strength",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c34",
+      "label": "das-c34-ex12.9",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_219",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "Two vertical flexible line loads of infinite length act on the ground surface. For point A, the depth is z = 4 m. The first line load has intensity q1 = 7.5 kN/m and horizontal distance x1 = 5 m from A. The second line load has intensity q2 = 15 kN/m and horizontal distance x2 = 10 m from A. Determine the increase of vertical stress at point A. Use Δσz = 2qz³/[π(x² + z²)²] for each vertical line load and superpose the stress increases.",
+    "code": "import math\n\ndef solve(z=4.0, q1=7.5, x1=5.0, q2=15.0, x2=10.0):\n    # Boussinesq vertical stress increase due to an infinite line load\n    def delta_sigma_z(q, x, z):\n        return (2.0 * q * z**3) / (math.pi * (x**2 + z**2)**2)\n\n    ds1 = delta_sigma_z(q1, x1, z)\n    ds2 = delta_sigma_z(q2, x2, z)\n    total = ds1 + ds2\n\n    return {\n        \"1\": {\"value\": total, \"unit\": \"kN/m^2\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.22720193019014326",
+        "unit": ""
+      }
+    ],
+    "category": "effective_stress",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c23",
+      "label": "das-c23-ex10.5",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_6",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "For a moist soil sample, the following are given: total volume V = 1.2 m^3, total mass M = 2350 kg, moisture content w = 8.6%, and specific gravity of soil solids Gs = 2.71. Determine the volume of water in the soil sample.",
+    "code": "def solve(V=1.2, M=2350.0, w=8.6, Gs=2.71):\n    # Physical constants\n    rho_water = 1000.0  # kg/m^3\n\n    # Convert moisture content from percent to fraction\n    w_frac = w / 100.0\n\n    # Total mass = mass of solids + mass of water\n    # M = Ms + Mw, and Mw = w * Ms  =>  M = Ms(1 + w)\n    Ms = M / (1.0 + w_frac)  # mass of solids (kg)\n    Mw = M - Ms              # mass of water (kg)\n\n    # Volume of water\n    Vw = Mw / rho_water      # m^3\n\n    return {\n        \"1\": {\"value\": Vw, \"unit\": \"m^3\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.18609576427255978",
+        "unit": ""
+      }
+    ],
+    "category": "phase_relations",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c4",
+      "label": "das-c4-Ex3.2f",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_130",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "Estimate the hydraulic conductivity of a sand using k = 2.4622 [D10^2 e^3/(1+e)]^0.7825. Given: D10 = 0.09 mm and void ratio e = 0.6.",
+    "code": "def solve(D10_mm=0.09, e=0.6):\n    # Empirical correlation (Chapuis, 2004):\n    # k [cm/s] = 2.4622 * [ D10^2 * e^3 / (1+e) ]^0.7825\n    # where D10 is in mm.\n\n    D10 = D10_mm  # mm, used directly in the empirical formula\n\n    term = (D10**2) * (e**3) / (1.0 + e)\n    k_cm_s = 2.4622 * (term ** 0.7825)  # cm/s\n\n    return {\n        \"1\": {\"value\": k_cm_s, \"unit\": \"cm/s\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.011863122857647493",
+        "unit": ""
+      }
+    ],
+    "category": "permeability_seepage",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c15",
+      "label": "das-c15-ex7.9",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_247",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "The following values were determined from an average e-log σ′ plot for a laboratory consolidation test. Loading branch: e = 0.80 at σ′ = 200 kN/m² and e = 0.70 at σ′ = 400 kN/m². Unloading branch: e = 0.570 at σ′ = 200 kN/m² and e = 0.555 at σ′ = 400 kN/m². Calculate the compression index Cc for the loading branch and the ratio Cs/Cc, where C = (e1 − e2)/log(σ2′/σ1′).",
+    "code": "import math\n\ndef solve(e1_load=0.80, sigma1_load=200.0, e2_load=0.70, sigma2_load=400.0,\n          e1_unload=0.570, sigma1_unload=200.0, e2_unload=0.555, sigma2_unload=400.0):\n    # Compression index (loading branch)\n    Cc = (e1_load - e2_load) / math.log10(sigma2_load / sigma1_load)\n\n    # Swell index (unloading branch)\n    Cs = (e1_unload - e2_unload) / math.log10(sigma2_unload / sigma1_unload)\n\n    # Ratio Cs/Cc\n    ratio = Cs / Cc\n\n    return {\n        \"1\": {\"value\": Cc, \"unit\": \"dimensionless\"},\n        \"2\": {\"value\": ratio, \"unit\": \"dimensionless\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.33219280948873653",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "0.14999999999999888",
+        "unit": ""
+      }
+    ],
+    "category": "consolidation_settlement",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c28",
+      "label": "das-c28-ex11.6a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_220",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "An inclined line load with a magnitude of 10 kN/m acts on the ground surface at an angle of 20° such that its vertical component is qV = 10 cos 20° and its horizontal component is qH = 10 sin 20°. Determine the increase of vertical stress Δσz at point A located at x = 5 m and z = 4 m due to the line load. Use Δσz(V) = 2qV z³/[π(x² + z²)²] for the vertical line-load component and Δσz(H) = (2qH/π) xz²/(x² + z²)² for the horizontal line-load component, and add the two contributions.",
+    "code": "import math\n\ndef solve(P=10.0, angle_deg=20.0, x=5.0, z=4.0):\n    # Components of the inclined line load\n    qV = P * math.cos(math.radians(angle_deg))  # kN/m\n    qH = P * math.sin(math.radians(angle_deg))  # kN/m\n\n    pi = math.pi\n    denom = (x**2 + z**2)**2\n\n    # Vertical stress due to vertical component\n    dsz_V = 2 * qV * z**3 / (pi * denom)\n\n    # Vertical stress due to horizontal component\n    dsz_H = (2 * qH / pi) * (x * z**2) / denom\n\n    dsz_total = dsz_V + dsz_H\n\n    return {\n        \"1\": {\"value\": dsz_total, \"unit\": \"kN/m^2\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.33138289478229227",
+        "unit": ""
+      }
+    ],
+    "category": "effective_stress",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c23",
+      "label": "das-c23-ex10.6",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_7",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "The following data are given for a soil: Porosity n = 0.4; specific gravity of the soil solids Gs = 2.68; moisture content w = 12%. Determine the mass of water to be added to 10 m^3 of soil for full saturation.",
+    "code": "def solve(n=0.4, Gs=2.68, w=0.12, V_total=10.0):\n    # Physical constants\n    rho_w = 1000.0  # kg/m^3, density of water\n\n    # Void ratio from porosity\n    e = n / (1.0 - n)\n\n    # Volumes per unit total volume\n    Vv = n              # volume of voids fraction\n    Vs = 1.0 - n        # volume of solids fraction\n\n    # Mass of solids per unit total volume (kg/m^3)\n    Ms = Gs * rho_w * Vs\n\n    # Current water mass from moisture content (kg per unit total volume)\n    Mw_current = w * Ms\n\n    # At full saturation, voids completely filled with water\n    Vw_sat = Vv                      # volume of water at saturation (per unit volume)\n    Mw_sat = rho_w * Vw_sat          # mass of water at saturation (kg per unit total volume)\n\n    # Water to be added per unit total volume\n    Mw_add_per_volume = Mw_sat - Mw_current\n\n    # Total for given volume (kg)\n    Mw_add_total = Mw_add_per_volume * V_total\n\n    return {\n        \"1\": {\"value\": Mw_add_total, \"unit\": \"kg\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "2070.4",
+        "unit": ""
+      }
+    ],
+    "category": "phase_relations",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c5",
+      "label": "das-c5-ex3.3",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_221",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "A vertical flexible strip load of finite width and infinite length has width B = 4 m and load per unit area q = 100 kN/m². For point A, z = 1 m and x = 1 m, where x is measured from the strip centerline. Determine the vertical stress increase Δσz at A using Eq. (10.19): Δσz = (q/π){tan⁻¹[z/(x − B/2)] − tan⁻¹[z/(x + B/2)] − Bz[x² − z² − B²/4]/([x² + z² − B²/4]² + B²z²)}. For x < B/2, replace tan⁻¹[z/(x − B/2)] by π + tan⁻¹[z/(x − B/2)]. Angles are in radians.",
+    "code": "import math\n\ndef solve(B=4.0, q=100.0, z=1.0, x=1.0):\n    # Vertical stress increase under a strip load, Eq. (10.19)\n    half_B = B / 2.0\n\n    term1 = math.atan(z / (x - half_B))\n    # For x < B/2, replace tan^-1[z/(x - B/2)] by pi + tan^-1[z/(x - B/2)]\n    if x < half_B:\n        term1 = math.pi + term1\n\n    term2 = math.atan(z / (x + half_B))\n\n    numerator = B * z * (x**2 - z**2 - half_B**2)\n    denominator = (x**2 + z**2 - half_B**2)**2 + (B**2) * (z**2)\n    term3 = numerator / denominator\n\n    delta_sigma_z = (q / math.pi) * (term1 - term2 - term3)\n\n    return {\"1\": {\"value\": delta_sigma_z, \"unit\": \"kN/m^2\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "90.22315265974657",
+        "unit": ""
+      }
+    ],
+    "category": "effective_stress",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c23",
+      "label": "das-c23-ex10.7",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_8",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "A saturated soil has a dry unit weight of 103 lb/ft^3. Its moisture content is 23%. Determine the saturated unit weight, gamma_sat.",
+    "code": "def solve(dry_unit_weight=103.0, moisture_content=0.23):\n    \"\"\"\n    A saturated soil has a dry unit weight of 103 lb/ft^3.\n    Its moisture content is 23%. Determine the saturated unit weight, gamma_sat.\n\n    For a saturated soil, the moisture content given corresponds to the\n    saturated state. The total (saturated) unit weight is:\n\n        gamma_sat = gamma_dry * (1 + w)\n\n    since gamma_dry = W_solids / V and moisture content w = W_water / W_solids,\n    so total weight = W_solids*(1+w), giving gamma_total = gamma_dry*(1+w).\n    \"\"\"\n    # gamma_dry in lb/ft^3\n    gamma_dry = dry_unit_weight  # lb/ft^3\n    w = moisture_content         # dimensionless (fraction)\n\n    # Saturated unit weight\n    gamma_sat = gamma_dry * (1.0 + w)  # lb/ft^3\n\n    return {\n        \"1\": {\"value\": gamma_sat, \"unit\": \"lb/ft^3\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "126.69",
+        "unit": ""
+      }
+    ],
+    "category": "phase_relations",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c5",
+      "label": "das-c5-ex3.4a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_9",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "A saturated soil has a dry unit weight of 103 lb/ft^3. Its moisture content is 23%. Determine the specific gravity, Gs.",
+    "code": "def solve(gamma_dry=103.0, moisture_content=0.23):\n    # Physical constants\n    gamma_water = 62.4  # lb/ft^3 (unit weight of water in imperial units)\n\n    # For a saturated soil:\n    #   gamma_dry = Gs * gamma_water / (1 + e)\n    #   Se = w * Gs, and for saturated soil S = 1, so e = w * Gs\n    #\n    # Substituting e = w * Gs:\n    #   gamma_dry = Gs * gamma_water / (1 + w * Gs)\n    #\n    # Solve for Gs:\n    #   gamma_dry * (1 + w * Gs) = Gs * gamma_water\n    #   gamma_dry + gamma_dry * w * Gs = Gs * gamma_water\n    #   gamma_dry = Gs * (gamma_water - gamma_dry * w)\n    #   Gs = gamma_dry / (gamma_water - gamma_dry * w)\n\n    Gs = gamma_dry / (gamma_water - gamma_dry * moisture_content)\n\n    return {\n        \"1\": {\"value\": Gs, \"unit\": \"dimensionless\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "2.6608111599070012",
+        "unit": ""
+      }
+    ],
+    "category": "phase_relations",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c5",
+      "label": "das-c5-ex3.4b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_10",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "A saturated soil has a dry unit weight of 103 lb/ft^3. Its moisture content is 23%. Determine the void ratio, e.",
+    "code": "def solve(gamma_dry=103.0, moisture_content=0.23):\n    # Physical constants\n    gamma_water = 62.4  # lb/ft^3, unit weight of water\n\n    # For a saturated soil:\n    #   gamma_dry = Gs * gamma_water / (1 + e)\n    #   Also, for saturation: Se = w * Gs, with S = 1  =>  e = w * Gs\n    #\n    # Substitute e = w * Gs into the dry unit weight equation:\n    #   gamma_dry = Gs * gamma_water / (1 + w * Gs)\n    # Solve for Gs:\n    #   gamma_dry * (1 + w * Gs) = Gs * gamma_water\n    #   gamma_dry + gamma_dry * w * Gs = Gs * gamma_water\n    #   gamma_dry = Gs * (gamma_water - gamma_dry * w)\n    #   Gs = gamma_dry / (gamma_water - gamma_dry * w)\n\n    Gs = gamma_dry / (gamma_water - gamma_dry * moisture_content)\n\n    # Void ratio from saturation condition (S = 1)\n    e = moisture_content * Gs\n\n    return {\n        \"1\": {\"value\": e, \"unit\": \"dimensionless\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.6119865667786103",
+        "unit": ""
+      }
+    ],
+    "category": "phase_relations",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c5",
+      "label": "das-c5-ex3.4c",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_11",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "The dry density of a sand with a porosity of 0.387 is 1600 kg/m^3. Determine the void ratio of the soil and the specific gravity of soil solids.",
+    "code": "def solve(porosity=0.387, dry_density=1600.0):\n    # Physical constants\n    rho_water = 1000.0  # kg/m^3, density of water\n\n    # Void ratio from porosity: e = n / (1 - n)\n    n = porosity\n    void_ratio = n / (1.0 - n)\n\n    # Dry density relation: rho_dry = Gs * rho_water / (1 + e)\n    # => Gs = rho_dry * (1 + e) / rho_water\n    Gs = dry_density * (1.0 + void_ratio) / rho_water\n\n    return {\n        \"1\": {\"value\": void_ratio, \"unit\": \"dimensionless\"},\n        \"2\": {\"value\": Gs, \"unit\": \"dimensionless\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.6313213703099511",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "2.6101141924959217",
+        "unit": ""
+      }
+    ],
+    "category": "phase_relations",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c5",
+      "label": "das-c5-ex3.5",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_12",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "For a given sandy soil, e_max = 0.75 and e_min = 0.4. Let Gs = 2.68. In the field, the soil is compacted to a moist unit weight of 112 lb/ft^3 at a moisture content of 12%. Determine the relative density of compaction.",
+    "code": "def solve(e_max=0.75, e_min=0.4, Gs=2.68, gamma_moist=112.0, w=0.12):\n    # Unit weight of water in lb/ft^3\n    gamma_w = 62.4\n\n    # Dry unit weight\n    gamma_dry = gamma_moist / (1.0 + w)\n\n    # Void ratio in field\n    # gamma_dry = Gs * gamma_w / (1 + e)\n    e = (Gs * gamma_w / gamma_dry) - 1.0\n\n    # Relative density\n    Dr = (e_max - e) / (e_max - e_min)\n\n    return {\n        \"1\": {\"value\": Dr * 100.0, \"unit\": \"%\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "22.194285714285645",
+        "unit": ""
+      }
+    ],
+    "category": "phase_relations",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c5",
+      "label": "das-c5-ex3.7",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_13",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "A one-point liquid limit test was conducted with number of blows N = 20 and moisture content w_N = 40.8%. Estimate the liquid limit of the soil by the one-point method using LL = w_N (N/25)^0.121.",
+    "code": "def solve(N=20, w_N=40.8):\n    # One-point liquid limit method:\n    # LL = w_N * (N/25)^0.121\n    exponent = 0.121\n    reference_blows = 25.0\n\n    LL = w_N * (N / reference_blows) ** exponent\n\n    return {\n        \"1\": {\"value\": LL, \"unit\": \"%\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "39.713123971890106",
+        "unit": ""
+      }
+    ],
+    "category": "phase_relations",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c7",
+      "label": "das-c7-ex4.2",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_132",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "For a normally consolidated clay soil, the following values are given: void ratio e = 1.1, k = 0.302 × 10^-7 cm/sec; void ratio e = 0.9, k = 0.12 × 10^-7 cm/sec. Estimate the hydraulic conductivity of the clay at a void ratio of 0.75. Use k = C[e^n/(1+e)], where C and n are constants determined experimentally from the given data.",
+    "code": "def solve(e1=1.1, k1=0.302e-7, e2=0.9, k2=0.12e-7, e_target=0.75):\n    import math\n\n    # Model: k = C * e^n / (1 + e)\n    # => k * (1+e) = C * e^n\n    # => ln(k*(1+e)) = ln(C) + n*ln(e)\n    y1 = math.log(k1 * (1 + e1))\n    y2 = math.log(k2 * (1 + e2))\n    x1 = math.log(e1)\n    x2 = math.log(e2)\n\n    n = (y1 - y2) / (x1 - x2)\n    lnC = y1 - n * x1\n    C = math.exp(lnC)\n\n    k_target = C * (e_target ** n) / (1 + e_target)\n\n    return {\n        \"1\": {\"value\": k_target, \"unit\": \"cm/sec\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "5.1431713358543415e-09",
+        "unit": ""
+      }
+    ],
+    "category": "permeability_seepage",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c15",
+      "label": "das-c15-ex7.11",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_133",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "The void ratio and hydraulic conductivity relation for a normally consolidated clay are given here: void ratio e = 1.2, k = 0.6 × 10^-7 cm/sec; void ratio e = 1.52, k = 1.519 × 10^-7 cm/sec. Estimate the value of k for the same clay with a void ratio of 1.4. Use log k = A' log e + B', where A' and B' are experimentally derived constants.",
+    "code": "def solve(e1=1.2, k1=0.6e-7, e2=1.52, k2=1.519e-7, e_target=1.4):\n    import math\n    # log k = A' log e + B'\n    logk1 = math.log10(k1)\n    logk2 = math.log10(k2)\n    loge1 = math.log10(e1)\n    loge2 = math.log10(e2)\n\n    A = (logk2 - logk1) / (loge2 - loge1)\n    B = logk1 - A * loge1\n\n    logk_target = A * math.log10(e_target) + B\n    k_target = 10 ** logk_target\n\n    return {\n        \"1\": {\"value\": k_target, \"unit\": \"cm/sec\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "1.09955080930129e-07",
+        "unit": ""
+      }
+    ],
+    "category": "permeability_seepage",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c15",
+      "label": "das-c15-ex7.13",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_156",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "Seepage takes place around a retaining wall. The hydraulic conductivity of the sand is 1.5 × 10^-3 cm/s. The retaining wall is 50 m long. For the flow net, the number of flow channels is N_f = 3 and the number of potential drops is N_d = 10. The total head loss from right to left is H = 5.0 m. Determine the quantity of seepage across the entire wall per day.",
+    "code": "def solve(k_cm_s=1.5e-3, wall_length_m=50.0, N_f=3, N_d=10, H_m=5.0):\n    # Convert hydraulic conductivity from cm/s to m/s\n    k_m_s = k_cm_s * 1e-2  # cm to m\n\n    # Seepage per unit length (2D flow net): q = k * H * (N_f / N_d)\n    q_per_length_m3_s = k_m_s * H_m * (N_f / N_d)  # m^3/s per meter of wall\n\n    # Total seepage across entire wall length\n    q_total_m3_s = q_per_length_m3_s * wall_length_m  # m^3/s\n\n    # Convert to per day\n    seconds_per_day = 24 * 3600\n    q_total_m3_day = q_total_m3_s * seconds_per_day\n\n    return {\n        \"1\": {\"value\": q_total_m3_day, \"unit\": \"m^3/day\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "97.20000000000002",
+        "unit": ""
+      }
+    ],
+    "category": "permeability_seepage",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c18",
+      "label": "das-c18-ex8.2",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_157",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "Two sheet piles were driven 4 m apart into clayey sand, and a 2-m depth of soil between the two sheet piles was removed. To facilitate construction work, the region between the sheet piles is being dewatered where the water level is lowered to the excavation level by pumping out water continuously. Assuming the hydraulic conductivity of the clayey sand is 2 × 10^-4 cm/s, estimate the quantity of water that has to be pumped out per meter length per day. By symmetry, analyze one half of the configuration; for the flow net of the left half, N_f = 2.9, N_d = 10, and H = 4.5 m. Consider both halves for the total pumping quantity.",
+    "code": "def solve(k_cm_s=2e-4, N_f=2.9, N_d=10, H=4.5):\n    # Convert hydraulic conductivity from cm/s to m/s\n    k = k_cm_s / 100.0  # m/s\n\n    # Flow rate per unit length for one half using flow net formula\n    # q = k * H * (N_f / N_d)\n    q_half = k * H * (N_f / N_d)  # m^3/s per meter length\n\n    # Consider both halves (symmetry)\n    q_total = 2.0 * q_half  # m^3/s per meter length\n\n    # Convert to per day\n    seconds_per_day = 24 * 3600\n    q_per_day = q_total * seconds_per_day  # m^3/day per meter length\n\n    return {\n        \"1\": {\"value\": q_per_day, \"unit\": \"m^3/day per meter length\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.451008",
+        "unit": ""
+      }
+    ],
+    "category": "permeability_seepage",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c18",
+      "label": "das-c18-ex8.3",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_158",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "A dam section has hydraulic conductivity of the permeable layer in the vertical direction k_z = 2 × 10^-2 mm/s and in the horizontal direction k_x = 4 × 10^-2 mm/s. The total head loss is H = 20 ft. For the transformed-section flow net, N_d = 8 and N_f = 2.5. Calculate the seepage loss of the dam in ft^3/day/ft using q = sqrt(k_x k_z) H (N_f/N_d).",
+    "code": "def solve(k_z_mm_s=2e-2, k_x_mm_s=4e-2, H_ft=20.0, N_d=8.0, N_f=2.5):\n    # Unit conversions\n    mm_to_ft = 1.0 / 304.8          # 1 ft = 304.8 mm\n    s_per_day = 86400.0             # seconds in a day\n\n    # Convert hydraulic conductivities from mm/s to ft/day\n    k_z = k_z_mm_s * mm_to_ft * s_per_day  # ft/day\n    k_x = k_x_mm_s * mm_to_ft * s_per_day  # ft/day\n\n    # Equivalent (transformed) hydraulic conductivity\n    k_eq = (k_x * k_z) ** 0.5  # ft/day\n\n    # Seepage loss per unit length of dam\n    q = k_eq * H_ft * (N_f / N_d)  # ft^3/day/ft\n\n    return {\"1\": {\"value\": q, \"unit\": \"ft^3/day/ft\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "50.10992937542462",
+        "unit": ""
+      }
+    ],
+    "category": "permeability_seepage",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c18",
+      "label": "das-c18-ex8.4",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_222",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "A horizontal flexible strip load of width B = 4 m acts on a semi-infinite soil mass. The load per unit area is q = 100 kN/m². Given z = 1 m, determine Δσz at x = +1 m and x = −1 m. Use Δσz = 4bqxz²/{π[(x² + z² − b²)² + 4b²z²]}, where b = B/2.",
+    "code": "import math\n\ndef solve(B=4.0, q=100.0, z=1.0, x1=1.0, x2=-1.0):\n    # Horizontal flexible strip load on semi-infinite soil mass\n    # Delta_sigma_z = 4*b*q*x*z^2 / {pi*[(x^2 + z^2 - b^2)^2 + 4*b^2*z^2]}\n    b = B / 2.0  # half-width of strip, m\n\n    def delta_sigma_z(x):\n        numerator = 4.0 * b * q * x * z**2\n        denominator = math.pi * ((x**2 + z**2 - b**2)**2 + 4.0 * b**2 * z**2)\n        return numerator / denominator\n\n    ds_x1 = delta_sigma_z(x1)  # at x = +1 m\n    ds_x2 = delta_sigma_z(x2)  # at x = -1 m\n\n    return {\n        \"1\": {\"value\": ds_x1, \"unit\": \"kN/m^2\"},\n        \"2\": {\"value\": ds_x2, \"unit\": \"kN/m^2\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "12.732395447351628",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "-12.732395447351628",
+        "unit": ""
+      }
+    ],
+    "category": "effective_stress",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c23",
+      "label": "das-c23-ex10.8",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_223",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "Consider the upward flow of water through a 2 m layer of sand in a tank. There is 0.7 m of water above the top of the sand. The total head difference causing upward flow through the sand is 1.5 m, varying linearly over the 2 m sand thickness. For the sand, void ratio e = 0.52 and specific gravity of solids Gs = 2.67. Use γw = 9.81 kN/m³ and γsat = [(Gs + e)γw]/(1 + e). Point A is 1 m below the top of the sand, and point B is at the bottom of the sand layer, 2 m below the top. Calculate the total stress, pore water pressure, and effective stress at points A and B.",
+    "code": "def solve(\n    sand_thickness=2.0,        # m\n    water_above=0.7,           # m of water above top of sand\n    head_diff=1.5,             # m total head difference over sand\n    e=0.52,                    # void ratio\n    Gs=2.67,                   # specific gravity of solids\n    gamma_w=9.81,              # kN/m^3\n    depth_A=1.0,               # m below top of sand\n    depth_B=2.0,               # m below top of sand\n):\n    # Saturated unit weight of sand\n    gamma_sat = (Gs + e) * gamma_w / (1.0 + e)\n\n    # Head loss varies linearly over sand thickness.\n    # Hydraulic gradient (head available / length)\n    i = head_diff / sand_thickness  # dimensionless\n\n    def compute(depth):\n        # Total stress: water column above sand + saturated sand above point\n        total_stress = water_above * gamma_w + depth * gamma_sat\n\n        # Pore pressure:\n        # Hydrostatic component: water column above the point\n        # = (water_above + depth) * gamma_w\n        # Excess head due to upward flow: for upward flow the pore pressure\n        # is INCREASED by the head loss accumulated from the top over the depth.\n        # Head loss over 'depth' of sand = i * depth\n        hydrostatic = (water_above + depth) * gamma_w\n        excess = i * depth * gamma_w\n        pore_pressure = hydrostatic + excess\n\n        effective_stress = total_stress - pore_pressure\n        return total_stress, pore_pressure, effective_stress\n\n    tA, uA, sA = compute(depth_A)\n    tB, uB, sB = compute(depth_B)\n\n    return {\n        \"1\": {\"value\": tA, \"unit\": \"kN/m^2\"},   # total stress at A\n        \"2\": {\"value\": uA, \"unit\": \"kN/m^2\"},   # pore pressure at A\n        \"3\": {\"value\": sA, \"unit\": \"kN/m^2\"},   # effective stress at A\n        \"4\": {\"value\": tB, \"unit\": \"kN/m^2\"},   # total stress at B\n        \"5\": {\"value\": uB, \"unit\": \"kN/m^2\"},   # pore pressure at B\n        \"6\": {\"value\": sB, \"unit\": \"kN/m^2\"},   # effective stress at B\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "27.45509210526316",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "24.0345",
+        "unit": ""
+      },
+      {
+        "sub": "3",
+        "value": "3.4205921052631574",
+        "unit": ""
+      },
+      {
+        "sub": "4",
+        "value": "48.04318421052631",
+        "unit": ""
+      },
+      {
+        "sub": "5",
+        "value": "41.202",
+        "unit": ""
+      },
+      {
+        "sub": "6",
+        "value": "6.841184210526315",
+        "unit": ""
+      }
+    ],
+    "category": "effective_stress",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c21",
+      "label": "das-c21-ex9.5a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_228",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "A soil profile consists of 6 m of dry sand over 13 m of saturated sand. The dry unit weight of the sand is 16.5 kN/m^3, the saturated unit weight of the sand is 19.25 kN/m^3, and the unit weight of water is 9.81 kN/m^3. The groundwater table is at the top of the saturated sand. Point A is at the ground surface. Calculate the total vertical stress, pore water pressure, and effective vertical stress at point A.",
+    "code": "def solve(\n    dry_sand_thickness=6.0,      # m\n    sat_sand_thickness=13.0,     # m\n    gamma_dry=16.5,              # kN/m^3\n    gamma_sat=19.25,             # kN/m^3\n    gamma_water=9.81,            # kN/m^3\n    gwt_depth=6.0,               # depth to groundwater table from surface (m)\n    point_depth=0.0,             # depth of point A from surface (m)\n):\n    # Point A is at the ground surface (depth = 0)\n    # Total vertical stress = sum of unit weight * thickness above the point\n    depth = point_depth\n\n    # Since point A is at the surface, no soil above it\n    total_stress = 0.0\n    # Accumulate stress contributions above point A\n    # Dry sand layer (from surface to dry_sand_thickness)\n    z_top = 0.0\n    remaining = depth\n\n    # Dry sand contribution\n    dry_depth_above = min(depth, dry_sand_thickness)\n    total_stress += gamma_dry * dry_depth_above\n\n    # Saturated sand contribution\n    if depth > dry_sand_thickness:\n        sat_depth_above = min(depth - dry_sand_thickness, sat_sand_thickness)\n        total_stress += gamma_sat * sat_depth_above\n\n    # Pore water pressure: only below groundwater table\n    if depth > gwt_depth:\n        pore_pressure = gamma_water * (depth - gwt_depth)\n    else:\n        pore_pressure = 0.0\n\n    # Effective vertical stress\n    effective_stress = total_stress - pore_pressure\n\n    return {\n        \"1\": {\"value\": total_stress, \"unit\": \"kN/m^2\"},\n        \"2\": {\"value\": pore_pressure, \"unit\": \"kN/m^2\"},\n        \"3\": {\"value\": effective_stress, \"unit\": \"kN/m^2\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.0",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "0.0",
+        "unit": ""
+      },
+      {
+        "sub": "3",
+        "value": "0.0",
+        "unit": ""
+      }
+    ],
+    "category": "effective_stress",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c20",
+      "label": "das-c20-ex9.1A",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_229",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "A soil profile consists of 6 m of dry sand over 13 m of saturated sand. The dry unit weight of the sand is 16.5 kN/m^3, the saturated unit weight of the sand is 19.25 kN/m^3, and the unit weight of water is 9.81 kN/m^3. The groundwater table is at the top of the saturated sand. Point B is at the groundwater table, 6 m below the ground surface. Calculate the total vertical stress, pore water pressure, and effective vertical stress at point B.",
+    "code": "def solve(dry_thickness=6.0, sat_thickness=13.0, gamma_dry=16.5,\n          gamma_sat=19.25, gamma_w=9.81):\n    # Point B is at the groundwater table, 6 m below ground surface,\n    # i.e., at the bottom of the dry sand layer.\n\n    # Total vertical stress at B: weight of dry sand above\n    total_stress = gamma_dry * dry_thickness  # kN/m^2\n\n    # Pore water pressure at B: water table is at B, so depth of water = 0\n    pore_pressure = gamma_w * 0.0  # kN/m^2\n\n    # Effective vertical stress at B\n    effective_stress = total_stress - pore_pressure  # kN/m^2\n\n    return {\n        \"1\": {\"value\": total_stress, \"unit\": \"kN/m^2\"},\n        \"2\": {\"value\": pore_pressure, \"unit\": \"kN/m^2\"},\n        \"3\": {\"value\": effective_stress, \"unit\": \"kN/m^2\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "99.0",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "0.0",
+        "unit": ""
+      },
+      {
+        "sub": "3",
+        "value": "99.0",
+        "unit": ""
+      }
+    ],
+    "category": "effective_stress",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c20",
+      "label": "das-c20-ex9.1B",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_230",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "A soil profile consists of 6 m of dry sand over 13 m of saturated sand. The dry unit weight of the sand is 16.5 kN/m^3, the saturated unit weight of the sand is 19.25 kN/m^3, and the unit weight of water is 9.81 kN/m^3. The groundwater table is at the top of the saturated sand. Point C is at the bottom of the saturated sand, 13 m below the groundwater table and 19 m below the ground surface. Calculate the total vertical stress, pore water pressure, and effective vertical stress at point C.",
+    "code": "def solve(dry_thickness=6.0, sat_thickness=13.0, gamma_dry=16.5,\n          gamma_sat=19.25, gamma_water=9.81):\n    # Total vertical stress at C\n    total_stress = gamma_dry * dry_thickness + gamma_sat * sat_thickness\n\n    # Pore water pressure at C (depth below GWT = sat_thickness)\n    pore_pressure = gamma_water * sat_thickness\n\n    # Effective vertical stress at C\n    effective_stress = total_stress - pore_pressure\n\n    return {\n        \"1\": {\"value\": total_stress, \"unit\": \"kN/m^2\"},\n        \"2\": {\"value\": pore_pressure, \"unit\": \"kN/m^2\"},\n        \"3\": {\"value\": effective_stress, \"unit\": \"kN/m^2\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "349.25",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "127.53",
+        "unit": ""
+      },
+      {
+        "sub": "3",
+        "value": "221.72",
+        "unit": ""
+      }
+    ],
+    "category": "effective_stress",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c20",
+      "label": "das-c20-ex9.1C",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_231",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "A soil profile consists of 6 m of dry sand over 13 m of saturated sand, with point C at the bottom of the saturated sand. The dry unit weight is 16.5 kN/m^3, the saturated unit weight is 19.25 kN/m^3 for both layers after saturation, and the unit weight of water is 9.81 kN/m^3. The present groundwater table is at the top of the saturated sand. How high should the water table rise above the present groundwater table so that the effective stress at C is 190 kN/m^2?",
+    "code": "def solve(dry_thickness=6.0, sat_thickness=13.0, gamma_dry=16.5,\n          gamma_sat=19.25, gamma_water=9.81, target_eff_stress=190.0):\n    # Present condition:\n    # Top 6 m dry sand, then 13 m saturated sand, C at bottom.\n    #\n    # When water table rises by height h above present GWT (top of saturated sand),\n    # a portion of the currently-dry sand becomes saturated.\n    # Assume the rise h is within the dry sand layer (h <= dry_thickness).\n    #\n    # New profile from surface:\n    #   - (dry_thickness - h) of dry sand (still above water table)\n    #   - h of sand now saturated (previously dry)\n    #   - sat_thickness of saturated sand\n    #\n    # Total stress at C:\n    sigma_dry_part = (lambda h: gamma_dry * (dry_thickness - h))\n    sigma_sat_newly = (lambda h: gamma_sat * h)\n    sigma_sat_orig = gamma_sat * sat_thickness\n\n    # Pore pressure at C:\n    #   water table is h above present GWT.\n    #   depth of C below new water table = h + sat_thickness\n    #   u = gamma_water * (h + sat_thickness)\n    #\n    # Effective stress = total - u:\n    # eff(h) = gamma_dry*(dry_thickness - h) + gamma_sat*h + gamma_sat*sat_thickness\n    #          - gamma_water*(h + sat_thickness)\n    #\n    # Solve eff(h) = target_eff_stress for h.\n    #\n    # eff(h) = gamma_dry*dry_thickness + h*(gamma_sat - gamma_dry)\n    #          + gamma_sat*sat_thickness - gamma_water*sat_thickness\n    #          - gamma_water*h\n    #\n    # Group h terms: h*(gamma_sat - gamma_dry - gamma_water)\n    const = (gamma_dry * dry_thickness\n             + gamma_sat * sat_thickness\n             - gamma_water * sat_thickness)\n    coeff = (gamma_sat - gamma_dry - gamma_water)\n\n    h = (target_eff_stress - const) / coeff\n\n    return {\n        \"1\": {\"value\": h, \"unit\": \"m\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "4.492917847025495",
+        "unit": ""
+      }
+    ],
+    "category": "effective_stress",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c20",
+      "label": "das-c20-ex9.2",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_248",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "For a laboratory consolidation test, use the average e-log σ′ loading branch with compression index Cc = 0.33 and void ratio e1 = 0.80 at σ1′ = 200 kN/m². Calculate the void ratio at σ3′ = 1000 kN/m² using Cc = (e1 − e3)/log(σ3′/σ1′).",
+    "code": "def solve(Cc=0.33, e1=0.80, sigma1=200.0, sigma3=1000.0):\n    import math\n    # Cc = (e1 - e3) / log10(sigma3/sigma1)\n    # => e3 = e1 - Cc * log10(sigma3/sigma1)\n    e3 = e1 - Cc * math.log10(sigma3 / sigma1)\n    return {\n        \"1\": {\"value\": e3, \"unit\": \"dimensionless\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.5693398985691138",
+        "unit": ""
+      }
+    ],
+    "category": "consolidation_settlement",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c28",
+      "label": "das-c28-ex11.6b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_249",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "For a given clay soil in the field, given Gs = 2.68 and eo = 0.75. Estimate Cc based on Eq. (11.40), Cc = 0.141 Gs^1.2 [(1 + eo)/Gs]^2.38, and Eq. (11.44), Cc = no/(371.747 − 4.275 no), where no is the in situ porosity of the soil in percent and no = [eo/(1 + eo)] × 100.",
+    "code": "def solve(Gs=2.68, eo=0.75):\n    # Eq. (11.40)\n    Cc_1140 = 0.141 * Gs**1.2 * ((1 + eo) / Gs)**2.38\n\n    # Eq. (11.44)\n    no = (eo / (1 + eo)) * 100.0  # in situ porosity in percent\n    Cc_1144 = no / (371.747 - 4.275 * no)\n\n    return {\n        \"1\": {\"value\": Cc_1140, \"unit\": \"dimensionless\"},\n        \"2\": {\"value\": Cc_1144, \"unit\": \"dimensionless\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.16689779984854605",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "0.2273193966337028",
+        "unit": ""
+      }
+    ],
+    "category": "consolidation_settlement",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c28",
+      "label": "das-c28-ex11.7",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_251",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "A soil profile consists of 2 m of dry sand with γdry = 14 kN/m³, over 4 m of saturated sand with γsat(sand) = 18 kN/m³, over a 3.5 m thick saturated clay layer with γsat(clay) = 19 kN/m³ and eo = 0.8. Take γw = 9.81 kN/m³. A uniformly distributed load Δσ′ = 100 kN/m² is applied at the ground surface and acts throughout the clay layer. The preconsolidation pressure is σc′ = 200 kN/m². Use γsat(clay) = [(Gs + e)γw]/(1 + e) to determine Gs, use Eq. (11.40), Cc = 0.141 Gs^1.2 [(1 + eo)/Gs]^2.38, use Cs ≈ Cc/5, and use Sc = [Cs H/(1 + eo)] log[(σo′ + Δσ′)/σo′] when σo′ + Δσ′ ≤ σc′, where σo′ is the average effective stress at the middle of the clay layer. Calculate the settlement of the clay layer caused by primary consolidation.",
+    "code": "def solve(gamma_dry_sand=14.0, gamma_sat_sand=18.0, gamma_sat_clay=19.0,\n          eo=0.8, gamma_w=9.81, delta_sigma=100.0, sigma_c=200.0,\n          H_dry_sand=2.0, H_sat_sand=4.0, H_clay=3.5):\n\n    # Determine Gs from gamma_sat(clay) = [(Gs + e) gamma_w]/(1 + e)\n    # gamma_sat_clay * (1 + eo) = (Gs + eo) * gamma_w\n    Gs = gamma_sat_clay * (1.0 + eo) / gamma_w - eo\n\n    # Cc from Eq (11.40)\n    Cc = 0.141 * Gs**1.2 * ((1.0 + eo) / Gs)**2.38\n\n    # Cs\n    Cs = Cc / 5.0\n\n    # Effective stress at middle of clay layer\n    # Depth to middle of clay = 2 (dry) + 4 (sat sand) + 3.5/2 (half clay)\n    # sigma_o' = dry sand + effective sat sand + effective half clay\n    sigma_o = (gamma_dry_sand * H_dry_sand\n               + (gamma_sat_sand - gamma_w) * H_sat_sand\n               + (gamma_sat_clay - gamma_w) * (H_clay / 2.0))\n\n    # Since sigma_o' + delta_sigma <= sigma_c' (overconsolidated), use Cs\n    Sc = (Cs * H_clay / (1.0 + eo)) * math.log10((sigma_o + delta_sigma) / sigma_o)\n\n    return {\n        \"1\": {\"value\": Sc, \"unit\": \"m\"}\n    }\n\nimport math",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.02505494065564068",
+        "unit": ""
+      }
+    ],
+    "category": "consolidation_settlement",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c28",
+      "label": "das-c28-ex11.8b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_253",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "Refer to a normally consolidated clay layer with initial void ratio e = 0.8 at the beginning of consolidation. The average effective stress at the middle of the clay layer is σo′ = 76.08 kN/m², the final effective stress after surcharge is σo′ + Δσ′ = 176.08 kN/m², and the compression index is Cc = 0.178. Calculate the void ratio at the end of consolidation using e = 0.8 − Cc log[(σo′ + Δσ′)/σo′].",
+    "code": "def solve(e_initial=0.8, sigma_o=76.08, sigma_final=176.08, Cc=0.178):\n    import math\n    # void ratio at end of consolidation\n    delta_e = Cc * math.log10(sigma_final / sigma_o)\n    e_final = e_initial - delta_e\n    return {\"1\": {\"value\": e_final, \"unit\": \"dimensionless\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.7351297644403638",
+        "unit": ""
+      }
+    ],
+    "category": "consolidation_settlement",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c28",
+      "label": "das-c28-ex11.9a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_268",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "Consider a remolded saturated clay. Given the following data: at moisture content w = 68%, undrained shear strength cur = 4.68 kN/m²; at moisture content w = 54%, undrained shear strength cur = 10.68 kN/m². Estimate the undrained shear strength cur when the moisture content is 40%. Use log cur = (1 - WLN)[log(cur(A)/cur(B))] + log cur(B), where WLN = (log w - log wA)/(log wB - log wA).",
+    "code": "import math\n\ndef solve(w_A=68.0, cur_A=4.68, w_B=54.0, cur_B=10.68, w_target=40.0):\n    # WLN = (log w - log wA)/(log wB - log wA)\n    WLN = (math.log10(w_target) - math.log10(w_A)) / (math.log10(w_B) - math.log10(w_A))\n    # log cur = (1 - WLN)[log(cur(A)/cur(B))] + log cur(B)\n    log_cur = (1.0 - WLN) * (math.log10(cur_A / cur_B)) + math.log10(cur_B)\n    cur = 10.0 ** log_cur\n    return {\"1\": {\"value\": cur, \"unit\": \"kN/m^2\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "31.26461479631588",
+        "unit": ""
+      }
+    ],
+    "category": "shear_strength",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c34",
+      "label": "das-c34-ex12.11",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_269",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "A consolidated-drained triaxial test was conducted on a normally consolidated clay. The results are: chamber-confining pressure σ3 = 140 kN/m^2 and deviator stress at failure (Δσd)f = 104 kN/m^2. Determine the angle of friction, φ'.",
+    "code": "import math\n\ndef solve(sigma3=140.0, delta_sigma_d_f=104.0):\n    # For normally consolidated clay, cohesion c' = 0\n    # Major principal stress at failure\n    sigma1 = sigma3 + delta_sigma_d_f\n    \n    # For c' = 0:\n    # sin(phi') = (sigma1 - sigma3) / (sigma1 + sigma3)\n    sin_phi = (sigma1 - sigma3) / (sigma1 + sigma3)\n    \n    phi_rad = math.asin(sin_phi)\n    phi_deg = math.degrees(phi_rad)\n    \n    return {\n        \"1\": {\"value\": phi_deg, \"unit\": \"degrees\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "15.713861048008214",
+        "unit": ""
+      }
+    ],
+    "category": "shear_strength",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c33",
+      "label": "das-c33-Ex12.3a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_270",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "A consolidated-drained triaxial test was conducted on a normally consolidated clay. The results are: chamber-confining pressure σ3 = 140 kN/m^2 and deviator stress at failure (Δσd)f = 104 kN/m^2. Determine the angle θ that the failure plane makes with the major principal plane.",
+    "code": "import math\n\ndef solve(sigma3=140.0, delta_sigma_d_f=104.0):\n    # Consolidated-drained test on normally consolidated clay -> cohesion c = 0\n    # Major principal stress at failure\n    sigma1 = sigma3 + delta_sigma_d_f\n\n    # For NC clay (c=0): sin(phi) = (sigma1 - sigma3) / (sigma1 + sigma3)\n    sin_phi = (sigma1 - sigma3) / (sigma1 + sigma3)\n    phi = math.asin(sin_phi)  # radians\n\n    # Failure plane angle with major principal plane\n    theta = 45.0 + math.degrees(phi) / 2.0\n\n    return {\n        \"1\": {\"value\": theta, \"unit\": \"degrees\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "52.856930524004106",
+        "unit": ""
+      }
+    ],
+    "category": "shear_strength",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c33",
+      "label": "das-c33-Ex12.3b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_271",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "A consolidated-drained triaxial test was conducted on a normally consolidated clay with σ3 = 140 kN/m^2 and deviator stress at failure (Δσd)f = 104 kN/m^2. For this test, the effective major principal stress at failure is σ1' = 244 kN/m^2, the effective minor principal stress at failure is σ3' = 140 kN/m^2, and the failure plane makes an angle θ = 53.73° with the major principal plane. Find the effective normal stress σ' and the shear stress τf on the failure plane.",
+    "code": "import math\n\ndef solve(sigma3=140.0, delta_sigma_d_f=104.0, sigma1_eff=244.0, sigma3_eff=140.0, theta_deg=53.73):\n    # Effective normal and shear stress on the failure plane\n    # sigma' = (sigma1' + sigma3')/2 + (sigma1' - sigma3')/2 * cos(2*theta)\n    # tau_f  = (sigma1' - sigma3')/2 * sin(2*theta)\n\n    theta_rad = math.radians(theta_deg)\n\n    center = (sigma1_eff + sigma3_eff) / 2.0\n    radius = (sigma1_eff - sigma3_eff) / 2.0\n\n    sigma_normal = center + radius * math.cos(2.0 * theta_rad)\n    tau_f = radius * math.sin(2.0 * theta_rad)\n\n    return {\n        \"1\": {\"value\": sigma_normal, \"unit\": \"kN/m^2\"},\n        \"2\": {\"value\": tau_f, \"unit\": \"kN/m^2\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "176.39792487545364",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "49.604185829504466",
+        "unit": ""
+      }
+    ],
+    "category": "shear_strength",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c33",
+      "label": "das-c33-Ex12.4a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_272",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "A consolidated-drained triaxial test was conducted on a normally consolidated clay with σ3 = 140 kN/m^2 and deviator stress at failure (Δσd)f = 104 kN/m^2. For this test, the effective major principal stress at failure is σ1' = 244 kN/m^2 and the effective minor principal stress at failure is σ3' = 140 kN/m^2. Determine the effective normal stress on the plane of maximum shear stress.",
+    "code": "def solve(sigma3_eff=140.0, delta_sigma_d=104.0, sigma1_eff=244.0):\n    # For CD test on NC clay, effective stresses equal total (no excess pore pressure)\n    # sigma1' = sigma3' + deviator stress\n    # sigma3_eff given = 140, sigma1_eff given = 244\n\n    # The plane of maximum shear stress makes 45 degrees with principal planes.\n    # Normal stress on plane of maximum shear = (sigma1' + sigma3') / 2\n\n    sigma_n_eff = (sigma1_eff + sigma3_eff) / 2.0\n\n    return {\n        \"1\": {\"value\": sigma_n_eff, \"unit\": \"kN/m^2\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "192.0",
+        "unit": ""
+      }
+    ],
+    "category": "shear_strength",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c33",
+      "label": "das-c33-Ex12.4b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "soil_273",
+    "book": "Das, Principles of Geotechnical Engineering (9th ed.)",
+    "problem": "The equation of the effective stress failure envelope for normally consolidated clayey soil is τf = σ' tan 28°. A drained triaxial test was conducted with the same soil at a chamber-confining pressure of 100 kN/m^2. Calculate the deviator stress at failure.",
+    "code": "import math\n\ndef solve(sigma3=100.0, phi_deg=28.0):\n    # Effective stress failure envelope: tau_f = sigma' * tan(phi)\n    # For a drained triaxial test, sigma3 is the confining pressure (effective).\n    # Relationship at failure:\n    #   sigma1' = sigma3' * tan^2(45 + phi/2)\n    # Deviator stress at failure:\n    #   dev = sigma1' - sigma3'\n\n    phi_rad = math.radians(phi_deg)\n\n    # Kp = tan^2(45 + phi/2)\n    Kp = math.tan(math.radians(45.0 + phi_deg / 2.0)) ** 2\n\n    sigma1 = sigma3 * Kp\n    deviator_stress = sigma1 - sigma3\n\n    return {\n        \"1\": {\"value\": deviator_stress, \"unit\": \"kN/m^2\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "176.98261953729093",
+        "unit": ""
+      }
+    ],
+    "category": "shear_strength",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "soil",
+    "provenance": {
+      "source": "das-c33",
+      "label": "das-c33-Ex12.5",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  }
+]

@@ -1,0 +1,7 @@
+model,code_acc,code_sd,direct_acc,direct_sd,delta_code_minus_direct,code_tokens_M,direct_tokens_M,token_ratio_direct_over_code,tokens_understated_dagger
+Qwen-3.6-27B (reasoning),88.5,0.6,85.5,0.3,+3.1,5.426,9.845,1.81,no
+DeepSeek-V4-flash (reasoning),91.1,0.8,90.2,1.2,+0.9,1.37,2.842,2.08,no
+Qwen-3.6-27B,79.4,0.7,80.3,1.7,-0.8,0.738,0.998,1.35,no
+DeepSeek-V4-flash,81.7,1.4,83.1,0.6,-1.5,0.357,0.548,1.54,no
+gpt-5.5 (reasoning),97.6,0.1,95.6,0.1,+2.1,0.354,0.425,1.2,yes
+gpt-5.5,90.8,1.4,88.1,0.6,+2.8,0.293,0.382,1.31,no

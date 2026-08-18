@@ -1,0 +1,987 @@
+{
+ "3.2": {
+  "verdict": "NOT_STRIP",
+  "removed": "none",
+  "data_diff": "none"
+ },
+ "1.1": {
+  "verdict": "NOT_STRIP",
+  "removed": "none",
+  "data_diff": "none"
+ },
+ "1.2": {
+  "verdict": "NOT_STRIP",
+  "removed": "none",
+  "data_diff": "none"
+ },
+ "air_3": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the handed-over Gaussian plume equation, replaced with a verbal description of the assumptions",
+  "data_diff": "none"
+ },
+ "4.3": {
+  "verdict": "DATA_CHANGED",
+  "removed": "none",
+  "data_diff": "Version A says '5%' (a typo/corrupted value) while Version B says '5°S' — the January latitude value differs"
+ },
+ "air_0": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over fixed box model formula c = b + (qL)/(uH)",
+  "data_diff": "none"
+ },
+ "6.1.4": {
+  "verdict": "NOT_STRIP",
+  "removed": "none",
+  "data_diff": "none"
+ },
+ "air_59": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The handed-over conversion equations M = (U² + V²)¹/² and the direction formula α = 90° - (360°/C)*arctan(V/U) + α_o, with definitions of α_o and C=360°. B replaces these with a standard definition of meteorological wind direction (compass angle from which wind blows, clockwise from north).",
+  "data_diff": "none"
+ },
+ "air_63": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the explicit exponential pressure equation P = P_o * e^[-(a/T)*z] formula was removed and replaced with descriptive assumptions (isothermal, hydrostatic, ideal gas)",
+  "data_diff": "none"
+ },
+ "7.4": {
+  "verdict": "NOT_STRIP",
+  "removed": "reference citation and 'described in this chapter' phrase removed; no recallable physical constant or formula removed",
+  "data_diff": "none"
+ },
+ "air_64": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the handed-over formula Δm=(A/g)*ΔP and the standard constant g=9.8 m/s^2; added equivalent hydrostatic balance hint",
+  "data_diff": "none"
+ },
+ "air_68": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The handed-over formulas for T and P (with standard ISA constants 288.15 K, 6.5 K/km lapse rate, 101.325 kPa, exponent -5.255877)",
+  "data_diff": "none"
+ },
+ "air_71": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over virtual temperature formula T_v = T * [1 + (0.61 * r)] and the unit-conversion hints (T in Kelvin, r in kg/kg)",
+  "data_diff": "none"
+ },
+ "air_72": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The virtual temperature formula T_v = T*[1+(a*r)-r_L-r_I] and the value of a=0.61 were removed (recallable standard equation/constant).",
+  "data_diff": "none"
+ },
+ "air_91": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the handed-over Kirchhoff's law (a_λ = e_λ) and energy conservation equation (1 = a_λ + r_λ + t_λ), replacing with a recallable LTE assumption",
+  "data_diff": "none"
+ },
+ "air_89": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the solar constant value S_o = 1361 W·m^-2 and the handed-over formula F_rad = E·sin(Ψ)",
+  "data_diff": "none"
+ },
+ "air_88": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Stefan-Boltzmann constant value σ_SB=5.67e-8 and the inverse square law formula E_2=E_1·(R_1/R_2)^2",
+  "data_diff": "none"
+ },
+ "air_90": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the solar irradiance constant S_o=1361 W/m^2 (standard constant) and the handed-over equation for E_avg plus the definitions of h_o and h_o'.",
+  "data_diff": "none"
+ },
+ "air_102": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over potential temperature equation, the value Rd/Cp=0.28571, and the inline note that temperatures are in Kelvin",
+  "data_diff": "none"
+ },
+ "air_92": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the numeric value of the solar constant (1361 W/m^2), and removed the handed-over formulas (gamma=n*b, tau=gamma*Δs, E_transmitted=E_incident*e^{-tau}, V=ln(1/0.02)/gamma); replaced with named Beer-Lambert law and contrast threshold definition",
+  "data_diff": "none"
+ },
+ "air_98": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed Cp=1004 value, g=9.8 value, and the handed-over equation/formula for ΔT (and definition Δq=ΔQ/m_air). Added recall-prompting assumptions (hydrostatic balance, ideal gas).",
+  "data_diff": "none"
+ },
+ "air_99": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The handed-over formula Γ = -(T2-T1)/(z2-z1) was deleted; a clarifying assumption (linear/uniform decrease) was added in its place.",
+  "data_diff": "none"
+ },
+ "air_104": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed P_o=100 kPa, R_d/C_p=0.28571 (standard constants), and the two handed-over equations for Theta and theta_v",
+  "data_diff": "none"
+ },
+ "air_106": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The 'Given:' restatement of problem values (V, ΔT, Δy) which the solver can read directly from the problem text.",
+  "data_diff": "none"
+ },
+ "air_103": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the handed-over equations for θ_v (both parts) and the value of the constant a=0.61, plus the Kelvin-units hint; replaced with a recallable conceptual prompt about liquid water loading.",
+  "data_diff": "none"
+ },
+ "air_107": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the 'Given' list restating z, T_initial, W, computed lapse rate ΔT/Δz, Δt, and the standard dry adiabatic lapse rate value Γ_d=9.8°C/km",
+  "data_diff": "none"
+ },
+ "air_111": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over formula for w_* and the value of g (9.8 m/s^2)",
+  "data_diff": "none"
+ },
+ "air_110": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The 'Given:' restatement of problem values (C_H, M, z, T_sfc, T_air)",
+  "data_diff": "none"
+ },
+ "air_119": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Cp=1004 J/kg/K value and the First Law equation form",
+  "data_diff": "none"
+ },
+ "air_121": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the dry adiabatic lapse rate value (9.8 °C/km)",
+  "data_diff": "none"
+ },
+ "air_120": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Cp=1004 J/kg/K, g=9.8 m/s^2, and the handed-over equation Δq = Cp ΔT + g Δz",
+  "data_diff": "none"
+ },
+ "air_123": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "R/Cp = 0.286 (standard constant for dry air)",
+  "data_diff": "none"
+ },
+ "air_124": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over governing equation for ΔT/Δt",
+  "data_diff": "none"
+ },
+ "air_125": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the inline definition/formula of the advective temperature change rate (-V ΔT/Δy)",
+  "data_diff": "none"
+ },
+ "air_122": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Poisson's equation hint and the R/Cp=0.286 standard constant value",
+  "data_diff": "none"
+ },
+ "air_132": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the saturation mixing ratio formula r_s = 622·e_s/(P-e_s) and the RH = 100%·(r/r_s) definition; the Tetens formula itself was retained",
+  "data_diff": "none"
+ },
+ "air_133": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the formula T_LCL = T - (9.8 K/km)·z_LCL (including the standard dry lapse rate constant 9.8) and the T_w = T_LCL + Γ_s·z_LCL equation hint",
+  "data_diff": "none"
+ },
+ "air_138": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the 'Given: r = 10 g kg⁻¹, P = 40 kPa' restatement of problem values",
+  "data_diff": "none"
+ },
+ "air_130": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the 'Given' restatement of problem values and the unit conversion T = 25°C = 298.15 K",
+  "data_diff": "none"
+ },
+ "air_139": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The 'Given:' restatement of problem values (P = 70 kPa, T = 10 °C = 283.15 K), which duplicates data already in the problem statement",
+  "data_diff": "none"
+ },
+ "air_146": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over bulk aerodynamic formula Flux = C_H M (r_sfc - r_air)",
+  "data_diff": "none"
+ },
+ "air_147": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Deleted the handed-over buoyancy formula F/m = ((T_p - T_e)/T_e)*|g| and the standard gravitational constant value g=9.8 m/s^2 (replaced by a recallable physical justification).",
+  "data_diff": "none"
+ },
+ "air_145": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The handed-over advection formula (Δr_T/Δt = -U Δr_T/Δx) was deleted; added equivalent assumption phrasing (steady wind, linear variation).",
+  "data_diff": "none"
+ },
+ "air_149": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed dry adiabatic lapse rate value (Γ_d = 9.8 K/km), gravity value (g = 9.8 m/s^2), and the explicit bulk Richardson number formula",
+  "data_diff": "none"
+ },
+ "air_154": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Hint pointing to equations from the Water Vapor chapter (equation-reference hint)",
+  "data_diff": "none"
+ },
+ "air_167": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the handed-over formulas for both parts: Δr/Δx ≈ r_s·(ΔS/Δx) and F = -D·(Δr/Δx), replaced with verbal method descriptions",
+  "data_diff": "none"
+ },
+ "air_159": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the handed-over formula for R, the rho_water=1000 standard constant value, and the inline unit conversion (0.004 kg/kg); added recall of the condensation assumption.",
+  "data_diff": "none"
+ },
+ "air_178": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the brightness temperature formula and the standard radiation constants c_1B and c_2 values; added recallable Planck law assumption",
+  "data_diff": "none"
+ },
+ "air_183": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over Rayleigh backscatter cross-section ratio formula σ_scat2/σ_scat1 = (D_2/D_1)^6",
+  "data_diff": "none"
+ },
+ "air_177": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Planck's Law formula and the standard radiation constants c_1B and c_2 values",
+  "data_diff": "none"
+ },
+ "air_182": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed handed-over formulas (ΔR = c·Δt/2, R = c·t/2, ΔD = R·Δβ, R_max = c/[2·PRF]) and the value of standard constant c = 3×10^8 m/s; kept the non-standard a=71.6° formula",
+  "data_diff": "none"
+ },
+ "air_187": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The handed-over formulas for maximum unambiguous velocity (M_rmax = λ·PRF/4) and false displayed velocity (M_rfalse = M_r - 2M_rmax), replaced by a conceptual cue about Doppler folding/aliasing",
+  "data_diff": "none"
+ },
+ "air_197": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the pressure-gradient force equation F_yPG/m = -(1/ρ)(ΔP/Δy)",
+  "data_diff": "none"
+ },
+ "air_198": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "g=9.8 m/s^2 value and the pressure-gradient force equation",
+  "data_diff": "none"
+ },
+ "air_203": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the value of g (9.8 m/s^2, a standard constant) and the handed-over geostrophic wind formula",
+  "data_diff": "none"
+ },
+ "air_212": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The handed-over geostrophic wind speed formula Vg = (1/(ρ f_c))(ΔP/Δn) was replaced by the recallable assumption of geostrophic balance.",
+  "data_diff": "none"
+ },
+ "air_215": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The explicit formulas for divergence, vorticity, and total deformation were removed (recallable standard definitions).",
+  "data_diff": "none"
+ },
+ "air_224": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the handed-over formula for U_d and the value Ω·R_E = 463 m/s (recallable standard constant derivable from Earth's rotation rate and radius)",
+  "data_diff": "none"
+ },
+ "air_220": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over formula λ_R = N_BV·Z_T/f_c, replaced with a recallable assumption description",
+  "data_diff": "none"
+ },
+ "air_227": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Coriolis parameter formula and 2Ω constant value (1.458×10⁻⁴ s⁻¹), and the potential vorticity formula",
+  "data_diff": "none"
+ },
+ "air_228": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the IPV defining formula and the PVU unit definition (1 PVU = 10^-6 K·m²·s⁻¹·kg⁻¹)",
+  "data_diff": "none"
+ },
+ "air_236": {
+  "verdict": "NOT_STRIP",
+  "removed": "none (only LaTeX formatting/delimiters changed)",
+  "data_diff": "none"
+ },
+ "air_243": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Earth's radius value (6371 km) and the wavelength formula λ≈2π[M/β]^(1/2)",
+  "data_diff": "none"
+ },
+ "air_251": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "g=9.8 m/s^2 value and the handed-over formula P_s=(g/A)*m, replaced with 'assume hydrostatic balance'",
+  "data_diff": "none"
+ },
+ "air_259": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "numeric value of standard constant g=9.81 m/s^2",
+  "data_diff": "none"
+ },
+ "air_252": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the value of g (9.8 m s^-2) and the handed-over formula ΔP_s/Δt = -|g|·ρ(z)·W(z)",
+  "data_diff": "none"
+ },
+ "air_255": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Earth's angular velocity value Omega = 7.292e-5 rad/s (standard constant)",
+  "data_diff": "none"
+ },
+ "air_261": {
+  "verdict": "NOT_STRIP",
+  "removed": "none (the geostrophic assumption M_RIJ=U_g was reworded into prose, not removed; reference to 'previous Sample Application' dropped but that's not a recallable standard constant)",
+  "data_diff": "none"
+ },
+ "air_263": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The handed-over formulas for wind-difference magnitude, shear magnitude, and shear direction were deleted; a clarifying definition of shear direction as compass-from direction was added (recallable convention).",
+  "data_diff": "none"
+ },
+ "air_264": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Deleted the handed-over wind component equations and mean shear formulas; added an inline standard definition of meteorological wind direction",
+  "data_diff": "none"
+ },
+ "air_284": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the value Cp/Re = 3.5 (a standard recallable constant ratio)",
+  "data_diff": "none"
+ },
+ "air_285": {
+  "verdict": "NOT_STRIP",
+  "removed": "none (only 'in the environment' phrase dropped, no recallable scaffolding removed)",
+  "data_diff": "none"
+ },
+ "air_290": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The explicit gradient-wind equation (1/ρ)(ΔP/ΔR)=f_c·M_tan+M_tan²/R was removed; the pressure-gradient formula was reworded into prose but kept the same content (4/5 factor).",
+  "data_diff": "none"
+ },
+ "air_296": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "air density value (1.225), gravity value (9.8), and the two provided equations",
+  "data_diff": "none"
+ },
+ "air_289": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The handed-over formula M_tan = (f_c/2)*((R_init^2 - R_final^2)/R_final) and the definition of f_c as the Coriolis parameter",
+  "data_diff": "none"
+ },
+ "air_299": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the explicit approximate Weibull probability formula and the inline definitions of M (bin center) and ΔM (bin width)",
+  "data_diff": "none"
+ },
+ "air_300": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "removed the handed-over power formula and the air density value ρ = 1.225 kg·m⁻³ (a recallable standard constant)",
+  "data_diff": "none"
+ },
+ "air_308": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "deleted g=9.8 m/s^2 standard constant value and the handed-over formulas for air and water wave speeds",
+  "data_diff": "none"
+ },
+ "air_304": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "gravitational acceleration value g=9.8 m/s² and the equilibrium speed formula",
+  "data_diff": "none"
+ },
+ "air_310": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the formula for Fr_1 and the value |g|=9.8 m/s² (standard constant)",
+  "data_diff": "none"
+ },
+ "air_314": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "deleted g=9.8 m/s² standard constant value and the gap wind equation formula",
+  "data_diff": "none"
+ },
+ "air_315": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The explicit Rossby radius of deformation formula was removed; the |g|/T_v value is retained",
+  "data_diff": "none"
+ },
+ "air_320": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Specific heat at constant pressure Cp = 1004 m² s⁻² K⁻¹ (standard recallable constant)",
+  "data_diff": "none"
+ },
+ "air_323": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "air density value ρ = 1.2 kg m⁻³ (standard recallable constant)",
+  "data_diff": "none"
+ },
+ "air_328": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The Coriolis parameter formula f = 2*Ω*sin(latitude) and the standard value Ω = 7.292e-5 rad/s",
+  "data_diff": "none"
+ },
+ "air_330": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Cp = 1004 J kg^-1 K^-1, the standard specific heat of air at constant pressure",
+  "data_diff": "none"
+ },
+ "air_339": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over log wind profile equation",
+  "data_diff": "none"
+ },
+ "air_338": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "von Kármán constant k=0.4 and the friction velocity formula",
+  "data_diff": "none"
+ },
+ "air_345": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over equation for the warming rate (ΔT/Δt = -Δ(w'Θ')/Δz)",
+  "data_diff": "none"
+ },
+ "air_347": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over logarithmic wind profile formula M(z) ∝ ln(z/z₀)",
+  "data_diff": "none"
+ },
+ "air_349": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The hint giving the Deardorff velocity formula w_* = [(|g|/T_v)·z_i·F_H]^(1/3)",
+  "data_diff": "none"
+ },
+ "air_346": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the explicit K-theory formula K = k²·z²·|ΔM/Δz|, the von Kármán constant value k=0.4, and the flux equation F_H = -K·ΔΘ/Δz",
+  "data_diff": "none"
+ },
+ "air_360": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over centered-difference advection formula on a staggered grid",
+  "data_diff": "none"
+ },
+ "air_371": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over formula T_s = 2^{1/4} * T_e",
+  "data_diff": "none"
+ },
+ "air_363": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The note hint to convert T_A to Kelvin for Planck's Law",
+  "data_diff": "none"
+ },
+ "air_362": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the explicit optimum interpolation formula was deleted; replaced with a verbal description (uncorrelated/Gaussian, minimize error variance)",
+  "data_diff": "none"
+ },
+ "air_379": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The handed-over formulas for Gain G = 1/[1-Σf] and total response r = G·r₀",
+  "data_diff": "none (r₀ = 0.31 unchanged; 'realistic Earth' vs 'no-feedback' is rewording of the same reference response value)"
+ },
+ "air_380": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The handed-over formulas for gain G = 1/[1 - Σf] and total response r = G·r_o",
+  "data_diff": "none"
+ },
+ "air_392": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over primary-rainbow viewing angle formula (replaced with a verbal description of the optics)",
+  "data_diff": "none"
+ },
+ "air_385": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over formula T_sfc = T_e / (1 - epsilon/2)^{1/4}",
+  "data_diff": "none"
+ },
+ "air_382": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over formula E_in = (S_0/4)(1-A)",
+  "data_diff": "none"
+ },
+ "air_405": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The handed-over equation ln(P/P_o) = (-a/T)·z and the inline instruction to use T in Kelvin; replaced with recallable isothermal/hydrostatic/ideal-gas assumptions",
+  "data_diff": "none"
+ },
+ "air_395": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over formula for Theta_2min and the standard n_air≈1.0 value",
+  "data_diff": "none"
+ },
+ "p_0": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over Gaussian off-axis concentration ratio formula",
+  "data_diff": "none"
+ },
+ "10.3": {
+  "verdict": "DATA_CHANGED",
+  "removed": "none (formatting/reordering of answer requests)",
+  "data_diff": "Version A includes part 2 (fraction of total Ox sink accounted for by the Chapman mechanism), which is dropped entirely in Version B — an asked quantity removed"
+ },
+ "p_4": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The handed-over Gaussian plume equation for a ground-level source was removed (replaced by a description that the plume is Gaussian in crosswind and vertical directions).",
+  "data_diff": "none"
+ },
+ "p_5": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The handed-over Gaussian plume equation for an elevated source was deleted (recallable formula).",
+  "data_diff": "none"
+ },
+ "p_6": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The handed-over Gaussian plume equation was deleted; replaced by a recallable assumption statement describing the standard Gaussian point-source model with ground reflection.",
+  "data_diff": "none"
+ },
+ "p_7": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "removed conversions 1 lb=453.6 g and 1 hour=3600 s, molecular weights of S (32) and SO₂ (64)",
+  "data_diff": "none"
+ },
+ "2.3": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The handed-over pressure formula p(z)=p₀(1-Γz/T₀)^(g/ΓRₐ) and the inline definition of Rₐ as the gas constant per unit mass of air",
+  "data_diff": "none"
+ },
+ "p_12": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The handed-over ground-level concentration formula χ = Q/(π σ_y σ_z u) was deleted; assumption reworded but retains same meaning.",
+  "data_diff": "none"
+ },
+ "p_10": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over crosswind-integrated dosage formula D_CWI = 2Q_T/(sqrt(2pi) sigma_z u) and the explicit 'Express your answer in m' unit hint; added a recallable Gaussian-plume assumption restatement",
+  "data_diff": "none"
+ },
+ "2.14": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Stokes' law formula (6πηrv), the Reynolds number definition (Re≡ρvr/η with ρ as air density), and the Acheson reference hint",
+  "data_diff": "none"
+ },
+ "2.13": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "equation reference '(2.17)' for the First Law of Thermodynamics replaced with 'for a reversible cyclic process'",
+  "data_diff": "none"
+ },
+ "5.2": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the explicit governing equations, the equation references (5.16a/5.16b), the hint to define ũ=u+iv, and the explicit displacement equations (replaced with verbal 'time-integrating')",
+  "data_diff": "none"
+ },
+ "7.1": {
+  "verdict": "NOT_STRIP",
+  "removed": "none",
+  "data_diff": "none"
+ },
+ "6.1": {
+  "verdict": "NOT_STRIP",
+  "removed": "reference hint 'mentioned in Section 6.1' (not a recallable standard constant/formula)",
+  "data_diff": "none"
+ },
+ "5.10": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Hint giving δρ decomposition formula (δρ = (∂ρ/∂y)δy + (∂ρ/∂z)δz, with δy=δs cosϕ, δz=δs sinϕ)",
+  "data_diff": "none"
+ },
+ "p_2": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The explicit exponential formulas (p = p₀ e^{-z/H} and ρ = ρ₀ e^{-z/H}) were replaced with a verbal description.",
+  "data_diff": "none"
+ },
+ "2.15": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The two handed-over formulas (the temperature difference equation and the Ṁᵢ/r equation) were removed and replaced with descriptive prose; explicit assumptions stated but these fix the same method.",
+  "data_diff": "none"
+ },
+ "p_3": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over exponential pressure/density formula p = p_0 e^{-z/H}, replaced with the recallable description of hydrostatic balance with constant scale height",
+  "data_diff": "none"
+ },
+ "p_16": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "molecular weight of carbon (12 g/mol), mean molecular weight of air (28.94 g/mol), and the handed-over formula for m(CO2)",
+  "data_diff": "none"
+ },
+ "p_22": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "hypsometric equation formula and the ln(1+x)≈x approximation hint",
+  "data_diff": "none"
+ },
+ "p_21": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the explicit barometric/scale-height formula p_2=p_1 exp[-(Z_2-Z_1)/H], H=R*T/(Mg), and standard constants R*=8.3145 and g=9.81",
+  "data_diff": "none"
+ },
+ "p_20": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the explicit temperature value (273.2 K), the ideal gas equation p=ρRT, Dalton's law hint, and standard gas constants R_d=287.0 and R_v=461.5 J/K/kg",
+  "data_diff": "none"
+ },
+ "p_23": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the hypsometric equation formula and the standard constant values R_d = 287 J kg^-1 K^-1 and g_0 = 9.81 m s^-2 (replaced with recallable hydrostatic/ideal-gas assumptions)",
+  "data_diff": "none"
+ },
+ "p_25": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over formula Tv ≈ T(1+0.61w) and the inline definitions of T (Kelvin) and w (dimensionless kg/kg)",
+  "data_diff": "none"
+ },
+ "p_35": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The handed-over relation Fₛ = Iₛ × δω and the formula for the solid angle δω = π(Rₛ/d)²",
+  "data_diff": "none"
+ },
+ "p_26": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Formulas for orographic period (τ=L/U), buoyancy period (2π/N), Brunt-Väisälä frequency definition, standard constants g=9.8 and Γ_d=9.8×10⁻³, and the Kelvin reminder",
+  "data_diff": "none"
+ },
+ "p_38": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Stefan-Boltzmann constant value (5.67e-8), and the handed-over formulas for flux density at photosphere and blackbody emission (replaced with verbal method-fixing assumptions)",
+  "data_diff": "none"
+ },
+ "p_40": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The handed-over cooling-rate formula (mc dT/dt = 4πr²σT_E⁴) and the numeric value of the Stefan-Boltzmann constant σ = 5.67×10⁻⁸",
+  "data_diff": "none"
+ },
+ "p_37": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Wien's displacement law formula and constant (λₘ = 2897 / T)",
+  "data_diff": "none"
+ },
+ "p_41": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The Rayleigh scattering relationship K_λ ∝ λ^-4 (a recallable standard formula/assumption hint)",
+  "data_diff": "none"
+ },
+ "p_52": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Stefan-Boltzmann constant value sigma = 5.67e-8 W m^-2 K^-4",
+  "data_diff": "none"
+ },
+ "p_55": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the handed-over transmissivity formula T = e^{-k_λ m} and its definition of m",
+  "data_diff": "none"
+ },
+ "p_56": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Deleted the handed-over formulas τ = k_λ p / g and p(z) = p_0 e^{-z/H}",
+  "data_diff": "none"
+ },
+ "p_57": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Stefan-Boltzmann law formula F = σT^4 (recallable standard equation)",
+  "data_diff": "none"
+ },
+ "p_64": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Molecular weights of C₈H₁₈ (114), O₂ (32), apparent MW of dry air (28.97), and oxygen volume fraction in air (20.95%) — all standard recallable constants.",
+  "data_diff": "none"
+ },
+ "p_63": {
+  "verdict": "NOT_STRIP",
+  "removed": "none (K value is problem-specific, not a standard constant; only minor rewording of 'where K is a constant (assume K = ...)' to 'where K = ...')",
+  "data_diff": "none"
+ },
+ "p_70": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Atomic weights of N and H (14, 1.01), ideal gas assumption hint, and R = 8.314 J K⁻¹ mol⁻¹ — all recallable standard constants/assumptions",
+  "data_diff": "none"
+ },
+ "p_72": {
+  "verdict": "NOT_STRIP",
+  "removed": "none (only minor rewording: 'of the atmosphere' and 'of the Earth' dropped)",
+  "data_diff": "none"
+ },
+ "p_73": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Henry's law formula and definition, the temperature-dependence equation for k_H, the value of R (8.31 J/K/mol), and 'over the past 50 years' phrasing",
+  "data_diff": "none; the added assumptions (all CO2 added to atmosphere, neglect feedback) are method-fixing clarifications consistent with original, no scenario values changed"
+ },
+ "p_96": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "geostrophic wind formula, Coriolis parameter definition, values of g and Ω",
+  "data_diff": "none"
+ },
+ "p_95": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "formula F_c = m f v, definition f = 2Ω sinφ, and standard constant Ω = 7.292×10⁻⁵ rad/s",
+  "data_diff": "none"
+ },
+ "p_101": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The handed-over continuity equation in pressure coordinates and the approximate conversion formula from omega to w were deleted; these are recallable standard equations.",
+  "data_diff": "none"
+ },
+ "p_102": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "removed the handed-over CAPE formula and the value of Rd=287 J/kg/K (standard constant)",
+  "data_diff": "none"
+ },
+ "p_99": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed handed-over formulas for geopotential height perturbation, vorticity perturbation, planetary/relative vorticity advection, stationary Rossby wavelength, the beta definition, and standard constant values (g, R_E, Ω). Added recallable assumptions (geostrophic balance, spherical Earth beta).",
+  "data_diff": "none"
+ },
+ "p_104": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over cyclostrophic balance equation (1/ρ)(∂p_D/∂r)=ω²r and definition of ω",
+  "data_diff": "none"
+ },
+ "p_103": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the definition that Earth's rotation vorticity is 2Ω and the value of Earth's angular velocity Ω = 7.29 × 10⁻⁵ s⁻¹, both recallable standard scaffolding",
+  "data_diff": "none"
+ },
+ "p_107": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over cyclostrophic balance equation (1/ρ)(dp/dr)=ν²/r",
+  "data_diff": "none"
+ },
+ "p_106": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the handed-over formula d²z/dt² = g(T'-T)/T and the value of g=9.8 m/s² (standard constant); added explanatory wording about ideal gas/hydrostatic balance to compensate for missing formula",
+  "data_diff": "none"
+ },
+ "p_109": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the numeric value of g (9.8 m s⁻²), a standard physical constant",
+  "data_diff": "none"
+ },
+ "p_110": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the handed-over mass continuity equation reference/formula ('Use the mass continuity equation for an incompressible fluid (Volume flux in = Volume flux out)')",
+  "data_diff": "none"
+ },
+ "p_112": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the cyclostrophic balance formula (v^2/r = (1/rho)(dp/dr))",
+  "data_diff": "none"
+ },
+ "p_108": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the inline formula ζ = ζ₀ e^(t/T) and the solid-body rotation vorticity formula ζ = 2ν/r₀",
+  "data_diff": "none"
+ },
+ "p_113": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the angular momentum formula M = vr + (1/2)fr^2, the definition of Coriolis parameter f = 2Ω sin(φ), and the value of Earth's angular velocity Ω = 7.292e-5 rad/s",
+  "data_diff": "none"
+ },
+ "p_115": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed g=9.8 and k=0.4 standard constant values, the explicit Obukhov length formula, and the explicit |L|/zᵢ ratio definition",
+  "data_diff": "none"
+ },
+ "p_114": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "hydrostatic equation Δp = ρ_w g Δh and value of g = 9.81 m/s²",
+  "data_diff": "none"
+ },
+ "turner_2": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over Gaussian plume formula chi = Q/(pi*sigma_y*sigma_z*u)*exp[-0.5*(H/sigma_z)^2], replaced by a description of the model",
+  "data_diff": "none"
+ },
+ "turner_1": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over ground-level point-source equation chi = Q/(pi*sigma_y*sigma_z*u), replaced with the recallable assumption description (Gaussian plume with total ground reflection)",
+  "data_diff": "none"
+ },
+ "turner_3": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the explicit Gaussian plume equation chi = Q/(pi*sigma_y*sigma_z*u)*exp[...]*exp[...] was removed (replaced by a descriptive assumption)",
+  "data_diff": "none"
+ },
+ "snp_5": {
+  "verdict": "NOT_STRIP",
+  "removed": "none — only merged the density into the same sentence as the C₈H₁₈ assumption (rewording)",
+  "data_diff": "none"
+ },
+ "snp_9": {
+  "verdict": "NOT_STRIP",
+  "removed": "phrase 'On the basis of these two values' which is a non-recallable hint about method/instruction, not a standard constant or formula",
+  "data_diff": "none"
+ },
+ "snp_12": {
+  "verdict": "NOT_STRIP",
+  "removed": "citation reference (Sander et al. 2003) only",
+  "data_diff": "none"
+ },
+ "turner_23": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over infinite line source equation chi = 2q/(sqrt(2*pi)*sigma_z*u)",
+  "data_diff": "none"
+ },
+ "jacob_4.7": {
+  "verdict": "NOT_STRIP",
+  "removed": "explanatory justification for the immediate precipitation assumption (reference to problem 1.2), which is not a recallable standard constant/formula",
+  "data_diff": "none"
+ },
+ "jacob_13.2": {
+  "verdict": "NOT_STRIP",
+  "removed": "none (only removed parenthetical context note and citation reference, which are not recallable scaffolding/constants)",
+  "data_diff": "none"
+ },
+ "jacob_13.4": {
+  "verdict": "NOT_STRIP",
+  "removed": "none",
+  "data_diff": "none"
+ },
+ "jacob_12.1": {
+  "verdict": "DATA_CHANGED",
+  "removed": "Removed reaction equations, HOx context, and several sub-parts",
+  "data_diff": "Part 2 asked quantity changed: Version A part 2 compares HOx source to NOx source using P_HOx=4x10^6 (with conclusion on NOx vs hydrocarbon-limited), while Version B part 2 asks to calculate the NOx source as a volumetric production rate; also parts 3 and 4 entirely dropped"
+ },
+ "holton_7": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The explicit surface boundary condition equations (ρ₀ K ∂u/∂z = τ_w, ρ₀ K ∂v/∂z = 0 at z=0) were removed and replaced with prose; these are derivable/recallable formula scaffolding.",
+  "data_diff": "none"
+ },
+ "holton_22": {
+  "verdict": "NOT_STRIP",
+  "removed": "figure reference 'as shown in Fig. 8.7'",
+  "data_diff": "none"
+ },
+ "holton_27": {
+  "verdict": "NOT_STRIP",
+  "removed": "none",
+  "data_diff": "none"
+ },
+ "holton_13": {
+  "verdict": "NOT_STRIP",
+  "removed": "none — 'barotropic potential vorticity equation' reworded to 'potential vorticity is conserved following the flow for a barotropic, homogeneous fluid layer'",
+  "data_diff": "none"
+ },
+ "holton_30": {
+  "verdict": "NOT_STRIP",
+  "removed": "none (only added a comma)",
+  "data_diff": "none"
+ },
+ "holton_36": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the 'Compare your results with Problem 1.12' reference hint (scaffolding/cross-reference)",
+  "data_diff": "none"
+ },
+ "holton_60": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "equation reference hint '(10.75)' for the equation of state",
+  "data_diff": "none"
+ },
+ "holton_40": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The handed-over formula for the central pressure was deleted; B asks to derive the expression instead of providing it. The physics hint added (balance between pressure-gradient force and centripetal acceleration) is recallable method scaffolding, but the explicit answer formula was removed.",
+  "data_diff": "none"
+ },
+ "4.8": {
+  "verdict": "NOT_STRIP",
+  "removed": "figure reference hint ('in Figure 4.17') removed, but this is not a standard recallable constant/formula",
+  "data_diff": "none"
+ },
+ "holton_76": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Removed the explicit surface boundary-condition equations (the flux-gradient formulas at z=0) and instead described them in words; these are derivable/recallable scaffolding. Also added explicit statement of steady-state/Coriolis balance assumption which is standard.",
+  "data_diff": "none"
+ },
+ "holton_56": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Equation references (6.18), (7.21), the explicit geostrophic formula v'=g f_0^{-1} ∂h'/∂x, the handed-over PV equation form, and the solution form/phase speed result c=-β(k²+f_0²/gH)^{-1}",
+  "data_diff": "none"
+ },
+ "5.11": {
+  "verdict": "NOT_STRIP",
+  "removed": "none",
+  "data_diff": "none"
+ },
+ "3.11": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Equation references (3.54) replaced with 'two-stream equations'; boundary condition reference (3.57) replaced with its explicit physical statement (no upward flux enters base) — both recallable/equation-reference scaffolding",
+  "data_diff": "none"
+ },
+ "3.8": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "removed inline definition '1/λ' for wavenumber and the equation-reference hint '(cf. equation (3.22))'",
+  "data_diff": "none"
+ },
+ "air_332": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the dry adiabatic lapse rate value Γ_d = 9.8 °C km⁻¹ (standard constant) and the handed-over formula ΔΘ/Δz = ΔT/Δz + Γ_d",
+  "data_diff": "none"
+ },
+ "air_376": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the numeric value of the standard solar constant S_o = 1361 W m⁻²",
+  "data_diff": "none"
+ },
+ "p_89": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the numeric value of Earth's radius (R_E = 6.37 × 10⁶ m), a standard physical constant",
+  "data_diff": "none"
+ },
+ "air_383": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "numeric value of Stefan-Boltzmann constant sigma=5.67e-8",
+  "data_diff": "none"
+ },
+ "air_370": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Stefan-Boltzmann constant value (5.67e-8)",
+  "data_diff": "none"
+ },
+ "p_39": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "Stefan-Boltzmann constant value sigma = 5.67e-8",
+  "data_diff": "none"
+ },
+ "3.4": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "The given solar irradiance value Fₛ = 1370 W m⁻² (a standard solar constant) was removed.",
+  "data_diff": "none"
+ },
+ "p_33": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the value 1 atm = 101325 Pa (standard constant)",
+  "data_diff": "none"
+ },
+ "air_222": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the numeric value of standard constant g = 9.8 m/s^2",
+  "data_diff": "none"
+ },
+ "air_329": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "gas constant value R = 287 J kg^-1 K^-1",
+  "data_diff": "none"
+ },
+ "p_79": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "density of liquid water (1000 kg/m^3), a standard physical constant",
+  "data_diff": "none"
+ },
+ "2.6": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the handed-over formula/definition 'Use the fact that c_p = (∂H/∂T)_p'",
+  "data_diff": "none"
+ },
+ "air_126": {
+  "verdict": "DATA_CHANGED",
+  "removed": "ρ_water=1000, C_liq=4200",
+  "data_diff": "L_cond = +2.5 x 10⁶ J·kg⁻¹ removed (a problem-specific/non-standard value for this latent heat); also C_liq removed which is not a universally standard constant"
+ },
+ "air_238": {
+  "verdict": "CLEAN_STRIP",
+  "removed": "the numeric value of g (|g| = 9.8 m/s²)",
+  "data_diff": "none"
+ }
+}

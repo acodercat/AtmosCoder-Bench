@@ -1,0 +1,4 @@
+axis,magnitude,unit,note
+"format (option vs code, same problems)",+30 to +45,points,"MCQ10, 6 models"
+protocol (code vs direct),+1.08,points,mean over 6 paired configs
+fabricated execution,"existence, not rate",—,10 confirmed records; do NOT plot as a frequency

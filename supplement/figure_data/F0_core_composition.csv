@@ -1,0 +1,12 @@
+category,n_total,n_low,n_medium,n_high,n_numeric_variantable,n_books
+atmospheric_dynamics,116,6,81,29,104,7
+atmospheric_thermodynamics,89,14,46,29,79,11
+atmospheric_chemistry,51,1,26,24,32,8
+air_quality,37,3,27,7,26,8
+boundary_layer,32,9,17,6,29,5
+cloud_physics,29,1,13,15,17,6
+atmospheric_radiation,25,3,17,5,21,5
+atmospheric_aerosols,24,1,14,9,15,8
+climate_dynamics,19,4,8,7,11,7
+observation_and_modeling,14,2,9,3,12,4
+ALL,436,44,258,134,346,13

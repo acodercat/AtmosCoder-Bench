@@ -1,0 +1,5 @@
+model,permissive_acc,codeonly_acc,delta,unrecoverable_permissive,unrecoverable_codeonly
+Gemini-3.1-Pro (reasoning),96.0,96.3,+0.2,0,0
+DeepSeek-V4-flash,81.7,80.5,-1.1,0,0
+gpt-5.5,90.8,88.9,-1.9,0,0
+Qwen-3.5-9B,63.4,52.7,-10.7,2,37

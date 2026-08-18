@@ -1,0 +1,2291 @@
+[
+  {
+    "id": "trap_air203_gradient",
+    "book": "synthesized",
+    "parent_id": "air_203",
+    "control_id": "air_203",
+    "problem": "Air flows CYCLONICALLY around a low-pressure center where the geopotential height increases by 50 m per 200 km toward the east, with Coriolis parameter f_c = 0.9×10⁻⁴ s⁻¹ and a radius of curvature of 200 km. Find the actual (gradient) wind speed. Express your answer in m s⁻¹.",
+    "code": "def solve(delta_z=50.0, delta_x_km=200.0, f_c=0.9e-4, R_km=200.0):\n    import math\n    g=9.8\n    Vg=(g/f_c)*(delta_z/(delta_x_km*1000.0))\n    R=R_km*1000.0\n    V=(-f_c+math.sqrt(f_c*f_c+4*f_c*Vg/R))*R/2\n    return {\"1\":{\"value\":V,\"unit\":\"m s^{-1}\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 14.9,
+        "unit": "m s^{-1}"
+      }
+    ],
+    "category": "atmospheric_dynamics",
+    "topic": "gradient_wind_balance",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "geostrophic wind (base air_203's method), valid only for straight flow; ignores curvature",
+    "shortcut_code": "def solve(delta_z=50.0, delta_x_km=200.0, f_c=0.9e-4):\n    g=9.8\n    return {\"1\":{\"value\":(g/f_c)*(delta_z/(delta_x_km*1000.0)),\"unit\":\"m s^{-1}\"}}",
+    "shortcut_value": 27.22,
+    "separation": 0.828,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "derived from base air_203 (straight-flow geostrophic, correct there = the control); trigger adds cyclonic curvature so the geostrophic shortcut over-predicts.",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 27.22222222222222
+    }
+  },
+  {
+    "id": "trap_air212_gradient",
+    "book": "synthesized",
+    "parent_id": "air_212",
+    "control_id": "air_212",
+    "problem": "Given a pressure-gradient magnitude of 1 kPa per 1000 km, air density ρ = 0.8 kg m⁻³, and Coriolis parameter f_c = 1.1×10⁻⁴ s⁻¹, air flows CYCLONICALLY around a low with a radius of curvature of 150 km. Find the actual (gradient) wind speed. Express your answer in m s⁻¹.",
+    "code": "def solve(pressure_gradient_Pa_per_m=1e-3, f_c=1.1e-4, rho=0.8, R_km=150.0):\n    import math\n    Vg=pressure_gradient_Pa_per_m/(rho*f_c)\n    R=R_km*1000.0\n    V=(-f_c+math.sqrt(f_c*f_c+4*f_c*Vg/R))*R/2\n    return {\"1\":{\"value\":V,\"unit\":\"m s^-1\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 7.736,
+        "unit": "m s^-1"
+      }
+    ],
+    "category": "atmospheric_dynamics",
+    "topic": "gradient_wind_balance",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "geostrophic wind (base air_212's method); ignores the curvature term",
+    "shortcut_code": "def solve(pressure_gradient_Pa_per_m=1e-3, f_c=1.1e-4, rho=0.8):\n    return {\"1\":{\"value\":pressure_gradient_Pa_per_m/(rho*f_c),\"unit\":\"m s^-1\"}}",
+    "shortcut_value": 11.36,
+    "separation": 0.469,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "derived from base air_212 (straight-flow geostrophic = the control); trigger adds cyclonic curvature.",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 11.363636363636362
+    }
+  },
+  {
+    "id": "trap_air121_moist_adiabat",
+    "book": "synthesized",
+    "parent_id": "air_121",
+    "control_id": "air_121",
+    "problem": "An already-SATURATED air parcel at 15 °C and 900 hPa rises adiabatically through a height change of 0.5 km. Find its final temperature. Express your answer in °C.",
+    "code": "def solve(T_i_C=15.0, delta_z_km=0.5, P_hPa=900.0):\n    import math\n    g=9.81; cp=1004.0; Lv=2.5e6; Rd=287.0; Rv=461.5\n    T=T_i_C+273.15\n    es=6.112*math.exp(17.62*T_i_C/(243.12+T_i_C))\n    rs=0.622*es/(P_hPa-es)\n    gs=(g/cp)*(1+Lv*rs/(Rd*T))/(1+Lv**2*rs/(cp*Rv*T**2))*1000.0   # moist lapse, K/km\n    return {\"1\":{\"value\": T_i_C - gs*delta_z_km, \"unit\":\"°C\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 12.74,
+        "unit": "°C"
+      }
+    ],
+    "category": "atmospheric_thermodynamics",
+    "topic": "adiabatic_lapse_rate",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "dry adiabatic lapse (base air_121's method) applied to an already-saturated parcel; should be the moist lapse",
+    "shortcut_code": "def solve(T_i_C=15.0, delta_z_km=0.5, gamma_d=9.8):\n    return {\"1\":{\"value\": T_i_C - gamma_d*delta_z_km, \"unit\":\"°C\"}}",
+    "shortcut_value": 10.1,
+    "separation": 0.207,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "derived from base air_121 (in the regime where its method is correct = the control); the trigger shifts the regime so the base method (shortcut) fails.",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 10.1
+    }
+  },
+  {
+    "id": "trap_air170_cunningham",
+    "book": "synthesized",
+    "parent_id": "air_170",
+    "control_id": "air_170",
+    "problem": "What updraft wind velocity is needed to keep a 0.1 µm-radius droplet from falling, given the Stokes constant k1 = 1.19×10⁸ m⁻¹ s⁻¹ and an air mean free path of 0.066 µm? Express your answer in cm s⁻¹.",
+    "code": "def solve(R_um=0.1, k1=1.19e8):\n    import math\n    lam=6.6e-8; R=R_um*1e-6\n    w=k1*R**2\n    Kn=lam/R\n    Cc=1+Kn*(1.257+0.4*math.exp(-1.1/Kn))\n    return {\"1\":{\"value\": w*Cc*100.0, \"unit\":\"cm s^-1\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 0.0002237,
+        "unit": "cm s^-1"
+      }
+    ],
+    "category": "atmospheric_aerosols",
+    "topic": "terminal_velocity",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "regime_boundary",
+    "shortcut": "plain Stokes drag (base air_170's k1·R² form) for a 0.1 µm-radius droplet, where Cunningham slip is significant",
+    "shortcut_code": "def solve(R_um=0.1, k1=1.19e8):\n    R=R_um*1e-6\n    return {\"1\":{\"value\": k1*R**2*100.0, \"unit\":\"cm s^-1\"}}",
+    "shortcut_value": 0.000119,
+    "separation": 0.468,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "derived from base air_170 (in the regime where its method is correct = the control); the trigger shifts the regime so the base method (shortcut) fails.",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 0.00011899999999999998
+    }
+  },
+  {
+    "id": "trap_air132_ice_saturation",
+    "book": "synthesized",
+    "parent_id": "air_132",
+    "control_id": "air_132",
+    "problem": "At a temperature of −15 °C the air has a water-vapor mixing ratio of r = 1.0 g/kg at P = 100 kPa. Find the relative humidity WITH RESPECT TO ICE (i.e., relative to the saturation over an ice surface). Express your answer in %.",
+    "code": "def solve(T_C=-15.0, r=1.0, P=100.0):\n    import math\n    e_i=0.61115*math.exp(22.452*T_C/(272.55+T_C))   # over ICE (WMO), kPa\n    r_s=622.0*e_i/(P-e_i)\n    return {\"1\":{\"value\": 100.0*r/r_s, \"unit\":\"%\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 97.1,
+        "unit": "%"
+      }
+    ],
+    "category": "atmospheric_thermodynamics",
+    "topic": "saturation_vapor_pressure",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "saturation over WATER (base air_132's Tetens formula) instead of over ICE, for RH with respect to ice below 0 °C",
+    "shortcut_code": "def solve(T_C=-15.0, r=1.0, P=100.0):\n    import math\n    e_s=0.611*math.exp(17.2694*T_C/(T_C+273.15-35.86))   # over WATER (base air_132 Tetens), kPa\n    r_s=622.0*e_s/(P-e_s)\n    return {\"1\":{\"value\": 100.0*r/r_s, \"unit\":\"%\"}}",
+    "shortcut_value": 84.22,
+    "separation": 0.133,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "derived from base air_132 (in the regime where its method is correct = the control); the trigger shifts the regime so the base method (shortcut) fails.",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 84.2240606222603
+    }
+  },
+  {
+    "id": "trap_air_198_gen",
+    "book": "synthesized",
+    "parent_id": "air_198",
+    "control_id": "air_198",
+    "problem": "If the geopotential of the 50 kPa pressure surface decreases by 10 m^2·s^{-2} northward across a distance of 500 km, what is the pressure-gradient force per unit mass on a constant-pressure surface? Given: ΔΦ = -10 m^2·s^{-2}, Δy = 500 km.\n\nExpress your answer in m·s^{-2}.",
+    "code": "def solve(delta_phi=-10.0, delta_y_km=500.0):\n    # Convert delta_y from km to m\n    delta_y = delta_y_km * 1000.0\n\n    # On a constant-pressure surface, pressure-gradient force per unit mass is -grad_p(Phi)\n    F_yPG_per_m = -(delta_phi / delta_y)\n\n    return {\"1\": {\"value\": F_yPG_per_m, \"unit\": \"m·s^{-2}\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 2e-05,
+        "unit": "m·s^{-2}"
+      }
+    ],
+    "category": "atmospheric_dynamics",
+    "topic": "definition_confusion",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "definition_confusion",
+    "shortcut": "the base method, incorrectly treating ΔΦ as if it were a height change Δz and multiplying by g",
+    "shortcut_code": "def solve(delta_phi=-10.0, delta_y_km=500.0, g_abs=9.8):\n    # Convert delta_y from km to m\n    delta_y = delta_y_km * 1000.0\n\n    # Incorrectly treats the geopotential change as a geometric height change\n    F_yPG_per_m = -g_abs * (delta_phi / delta_y)\n\n    return {\"1\": {\"value\": F_yPG_per_m, \"unit\": \"m·s^{-2}\"}}",
+    "shortcut_value": 0.000196,
+    "separation": 8.8,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base air_198 (=control); shortcut is the base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 0.00019600000000000002
+    }
+  },
+  {
+    "id": "trap_holton_10_gen",
+    "book": "synthesized",
+    "parent_id": "holton_10",
+    "control_id": "holton_10",
+    "problem": "What is the mean absolute vorticity in a square of 1000 km on a side, on an f-plane with Coriolis parameter f = 1.0e-4 s^-1, for an easterly (i.e., westward flowing) wind that decreases in magnitude toward the north at a rate of 10 m s^-1 per 500 km?",
+    "code": "def solve(side_km=1000.0, du_mps=10.0, dy_km=500.0, f=1.0e-4):\n    # Convert given values to SI units\n    L = side_km * 1000.0\n    du = du_mps\n    dy = dy_km * 1000.0\n\n    # Easterly wind is westward, so u is negative.\n    # Its magnitude decreases northward, so u becomes less negative northward:\n    # du/dy is positive.\n    dudy = du / dy\n\n    # Relative vorticity for zonal flow with no v variation is zeta = -du/dy.\n    zeta = -dudy\n\n    # Absolute vorticity is relative vorticity plus planetary vorticity f.\n    eta = zeta + f\n\n    return {\"1\": {\"value\": eta, \"unit\": \"s^-1\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 8e-05,
+        "unit": "s^-1"
+      }
+    ],
+    "category": "atmospheric_dynamics",
+    "topic": "definition_confusion",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "definition_confusion",
+    "shortcut": "the base relative-vorticity calculation, which omits the planetary vorticity f even though absolute vorticity is requested",
+    "shortcut_code": "def solve(side_km=1000.0, du_mps=10.0, dy_km=500.0, f=1.0e-4):\n    # Base-problem shortcut: compute only the relative vorticity.\n    L = side_km * 1000.0\n    du = du_mps\n    dy = dy_km * 1000.0\n\n    # Easterly wind decreasing in magnitude northward means du/dy is positive.\n    dudy = du / dy\n    zeta = -dudy\n\n    return {\"1\": {\"value\": zeta, \"unit\": \"s^-1\"}}",
+    "shortcut_value": -2e-05,
+    "separation": 1.25,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base holton_10 (=control); shortcut is the base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": -2e-05
+    }
+  },
+  {
+    "id": "trap_air_108_gen",
+    "book": "synthesized",
+    "parent_id": "air_108",
+    "control_id": "air_108",
+    "problem": "The potential temperature of the air increases 5°C per 100 km distance east. If an eastward wind of 20 m s^-1 is blowing, find the temperature change associated with this advection. Express your answer in °C s^-1.",
+    "code": "def solve(delta_theta_C=5.0, delta_x_km=100.0, wind_speed=20.0):\n    # Convert the potential-temperature gradient to °C/m.\n    dtheta_dx = delta_theta_C / (delta_x_km * 1000.0)\n    # An eastward wind is toward the east, so the zonal wind component U is positive.\n    U = wind_speed\n    # Local temperature tendency due to horizontal advection is -U * dtheta/dx.\n    temperature_change = -U * dtheta_dx\n    return {\"1\": {\"value\": temperature_change, \"unit\": \"°C s^-1\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": -0.001,
+        "unit": "°C s^-1"
+      }
+    ],
+    "category": "atmospheric_dynamics",
+    "topic": "sign_direction",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "sign_direction",
+    "shortcut": "uses the base problem's convention for an 'east wind' as wind from the east, incorrectly applying U = -20 m/s to an eastward wind",
+    "shortcut_code": "def solve(delta_theta_C=5.0, delta_x_km=100.0, wind_speed=20.0):\n    # Base-problem shortcut: treat the wind as an 'east wind', i.e. from the east, so U is negative.\n    dtheta_dx = delta_theta_C / (delta_x_km * 1000.0)\n    U = -wind_speed\n    temperature_change = -U * dtheta_dx\n    return {\"1\": {\"value\": temperature_change, \"unit\": \"°C s^-1\"}}",
+    "shortcut_value": 0.001,
+    "separation": 2.0,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base air_108 (=control); shortcut is the base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 0.001
+    }
+  },
+  {
+    "id": "trap_air_370_gen",
+    "book": "synthesized",
+    "parent_id": "air_370",
+    "control_id": "air_370",
+    "problem": "Calculate the local radiative-equilibrium emission temperature (T_e) at Earth's subsolar point. Given:\n- Solar irradiance S_o = 1361 W*m^-2\n- Local albedo A = 0.294\n\nAssume blackbody thermal emission and negligible heat storage or horizontal heat transport, so the subsolar point balances its absorbed solar flux with its own emitted thermal radiation. Express your answer in K.",
+    "code": "def solve(S_o=1361.0, A=0.294):\n    sigma_SB = 5.67e-8  # W*m^-2*K^-4\n    absorbed_local_flux = (1.0 - A) * S_o\n    T_e = (absorbed_local_flux / sigma_SB) ** 0.25\n    return {\"1\": {\"value\": T_e, \"unit\": \"K\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 360.8,
+        "unit": "K"
+      }
+    ],
+    "category": "climate_dynamics",
+    "topic": "averaging_space",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "averaging_space",
+    "shortcut": "the base global-mean effective emission temperature formula, which incorrectly divides the absorbed solar flux by 4",
+    "shortcut_code": "def solve(S_o=1361.0, A=0.294):\n    sigma_SB = 5.67e-8  # W*m^-2*K^-4\n    T_e = ((1.0 - A) * S_o / (4.0 * sigma_SB)) ** 0.25\n    return {\"1\": {\"value\": T_e, \"unit\": \"K\"}}",
+    "shortcut_value": 255.1,
+    "separation": 0.293,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base air_370 (=control); shortcut is the base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 255.12613159256733
+    }
+  },
+  {
+    "id": "trap_air_197_gen",
+    "book": "synthesized",
+    "parent_id": "air_197",
+    "control_id": "air_197",
+    "problem": "Minneapolis (MN, USA) is about 400 km north of Des Moines (IA, USA). In (Minneapolis, Des Moines) the pressure is (101, 100) kPa. Assuming air behaves as a fluid of uniform specific volume alpha = 1.1 m^3 kg^-1, find the northward (y-component of the) pressure-gradient force per unit mass. Take y = 0 at Des Moines (P = 100 kPa) and y = 400 km at Minneapolis (P = 101 kPa).\n\nExpress your answer in m · s^-2.",
+    "code": "def solve(P_MN_kPa=101.0, P_IA_kPa=100.0, y_MN_km=400.0, y_IA_km=0.0, alpha=1.1):\n    P_MN = P_MN_kPa * 1000.0\n    P_IA = P_IA_kPa * 1000.0\n    y_MN = y_MN_km * 1000.0\n    y_IA = y_IA_km * 1000.0\n    delta_P = P_MN - P_IA\n    delta_y = y_MN - y_IA\n    F_yPG_m = -alpha * (delta_P / delta_y)\n    return {\"1\": {\"value\": F_yPG_m, \"unit\": \"m · s^{-2}\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": -0.00275,
+        "unit": "m · s^{-2}"
+      }
+    ],
+    "category": "atmospheric_dynamics",
+    "topic": "definition_confusion",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "definition_confusion",
+    "shortcut": "the base density-based method, incorrectly treating the stated specific volume value as a density and computing -(1/rho) dP/dy",
+    "shortcut_code": "def solve(P_MN_kPa=101.0, P_IA_kPa=100.0, y_MN_km=400.0, y_IA_km=0.0, alpha=1.1):\n    P_MN = P_MN_kPa * 1000.0\n    P_IA = P_IA_kPa * 1000.0\n    y_MN = y_MN_km * 1000.0\n    y_IA = y_IA_km * 1000.0\n    delta_P = P_MN - P_IA\n    delta_y = y_MN - y_IA\n    rho = alpha\n    F_yPG_m = -(1.0 / rho) * (delta_P / delta_y)\n    return {\"1\": {\"value\": F_yPG_m, \"unit\": \"m · s^{-2}\"}}",
+    "shortcut_value": -0.002273,
+    "separation": 0.174,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base air_197 (=control); shortcut is the base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": -0.0022727272727272726
+    }
+  },
+  {
+    "id": "trap_air_64_gen",
+    "book": "synthesized",
+    "parent_id": "air_64",
+    "control_id": "air_64",
+    "problem": "Over each square meter of Mars's surface, how much atmospheric mass lies between the pressure levels 80 kPa and 30 kPa? Assume the atmosphere is in hydrostatic balance and that gravitational acceleration on Mars is 3.71 m/s^2.\n\nExpress your answer in kg.",
+    "code": "def solve(A=1.0, P_bottom=80.0, P_top=30.0, g_mars=3.71):\n    P_bottom_pa = P_bottom * 1000.0\n    P_top_pa = P_top * 1000.0\n    delta_P = P_bottom_pa - P_top_pa\n    delta_m = (A / g_mars) * delta_P\n    return {\"1\": {\"value\": round(delta_m), \"unit\": \"kg\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 13480,
+        "unit": "kg"
+      }
+    ],
+    "category": "atmospheric_thermodynamics",
+    "topic": "formula_selection",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "uses the Earth-gravity hydrostatic column-mass shortcut from the base problem, ignoring the stated Martian gravity",
+    "shortcut_code": "def solve(A=1.0, P_bottom=80.0, P_top=30.0):\n    g = 9.8\n    P_bottom_pa = P_bottom * 1000.0\n    P_top_pa = P_top * 1000.0\n    delta_P = P_bottom_pa - P_top_pa\n    delta_m = (A / g) * delta_P\n    return {\"1\": {\"value\": round(delta_m), \"unit\": \"kg\"}}",
+    "shortcut_value": 5102,
+    "separation": 0.621,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base air_64 (=control); shortcut is the base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 5102.0
+    }
+  },
+  {
+    "id": "trap_air_120_gen",
+    "book": "synthesized",
+    "parent_id": "air_120",
+    "control_id": "air_120",
+    "problem": "Find the change in temperature (°C) of an air parcel that rises a distance of Δz = 0.5 km while experiencing an external heat transfer of Δq = 500 J kg^-1. During the ascent, 1.0 g kg^-1 of water vapor condenses within the parcel, releasing latent heat with L_v = 2.5e6 J kg^-1. The parcel undergoes a hydrostatic, thermodynamic process in which the energy available to the parcel is partitioned between changing its internal thermal state and doing work against gravity as it ascends. Express your answer in °C.",
+    "code": "def solve(dz_km=0.5, dq=500.0, condensed_g_per_kg=1.0, Lv=2.5e6):\n    Cp = 1004.0\n    g = 9.8\n    dz = dz_km * 1000.0\n    condensed_kg_per_kg = condensed_g_per_kg / 1000.0\n    latent_heating = Lv * condensed_kg_per_kg\n    dT = (dq + latent_heating - g * dz) / Cp\n    return {\"1\": {\"value\": round(dT, 2), \"unit\": \"°C\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": -1.89,
+        "unit": "°C"
+      }
+    ],
+    "category": "atmospheric_thermodynamics",
+    "topic": "formula_selection",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "the dry-parcel first-law calculation from the base problem, ignoring latent heat released by condensation",
+    "shortcut_code": "def solve(dz_km=0.5, dq=500.0):\n    Cp = 1004.0\n    g = 9.8\n    dz = dz_km * 1000.0\n    dT = (dq - g * dz) / Cp\n    return {\"1\": {\"value\": round(dT, 2), \"unit\": \"°C\"}}",
+    "shortcut_value": -4.38,
+    "separation": 1.317,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base air_120 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": -4.38
+    }
+  },
+  {
+    "id": "trap_p_35_gen",
+    "book": "synthesized",
+    "parent_id": "p_35",
+    "control_id": "p_35",
+    "problem": "The flux density F_s of solar radiation incident upon a horizontal surface at the top of the Earth’s atmosphere at a solar zenith angle of 60° is 1368 W m⁻². Estimate the intensity of solar radiation. Assume that solar radiation is isotropic (i.e., that every point on the “surface” of the sun emits radiation with the same intensity in all directions). The radius of the sun R_s is 7.00 × 10⁸ m and the Earth–sun distance d is 1.50 × 10¹¹ m. Express your answer in [W m⁻² sr⁻¹].",
+    "code": "def solve(F_s=1368.0, R_s=7.00e8, d=1.50e11, zenith_angle_deg=60.0):\n    import math\n    zenith_angle_rad = zenith_angle_deg * math.pi / 180.0\n    projected_solar_solid_angle = math.pi * (R_s / d)**2\n    projection_factor = math.cos(zenith_angle_rad)\n    I_s = F_s / (projected_solar_solid_angle * projection_factor)\n    return {\"1\": {\"value\": I_s, \"unit\": \"W m^-2 sr^-1\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 39990000.0,
+        "unit": "W m^-2 sr^-1"
+      }
+    ],
+    "category": "atmospheric_radiation",
+    "topic": "formula_selection",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "the base zero-zenith-angle method, which divides by the Sun’s projected angular area but ignores the cosine projection onto the horizontal surface",
+    "shortcut_code": "def solve(F_s=1368.0, R_s=7.00e8, d=1.50e11, zenith_angle_deg=60.0):\n    import math\n    delta_omega = math.pi * (R_s / d)**2\n    I_s = F_s / delta_omega\n    return {\"1\": {\"value\": I_s, \"unit\": \"W m^-2 sr^-1\"}}",
+    "shortcut_value": 20000000.0,
+    "separation": 0.5,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base p_35 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 19995057.74844301
+    }
+  },
+  {
+    "id": "trap_air_183_gen",
+    "book": "synthesized",
+    "parent_id": "air_183",
+    "control_id": "air_183",
+    "problem": "For a 5 cm radar, the energy scattered from a 1 mm radius drop is how much greater than that from a 0.5 mm diameter drop? Assume Rayleigh scattering applies.",
+    "code": "def solve(wavelength_cm=5.0, large_drop_radius_mm=1.0, small_drop_diameter_mm=0.5):\n    # Rayleigh scattering cross-section is proportional to diameter^6.\n    # Convert all given lengths explicitly to meters.\n    wavelength_m = wavelength_cm * 1e-2\n    large_drop_diameter_m = 2.0 * large_drop_radius_mm * 1e-3\n    small_drop_diameter_m = small_drop_diameter_mm * 1e-3\n    ratio = (large_drop_diameter_m / small_drop_diameter_m) ** 6\n    return {\"1\": {\"value\": ratio, \"unit\": \"\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 4096.0,
+        "unit": ""
+      }
+    ],
+    "category": "observation_and_modeling",
+    "topic": "definition_confusion",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "definition_confusion",
+    "shortcut": "Rayleigh D^6 ratio using the numerical millimeter values as if both were diameters",
+    "shortcut_code": "def solve(wavelength_cm=5.0, D1_mm=0.5, D2_mm=1.0):\n    # Autopilot Rayleigh shortcut: treat the two stated millimeter values as diameters.\n    wavelength_m = wavelength_cm * 1e-2\n    D1_m = D1_mm * 1e-3\n    D2_m = D2_mm * 1e-3\n    ratio = (D2_m / D1_m) ** 6\n    return {\"1\": {\"value\": ratio, \"unit\": \"\"}}",
+    "shortcut_value": 64.0,
+    "separation": 0.984,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base air_183 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 64.0
+    }
+  },
+  {
+    "id": "trap_air_90_gen",
+    "book": "synthesized",
+    "parent_id": "air_90",
+    "control_id": "air_90",
+    "problem": "Find the average insolation over Vancouver during daylight hours on the summer solstice. Given: latitude Φ = 49.25° N, solar declination δ_s = 23.45°, Earth-sun distance R = 151.892 Gm, Earth's semi-major axis a ≈ 149.6 Gm, and solar constant S_o = 1361 W·m^-2. Express your answer in W·m^-2.",
+    "code": "def solve(phi_deg=49.25, delta_deg=23.45, R_Gm=151.892, a_Gm=149.6, S_o=1361.0):\n    import math\n\n    # Convert angles to radians\n    phi = math.radians(phi_deg)\n    delta = math.radians(delta_deg)\n\n    # Sunrise/sunset hour angle for a normal day\n    h_o_prime = math.acos(-math.tan(phi) * math.tan(delta))\n\n    # Convert distances explicitly to meters before taking the ratio\n    R_m = R_Gm * 1.0e9\n    a_m = a_Gm * 1.0e9\n\n    # Daylight-hours mean: average only over hour angles from -h_o_prime to +h_o_prime.\n    # This replaces the daily-mean divisor pi with the daylight divisor h_o_prime.\n    term1 = h_o_prime * math.sin(phi) * math.sin(delta)\n    term2 = math.cos(phi) * math.cos(delta) * math.sin(h_o_prime)\n    E_daylight_avg = (S_o / h_o_prime) * (a_m / R_m)**2 * (term1 + term2)\n\n    return {\"1\": {\"value\": round(E_daylight_avg, 1), \"unit\": \"W·m^-2\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 723.6,
+        "unit": "W·m^-2"
+      }
+    ],
+    "category": "climate_dynamics",
+    "topic": "averaging_space",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "averaging_space",
+    "shortcut": "the base daily-mean insolation formula, which divides by the full-day angular interval pi and includes nighttime in the average",
+    "shortcut_code": "def solve(phi_deg=49.25, delta_deg=23.45, R_Gm=151.892, a_Gm=149.6, S_o=1361.0):\n    import math\n\n    # Convert angles to radians\n    phi = math.radians(phi_deg)\n    delta = math.radians(delta_deg)\n\n    # Calculate the hour angle in radians\n    h_o_prime = math.acos(-math.tan(phi) * math.tan(delta))\n\n    # Convert distances explicitly to meters before taking the ratio\n    R_m = R_Gm * 1.0e9\n    a_m = a_Gm * 1.0e9\n\n    # Base daily-mean shortcut: averages over the full 24-hour day, including nighttime.\n    term1 = h_o_prime * math.sin(phi) * math.sin(delta)\n    term2 = math.cos(phi) * math.cos(delta) * math.sin(h_o_prime)\n    E_avg = (S_o / math.pi) * (a_m / R_m)**2 * (term1 + term2)\n\n    return {\"1\": {\"value\": round(E_avg, 1), \"unit\": \"W·m^-2\"}}",
+    "shortcut_value": 483.3,
+    "separation": 0.332,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base air_90 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 483.3
+    }
+  },
+  {
+    "id": "trap_snp_12_gen",
+    "book": "synthesized",
+    "parent_id": "snp_12",
+    "control_id": "snp_12",
+    "problem": "What are the effective lifetimes of CHF₂Cl (HCFC-22) and CH₂ClCF₃ (HCFC-133a) by reaction with OH in the troposphere? Assume an OH concentration of [OH] = 10⁶ molecules cm⁻³. The air spends 50% of its time at T = 200 K and 50% of its time at T = 300 K, so the mean tropospheric temperature is 250 K. Reaction rate constants are:\n\nk_{OH+CHF₂Cl} = 1.05 × 10⁻¹² exp(−1600/T) cm³ molecule⁻¹ s⁻¹\nk_{OH+CH₂ClCF₃} = 5.6 × 10⁻¹³ exp(−1100/T) cm³ molecule⁻¹ s⁻¹",
+    "code": "def solve(A_HCFC22=1.05e-12, Ea_T_HCFC22=1600.0,\n          A_HCFC133a=5.6e-13, Ea_T_HCFC133a=1100.0,\n          OH=1e6, T_cold=200.0, T_warm=300.0, frac_cold=0.5,\n          T_mean=250.0):\n    import math\n\n    frac_warm = 1.0 - frac_cold\n\n    # For first-order loss in a time-varying environment, average the loss frequency k(T)[OH].\n    k1_cold = A_HCFC22 * math.exp(-Ea_T_HCFC22 / T_cold)\n    k1_warm = A_HCFC22 * math.exp(-Ea_T_HCFC22 / T_warm)\n    k2_cold = A_HCFC133a * math.exp(-Ea_T_HCFC133a / T_cold)\n    k2_warm = A_HCFC133a * math.exp(-Ea_T_HCFC133a / T_warm)\n\n    k1_eff = frac_cold * k1_cold + frac_warm * k1_warm\n    k2_eff = frac_cold * k2_cold + frac_warm * k2_warm\n\n    tau1_s = 1.0 / (k1_eff * OH)\n    tau2_s = 1.0 / (k2_eff * OH)\n\n    seconds_per_year = 365.25 * 24.0 * 3600.0\n    return {\n        \"1\": {\"value\": tau1_s / seconds_per_year, \"unit\": \"years\"},\n        \"2\": {\"value\": tau2_s / seconds_per_year, \"unit\": \"years\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 11.69,
+        "unit": "years"
+      },
+      {
+        "sub": "2",
+        "value": 3.817,
+        "unit": "years"
+      }
+    ],
+    "category": "atmospheric_chemistry",
+    "topic": "averaging_space",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "averaging_space",
+    "shortcut": "the base method: plug the mean temperature 250 K into each Arrhenius rate constant and compute tau = 1/(k[OH])",
+    "shortcut_code": "def solve(A_HCFC22=1.05e-12, Ea_T_HCFC22=1600.0,\n          A_HCFC133a=5.6e-13, Ea_T_HCFC133a=1100.0,\n          OH=1e6, T_cold=200.0, T_warm=300.0, frac_cold=0.5,\n          T_mean=250.0):\n    import math\n\n    # Shortcut: evaluate the Arrhenius expression at the mean temperature.\n    k1 = A_HCFC22 * math.exp(-Ea_T_HCFC22 / T_mean)\n    k2 = A_HCFC133a * math.exp(-Ea_T_HCFC133a / T_mean)\n\n    tau1_s = 1.0 / (k1 * OH)\n    tau2_s = 1.0 / (k2 * OH)\n\n    seconds_per_year = 365.25 * 24.0 * 3600.0\n    return {\n        \"1\": {\"value\": tau1_s / seconds_per_year, \"unit\": \"years\"},\n        \"2\": {\"value\": tau2_s / seconds_per_year, \"unit\": \"years\"},\n    }",
+    "shortcut_value": 18.16,
+    "separation": 0.554,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base snp_12 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 18.16316039097917,
+      "2": 4.608968354972232
+    }
+  },
+  {
+    "id": "trap_air_167_gen",
+    "book": "synthesized",
+    "parent_id": "air_167",
+    "control_id": "air_167",
+    "problem": "Near a droplet in a cloud at 4 km altitude, the supersaturation decreases by 1% per 2 μm in the positive x direction, the saturated mixing ratio is rₛ = 1.5 g kg⁻¹, and the diffusivity of water vapor is D = 2 × 10⁻⁵ m² s⁻¹. Assuming the mixing-ratio gradient is set by the saturated mixing ratio acting on the supersaturation gradient, and that the vapor transport follows Fickian diffusion down the moisture gradient, find (a) the mixing-ratio gradient in the positive x direction and (b) the kinematic moisture flux in the positive x direction.\n\nExpress your answers: (a) in (kg_water/kg_air) · m⁻¹, (b) in (kg_water/kg_air) · (m s⁻¹).",
+    "code": "def solve(supersaturation_decrease_percent=1.0, delta_x_um=2.0, r_s_g_per_kg=1.5, D_m2_per_s=2e-5):\n    # Supersaturation decreases in the positive x direction, so Delta S is negative.\n    delta_S = -supersaturation_decrease_percent / 100.0  # dimensionless fraction\n    delta_x = delta_x_um * 1e-6  # m\n    r_s = r_s_g_per_kg / 1000.0  # kg_water/kg_air\n    dS_dx = delta_S / delta_x  # 1/m\n    dr_dx = r_s * dS_dx  # (kg_water/kg_air) / m\n    F = -D_m2_per_s * dr_dx  # (kg_water/kg_air) * (m/s)\n    return {\"1\": {\"value\": dr_dx, \"unit\": \"(kg_water/kg_air) * m^-1\"}, \"2\": {\"value\": F, \"unit\": \"(kg_water/kg_air) * (m s^-1)\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": -7.5,
+        "unit": "(kg_water/kg_air) * m^-1"
+      },
+      {
+        "sub": "2",
+        "value": 0.00015,
+        "unit": "(kg_water/kg_air) * (m s^-1)"
+      }
+    ],
+    "category": "cloud_physics",
+    "topic": "sign_direction",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "sign_direction",
+    "shortcut": "uses the base problem's positive supersaturation-gradient calculation, ignoring that the gradient is negative in the specified positive x direction",
+    "shortcut_code": "def solve(supersaturation_change_percent=1.0, delta_x_um=2.0, r_s_g_per_kg=1.5, D_m2_per_s=2e-5):\n    # Autopilot shortcut from the base problem: treats the stated 1% as a positive increase.\n    delta_S = supersaturation_change_percent / 100.0  # dimensionless fraction\n    delta_x = delta_x_um * 1e-6  # m\n    r_s = r_s_g_per_kg / 1000.0  # kg_water/kg_air\n    dS_dx = delta_S / delta_x  # 1/m\n    dr_dx = r_s * dS_dx\n    F = -D_m2_per_s * dr_dx\n    return {\"1\": {\"value\": dr_dx, \"unit\": \"(kg_water/kg_air) * m^-1\"}, \"2\": {\"value\": F, \"unit\": \"(kg_water/kg_air) * (m s^-1)\"}}",
+    "shortcut_value": 7.5,
+    "separation": 2.0,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base air_167 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 7.5,
+      "2": -0.00015000000000000001
+    }
+  },
+  {
+    "id": "trap_air_68_gen",
+    "book": "synthesized",
+    "parent_id": "air_68",
+    "control_id": "air_68",
+    "problem": "Find the standard atmosphere temperature (T) and pressure (P) at a geopotential height of H = 25.0 km, using the International Standard Atmosphere layers: sea-level T0 = 288.15 K and P0 = 101.325 kPa; from 0 to 11 km, temperature decreases at 6.5 K/km; from 11 to 20 km, temperature is isothermal; from 20 to 32 km, temperature increases at 1.0 K/km. Express your answers: (1) in K, (2) in kPa.",
+    "code": "def solve(H=25.0, T0=288.15, P0=101.325, L_trop=6.5, H_trop=11.0, H_iso_top=20.0, L_strat=1.0):\n    import math\n    g0 = 9.80665\n    R = 287.05287\n    # Convert km-layer inputs and K/km lapse rates to SI\n    H_m = H * 1000.0\n    H_trop_m = H_trop * 1000.0\n    H_iso_top_m = H_iso_top * 1000.0\n    a_trop = -L_trop / 1000.0  # K/m\n    a_strat = L_strat / 1000.0  # K/m\n\n    # 0 to 11 km: linear lapse rate\n    T11 = T0 + a_trop * H_trop_m\n    P11 = P0 * (T11 / T0) ** (-g0 / (R * a_trop))\n\n    # 11 to 20 km: isothermal\n    T20 = T11\n    P20 = P11 * math.exp(-g0 * (H_iso_top_m - H_trop_m) / (R * T11))\n\n    if H_m <= H_trop_m:\n        T = T0 + a_trop * H_m\n        P = P0 * (T / T0) ** (-g0 / (R * a_trop))\n    elif H_m <= H_iso_top_m:\n        T = T11\n        P = P11 * math.exp(-g0 * (H_m - H_trop_m) / (R * T11))\n    else:\n        T = T20 + a_strat * (H_m - H_iso_top_m)\n        P = P20 * (T / T20) ** (-g0 / (R * a_strat))\n\n    return {\"1\": {\"value\": round(T, 1), \"unit\": \"K\"}, \"2\": {\"value\": round(P, 1), \"unit\": \"kPa\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 221.6,
+        "unit": "K"
+      },
+      {
+        "sub": "2",
+        "value": 2.5,
+        "unit": "kPa"
+      }
+    ],
+    "category": "atmospheric_thermodynamics",
+    "topic": "regime_boundary",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "regime_boundary",
+    "shortcut": "the base tropospheric ISA method, incorrectly extrapolated above the tropopause",
+    "shortcut_code": "def solve(H=25.0, T0=288.15, L=6.5, P0=101.325, exp=-5.255877):\n    # Incorrectly extend the tropospheric lapse-rate formula to 25 km\n    T = T0 - L * H\n    P = P0 * (T0 / T) ** exp\n    return {\"1\": {\"value\": round(T, 1), \"unit\": \"K\"}, \"2\": {\"value\": round(P, 1), \"unit\": \"kPa\"}}",
+    "shortcut_value": 125.6,
+    "separation": 0.433,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base air_68 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 125.6,
+      "2": 1.3
+    }
+  },
+  {
+    "id": "trap_air_246_gen",
+    "book": "synthesized",
+    "parent_id": "air_246",
+    "control_id": "air_246",
+    "problem": "Jet-stream inflow winds are 50 m s^{-1}, while outflow winds are 75 m s^{-1} a distance of 1000 km further downstream. What updraft is induced below this 5 km thick divergence region? Assume the air density at the bottom of the layer is 0.5 kg m^{-3} and decreases exponentially upward with a scale height of 7 km.\n\nExpress your answer in m s^{-1}.",
+    "code": "def solve(v_in=50.0, v_out=75.0, dx_km=1000.0, dz_km=5.0, rho_bottom=0.5, scale_height_km=7.0):\n    import math\n    dx = dx_km * 1000.0\n    dz = dz_km * 1000.0\n    H = scale_height_km * 1000.0\n    divergence = (v_out - v_in) / dx\n    # Anelastic continuity: div_h(u) + (1/rho) d(rho*w)/dz = 0.\n    # With rho(z)=rho_bottom*exp(-z/H), w_top=0, and constant horizontal divergence D:\n    # rho_bottom*w_bottom = D * integral_0^dz rho(z) dz.\n    column_density_integral = rho_bottom * H * (1.0 - math.exp(-dz / H))\n    w_bottom = divergence * column_density_integral / rho_bottom\n    return {\"1\": {\"value\": w_bottom, \"unit\": \"m s^{-1}\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 0.08933,
+        "unit": "m s^{-1}"
+      }
+    ],
+    "category": "atmospheric_dynamics",
+    "topic": "formula_selection",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "uniform-density continuity, using w = horizontal divergence times layer thickness and ignoring the exponential density decrease",
+    "shortcut_code": "def solve(v_in=50.0, v_out=75.0, dx_km=1000.0, dz_km=5.0, rho_bottom=0.5, scale_height_km=7.0):\n    dx = dx_km * 1000.0\n    dz = dz_km * 1000.0\n    divergence = (v_out - v_in) / dx\n    w = divergence * dz\n    return {\"1\": {\"value\": w, \"unit\": \"m s^{-1}\"}}",
+    "shortcut_value": 0.125,
+    "separation": 0.399,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base air_246 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 0.125
+    }
+  },
+  {
+    "id": "trap_holton_33_gen",
+    "book": "synthesized",
+    "parent_id": "holton_33",
+    "control_id": "holton_33",
+    "problem": "Calculate the 1000- to 500-hPa thickness for isothermal conditions in a carbon dioxide atmosphere with temperatures of 273 and 250 K, respectively. Use R_CO2 = 188.9 J/(kg K) and g = 9.81 m/s^2.",
+    "code": "def solve(p_lower_hPa=1000.0, p_upper_hPa=500.0, T1_K=273.0, T2_K=250.0, R_CO2=188.9, g=9.81):\n    import math\n    p_lower_Pa = p_lower_hPa * 100.0\n    p_upper_Pa = p_upper_hPa * 100.0\n    factor = (R_CO2 / g) * math.log(p_lower_Pa / p_upper_Pa)\n    thickness_1 = factor * T1_K\n    thickness_2 = factor * T2_K\n    return {\n        \"1\": {\"value\": thickness_1, \"unit\": \"m\"},\n        \"2\": {\"value\": thickness_2, \"unit\": \"m\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 3644.0,
+        "unit": "m"
+      },
+      {
+        "sub": "2",
+        "value": 3337.0,
+        "unit": "m"
+      }
+    ],
+    "category": "atmospheric_thermodynamics",
+    "topic": "formula_selection",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "the base dry-air hypsometric calculation, incorrectly using R_d = 287 J/(kg K) for a CO2 atmosphere",
+    "shortcut_code": "def solve(p_lower_hPa=1000.0, p_upper_hPa=500.0, T1_K=273.0, T2_K=250.0):\n    import math\n    R_d = 287.0\n    g = 9.81\n    p_lower_Pa = p_lower_hPa * 100.0\n    p_upper_Pa = p_upper_hPa * 100.0\n    factor = (R_d / g) * math.log(p_lower_Pa / p_upper_Pa)\n    thickness_1 = factor * T1_K\n    thickness_2 = factor * T2_K\n    return {\n        \"1\": {\"value\": thickness_1, \"unit\": \"m\"},\n        \"2\": {\"value\": thickness_2, \"unit\": \"m\"},\n    }",
+    "shortcut_value": 5536.0,
+    "separation": 0.519,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base holton_33 (=control); shortcut=base method. [handed non-default constant: milder 'anti-default' trap]",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 5536.062665041006,
+      "2": 5069.654455165756
+    }
+  },
+  {
+    "id": "trap_p_5_gen",
+    "book": "synthesized",
+    "parent_id": "p_5",
+    "control_id": "p_5",
+    "problem": "It is estimated that 80 g s⁻¹ of sulfur dioxide is being emitted from a petroleum refinery from an average effective height of 60 meters. On an overcast winter morning with the surface wind at 6 m s⁻¹, what is the ground-level concentration averaged over a 200-meter-wide crosswind transect centered directly downwind from the refinery at a distance of 500 meters? Assume a continuous elevated point source with a Gaussian plume in stability class D, where at 500 m, σ_y = 36 m and σ_z = 18.5 m.\n\nExpress your answer in g m^-3.",
+    "code": "def solve(Q_g_s=80.0, H_m=60.0, u_m_s=6.0, sigma_y_m=36.0, sigma_z_m=18.5, width_m=200.0):\n    import math\n    # Centerline ground-level concentration for an elevated source with ground reflection\n    centerline = (Q_g_s / (math.pi * sigma_y_m * sigma_z_m * u_m_s)) * math.exp(-0.5 * (H_m / sigma_z_m)**2)\n    # Average the crosswind Gaussian exp(-y^2/(2 sigma_y^2)) over y in [-width/2, width/2]\n    crosswind_avg_factor = (sigma_y_m * math.sqrt(2.0 * math.pi) / width_m) * math.erf(width_m / (2.0 * math.sqrt(2.0) * sigma_y_m))\n    chi_avg = centerline * crosswind_avg_factor\n    return {\"1\": {\"value\": chi_avg, \"unit\": \"g/m^3\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 1.487e-05,
+        "unit": "g/m^3"
+      }
+    ],
+    "category": "air_quality",
+    "topic": "averaging_space",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "averaging_space",
+    "shortcut": "centerline ground-level Gaussian plume concentration, ignoring the requested crosswind averaging width",
+    "shortcut_code": "def solve(Q_g_s=80.0, H_m=60.0, u_m_s=6.0, sigma_y_m=36.0, sigma_z_m=18.5, width_m=200.0):\n    import math\n    # Autopilot shortcut: report the centerline value, ignoring that the requested quantity is a finite-width crosswind average\n    chi = (Q_g_s / (math.pi * sigma_y_m * sigma_z_m * u_m_s)) * math.exp(-0.5 * (H_m / sigma_z_m)**2)\n    return {\"1\": {\"value\": chi, \"unit\": \"g/m^3\"}}",
+    "shortcut_value": 3.313e-05,
+    "separation": 1.229,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base p_5 (=control); shortcut=base method. [reviewer: transect assumed centered on plume axis; GT is the centered two-sided crosswind average.]",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 3.313018497481572e-05
+    }
+  },
+  {
+    "id": "trap_8.7_gen",
+    "book": "synthesized",
+    "parent_id": "8.7",
+    "control_id": "8.7",
+    "problem": "Consider a simple local energy balance model including ice-albedo feedback for a surface column at the equator at local noon with the Sun overhead and no horizontal heat transport. The solar constant is S0 = 1370 W m^-2. The albedo A varies with temperature as follows: A = 0.6 for T <= 265 K, A = 0.3 for T >= 275 K, and A = 0.45 + 0.03*(270 K - T) for 265 K <= T <= 275 K. For this local-noon column, take F_down(T) = S0*(1 - A(T)). Assume F_up(T) = 0.6*sigma*T^4, where sigma is the Stefan-Boltzmann constant. Find the ice-free warm equilibrium temperature T3 > 275 K. Express your answer in K.",
+    "code": "def solve(S0_W_m2=1370.0, A_warm=0.3, emissivity=0.6):\n    sigma = 5.670374419e-8  # W m^-2 K^-4\n    F_in = S0_W_m2 * (1.0 - A_warm)\n    T3 = (F_in / (emissivity * sigma)) ** 0.25\n    return {\"1\": {\"value\": T3, \"unit\": \"K\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 409.7,
+        "unit": "K"
+      }
+    ],
+    "category": "climate_dynamics",
+    "topic": "averaging_space",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "averaging_space",
+    "shortcut": "global-mean energy balance using F_down = (S0/4)*(1 - A), which incorrectly applies the spherical-average factor from the base problem",
+    "shortcut_code": "def solve(S0_W_m2=1370.0, A_warm=0.3, emissivity=0.6):\n    sigma = 5.670374419e-8  # W m^-2 K^-4\n    F_in = (S0_W_m2 / 4.0) * (1.0 - A_warm)\n    T3 = (F_in / (emissivity * sigma)) ** 0.25\n    return {\"1\": {\"value\": T3, \"unit\": \"K\"}}",
+    "shortcut_value": 289.7,
+    "separation": 0.293,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base 8.7 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 289.7336297284252
+    }
+  },
+  {
+    "id": "trap_air_111_gen",
+    "book": "synthesized",
+    "parent_id": "air_111",
+    "control_id": "air_111",
+    "problem": "Given an effective layer-averaged kinematic heat flux of F_H = 0.67 K \\cdot m \\cdot s^{-1}, where the vertical heat-flux profile decreases linearly from its surface value to zero at the top of the boundary layer, find the Deardorff convective velocity scale (w_*) for a dry, z_i = 1 km thick boundary layer of temperature T_v = 25^\\circ C = 298 K. Express your answer in m \\cdot s^{-1}.",
+    "code": "def solve(F_H_bar=0.67, z_i_km=1.0, T_v=298.0) -> dict:\n    g = 9.8\n\n    # Unit conversions\n    z_i = z_i_km * 1000.0  # km to m\n\n    # For a linear profile that decreases from the surface value to zero at z_i,\n    # the layer average is half the surface value.\n    F_H_surface = 2.0 * F_H_bar\n\n    # Deardorff velocity formula uses the surface kinematic heat flux.\n    w_star = ((g / T_v) * z_i * F_H_surface) ** (1.0 / 3.0)\n\n    return {\n        \"1\": {\"value\": w_star, \"unit\": \"m s^-1\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 3.532,
+        "unit": "m s^-1"
+      }
+    ],
+    "category": "boundary_layer",
+    "topic": "averaging_space",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "averaging_space",
+    "shortcut": "the base Deardorff calculation applied directly to the given 0.67 K m s^-1, incorrectly treating a layer-averaged flux as the surface flux",
+    "shortcut_code": "def solve(F_H_bar=0.67, z_i_km=1.0, T_v=298.0) -> dict:\n    g = 9.8\n\n    # Unit conversions\n    z_i = z_i_km * 1000.0  # km to m\n\n    # Shortcut: incorrectly treats the given layer-averaged flux as the surface flux.\n    w_star = ((g / T_v) * z_i * F_H_bar) ** (1.0 / 3.0)\n\n    return {\n        \"1\": {\"value\": w_star, \"unit\": \"m s^-1\"}\n    }",
+    "shortcut_value": 2.803,
+    "separation": 0.206,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base air_111 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 2.80346327608325
+    }
+  },
+  {
+    "id": "trap_dn_14.12_gen",
+    "book": "synthesized",
+    "parent_id": "dn_14.12",
+    "control_id": "dn_14.12",
+    "problem": "One defense against acid rain is the liming of lakes. Ground limestone is added to offset the effects of acid rain. If we assume that a lake drains 10 km^2 and that the annual precipitation in the entire drainage basin is 1 m (1 m^3/m^2 of surface), and that half of the annual precipitation volume has pH 4.0 while half has pH 5.0, so that the arithmetic-average pH is 4.5, how much limestone, CaCO3, should be added to the lake to change the acid rainfall to the equivalent of normal rainfall (pH 5.6)? Express your answer in tonnes.",
+    "code": "def solve(area_km2=10.0, precip_m=1.0, pH_part1=4.0, frac_part1=0.5, pH_part2=5.0, frac_part2=0.5, pH_normal=5.6):\n    M_CaCO3 = 40.08 + 12.01 + 3 * 16.00\n    area_m2 = area_km2 * 1e6\n    volume_m3 = area_m2 * precip_m\n    volume_L = volume_m3 * 1000.0\n    H_part1 = 10 ** (-pH_part1)\n    H_part2 = 10 ** (-pH_part2)\n    H_normal = 10 ** (-pH_normal)\n    avg_H_acid = frac_part1 * H_part1 + frac_part2 * H_part2\n    delta_H = avg_H_acid - H_normal\n    moles_H = delta_H * volume_L\n    moles_CaCO3 = moles_H / 2.0\n    mass_g = moles_CaCO3 * M_CaCO3\n    mass_tonnes = mass_g / 1e6\n    return {\"1\": {\"value\": mass_tonnes, \"unit\": \"tonnes/yr\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 26.27,
+        "unit": "tonnes/yr"
+      }
+    ],
+    "category": "atmospheric_chemistry",
+    "topic": "averaging_space",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "averaging_space",
+    "shortcut": "the base method applied to the arithmetic-average pH of 4.5, treating pH as if it could be averaged linearly",
+    "shortcut_code": "def solve(area_km2=10.0, precip_m=1.0, pH_acid=4.5, pH_normal=5.6):\n    M_CaCO3 = 40.08 + 12.01 + 3 * 16.00\n    area_m2 = area_km2 * 1e6\n    volume_m3 = area_m2 * precip_m\n    volume_L = volume_m3 * 1000.0\n    H_acid = 10 ** (-pH_acid)\n    H_normal = 10 ** (-pH_normal)\n    delta_H = H_acid - H_normal\n    moles_H = delta_H * volume_L\n    moles_CaCO3 = moles_H / 2.0\n    mass_g = moles_CaCO3 * M_CaCO3\n    mass_tonnes = mass_g / 1e6\n    return {\"1\": {\"value\": mass_tonnes, \"unit\": \"tonnes/yr\"}}",
+    "shortcut_value": 14.57,
+    "separation": 0.445,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base dn_14.12 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 14.568544985663687
+    }
+  },
+  {
+    "id": "trap_fp_12.2_gen",
+    "book": "synthesized",
+    "parent_id": "fp_12.2",
+    "control_id": "fp_12.2",
+    "problem": "CH3Br reacts with OH with a room temperature rate constant of 2.9 × 10−14 cm3 molecule−1 s−1. (a) What is the lifetime of methyl bromide with respect to reaction with OH if the OH concentration is 5 × 105 radicals cm−3 during 12.0 hours of daylight in each 24.0-hour day and essentially zero otherwise? (b) Colman et al. (1998) report an atmospheric lifetime of 0.8 ± 0.1 years for methyl bromide. Since it is also taken up by soils and oceans, what must the lifetime with respect to uptake by soils and oceans be? (c) If the daytime OH concentration is really 1 × 106 radicals cm−3 under the same 12.0-hour daylight condition, what must the lifetime be with respect to uptake by soils and oceans?",
+    "code": "def solve(k_OH=2.9e-14, OH_conc_a=5e5, daylight_hours=12.0, day_hours=24.0, atm_lifetime=0.8, OH_conc_c=1e6):\n    seconds_per_year = 365.25 * 24.0 * 3600.0\n    daylight_fraction = daylight_hours / day_hours\n\n    # For a periodically varying first-order loss, the long-term effective rate\n    # uses the time-mean OH concentration.\n    OH_mean_a = OH_conc_a * daylight_fraction\n    tau_OH_a_seconds = 1.0 / (k_OH * OH_mean_a)\n    tau_OH_a_years = tau_OH_a_seconds / seconds_per_year\n\n    inv_other_b = 1.0 / atm_lifetime - 1.0 / tau_OH_a_years\n    tau_other_b_years = 1.0 / inv_other_b\n\n    OH_mean_c = OH_conc_c * daylight_fraction\n    tau_OH_c_seconds = 1.0 / (k_OH * OH_mean_c)\n    tau_OH_c_years = tau_OH_c_seconds / seconds_per_year\n\n    inv_other_c = 1.0 / atm_lifetime - 1.0 / tau_OH_c_years\n    tau_other_c_years = 1.0 / inv_other_c\n\n    return {\n        \"1\": {\"value\": tau_OH_a_years, \"unit\": \"years\"},\n        \"2\": {\"value\": tau_other_b_years, \"unit\": \"years\"},\n        \"3\": {\"value\": tau_other_c_years, \"unit\": \"years\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 4.371,
+        "unit": "years"
+      },
+      {
+        "sub": "2",
+        "value": 0.9792,
+        "unit": "years"
+      },
+      {
+        "sub": "3",
+        "value": 1.262,
+        "unit": "years"
+      }
+    ],
+    "category": "atmospheric_chemistry",
+    "topic": "averaging_space",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "averaging_space",
+    "shortcut": "the base lifetime calculation, incorrectly using the specified daytime OH concentration as if it were the global 24-hour mean OH concentration",
+    "shortcut_code": "def solve(k_OH=2.9e-14, OH_conc_a=5e5, daylight_hours=12.0, day_hours=24.0, atm_lifetime=0.8, OH_conc_c=1e6):\n    seconds_per_year = 365.25 * 24.0 * 3600.0\n\n    # Shortcut: incorrectly treats the daytime OH concentration as a 24-hour mean.\n    tau_OH_a_seconds = 1.0 / (k_OH * OH_conc_a)\n    tau_OH_a_years = tau_OH_a_seconds / seconds_per_year\n\n    inv_other_b = 1.0 / atm_lifetime - 1.0 / tau_OH_a_years\n    tau_other_b_years = 1.0 / inv_other_b\n\n    tau_OH_c_seconds = 1.0 / (k_OH * OH_conc_c)\n    tau_OH_c_years = tau_OH_c_seconds / seconds_per_year\n\n    inv_other_c = 1.0 / atm_lifetime - 1.0 / tau_OH_c_years\n    tau_other_c_years = 1.0 / inv_other_c\n\n    return {\n        \"1\": {\"value\": tau_OH_a_years, \"unit\": \"years\"},\n        \"2\": {\"value\": tau_other_b_years, \"unit\": \"years\"},\n        \"3\": {\"value\": tau_other_c_years, \"unit\": \"years\"},\n    }",
+    "shortcut_value": 2.185,
+    "separation": 1.367,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base fp_12.2 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 2.185385366484755,
+      "2": 1.2619653242216071,
+      "3": 2.9865937778499876
+    }
+  },
+  {
+    "id": "trap_air_119_gen",
+    "book": "synthesized",
+    "parent_id": "air_119",
+    "control_id": "air_119",
+    "problem": "Find the temperature change (°C) of air given that heat is added at Δq = 500 J kg^-1 and the pressure decreases by 5 kPa. Assume an air density of ρ = 1.2 kg m^-3.\n\nExpress your answer in °C.",
+    "code": "def solve(delta_q=500.0, pressure_decrease_kPa=5.0, rho=1.2):\n    C_p = 1004.0\n    delta_P_pa = -pressure_decrease_kPa * 1000.0\n    delta_T = (delta_q + (1.0 / rho) * delta_P_pa) / C_p\n    return {\"1\": {\"value\": round(delta_T, 2), \"unit\": \"°C\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": -3.65,
+        "unit": "°C"
+      }
+    ],
+    "category": "atmospheric_thermodynamics",
+    "topic": "sign_direction",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "sign_direction",
+    "shortcut": "uses the base-problem calculation with ΔP = +5 kPa, ignoring that the pressure decreased",
+    "shortcut_code": "def solve(delta_q=500.0, delta_P_kPa=5.0, rho=1.2):\n    C_p = 1004.0\n    delta_P_pa = delta_P_kPa * 1000.0\n    delta_T = (delta_q + (1.0 / rho) * delta_P_pa) / C_p\n    return {\"1\": {\"value\": round(delta_T, 2), \"unit\": \"°C\"}}",
+    "shortcut_value": 4.65,
+    "separation": 2.274,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base air_119 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 4.65
+    }
+  },
+  {
+    "id": "trap_2.13_gen",
+    "book": "synthesized",
+    "parent_id": "2.13",
+    "control_id": "2.13",
+    "problem": "Suppose that an imaginary air parcel is moved reversibly around a closed circuit in the tephigram, i.e. that it is forced through a cyclical process in which its temperature, entropy and, therefore, pressure are varied. Using the First Law of Thermodynamics for a reversible cyclic process, show that the work per unit mass done on the parcel is given by the signed area enclosed by the circuit in the tephigram, with clockwise circuits positive. Find the work done on a parcel of mass 1 kg that is moved counter-clockwise around the circuit delineated by the 20 °C and 30 °C dry adiabatics and the 0 °C and -10 °C isotherms.\n\nExpress your answer in J.",
+    "code": "def solve(m=1.0, T_hot=0.0, T_cold=-10.0, theta_hot=30.0, theta_cold=20.0, direction=\"counter-clockwise\"):\n    cp = 1004.0\n    import math\n\n    # Convert temperatures and potential temperatures from Celsius to Kelvin\n    T_h_K = T_hot + 273.15\n    T_c_K = T_cold + 273.15\n    theta_h_K = theta_hot + 273.15\n    theta_c_K = theta_cold + 273.15\n\n    # Magnitude of the area in T-s coordinates\n    delta_T = T_h_K - T_c_K\n    delta_s = cp * math.log(theta_h_K / theta_c_K)\n    area = m * delta_T * delta_s\n\n    # By the convention stated in the problem, clockwise is positive for work done on the parcel.\n    sign = -1.0 if direction.lower().replace(\" \", \"\") in [\"counter-clockwise\", \"counterclockwise\", \"anticlockwise\"] else 1.0\n    work = sign * area\n\n    return {\"1\": {\"value\": work, \"unit\": \"J\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": -336.8,
+        "unit": "J"
+      }
+    ],
+    "category": "atmospheric_thermodynamics",
+    "topic": "sign_direction",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "sign_direction",
+    "shortcut": "uses the base clockwise area formula as a positive geometric area and ignores that reversing the traversal reverses the sign of the cyclic work",
+    "shortcut_code": "def solve(m=1.0, T_hot=0.0, T_cold=-10.0, theta_hot=30.0, theta_cold=20.0):\n    cp = 1004.0\n    import math\n\n    # Convert temperatures and potential temperatures from Celsius to Kelvin\n    T_h_K = T_hot + 273.15\n    T_c_K = T_cold + 273.15\n    theta_h_K = theta_hot + 273.15\n    theta_c_K = theta_cold + 273.15\n\n    # Compute the geometric area as in the clockwise base case\n    delta_T = T_h_K - T_c_K\n    delta_s = cp * math.log(theta_h_K / theta_c_K)\n    work = m * delta_T * delta_s\n\n    return {\"1\": {\"value\": work, \"unit\": \"J\"}}",
+    "shortcut_value": 336.8,
+    "separation": 2.0,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base 2.13 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 336.77482343945667
+    }
+  },
+  {
+    "id": "trap_air_201_gen",
+    "book": "synthesized",
+    "parent_id": "air_201",
+    "control_id": "air_201",
+    "problem": "What is the U-component of the drag force per unit mass opposing a zonal wind U = -15 m s^-1, with V = 0, for: (a) a statically neutral ABL over a rough forest, given drag coefficient C_D = 2 × 10^-2; and (b) a statically unstable ABL having convection with w_B = 50 m s^-1, given dimensionless factor b_D = 1.83 × 10^-3, given ABL depth z_i = 1.5 km. Express your answers: (a) in m s^-2, (b) in m s^-2.",
+    "code": "def solve(U=-15.0, V=0.0, z_i_km=1.5, C_D=2e-2, w_B=50.0, b_D=1.83e-3):\n    z_i = z_i_km * 1000.0\n    speed = (U**2 + V**2) ** 0.5\n    F_a = -C_D * speed * U / z_i\n    F_b = -b_D * w_B * U / z_i\n    return {\"a\": {\"value\": F_a, \"unit\": \"m s^-2\"}, \"b\": {\"value\": F_b, \"unit\": \"m s^-2\"}}",
+    "sub_answers": [
+      {
+        "sub": "a",
+        "value": 0.003,
+        "unit": "m s^-2"
+      },
+      {
+        "sub": "b",
+        "value": 0.000915,
+        "unit": "m s^-2"
+      }
+    ],
+    "category": "boundary_layer",
+    "topic": "sign_direction",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "sign_direction",
+    "shortcut": "applies the base neutral formula as -C_D U^2/z_i, treating U^2 as if the drag direction were always negative",
+    "shortcut_code": "def solve(U=-15.0, V=0.0, z_i_km=1.5, C_D=2e-2, w_B=50.0, b_D=1.83e-3):\n    z_i = z_i_km * 1000.0\n    F_a = -C_D * (U ** 2) / z_i\n    F_b = -b_D * w_B * U / z_i\n    return {\"a\": {\"value\": F_a, \"unit\": \"m s^-2\"}, \"b\": {\"value\": F_b, \"unit\": \"m s^-2\"}}",
+    "shortcut_value": -0.003,
+    "separation": 2.0,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base air_201 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "a",
+    "shortcut_values": {
+      "a": -0.003,
+      "b": 0.000915
+    }
+  },
+  {
+    "id": "trap_air_345_gen",
+    "book": "synthesized",
+    "parent_id": "air_345",
+    "control_id": "air_345",
+    "problem": "If the kinematic heat flux \\(\\overline{w^\\prime \\Theta^\\prime}\\) has magnitude 0.2 K·m·s⁻¹ and is directed downward at the surface, and is 0 at the top of a 1 km thick layer, find the layer-mean temperature tendency \\(\\Delta \\overline{T} / \\Delta t\\) produced by the convergence or divergence of this vertical heat flux. Take \\(w\\) positive upward. Express your answer in K h⁻¹.",
+    "code": "def solve(flux_sfc_downward_mag=0.2, flux_top=0.0, delta_z=1000.0):\n    # Upward is positive for w, so a downward surface heat flux is negative.\n    flux_sfc = -flux_sfc_downward_mag\n\n    # Change in signed kinematic heat flux from surface to top\n    delta_flux = flux_top - flux_sfc\n\n    # Potential-temperature/temperature tendency from vertical turbulent-flux divergence\n    tendency_s = -delta_flux / delta_z\n\n    # Convert K s^-1 to K h^-1\n    tendency_h = tendency_s * 3600.0\n\n    return {\"1\": {\"value\": tendency_h, \"unit\": \"K h^-1\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": -0.72,
+        "unit": "K h^-1"
+      }
+    ],
+    "category": "boundary_layer",
+    "topic": "sign_direction",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "sign_direction",
+    "shortcut": "the base flux-convergence calculation treating the surface value 0.2 as an upward positive signed kinematic flux",
+    "shortcut_code": "def solve(flux_sfc_downward_mag=0.2, flux_top=0.0, delta_z=1000.0):\n    # Incorrect shortcut: treats the stated downward magnitude as a positive/upward signed flux.\n    flux_sfc = flux_sfc_downward_mag\n\n    delta_flux = flux_top - flux_sfc\n    warming_rate_s = -delta_flux / delta_z\n    warming_rate_h = warming_rate_s * 3600.0\n\n    return {\"1\": {\"value\": warming_rate_h, \"unit\": \"K h^-1\"}}",
+    "shortcut_value": 0.72,
+    "separation": 2.0,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base air_345 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 0.7200000000000001
+    }
+  },
+  {
+    "id": "trap_holton_2_gen",
+    "book": "synthesized",
+    "parent_id": "holton_2",
+    "control_id": "holton_2",
+    "problem": "The temperature at a point 50 km north of a station is 3°C cooler than at the station. If the wind is blowing toward the northeast at 20 m s⁻¹ and the air is being heated by radiation at the rate of 1°C h⁻¹, what is the local temperature change at the station? Express your answer in °C h⁻¹.",
+    "code": "def solve(distance_north_km=50.0, temp_diff_C=3.0, wind_speed=20.0,\n          wind_toward_dir_deg=45.0, heating_rate_C_per_hr=1.0):\n    import math\n\n    # Temperature gradient: point 50 km north is 3 C cooler than station.\n    # So temperature decreases northward => dT/dy = -3 C / 50 km\n    distance_north_m = distance_north_km * 1000.0\n    dTdy = -temp_diff_C / distance_north_m  # C per meter, positive y = north\n    dTdx = 0.0\n\n    # Wind is blowing TOWARD the northeast, so velocity points NE.\n    # Direction angle is measured clockwise from north: NE = 45 deg.\n    theta = math.radians(wind_toward_dir_deg)\n    u = wind_speed * math.sin(theta)  # eastward component\n    v = wind_speed * math.cos(theta)  # northward component\n\n    # Thermodynamic equation: local tendency = -V dot grad(T) + diabatic heating\n    advection_C_per_s = -(u * dTdx + v * dTdy)\n    local_change = advection_C_per_s * 3600.0 + heating_rate_C_per_hr\n\n    return {\"1\": {\"value\": local_change, \"unit\": \"°C h⁻¹\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 4.055,
+        "unit": "°C h⁻¹"
+      }
+    ],
+    "category": "atmospheric_dynamics",
+    "topic": "sign_direction",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "sign_direction",
+    "shortcut": "the base method, incorrectly interpreting the northeast direction as the direction the wind is coming from",
+    "shortcut_code": "def solve(distance_north_km=50.0, temp_diff_C=3.0, wind_speed=20.0,\n          wind_toward_dir_deg=45.0, heating_rate_C_per_hr=1.0):\n    import math\n\n    # Base-problem shortcut: treats the stated NE direction as a meteorological FROM direction.\n    distance_north_m = distance_north_km * 1000.0\n    dTdy = -temp_diff_C / distance_north_m\n    dTdx = 0.0\n\n    theta = math.radians(wind_toward_dir_deg)\n    u = -wind_speed * math.sin(theta)\n    v = -wind_speed * math.cos(theta)\n\n    advection_C_per_s = -(u * dTdx + v * dTdy)\n    local_change = advection_C_per_s * 3600.0 + heating_rate_C_per_hr\n\n    return {\"1\": {\"value\": local_change, \"unit\": \"°C h⁻¹\"}}",
+    "shortcut_value": -2.055,
+    "separation": 1.507,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base holton_2 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": -2.0547012947258856
+    }
+  },
+  {
+    "id": "trap_2.3_gen",
+    "book": "synthesized",
+    "parent_id": "2.3",
+    "control_id": "2.3",
+    "problem": "Consider an atmosphere in hydrostatic balance, treated as an ideal gas. Show that, if the temperature increases with height at a uniform rate of 10 K km^-1, the pressure p(z) can be expressed in terms of the surface pressure p0 and surface temperature T0 at z = 0. Calculate the height at which the pressure is 0.1 of its surface value, assuming a surface temperature of 290 K. Express your answer in km.",
+    "code": "def solve(T0=290.0, p_ratio=0.1, warming_rate_km=10.0):\n    import math\n    g = 9.81\n    Ra = 287.0\n\n    # Convert warming rate from K/km to K/m. Here T(z) = T0 + beta*z.\n    beta = warming_rate_km / 1000.0\n\n    # Hydrostatic + ideal gas:\n    # dp/p = -g dz / (Ra * (T0 + beta*z))\n    # p/p0 = (1 + beta*z/T0)^(-g/(Ra*beta))\n    # Solve for z:\n    z_m = (T0 / beta) * (p_ratio ** (-Ra * beta / g) - 1.0)\n    z_km = z_m / 1000.0\n\n    return {\"1\": {\"value\": z_km, \"unit\": \"km\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 27.88,
+        "unit": "km"
+      }
+    ],
+    "category": "atmospheric_thermodynamics",
+    "topic": "sign_direction",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "sign_direction",
+    "shortcut": "uses the base decreasing-temperature lapse-rate formula despite the stated temperature increase with height",
+    "shortcut_code": "def solve(T0=290.0, p_ratio=0.1, Gamma_km=10.0):\n    import math\n    g = 9.81\n    Ra = 287.0\n\n    # Autopilot use of the base-problem decreasing-lapse-rate formula:\n    # T(z) = T0 - Gamma*z\n    Gamma = Gamma_km / 1000.0\n    z_m = (T0 / Gamma) * (1.0 - p_ratio ** (Gamma * Ra / g))\n    z_km = z_m / 1000.0\n\n    return {\"1\": {\"value\": z_km, \"unit\": \"km\"}}",
+    "shortcut_value": 14.21,
+    "separation": 0.49,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base 2.3 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 14.214385315002879
+    }
+  },
+  {
+    "id": "trap_air_382_gen",
+    "book": "synthesized",
+    "parent_id": "air_382",
+    "control_id": "air_382",
+    "problem": "For a global albedo of A = 0.3, find the average radiation input to the Earth system over the sunlit hemisphere for a total solar irradiance of S_0 = 1350 W m^{-2}.\n\nExpress your answer in W m^{-2}.",
+    "code": "def solve(A=0.3, S_0=1350.0):\n    # The Earth intercepts solar radiation over its cross-sectional area (pi*r^2).\n    # If the absorbed solar radiation is averaged only over the sunlit hemisphere,\n    # the relevant area is 2*pi*r^2, not 4*pi*r^2.\n    # Therefore the sunlit-hemisphere average incoming solar radiation is S_0/2.\n    E_in = (S_0 / 2.0) * (1.0 - A)\n    return {\"1\": {\"value\": E_in, \"unit\": \"W m^{-2}\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 472.5,
+        "unit": "W m^{-2}"
+      }
+    ],
+    "category": "climate_dynamics",
+    "topic": "averaging_space",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "averaging_space",
+    "shortcut": "uses the base global-mean S_0/4 factor, incorrectly averaging over the entire sphere instead of the sunlit hemisphere",
+    "shortcut_code": "def solve(A=0.3, S_0=1350.0):\n    # Base global-mean shortcut: distribute intercepted sunlight over the full sphere.\n    E_in = (S_0 / 4.0) * (1.0 - A)\n    return {\"1\": {\"value\": E_in, \"unit\": \"W m^{-2}\"}}",
+    "shortcut_value": 236.2,
+    "separation": 0.5,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated; derived from base air_382 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 236.24999999999997
+    }
+  },
+  {
+    "id": "trap_fp_2.2_gen",
+    "book": "synthesized",
+    "parent_id": "fp_2.2",
+    "control_id": "fp_2.2",
+    "problem": "Derive from first principles the concentration in μg m^-3 corresponding to 1 ppt by mass (1.0e-12 kg of species per kg of air) at 298 K and 1 atm pressure for a species with molecular weight 100 g mol^-1. Use an ideal gas for air with mean molecular weight 28.97 g mol^-1.",
+    "code": "def solve(mixing_ratio_ppt_by_mass=1.0, T=298.0, P_atm=1.0, molecular_weight_g_mol=100.0, air_molecular_weight_g_mol=28.97):\n    R = 8.314462618  # Pa m^3 mol^-1 K^-1\n    atm_to_Pa = 101325.0\n    P_Pa = P_atm * atm_to_Pa\n\n    # Ideal-gas molar density of air [mol m^-3]\n    air_molar_density = P_Pa / (R * T)\n\n    # Convert mean molecular weight of air to kg/mol and get air mass density [kg m^-3]\n    air_mw_kg_mol = air_molecular_weight_g_mol / 1000.0\n    air_mass_density = air_molar_density * air_mw_kg_mol\n\n    # ppt by mass means kg species per kg air\n    mass_fraction = mixing_ratio_ppt_by_mass * 1.0e-12\n    species_mass_conc_kg_m3 = mass_fraction * air_mass_density\n\n    # Convert kg m^-3 to micrograms m^-3\n    kg_to_ug = 1.0e9\n    concentration_ug_m3 = species_mass_conc_kg_m3 * kg_to_ug\n\n    return {\"1\": {\"value\": concentration_ug_m3, \"unit\": \"ug m^-3\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 0.001185,
+        "unit": "ug m^-3"
+      }
+    ],
+    "category": "atmospheric_thermodynamics",
+    "topic": "definition_confusion",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "definition_confusion",
+    "shortcut": "the base ideal-gas mole-fraction conversion, incorrectly treating 1 ppt by mass as 1 ppt mol/mol",
+    "shortcut_code": "def solve(mixing_ratio_ppt_by_mass=1.0, T=298.0, P_atm=1.0, molecular_weight_g_mol=100.0, air_molecular_weight_g_mol=28.97):\n    R = 8.314462618  # Pa m^3 mol^-1 K^-1\n    atm_to_Pa = 101325.0\n    P_Pa = P_atm * atm_to_Pa\n\n    # Shortcut: incorrectly treats ppt by mass as a molar mixing ratio\n    molar_density = P_Pa / (R * T)\n    fraction = mixing_ratio_ppt_by_mass * 1.0e-12\n    species_molar_conc = fraction * molar_density\n    concentration_ug_m3 = species_molar_conc * molecular_weight_g_mol * 1.0e6\n\n    return {\"1\": {\"value\": concentration_ug_m3, \"unit\": \"ug m^-3\"}}",
+    "shortcut_value": 0.004089,
+    "separation": 2.452,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base fp_2.2 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 0.004089461870781483
+    }
+  },
+  {
+    "id": "trap_p_37_gen",
+    "book": "synthesized",
+    "parent_id": "p_37",
+    "control_id": "p_37",
+    "problem": "Treating the sun as a blackbody, its frequency of maximum emission (maximum spectral radiance per unit frequency) is observed; expressed as c/ν, this peak corresponds to ~0.475 μm. Compute the color temperature of the sun. Express your answer in [K].",
+    "code": "def solve(lambda_equiv_um=0.475):\n    import math\n    h = 6.62607015e-34  # J s\n    c = 299792458.0     # m/s\n    k = 1.380649e-23    # J/K\n    # For the maximum of B_nu, x = h*nu/(k*T) satisfies 3*(1 - exp(-x)) = x.\n    x = 3.0\n    for _ in range(20):\n        f = 3.0 * (1.0 - math.exp(-x)) - x\n        df = 3.0 * math.exp(-x) - 1.0\n        x -= f / df\n    lambda_equiv_m = lambda_equiv_um * 1e-6\n    # The given 0.475 um is c/nu_peak, not the wavelength at which B_lambda peaks.\n    T = (h * c) / (k * x * lambda_equiv_m)\n    return {\"1\": {\"value\": round(T, 1), \"unit\": \"K\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 10740.0,
+        "unit": "K"
+      }
+    ],
+    "category": "atmospheric_radiation",
+    "topic": "definition_confusion",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "definition_confusion",
+    "shortcut": "applies the wavelength form of Wien's displacement law directly to 0.475 μm, as in the base problem",
+    "shortcut_code": "def solve(lambda_equiv_um=0.475, b_um_K=2897.0):\n    # Incorrectly treats c/nu_peak as the wavelength at which B_lambda peaks.\n    T = b_um_K / lambda_equiv_um\n    return {\"1\": {\"value\": round(T, 1), \"unit\": \"K\"}}",
+    "shortcut_value": 6099.0,
+    "separation": 0.432,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base p_37 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 6098.9
+    }
+  },
+  {
+    "id": "trap_snp_99_gen",
+    "book": "synthesized",
+    "parent_id": "snp_99",
+    "control_id": "snp_99",
+    "problem": "Calculate the terminal settling velocities of silica particles (material density rho_p = 2.65 g cm^-3) with aerodynamic diameters of 0.05 micrometers, 0.1 micrometers, 0.5 micrometers, and 1.0 micrometers. Here aerodynamic diameter means the diameter of a unit-density sphere with rho_0 = 1.00 g cm^-3 that has the same terminal settling velocity. Use air dynamic viscosity mu = 1.81e-5 Pa s and mean free path lambda = 0.0651 micrometers. Use the Cunningham slip correction C_c = 1 + Kn*(1.257 + 0.40*exp(-1.10/Kn)), with Kn = 2*lambda/d.",
+    "code": "def solve(rho_p=2.65, rho_0=1.00, d1=0.05, d2=0.1, d3=0.5, d4=1.0, mu=1.81e-5, lambda_um=0.0651):\n    import math\n\n    # Aerodynamic diameter is the diameter of a unit-density sphere\n    # with the same terminal settling velocity.\n    rho0_SI = rho_0 * 1000.0  # kg/m^3\n    g = 9.81\n    mfp = lambda_um * 1e-6\n\n    diameters_um = [d1, d2, d3, d4]\n\n    def cunningham(d_m):\n        Kn = 2.0 * mfp / d_m\n        return 1.0 + Kn * (1.257 + 0.40 * math.exp(-1.10 / Kn))\n\n    results = {}\n    for i, d_um in enumerate(diameters_um, start=1):\n        d_m = d_um * 1e-6\n        Cc = cunningham(d_m)\n        vt = rho0_SI * d_m**2 * g * Cc / (18.0 * mu)\n        results[str(i)] = {\"value\": vt, \"unit\": \"m/s\"}\n\n    return results",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 3.731e-07,
+        "unit": "m/s"
+      },
+      {
+        "sub": "2",
+        "value": 8.613e-07,
+        "unit": "m/s"
+      },
+      {
+        "sub": "3",
+        "value": 1e-05,
+        "unit": "m/s"
+      },
+      {
+        "sub": "4",
+        "value": 3.504e-05,
+        "unit": "m/s"
+      }
+    ],
+    "category": "atmospheric_aerosols",
+    "topic": "definition_confusion",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "definition_confusion",
+    "shortcut": "Stokes-Cunningham settling velocity using the silica material density and treating the aerodynamic diameters as physical diameters",
+    "shortcut_code": "def solve(rho_p=2.65, d1=0.05, d2=0.1, d3=0.5, d4=1.0, mu=1.81e-5, lambda_um=0.0651):\n    import math\n\n    # Incorrect shortcut: treats the aerodynamic diameters as physical\n    # silica-particle diameters and uses the material density directly.\n    rho_p_SI = rho_p * 1000.0\n    g = 9.81\n    mfp = lambda_um * 1e-6\n\n    diameters_um = [d1, d2, d3, d4]\n\n    def cunningham(d_m):\n        Kn = 2.0 * mfp / d_m\n        return 1.0 + Kn * (1.257 + 0.40 * math.exp(-1.10 / Kn))\n\n    results = {}\n    for i, d_um in enumerate(diameters_um, start=1):\n        d_m = d_um * 1e-6\n        Cc = cunningham(d_m)\n        vt = rho_p_SI * d_m**2 * g * Cc / (18.0 * mu)\n        results[str(i)] = {\"value\": vt, \"unit\": \"m/s\"}\n\n    return results",
+    "shortcut_value": 9.886e-07,
+    "separation": 1.65,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base snp_99 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 9.886228309223443e-07,
+      "2": 2.2823619362465462e-06,
+      "3": 2.6508117319790185e-05,
+      "4": 9.28527121157259e-05
+    }
+  },
+  {
+    "id": "trap_dn_10.28_gen",
+    "book": "synthesized",
+    "parent_id": "dn_10.28",
+    "control_id": "dn_10.28",
+    "problem": "The Henry's law constant for O2 in water at 20 °C is 40100 atm. Estimate the equilibrium oxygen content of water at 20 °C when the water is equilibrated with pure O2 gas at a total pressure of 1 atm. What are the biological implications of this value being so small?\n\nExpress your answer as the equilibrium mole fraction of dissolved O2.",
+    "code": "def solve(henry_constant_atm=40100.0, total_pressure_atm=1.0):\n    # Henry's law in the form p_O2 = H * x_O2.\n    # For pure O2 gas, the O2 mole fraction in the gas phase is 1, so p_O2 = total pressure.\n    gas_mole_fraction_O2 = 1.0\n    p_O2_atm = gas_mole_fraction_O2 * total_pressure_atm\n    x_O2 = p_O2_atm / henry_constant_atm\n    return {\"1\": {\"value\": x_O2, \"unit\": \"mol fraction\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 2.494e-05,
+        "unit": "mol fraction"
+      }
+    ],
+    "category": "atmospheric_chemistry",
+    "topic": "definition_confusion",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "definition_confusion",
+    "shortcut": "uses the base air-equilibration partial pressure p_O2 = 0.21 atm instead of recognizing that pure O2 at 1 atm has p_O2 = 1 atm",
+    "shortcut_code": "def solve(henry_constant_atm=40100.0, temperature_C=20.0):\n    # Autopilot use of the base problem's air-equilibration method.\n    total_pressure_atm = 1.0\n    mole_fraction_O2_in_air = 0.21\n    p_O2_atm = mole_fraction_O2_in_air * total_pressure_atm\n    x_O2 = p_O2_atm / henry_constant_atm\n    return {\"1\": {\"value\": x_O2, \"unit\": \"mol fraction\"}}",
+    "shortcut_value": 5.237e-06,
+    "separation": 0.79,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base dn_10.28 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 5.236907730673316e-06
+    }
+  },
+  {
+    "id": "trap_air_89_gen",
+    "book": "synthesized",
+    "parent_id": "air_89",
+    "control_id": "air_89",
+    "problem": "During the equinox at noon at latitude Φ = 60°, the solar elevation angle is Ψ = 90° - 60° = 30°. The top-of-atmosphere solar irradiance normal to the Sun's rays is S_o = 1361 W·m^-2. The atmosphere attenuates the direct solar beam according to Beer-Lambert law with vertical optical depth τ = 0.20, so the slant optical depth is τ/sin(Ψ), and diffuse radiation is negligible. How much direct radiative flux is absorbed into a perfectly black asphalt parking lot? The asphalt is a flat horizontal surface that absorbs all incident radiation. Express your answer in W·m^-2.",
+    "code": "def solve(S_o=1361.0, psi_deg=30.0, tau_vertical=0.20):\n    import math\n    psi_rad = math.radians(psi_deg)\n    sin_psi = math.sin(psi_rad)\n    transmittance = math.exp(-tau_vertical / sin_psi)\n    F_rad = S_o * transmittance * sin_psi\n    return {\"1\": {\"value\": round(F_rad, 1), \"unit\": \"W·m^-2\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 456.2,
+        "unit": "W·m^-2"
+      }
+    ],
+    "category": "atmospheric_radiation",
+    "topic": "formula_selection",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "the base transparent-atmosphere projection formula F = S_o sin(Ψ), ignoring atmospheric attenuation",
+    "shortcut_code": "def solve(S_o=1361.0, psi_deg=30.0, tau_vertical=0.20):\n    import math\n    psi_rad = math.radians(psi_deg)\n    F_rad = S_o * math.sin(psi_rad)\n    return {\"1\": {\"value\": round(F_rad, 1), \"unit\": \"W·m^-2\"}}",
+    "shortcut_value": 680.5,
+    "separation": 0.492,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base air_89 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 680.5
+    }
+  },
+  {
+    "id": "trap_holton_40_gen",
+    "book": "synthesized",
+    "parent_id": "holton_40",
+    "control_id": "holton_40",
+    "problem": "A tornado has a Rankine-vortex wind profile: inside a core radius of 50 m it rotates as a solid body, while outside that core the tangential wind conserves angular momentum. The air is an ideal gas at a constant temperature, and the radial pressure distribution is governed by the balance between the pressure-gradient force and the centripetal acceleration required for the circular motion. Derive an expression for the surface pressure at the center of the tornado in terms of the pressure p0 at a distance r0 from the center, the temperature T, the core radius rc, and the wind speed v0 at r0.\n\nIf the temperature is 288 K and the pressure and wind speed at 100 m from the center are 1000 hPa and 100 m s^-1 respectively, with a core radius of 50 m, what is the central pressure?",
+    "code": "def solve(T=288.0, p0_hPa=1000.0, v0=100.0, r0=100.0, rc=50.0):\n    import math\n    R_universal = 8.314462618  # J/(mol K)\n    M_air = 0.0289644          # kg/mol\n    R = R_universal / M_air    # J/(kg K)\n\n    p0_Pa = p0_hPa * 100.0\n\n    # Rankine vortex: outside core, v = K/r with K = v0*r0.\n    # At the core edge, vc = K/rc; inside core, v = omega_c*r.\n    K = v0 * r0\n\n    # Integral I = integral_0^r0 [v(r)^2 / r] dr.\n    # Inside core: integral_0^rc [(K*r/rc^2)^2 / r] dr = K^2/(2*rc^2)\n    # Outside core: integral_rc^r0 [(K/r)^2 / r] dr = K^2/2 * (1/rc^2 - 1/r0^2)\n    I_inside = K**2 / (2.0 * rc**2)\n    I_outside = 0.5 * K**2 * (1.0 / rc**2 - 1.0 / r0**2)\n    I = I_inside + I_outside\n\n    p_center_Pa = p0_Pa * math.exp(-I / (R * T))\n    return {\"1\": {\"value\": p_center_Pa / 100.0, \"unit\": \"hPa\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 654.8,
+        "unit": "hPa"
+      }
+    ],
+    "category": "atmospheric_dynamics",
+    "topic": "formula_selection",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "the base solid-body-rotation method applied from 100 m all the way to the center, ignoring the constant-angular-momentum region outside the 50 m core",
+    "shortcut_code": "def solve(T=288.0, p0_hPa=1000.0, v=100.0, r0=100.0):\n    import math\n    R_universal = 8.314462618  # J/(mol K)\n    M_air = 0.0289644          # kg/mol\n    R = R_universal / M_air    # J/(kg K)\n\n    omega = v / r0\n    p0_Pa = p0_hPa * 100.0\n    p_center_Pa = p0_Pa * math.exp(-(omega**2 * r0**2) / (2.0 * R * T))\n    return {\"1\": {\"value\": p_center_Pa / 100.0, \"unit\": \"hPa\"}}",
+    "shortcut_value": 941.3,
+    "separation": 0.437,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base holton_40 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 941.3131082207095
+    }
+  },
+  {
+    "id": "trap_air_205_gen",
+    "book": "synthesized",
+    "parent_id": "air_205",
+    "control_id": "air_205",
+    "problem": "If the geostrophic wind is G = 10 m s⁻¹, find the normal gradient wind speed (M_tan) around a high-pressure center and the curvature Rossby number (Ro_c), given a Coriolis parameter of f_c = 10⁻⁴ s⁻¹ and a radius of curvature of R = 500 km. Use the appropriate gradient-wind balance for this pressure center, and compute Ro_c = G / (f_c R). Express your answers in m s⁻¹ and dimensionless, respectively.",
+    "code": "def solve(G=10.0, f_c=1e-4, R_km=500.0):\n    import math\n    R = R_km * 1000.0\n    Ro_c = G / (f_c * R)\n    disc = 1.0 - 4.0 * G / (f_c * R)\n    M_tan = 0.5 * f_c * R * (1.0 - math.sqrt(disc))\n    return {\n        \"1\": {\"value\": M_tan, \"unit\": \"m s^-1\"},\n        \"2\": {\"value\": Ro_c, \"unit\": \"dimensionless\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 13.82,
+        "unit": "m s^-1"
+      },
+      {
+        "sub": "2",
+        "value": 0.2,
+        "unit": "dimensionless"
+      }
+    ],
+    "category": "atmospheric_dynamics",
+    "topic": "formula_selection",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "uses the low-pressure/cyclonic gradient-wind formula from the base problem despite the pressure center now being a high",
+    "shortcut_code": "def solve(G=10.0, f_c=1e-4, R_km=500.0):\n    import math\n    R = R_km * 1000.0\n    Ro_c = G / (f_c * R)\n    M_tan = 0.5 * f_c * R * (-1.0 + math.sqrt(1.0 + 4.0 * G / (f_c * R)))\n    return {\n        \"1\": {\"value\": M_tan, \"unit\": \"m s^-1\"},\n        \"2\": {\"value\": Ro_c, \"unit\": \"dimensionless\"}\n    }",
+    "shortcut_value": 8.541,
+    "separation": 0.382,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base air_205 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 8.541019662496845,
+      "2": 0.2
+    }
+  },
+  {
+    "id": "trap_jacobson_4.5_gen",
+    "book": "synthesized",
+    "parent_id": "jacobson_4.5",
+    "control_id": "jacobson_4.5",
+    "problem": "If u = 30 m s^-1 eastward, v = 10 m s^-1 northward, and φ = 45° N, find the magnitude of the full vector Coriolis force per unit mass, retaining the vertical component due to Earth's rotation.",
+    "code": "def solve(u=30.0, v=10.0, phi_deg=45.0):\n    import math\n\n    Omega = 7.292e-5  # Earth's angular velocity, rad/s\n    phi = math.radians(phi_deg)\n\n    # Local east-north-up coordinates, with horizontal velocity (u, v, 0).\n    # Earth's rotation vector is (0, Omega*cos(phi), Omega*sin(phi)).\n    # Coriolis acceleration is -2 Omega_vec x velocity.\n    ax = 2.0 * Omega * math.sin(phi) * v\n    ay = -2.0 * Omega * math.sin(phi) * u\n    az = 2.0 * Omega * math.cos(phi) * u\n\n    magnitude = math.sqrt(ax**2 + ay**2 + az**2)\n\n    return {\"1\": {\"value\": magnitude, \"unit\": \"m s^-2\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 0.004495,
+        "unit": "m s^-2"
+      }
+    ],
+    "category": "atmospheric_dynamics",
+    "topic": "formula_selection",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "traditional horizontal Coriolis acceleration magnitude using f = 2Ω sinφ, which ignores the vertical Coriolis component",
+    "shortcut_code": "def solve(u=30.0, v=10.0, phi_deg=45.0):\n    import math\n\n    Omega = 7.292e-5\n    phi = math.radians(phi_deg)\n    f = 2.0 * Omega * math.sin(phi)\n\n    ax = f * v\n    ay = -f * u\n    magnitude = math.sqrt(ax**2 + ay**2)\n\n    return {\"1\": {\"value\": magnitude, \"unit\": \"m s^-2\"}}",
+    "shortcut_value": 0.003261,
+    "separation": 0.275,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base jacobson_4.5 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 0.003261081538385693
+    }
+  },
+  {
+    "id": "trap_air_147_gen",
+    "book": "synthesized",
+    "parent_id": "air_147",
+    "control_id": "air_147",
+    "problem": "Calculate the buoyant force per unit mass (F/m) for an air parcel at 1 km altitude. Assume the parcel and its environment are in hydrostatic balance and behave as ideal gases at the same pressure, so the buoyancy arises from the temperature- and water-vapor-induced density difference between the parcel and its surroundings. Given: Environmental temperature T_e = 283 K, parcel temperature T_p = 287 K, environmental water vapor mixing ratio r_e = 0 g/kg, and parcel water vapor mixing ratio r_p = 20 g/kg. Express your answer in m s^-2.",
+    "code": "def solve(T_e=283.0, T_p=287.0, r_e_g_per_kg=0.0, r_p_g_per_kg=20.0):\n    g = 9.8\n    epsilon = 0.622  # ratio of gas constants/molecular weights for dry air and water vapor\n    r_e = r_e_g_per_kg / 1000.0  # kg/kg\n    r_p = r_p_g_per_kg / 1000.0  # kg/kg\n    Tv_e = T_e * (1.0 + r_e / epsilon) / (1.0 + r_e)\n    Tv_p = T_p * (1.0 + r_p / epsilon) / (1.0 + r_p)\n    buoyant_force_per_mass = ((Tv_p - Tv_e) / Tv_e) * g\n    return {\"1\": {\"value\": round(buoyant_force_per_mass, 2), \"unit\": \"m s^-2\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 0.26,
+        "unit": "m s^-2"
+      }
+    ],
+    "category": "atmospheric_thermodynamics",
+    "topic": "formula_selection",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "dry-air buoyancy using actual temperature only, ignoring the virtual-temperature effect of water vapor",
+    "shortcut_code": "def solve(T_e=283.0, T_p=287.0, r_e_g_per_kg=0.0, r_p_g_per_kg=20.0):\n    g = 9.8\n    buoyant_force_per_mass = ((T_p - T_e) / T_e) * g\n    return {\"1\": {\"value\": round(buoyant_force_per_mass, 2), \"unit\": \"m s^-2\"}}",
+    "shortcut_value": 0.14,
+    "separation": 0.462,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base air_147 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 0.14
+    }
+  },
+  {
+    "id": "trap_holton_11_gen",
+    "book": "synthesized",
+    "parent_id": "holton_11",
+    "control_id": "holton_11",
+    "problem": "A cylindrical column of air at 30°N with radius 100 km expands to twice its original radius. The air is initially at rest relative to the ground. What is the mean absolute (inertial-frame) tangential velocity at the perimeter after expansion? Take positive tangential velocity to be cyclonic.",
+    "code": "def solve(latitude_deg=30.0, initial_radius_km=100.0, radius_factor=2.0):\n    import math\n\n    Omega = 7.292e-5  # Earth's angular velocity (rad/s)\n\n    f = 2.0 * Omega * math.sin(math.radians(latitude_deg))\n\n    r1 = initial_radius_km * 1000.0\n    r2 = r1 * radius_factor\n\n    # Absolute tangential speed about the local vertical is\n    # U_abs = V_relative + (f/2)*r.\n    # Initially V_relative = 0, so U1_abs = (f/2)*r1.\n    # Conservation of absolute angular momentum gives U_abs*r = constant.\n    U1_abs = (f / 2.0) * r1\n    U2_abs = U1_abs * r1 / r2\n\n    return {\"1\": {\"value\": U2_abs, \"unit\": \"m/s\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 1.823,
+        "unit": "m/s"
+      }
+    ],
+    "category": "atmospheric_dynamics",
+    "topic": "definition_confusion",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "definition_confusion",
+    "shortcut": "the base Earth-relative angular-momentum formula, which reports relative wind instead of the requested inertial-frame tangential velocity",
+    "shortcut_code": "def solve(latitude_deg=30.0, initial_radius_km=100.0, radius_factor=2.0):\n    import math\n\n    Omega = 7.292e-5  # Earth's angular velocity (rad/s)\n\n    f = 2.0 * Omega * math.sin(math.radians(latitude_deg))\n\n    r1 = initial_radius_km * 1000.0\n    r2 = r1 * radius_factor\n\n    # Base-problem shortcut: returns the Earth-relative tangential wind.\n    V2 = (f / 2.0) * (r1**2 - r2**2) / r2\n\n    return {\"1\": {\"value\": V2, \"unit\": \"m/s\"}}",
+    "shortcut_value": -5.469,
+    "separation": 4.0,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base holton_11 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": -5.4689999999999985
+    }
+  },
+  {
+    "id": "trap_air_248_gen",
+    "book": "synthesized",
+    "parent_id": "air_248",
+    "control_id": "air_248",
+    "problem": "A west wind of 60 m s^{-1} in the center of a jet streak decreases to 40 m s^{-1} in the jet exit region 500 km to the east. The west-wind speed is increasing uniformly at 3.6 m s^{-1} h^{-1} throughout this center-to-exit region. Find the exit ageostrophic wind component. Assume f_c = 10^{-4} s^{-1}.\n\nExpress your answer in m s^{-1}.",
+    "code": "def solve(u_center=60.0, u_exit=40.0, delta_x_km=500.0, tendency_mps_per_h=3.6, f_c=1e-4):\n    delta_x = delta_x_km * 1000.0\n    u_avg = (u_center + u_exit) / 2.0\n    du_dx = (u_exit - u_center) / delta_x\n    du_dt = tendency_mps_per_h / 3600.0\n    material_accel = du_dt + u_avg * du_dx\n    v_ag = material_accel / f_c\n    return {\"1\": {\"value\": v_ag, \"unit\": \"m s^{-1}\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": -10.0,
+        "unit": "m s^{-1}"
+      }
+    ],
+    "category": "atmospheric_dynamics",
+    "topic": "formula_selection",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "the base steady-flow jet-streak method, using only u * du/dx and ignoring the stated local time tendency",
+    "shortcut_code": "def solve(u_center=60.0, u_exit=40.0, delta_x_km=500.0, tendency_mps_per_h=3.6, f_c=1e-4):\n    delta_x = delta_x_km * 1000.0\n    u_avg = (u_center + u_exit) / 2.0\n    du_dx = (u_exit - u_center) / delta_x\n    v_ag = u_avg * du_dx / f_c\n    return {\"1\": {\"value\": v_ag, \"unit\": \"m s^{-1}\"}}",
+    "shortcut_value": -20.0,
+    "separation": 1.0,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base air_248 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": -20.0
+    }
+  },
+  {
+    "id": "trap_holton_59_gen",
+    "book": "synthesized",
+    "parent_id": "holton_59",
+    "control_id": "holton_59",
+    "problem": "Compute the surface torque per unit horizontal area exerted on the topography by the atmosphere for the following distribution of surface pressure and surface height:\n\n$$p_s = p_0 + \\hat{p}\\sin kx, \\quad h = \\hat{h}\\sin(kx - \\gamma)$$\n\nwhere $p_0 = 1000\\,\\mathrm{hPa}$, $\\hat{p} = 10\\,\\mathrm{hPa}$, $\\hat{h} = 2.5\\times10^3\\,\\mathrm{m}$, $\\gamma = \\pi/6$ rad, and $k = 1/(a\\cos\\phi)$, where $\\phi = \\pi/4$ radians is the latitude, and $a = 6.371\\times10^6\\,\\mathrm{m}$ is the radius of the earth. Express the answer in $\\mathrm{kg\\,s}^{-2}$.",
+    "code": "def solve(\n    p0_hPa=1000.0,\n    p_hat_hPa=10.0,\n    h_hat_m=2.5e3,\n    gamma_rad=3.141592653589793 / 6.0,\n    phi_rad=3.141592653589793 / 4.0,\n    earth_radius_m=6.371e6,\n):\n    import math\n\n    hPa_to_Pa = 100.0\n    p0_Pa = p0_hPa * hPa_to_Pa\n    p_hat_Pa = p_hat_hPa * hPa_to_Pa\n\n    k_per_m = 1.0 / (earth_radius_m * math.cos(phi_rad))\n\n    # Force per unit horizontal area exerted on the atmosphere by terrain:\n    # F_atm_x/A = - < p_s dh/dx >.\n    mean_pressure_height_slope = (\n        p0_Pa * h_hat_m * k_per_m * 0.0\n        + p_hat_Pa * h_hat_m * k_per_m * 0.5 * math.sin(gamma_rad)\n    )\n    force_on_atmosphere_per_area = -mean_pressure_height_slope\n\n    torque_on_atmosphere_per_area = (\n        earth_radius_m * math.cos(phi_rad) * force_on_atmosphere_per_area\n    )\n\n    # The requested torque is on the topography by the atmosphere, so reverse sign.\n    torque_on_topography_per_area = -torque_on_atmosphere_per_area\n\n    return {\"1\": {\"value\": torque_on_topography_per_area, \"unit\": \"kg s^-2\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 625000.0,
+        "unit": "kg s^-2"
+      }
+    ],
+    "category": "atmospheric_dynamics",
+    "topic": "sign_direction",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "sign_direction",
+    "shortcut": "computes the base-problem torque exerted on the atmosphere by topography, without reversing the sign for the torque exerted on the topography by the atmosphere",
+    "shortcut_code": "def solve(\n    p0_hPa=1000.0,\n    p_hat_hPa=10.0,\n    h_hat_m=2.5e3,\n    gamma_rad=3.141592653589793 / 6.0,\n    phi_rad=3.141592653589793 / 4.0,\n    earth_radius_m=6.371e6,\n):\n    import math\n\n    hPa_to_Pa = 100.0\n    p0_Pa = p0_hPa * hPa_to_Pa\n    p_hat_Pa = p_hat_hPa * hPa_to_Pa\n\n    k_per_m = 1.0 / (earth_radius_m * math.cos(phi_rad))\n\n    # Base-problem shortcut: computes torque exerted on the atmosphere by topography.\n    mean_pressure_height_slope = (\n        p0_Pa * h_hat_m * k_per_m * 0.0\n        + p_hat_Pa * h_hat_m * k_per_m * 0.5 * math.sin(gamma_rad)\n    )\n    zonal_force_per_area = -mean_pressure_height_slope\n    torque_per_area = earth_radius_m * math.cos(phi_rad) * zonal_force_per_area\n\n    return {\"1\": {\"value\": torque_per_area, \"unit\": \"kg s^-2\"}}",
+    "shortcut_value": -625000.0,
+    "separation": 2.0,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base holton_59 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": -624999.9999999999
+    }
+  },
+  {
+    "id": "trap_air_165_gen",
+    "book": "synthesized",
+    "parent_id": "air_165",
+    "control_id": "air_165",
+    "problem": "In continental air of supersaturation percentage 0.5%, the number density of activated nuclei is given by n_CCN = c · (100 · S)^k, where S is the supersaturation fraction, c = 6 × 10^8 m^-3, and k = 0.5 for continental air. Assume the activated droplets are randomly distributed in space as a homogeneous Poisson distribution. What is the mean nearest-neighbor distance from a drop to its closest neighboring drop? Express your answer in mm.",
+    "code": "def solve(supersaturation_percentage=0.5, c=6e8, k=0.5):\n    import math\n    S_fraction = supersaturation_percentage / 100.0\n    n_CCN = c * (100.0 * S_fraction) ** k\n    # For a homogeneous 3-D Poisson point process with number density n,\n    # P(R > r) = exp(-(4/3)*pi*n*r^3), so E[R] = Gamma(4/3) / ((4*pi*n/3)^(1/3)).\n    mean_nearest_neighbor_m = math.gamma(4.0 / 3.0) / ((4.0 * math.pi * n_CCN / 3.0) ** (1.0 / 3.0))\n    mean_nearest_neighbor_mm = mean_nearest_neighbor_m * 1000.0\n    return {\"1\": {\"value\": mean_nearest_neighbor_mm, \"unit\": \"mm\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 0.7372,
+        "unit": "mm"
+      }
+    ],
+    "category": "cloud_physics",
+    "topic": "definition_confusion",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "definition_confusion",
+    "shortcut": "cubic-cell spacing n_CCN^(-1/3), the base method, instead of the mean nearest-neighbor distance for a random Poisson droplet distribution",
+    "shortcut_code": "def solve(supersaturation_percentage=0.5, c=6e8, k=0.5):\n    S_fraction = supersaturation_percentage / 100.0\n    n_CCN = c * (100.0 * S_fraction) ** k\n    distance_m = n_CCN ** (-1.0 / 3.0)\n    distance_mm = distance_m * 1000.0\n    return {\"1\": {\"value\": distance_mm, \"unit\": \"mm\"}}",
+    "shortcut_value": 1.331,
+    "separation": 0.805,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base air_165 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 1.3308259147252706
+    }
+  },
+  {
+    "id": "trap_dn_14.10_gen",
+    "book": "synthesized",
+    "parent_id": "dn_14.10",
+    "control_id": "dn_14.10",
+    "problem": "Several years ago the French wine industry was rocked by the scandalous discovery that some French wine makers had used sulfuric acid to adjust the acidity of their wines. Sulfuric acid is a permitted food additive in the United States, and probably in most other countries; it is used to adjust the acidity of many foods because it has no taste. But the rules about additives for wine making are more strict than the rules for general food additives and this usage was forbidden by French wine law. If we assume that the wine makers wanted to change the pH of their wines from 3.8 to 2.8, and that the wine is buffered so that protonating the wine buffers consumes 0.010 mol of H+ per liter for each pH unit by which the pH is lowered, how many grams of sulfuric acid, H2SO4, would they have had to add per liter of wine? Use a molar mass of 98.08 g/mol for H2SO4. (a) Assume complete ionization of the acid, i.e. H2SO4 -> 2 H+ + SO4^2-. (b) The true situation is more complex. We actually have this situation: H2SO4 -> H+ + HSO4-, and HSO4- -> H+ + SO4^2-. The first of these is practically complete at room temperature, K1 = [H+][HSO4-]/[H2SO4] ≈ 100 mol/L, but the second is not, K2 = [H+][SO4^2-]/[HSO4-] = 0.012 mol/L. Repeat part (a), taking into account the fact that the second ionization is not complete.",
+    "code": "def solve(pH_initial=3.8, pH_final=2.8, buffer_capacity=0.010, M_H2SO4_g_mol=98.08, K1=100.0, K2=0.012):\n    # Concentrations are in mol/L. buffer_capacity is mol H+ consumed per L per pH unit decrease.\n    H_initial = 10.0 ** (-pH_initial)\n    H_final = 10.0 ** (-pH_final)\n    delta_H_free = H_final - H_initial\n\n    # Extra proton equivalents consumed by wine buffers over the pH decrease.\n    dpH_decrease = pH_initial - pH_final\n    buffer_H_equiv = buffer_capacity * dpH_decrease\n\n    # Total proton equivalents that the added acid must supply.\n    total_H_equiv = delta_H_free + buffer_H_equiv\n\n    # (a) Complete double ionization: each mole H2SO4 supplies 2 mol H+ equivalents.\n    moles_a = total_H_equiv / 2.0\n    grams_a = moles_a * M_H2SO4_g_mol\n\n    # (b) First ionization complete; second governed by K2 at the final [H+].\n    # Let C be formal H2SO4 added and x be SO4^2- from the second dissociation.\n    # Proton equivalents supplied: C + x = total_H_equiv.\n    # Equilibrium: K2 = H_final*x/(C - x).\n    C = total_H_equiv * (H_final + K2) / (H_final + 2.0 * K2)\n    grams_b = C * M_H2SO4_g_mol\n\n    return {\"1\": {\"value\": grams_a, \"unit\": \"g/L\"}, \"2\": {\"value\": grams_b, \"unit\": \"g/L\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 0.5604,
+        "unit": "g/L"
+      },
+      {
+        "sub": "2",
+        "value": 0.5951,
+        "unit": "g/L"
+      }
+    ],
+    "category": "atmospheric_chemistry",
+    "topic": "regime_boundary",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "regime_boundary",
+    "shortcut": "the base unbuffered pH calculation, which treats the required acid as only the change in free [H+] and ignores proton uptake by wine buffers",
+    "shortcut_code": "def solve(pH_initial=3.8, pH_final=2.8, buffer_capacity=0.010, M_H2SO4_g_mol=98.08, K1=100.0, K2=0.012):\n    # Autopilot shortcut: ignore the stated buffer capacity and use only the free [H+] change.\n    H_initial = 10.0 ** (-pH_initial)\n    H_final = 10.0 ** (-pH_final)\n    delta_H = H_final - H_initial\n\n    # (a) Complete double ionization.\n    grams_a = (delta_H / 2.0) * M_H2SO4_g_mol\n\n    # (b) Base-method treatment of incomplete second dissociation only.\n    C = delta_H * (H_final + K2) / (H_final + 2.0 * K2)\n    grams_b = C * M_H2SO4_g_mol\n\n    return {\"1\": {\"value\": grams_a, \"unit\": \"g/L\"}, \"2\": {\"value\": grams_b, \"unit\": \"g/L\"}}",
+    "shortcut_value": 0.06995,
+    "separation": 0.875,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base dn_14.10 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 0.06995084594246373,
+      "2": 0.0742840522102067
+    }
+  },
+  {
+    "id": "trap_air_335_gen",
+    "book": "synthesized",
+    "parent_id": "air_335",
+    "control_id": "air_335",
+    "problem": "The mixed layer depth increases at the rate of 300 m h⁻¹ in a region with weak subsidence of -2 mm s⁻¹. The capping inversion is 40 m thick, and potential temperature increases through it at 0.5 °C per 100 m. Estimate the surface kinematic heat flux (F_Hsfc). Use the equations: w_e = Δz_i/Δt - w_s, F_Hzi = -w_e · Δθ, and F_Hsfc = -F_Hzi/A, where Δθ is the potential-temperature jump across the inversion. Assume a Ball ratio A = 0.2. Express your answer in °C m s⁻¹.",
+    "code": "def solve(dz_dt_m_per_h=300.0, w_s_mm_per_s=-2.0, inversion_thickness_m=40.0, theta_gradient_C_per_100m=0.5, A=0.2):\n    # Convert mixed-layer growth rate from m/h to m/s\n    dz_dt = dz_dt_m_per_h / 3600.0\n    # Convert subsidence velocity from mm/s to m/s\n    w_s = w_s_mm_per_s / 1000.0\n    # Convert stated inversion gradient to the actual jump across the finite inversion\n    dtheta_dz = theta_gradient_C_per_100m / 100.0\n    delta_theta = dtheta_dz * inversion_thickness_m\n    w_e = dz_dt - w_s\n    F_Hzi = -w_e * delta_theta\n    F_Hsfc = -F_Hzi / A\n    return {\"1\": {\"value\": F_Hsfc, \"unit\": \"°C m s^-1\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 0.08533,
+        "unit": "°C m s^-1"
+      }
+    ],
+    "category": "boundary_layer",
+    "topic": "definition_confusion",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "definition_confusion",
+    "shortcut": "uses the base-method template but plugs 0.5 directly in as Δθ, ignoring that it is a gradient over a 40 m inversion",
+    "shortcut_code": "def solve(dz_dt_m_per_h=300.0, w_s_mm_per_s=-2.0, inversion_thickness_m=40.0, theta_gradient_C_per_100m=0.5, A=0.2):\n    # Convert mixed-layer growth rate from m/h to m/s\n    dz_dt = dz_dt_m_per_h / 3600.0\n    # Convert subsidence velocity from mm/s to m/s\n    w_s = w_s_mm_per_s / 1000.0\n    # Incorrectly treat the stated 0.5 °C per 100 m as the total inversion jump\n    delta_theta = theta_gradient_C_per_100m\n    w_e = dz_dt - w_s\n    F_Hzi = -w_e * delta_theta\n    F_Hsfc = -F_Hzi / A\n    return {\"1\": {\"value\": F_Hsfc, \"unit\": \"°C m s^-1\"}}",
+    "shortcut_value": 0.2133,
+    "separation": 1.5,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base air_335 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 0.21333333333333332
+    }
+  },
+  {
+    "id": "trap_p_3_gen",
+    "book": "synthesized",
+    "parent_id": "p_3",
+    "control_id": "p_3",
+    "problem": "Assuming the atmosphere is in hydrostatic balance with constant scale height H = 8.0 km on a spherical planet of radius 8.0 km, calculate the fraction of the total mass of the entire spherical atmosphere that resides between 0 and 1 scale height, 1 and 2 scale heights, and 2 and 3 scale heights above the surface. Express your answers as dimensionless fractions.",
+    "code": "def solve(H_km=8.0, radius_km=8.0, z0=0.0, z1=1.0, z2=2.0, z3=3.0):\n    import math\n    # Let x = z/H. Density is rho = rho0 exp(-x).\n    # For a spherical atmosphere, mass in a shell is proportional to\n    # exp(-x) * (R + z)^2 dz = exp(-x) * (R/H + x)^2 dx.\n    r = radius_km / H_km\n\n    def P(x):\n        # Integral helper: integral exp(-x)*(x+r)^2 dx = -exp(-x)*P(x)\n        return x*x + 2.0*(r + 1.0)*x + r*r + 2.0*r + 2.0\n\n    def shell_fraction(a, b):\n        numerator = math.exp(-a) * P(a) - math.exp(-b) * P(b)\n        denominator = r*r + 2.0*r + 2.0\n        return numerator / denominator\n\n    return {\n        \"1\": {\"value\": shell_fraction(z0, z1), \"unit\": \"dimensionless\"},\n        \"2\": {\"value\": shell_fraction(z1, z2), \"unit\": \"dimensionless\"},\n        \"3\": {\"value\": shell_fraction(z2, z3), \"unit\": \"dimensionless\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 0.2642,
+        "unit": "dimensionless"
+      },
+      {
+        "sub": "2",
+        "value": 0.2756,
+        "unit": "dimensionless"
+      },
+      {
+        "sub": "3",
+        "value": 0.2012,
+        "unit": "dimensionless"
+      }
+    ],
+    "category": "atmospheric_thermodynamics",
+    "topic": "geometry_detail",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "geometry_detail",
+    "shortcut": "plane-parallel exponential-column mass fractions, ignoring the increase of spherical shell area with altitude",
+    "shortcut_code": "def solve(H_km=8.0, radius_km=8.0, z0=0.0, z1=1.0, z2=2.0, z3=3.0):\n    import math\n    # Shortcut: treat the atmosphere as a plane-parallel column, ignoring spherical shell area.\n    f1 = math.exp(-z0) - math.exp(-z1)\n    f2 = math.exp(-z1) - math.exp(-z2)\n    f3 = math.exp(-z2) - math.exp(-z3)\n    return {\n        \"1\": {\"value\": f1, \"unit\": \"dimensionless\"},\n        \"2\": {\"value\": f2, \"unit\": \"dimensionless\"},\n        \"3\": {\"value\": f3, \"unit\": \"dimensionless\"}\n    }",
+    "shortcut_value": 0.6321,
+    "separation": 1.392,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base p_3 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 0.6321205588285577,
+      "2": 0.23254415793482963,
+      "3": 0.08554821486874875
+    }
+  },
+  {
+    "id": "trap_snp_7_gen",
+    "book": "synthesized",
+    "parent_id": "snp_7",
+    "control_id": "snp_7",
+    "problem": "The enthalpy changes for the following two-photon photodissociation reactions, in which two identical photons are absorbed simultaneously in each event, are\n\nO2 + 2hν → O + O(1D)    164.54 kcal mol^-1\nO3 + 2hν → O(1D) + O2(1Δg)    93.33 kcal mol^-1\nO3 + 2hν → O + O2    25.5 kcal mol^-1\n\nEstimate the maximum wavelength of each photon at which these reactions can occur.",
+    "code": "def solve(dH1_kcal=164.54, dH2_kcal=93.33, dH3_kcal=25.5, photons=2.0):\n    h = 6.62607015e-34       # J s\n    c = 2.99792458e8         # m/s\n    NA = 6.02214076e23       # mol^-1\n    cal_to_J = 4.184         # J/cal\n\n    def max_wavelength_nm(dH_kcal):\n        E_per_mol = dH_kcal * 1000.0 * cal_to_J\n        E_event = E_per_mol / NA\n        E_per_photon = E_event / photons\n        lam_m = h * c / E_per_photon\n        return lam_m * 1e9\n\n    return {\n        \"1\": {\"value\": max_wavelength_nm(dH1_kcal), \"unit\": \"nm\"},\n        \"2\": {\"value\": max_wavelength_nm(dH2_kcal), \"unit\": \"nm\"},\n        \"3\": {\"value\": max_wavelength_nm(dH3_kcal), \"unit\": \"nm\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 347.5,
+        "unit": "nm"
+      },
+      {
+        "sub": "2",
+        "value": 612.7,
+        "unit": "nm"
+      },
+      {
+        "sub": "3",
+        "value": 2242.0,
+        "unit": "nm"
+      }
+    ],
+    "category": "atmospheric_chemistry",
+    "topic": "formula_selection",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "single-photon threshold calculation, treating one photon as supplying the full reaction enthalpy",
+    "shortcut_code": "def solve(dH1_kcal=164.54, dH2_kcal=93.33, dH3_kcal=25.5, photons=2.0):\n    h = 6.62607015e-34       # J s\n    c = 2.99792458e8         # m/s\n    NA = 6.02214076e23       # mol^-1\n    cal_to_J = 4.184         # J/cal\n\n    def max_wavelength_nm(dH_kcal):\n        E_per_mol = dH_kcal * 1000.0 * cal_to_J\n        E_photon = E_per_mol / NA\n        lam_m = h * c / E_photon\n        return lam_m * 1e9\n\n    return {\n        \"1\": {\"value\": max_wavelength_nm(dH1_kcal), \"unit\": \"nm\"},\n        \"2\": {\"value\": max_wavelength_nm(dH2_kcal), \"unit\": \"nm\"},\n        \"3\": {\"value\": max_wavelength_nm(dH3_kcal), \"unit\": \"nm\"},\n    }",
+    "shortcut_value": 173.8,
+    "separation": 0.5,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base snp_7 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 173.76586472649663,
+      "2": 306.3477486563565,
+      "3": 1121.2327600822648
+    }
+  },
+  {
+    "id": "trap_holton_30_gen",
+    "book": "synthesized",
+    "parent_id": "holton_30",
+    "control_id": "holton_30",
+    "problem": "Find the horizontal displacement of a body dropped from a fixed platform at a height h at latitude 60° N, neglecting the effects of air resistance. What is the numerical value of the displacement for h = 5 km?",
+    "code": "def solve(h_km=5.0, latitude_deg=60.0):\n    import math\n    # Physical constants\n    g = 9.81  # m/s^2\n    omega = 7.292115e-5  # rad/s\n\n    # Convert given height to meters\n    h = h_km * 1000.0\n\n    # Fall time in the constant-g approximation\n    t = math.sqrt(2.0 * h / g)\n\n    # For a dropped body at latitude phi, the first-order eastward Coriolis\n    # displacement is the equatorial value multiplied by cos(phi).\n    phi = math.radians(latitude_deg)\n    displacement = (1.0 / 3.0) * omega * g * t**3 * math.cos(phi)\n\n    return {\"1\": {\"value\": displacement, \"unit\": \"m\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 3.88,
+        "unit": "m"
+      }
+    ],
+    "category": "atmospheric_dynamics",
+    "topic": "formula_selection",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "the equatorial dropped-body deflection formula, used without the required cos(latitude) factor",
+    "shortcut_code": "def solve(h_km=5.0, latitude_deg=60.0):\n    import math\n    # Physical constants\n    g = 9.81  # m/s^2, gravitational acceleration\n    omega = 7.292115e-5  # rad/s, Earth's angular velocity\n\n    # Convert given height to meters\n    h = h_km * 1000.0\n\n    # Autopilot use of the equatorial formula, ignoring latitude\n    t = math.sqrt(2.0 * h / g)\n    displacement = (1.0 / 3.0) * omega * g * t**3\n\n    return {\"1\": {\"value\": displacement, \"unit\": \"m\"}}",
+    "shortcut_value": 7.761,
+    "separation": 1.0,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base holton_30 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 7.7606438020615975
+    }
+  },
+  {
+    "id": "trap_air_215_gen",
+    "book": "synthesized",
+    "parent_id": "air_215",
+    "control_id": "air_215",
+    "problem": "At latitude 80°N on a spherical Earth of radius 6371 km, the local wind components are U = 40 m s^-1 eastward and V = 40 m s^-1 northward. Given local horizontal wind gradients ΔU / Δx = ΔV / Δx = 5 units, and ΔU / Δy = -5 units, ΔV / Δy = -5 units, where x is local eastward arc-distance, y is local northward arc-distance, and 1 unit = (1 m s^-1) / (500 km), find the horizontal divergence, the vertical component of relative vorticity, and the total deformation of the wind field, in the same units. Express your answers: (1) in units, (2) in units, (3) in units.",
+    "code": "def solve(dU_dx_units=5.0, dV_dx_units=5.0, dU_dy_units=-5.0, dV_dy_units=-5.0, U_ms=40.0, V_ms=40.0, lat_deg=80.0, earth_radius_km=6371.0):\n    import math\n\n    # Convert the given gradient unit: (1 m/s) / (500 km) to s^-1.\n    unit_s_inv = 1.0 / (500.0 * 1000.0)\n    dU_dx = dU_dx_units * unit_s_inv\n    dV_dx = dV_dx_units * unit_s_inv\n    dU_dy = dU_dy_units * unit_s_inv\n    dV_dy = dV_dy_units * unit_s_inv\n\n    # Spherical Earth metric/curvature terms for local eastward U and northward V.\n    R = earth_radius_km * 1000.0\n    phi = math.radians(lat_deg)\n    tan_over_R = math.tan(phi) / R\n\n    # Exact local spherical-coordinate horizontal kinematics:\n    # divergence = dU/dx + dV/dy - V tan(phi)/R\n    # vorticity  = dV/dx - dU/dy + U tan(phi)/R\n    # stretching deformation = dU/dx - dV/dy - V tan(phi)/R\n    # shearing deformation   = dV/dx + dU/dy + U tan(phi)/R\n    divergence = dU_dx + dV_dy - V_ms * tan_over_R\n    vorticity = dV_dx - dU_dy + U_ms * tan_over_R\n    stretching = dU_dx - dV_dy - V_ms * tan_over_R\n    shearing = dV_dx + dU_dy + U_ms * tan_over_R\n    total_deformation = math.sqrt(stretching**2 + shearing**2)\n\n    return {\n        \"1\": {\"value\": divergence / unit_s_inv, \"unit\": \"units\"},\n        \"2\": {\"value\": vorticity / unit_s_inv, \"unit\": \"units\"},\n        \"3\": {\"value\": total_deformation / unit_s_inv, \"unit\": \"units\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": -17.8,
+        "unit": "units"
+      },
+      {
+        "sub": "2",
+        "value": 27.8,
+        "unit": "units"
+      },
+      {
+        "sub": "3",
+        "value": 19.44,
+        "unit": "units"
+      }
+    ],
+    "category": "atmospheric_dynamics",
+    "topic": "formula_selection",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "the base Cartesian formulas for divergence, vorticity, and deformation, which ignore the spherical-coordinate curvature terms proportional to U tan(phi)/R and V tan(phi)/R",
+    "shortcut_code": "def solve(dU_dx_units=5.0, dV_dx_units=5.0, dU_dy_units=-5.0, dV_dy_units=-5.0, U_ms=40.0, V_ms=40.0, lat_deg=80.0, earth_radius_km=6371.0):\n    import math\n\n    # Cartesian tangent-plane shortcut, ignoring spherical curvature terms.\n    divergence = dU_dx_units + dV_dy_units\n    vorticity = dV_dx_units - dU_dy_units\n    stretching = dU_dx_units - dV_dy_units\n    shearing = dV_dx_units + dU_dy_units\n    total_deformation = math.sqrt(stretching**2 + shearing**2)\n\n    return {\n        \"1\": {\"value\": divergence, \"unit\": \"units\"},\n        \"2\": {\"value\": vorticity, \"unit\": \"units\"},\n        \"3\": {\"value\": total_deformation, \"unit\": \"units\"}\n    }",
+    "shortcut_value": 0.0,
+    "separation": 1.0,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base air_215 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 0.0,
+      "2": 10.0,
+      "3": 10.0
+    }
+  },
+  {
+    "id": "trap_holton_28_gen",
+    "book": "synthesized",
+    "parent_id": "holton_28",
+    "control_id": "holton_28",
+    "problem": "Two balls 4 cm in diameter are placed with their centers 8 cm apart on a frictionless horizontal plane at 43°N. If the balls are impulsively propelled directly at each other with equal speeds, at what speed must they travel so that they just miss each other?",
+    "code": "def solve(diameter_cm=4.0, center_separation_cm=8.0, latitude_deg=43.0):\n    import math\n\n    Omega = 7.2921159e-5  # Earth's rotation rate, rad/s\n\n    d = diameter_cm / 100.0\n    S = center_separation_cm / 100.0\n    lat = math.radians(latitude_deg)\n    f = 2.0 * Omega * math.sin(lat)\n\n    # Exact f-plane inertial-motion geometry for the relative separation of the two centers:\n    # r(t) = (S - 2(v/f) sin(ft), -2(v/f)(1 - cos(ft))).\n    # This is a circle with center distance sqrt(S^2 + (2v/f)^2) from the origin\n    # and radius 2v/f, so its minimum distance from the origin is\n    # sqrt(S^2 + (2v/f)^2) - 2v/f.  Just missing requires this minimum to equal d.\n    # Solving gives v = f * (S^2 - d^2) / (4d).\n    v = f * (S*S - d*d) / (4.0 * d)\n\n    return {\"1\": {\"value\": v, \"unit\": \"m/s\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 2.984e-06,
+        "unit": "m/s"
+      }
+    ],
+    "category": "atmospheric_dynamics",
+    "topic": "regime_boundary",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "regime_boundary",
+    "shortcut": "the base small-deflection calculation, assuming the centers would meet at the midpoint and setting the combined Coriolis deflection over half the separation equal to one diameter",
+    "shortcut_code": "def solve(diameter_cm=4.0, center_separation_cm=8.0, latitude_deg=43.0):\n    import math\n\n    Omega = 7.2921159e-5  # Earth's rotation rate, rad/s\n\n    diameter_m = diameter_cm / 100.0\n    separation_m = center_separation_cm / 100.0\n    lat_rad = math.radians(latitude_deg)\n    f = 2.0 * Omega * math.sin(lat_rad)\n\n    L = separation_m / 2.0\n    v = f * L**2 / diameter_m\n\n    return {\"1\": {\"value\": v, \"unit\": \"m/s\"}}",
+    "shortcut_value": 3.979e-06,
+    "separation": 0.333,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base holton_28 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 3.978568868148536e-06
+    }
+  },
+  {
+    "id": "trap_5.3_gen",
+    "book": "synthesized",
+    "parent_id": "5.3",
+    "control_id": "5.3",
+    "problem": "Calculate the horizontal and vertical air-parcel displacements X and Z associated with an internal gravity wave, defined by X_t = u and Z_t = W, given that these displacements vanish when x = z = t = 0. Show that the air parcels oscillate in straight lines perpendicular to the vector (k, 0, m).\n\nFind the period (in minutes) of an internal gravity wave of horizontal wavelength 5 km and vertical wavelength 5 km in the Earth’s mesosphere, where N_B^2 = 3 x 10^-4 s^-2. How long (in minutes) does the information associated with this wave take to propagate through a vertical distance of 20 km? If the maximum horizontal wind fluctuation (peak-to-peak) due to the wave is 2 m s^-1, find the maximum horizontal and vertical distances traversed by an air parcel.",
+    "code": "def solve(\n    horizontal_wavelength_km=5.0,\n    vertical_wavelength_km=5.0,\n    brunt_vaisala_frequency_squared_s_minus_2=3.0e-4,\n    vertical_propagation_distance_km=20.0,\n    horizontal_wind_fluctuation_peak_to_peak_m_s=2.0,\n):\n    import math\n\n    km_to_m = 1000.0\n    seconds_per_minute = 60.0\n\n    horizontal_wavelength_m = horizontal_wavelength_km * km_to_m\n    vertical_wavelength_m = vertical_wavelength_km * km_to_m\n    vertical_propagation_distance_m = vertical_propagation_distance_km * km_to_m\n\n    n_b = math.sqrt(brunt_vaisala_frequency_squared_s_minus_2)\n\n    k = 2.0 * math.pi / horizontal_wavelength_m\n    m = 2.0 * math.pi / vertical_wavelength_m\n\n    # Full nonhydrostatic Boussinesq internal-gravity-wave dispersion relation:\n    # omega = N |k| / sqrt(k^2 + m^2).\n    angular_frequency_s_minus_1 = n_b * abs(k) / math.sqrt(k * k + m * m)\n\n    period_s = 2.0 * math.pi / angular_frequency_s_minus_1\n\n    # Magnitude of vertical group velocity: |d omega / d m|.\n    vertical_group_velocity_m_s = n_b * abs(k * m) / ((k * k + m * m) ** 1.5)\n\n    information_time_s = vertical_propagation_distance_m / vertical_group_velocity_m_s\n\n    horizontal_displacement_m = abs(horizontal_wind_fluctuation_peak_to_peak_m_s) / angular_frequency_s_minus_1\n    vertical_displacement_m = abs(k / m) * horizontal_displacement_m\n\n    return {\n        \"1\": {\"value\": period_s / seconds_per_minute, \"unit\": \"min\"},\n        \"2\": {\"value\": information_time_s / seconds_per_minute, \"unit\": \"min\"},\n        \"3\": {\"value\": horizontal_displacement_m / km_to_m, \"unit\": \"km\"},\n        \"4\": {\"value\": vertical_displacement_m, \"unit\": \"m\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 8.55,
+        "unit": "min"
+      },
+      {
+        "sub": "2",
+        "value": 68.4,
+        "unit": "min"
+      },
+      {
+        "sub": "3",
+        "value": 0.1633,
+        "unit": "km"
+      },
+      {
+        "sub": "4",
+        "value": 163.3,
+        "unit": "m"
+      }
+    ],
+    "category": "atmospheric_dynamics",
+    "topic": "regime_boundary",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "regime_boundary",
+    "shortcut": "the base hydrostatic internal-gravity-wave formulas omega = N |k/m| and c_gz = N |k|/m^2, applied even though k and m are comparable",
+    "shortcut_code": "def solve(\n    horizontal_wavelength_km=5.0,\n    vertical_wavelength_km=5.0,\n    brunt_vaisala_frequency_squared_s_minus_2=3.0e-4,\n    vertical_propagation_distance_km=20.0,\n    horizontal_wind_fluctuation_peak_to_peak_m_s=2.0,\n):\n    import math\n\n    km_to_m = 1000.0\n    seconds_per_minute = 60.0\n\n    horizontal_wavelength_m = horizontal_wavelength_km * km_to_m\n    vertical_wavelength_m = vertical_wavelength_km * km_to_m\n    vertical_propagation_distance_m = vertical_propagation_distance_km * km_to_m\n\n    n_b = math.sqrt(brunt_vaisala_frequency_squared_s_minus_2)\n\n    horizontal_wavenumber_rad_m = 2.0 * math.pi / horizontal_wavelength_m\n    vertical_wavenumber_rad_m = 2.0 * math.pi / vertical_wavelength_m\n\n    angular_frequency_s_minus_1 = n_b * abs(horizontal_wavenumber_rad_m) / abs(vertical_wavenumber_rad_m)\n\n    period_s = 2.0 * math.pi / angular_frequency_s_minus_1\n\n    vertical_group_velocity_m_s = n_b * abs(horizontal_wavenumber_rad_m) / (vertical_wavenumber_rad_m ** 2)\n\n    information_time_s = vertical_propagation_distance_m / vertical_group_velocity_m_s\n\n    horizontal_displacement_m = abs(horizontal_wind_fluctuation_peak_to_peak_m_s) / angular_frequency_s_minus_1\n    vertical_displacement_m = abs(horizontal_wavenumber_rad_m / vertical_wavenumber_rad_m) * horizontal_displacement_m\n\n    return {\n        \"1\": {\"value\": period_s / seconds_per_minute, \"unit\": \"min\"},\n        \"2\": {\"value\": information_time_s / seconds_per_minute, \"unit\": \"min\"},\n        \"3\": {\"value\": horizontal_displacement_m / km_to_m, \"unit\": \"km\"},\n        \"4\": {\"value\": vertical_displacement_m, \"unit\": \"m\"},\n    }",
+    "shortcut_value": 6.046,
+    "separation": 0.646,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base 5.3 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 6.045997880780726,
+      "2": 24.183991523122906,
+      "3": 0.11547005383792515,
+      "4": 115.47005383792515
+    }
+  },
+  {
+    "id": "trap_air_379_gen",
+    "book": "synthesized",
+    "parent_id": "air_379",
+    "control_id": "air_379",
+    "problem": "Given the following climate feedback parameters (λ, in W·m^{-2}·K^{-1}, with positive values denoting amplifying feedbacks): Water-vapor = 0.50, Lapse-rate = -0.19, Cloud = 0.09, and Surface albedo = 0.09, what is the total response r? Assume the total response is based on only these feedback processes. Use a reference (no-feedback) response of r₀ = 0.31 K/(W·m^{-2}). Convert each feedback parameter to its equivalent dimensionless feedback factor using f_i = r₀ λ_i. Express your answer in K/(W·m^{-2}).",
+    "code": "def solve(lambda_wv=0.50, lambda_lr=-0.19, lambda_cloud=0.09, lambda_albedo=0.09, r_o=0.31):\n    # Feedback parameters are in W m^-2 K^-1; r_o is K/(W m^-2).\n    # Their product is the dimensionless feedback factor.\n    sum_lambda = lambda_wv + lambda_lr + lambda_cloud + lambda_albedo\n    sum_f = r_o * sum_lambda\n    G = 1.0 / (1.0 - sum_f)\n    r = G * r_o\n    return {\"1\": {\"value\": round(r, 2), \"unit\": \"K/(W·m^{-2})\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 0.37,
+        "unit": "K/(W·m^{-2})"
+      }
+    ],
+    "category": "climate_dynamics",
+    "topic": "definition_confusion",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "definition_confusion",
+    "shortcut": "the base method, incorrectly summing the listed dimensional feedback parameters as if they were already dimensionless feedback factors",
+    "shortcut_code": "def solve(lambda_wv=0.50, lambda_lr=-0.19, lambda_cloud=0.09, lambda_albedo=0.09, r_o=0.31):\n    # Incorrectly treats the dimensional feedback parameters as dimensionless factors.\n    sum_f = lambda_wv + lambda_lr + lambda_cloud + lambda_albedo\n    G = 1.0 / (1.0 - sum_f)\n    r = G * r_o\n    return {\"1\": {\"value\": round(r, 2), \"unit\": \"K/(W·m^{-2})\"}}",
+    "shortcut_value": 0.61,
+    "separation": 0.649,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base air_379 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 0.61
+    }
+  },
+  {
+    "id": "trap_dn_11.10_gen",
+    "book": "synthesized",
+    "parent_id": "dn_11.10",
+    "control_id": "dn_11.10",
+    "problem": "The feed gas to a sulfuric acid plant has 7.8% SO2, 10.8% O2, and 81.4% N2 by mole. It is brought to chemical equilibrium over a catalyst at 500 °C and a total pressure of 0.010 atm, at which\n\nKp = pSO3 / (pSO2 * pO2^0.5) = 85 atm^-0.5,\n\nwhere the partial pressures are in atm. For the reaction SO2 + 0.5 O2 -> SO3, what fraction of the inlet SO2 is converted to SO3? Express your answer as a percent.",
+    "code": "def solve(SO2_frac=7.8, O2_frac=10.8, N2_frac=81.4, Kp_atm_neg_half=85.0, T_C=500.0, P_atm=0.010):\n    import math\n    # Reaction: SO2 + 0.5 O2 -> SO3\n    # Basis: 100 mol feed; feed percentages are mole percentages.\n    nSO2_0 = SO2_frac\n    nO2_0 = O2_frac\n    nN2_0 = N2_frac\n\n    def f(x):\n        nSO2 = nSO2_0 - x\n        nO2 = nO2_0 - 0.5 * x\n        nSO3 = x\n        ntot = nSO2 + nO2 + nSO3 + nN2_0\n        ySO2 = nSO2 / ntot\n        yO2 = nO2 / ntot\n        ySO3 = nSO3 / ntot\n        # Explicit conversion from mole fraction to partial pressure in atm.\n        pSO2_atm = ySO2 * P_atm\n        pO2_atm = yO2 * P_atm\n        pSO3_atm = ySO3 * P_atm\n        return pSO3_atm / (pSO2_atm * math.sqrt(pO2_atm)) - Kp_atm_neg_half\n\n    lo = 1e-12\n    hi = min(nSO2_0, 2.0 * nO2_0) - 1e-12\n    flo = f(lo)\n    for _ in range(200):\n        mid = 0.5 * (lo + hi)\n        fmid = f(mid)\n        if flo * fmid <= 0.0:\n            hi = mid\n        else:\n            lo = mid\n            flo = fmid\n    x = 0.5 * (lo + hi)\n    fraction_percent = 100.0 * x / nSO2_0\n    return {\"1\": {\"value\": fraction_percent, \"unit\": \"%\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 70.96,
+        "unit": "%"
+      }
+    ],
+    "category": "atmospheric_chemistry",
+    "topic": "formula_selection",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "the base mole-fraction equilibrium calculation, incorrectly treating Kp as if it were ySO3/(ySO2*yO2^0.5) and ignoring the specified total pressure",
+    "shortcut_code": "def solve(SO2_frac=7.8, O2_frac=10.8, N2_frac=81.4, Kp_atm_neg_half=85.0, T_C=500.0, P_atm=0.010):\n    # Shortcut: incorrectly uses the 1-atm mole-fraction expression directly.\n    nSO2_0 = SO2_frac\n    nO2_0 = O2_frac\n    nN2_0 = N2_frac\n    K = Kp_atm_neg_half\n\n    def f(x):\n        nSO2 = nSO2_0 - x\n        nO2 = nO2_0 - 0.5 * x\n        nSO3 = x\n        ntot = nSO2_0 + nO2_0 + nN2_0 - 0.5 * x\n        ySO2 = nSO2 / ntot\n        yO2 = nO2 / ntot\n        ySO3 = nSO3 / ntot\n        return ySO3 / (ySO2 * yO2 ** 0.5) - K\n\n    lo = 1e-9\n    hi = nSO2_0 - 1e-9\n    flo = f(lo)\n    for _ in range(200):\n        mid = 0.5 * (lo + hi)\n        fmid = f(mid)\n        if flo * fmid <= 0:\n            hi = mid\n        else:\n            lo = mid\n            flo = fmid\n    x = 0.5 * (lo + hi)\n    fraction_percent = 100.0 * x / nSO2_0\n    return {\"1\": {\"value\": fraction_percent, \"unit\": \"%\"}}",
+    "shortcut_value": 95.84,
+    "separation": 0.351,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base dn_11.10 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 95.83735204374162
+    }
+  },
+  {
+    "id": "trap_air_346_gen",
+    "book": "synthesized",
+    "parent_id": "air_346",
+    "control_id": "air_346",
+    "problem": "Instruments on a tower above a uniform canopy measure θ = 15°C and M = 5 m s⁻¹ at z = 4 m above ground, and θ = 16°C and M = 8 m s⁻¹ at z = 10 m above ground. The canopy has zero-plane displacement height d = 3 m. Using K-theory with a turbulent eddy diffusivity given by Prandtl's mixing-length approach for a neutral surface layer over the displaced surface, evaluate the diffusivity at the average height of the two measurement levels. What is the vertical heat flux?\n\nExpress your answer in K m s⁻¹.",
+    "code": "def solve(z1=4.0, theta1=15.0, M1=5.0, z2=10.0, theta2=16.0, M2=8.0, d=3.0, k=0.4) -> dict:\n    # Gradients with respect to physical height above ground; displacement is constant\n    dz = z2 - z1\n    dM_dz = (M2 - M1) / dz\n    dTheta_dz = (theta2 - theta1) / dz\n\n    # Prandtl mixing length over a displaced surface: l = k (z - d)\n    z_avg = (z1 + z2) / 2.0\n    z_eff = z_avg - d\n    K = (k ** 2) * (z_eff ** 2) * abs(dM_dz)\n\n    F_H = -K * dTheta_dz\n    return {\"1\": {\"value\": F_H, \"unit\": \"K m s^{-1}\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": -0.2133,
+        "unit": "K m s^{-1}"
+      }
+    ],
+    "category": "boundary_layer",
+    "topic": "geometry_detail",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "geometry_detail",
+    "shortcut": "the base neutral-surface-layer formula with l = kz, ignoring the stated zero-plane displacement height",
+    "shortcut_code": "def solve(z1=4.0, theta1=15.0, M1=5.0, z2=10.0, theta2=16.0, M2=8.0, k=0.4) -> dict:\n    dz = z2 - z1\n    dM_dz = (M2 - M1) / dz\n    dTheta_dz = (theta2 - theta1) / dz\n    z_avg = (z1 + z2) / 2.0\n    K = (k ** 2) * (z_avg ** 2) * abs(dM_dz)\n    F_H = -K * dTheta_dz\n    return {\"1\": {\"value\": F_H, \"unit\": \"K m s^{-1}\"}}",
+    "shortcut_value": -0.6533,
+    "separation": 2.062,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base air_346 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": -0.6533333333333334
+    }
+  },
+  {
+    "id": "trap_dn_10.36_gen",
+    "book": "synthesized",
+    "parent_id": "dn_10.36",
+    "control_id": "dn_10.36",
+    "problem": "In tests of incineration of herbicides [36], the incinerator temperature averaged 1500 °C, and the incinerator behaved as a well-mixed chamber operated at steady state with a mean residence time of 1.0 s for material at this temperature. The destruction of dioxin (2,3,7,8-tetrachlorodibenzo-p-dioxin), averaged over three testing periods, was 99.93 percent. Assuming that this material burns according to a first-order reaction, estimate what mean residence time at 1500 °C in the same well-mixed chamber would be needed to get 99.999 percent destruction. How long would it take to get 99.9999% destruction? A widely used rule of thumb for VOC incinerators is that they should have a mean residence time of 1 s at the peak temperature. If the incineration reaction is first-order in a well-mixed chamber, and we require 99.99% destruction of the VOC, what is the required first-order rate constant, k?",
+    "code": "def solve(temperature_C=1500.0, mean_residence_time_s=1.0, destruction_percent=99.93, target1_percent=99.999, target2_percent=99.9999, rule_of_thumb_time_s=1.0, voc_destruction_percent=99.99):\n    # Well-mixed steady-flow chamber (CSTR), first-order reaction:\n    # C_out/C_in = 1 / (1 + k*tau), where tau is mean residence time.\n    # Percent destruction D gives remaining fraction r = 1 - D/100.\n    measured_remaining = 1.0 - destruction_percent / 100.0\n    k = (1.0 / measured_remaining - 1.0) / mean_residence_time_s\n\n    target1_remaining = 1.0 - target1_percent / 100.0\n    tau1 = (1.0 / target1_remaining - 1.0) / k\n\n    target2_remaining = 1.0 - target2_percent / 100.0\n    tau2 = (1.0 / target2_remaining - 1.0) / k\n\n    voc_remaining = 1.0 - voc_destruction_percent / 100.0\n    k_voc = (1.0 / voc_remaining - 1.0) / rule_of_thumb_time_s\n\n    return {\"1\": {\"value\": tau1, \"unit\": \"s\"}, \"2\": {\"value\": tau2, \"unit\": \"s\"}, \"3\": {\"value\": k_voc, \"unit\": \"s^-1\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 70.05,
+        "unit": "s"
+      },
+      {
+        "sub": "2",
+        "value": 700.5,
+        "unit": "s"
+      },
+      {
+        "sub": "3",
+        "value": 9999.0,
+        "unit": "s^-1"
+      }
+    ],
+    "category": "atmospheric_chemistry",
+    "topic": "formula_selection",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "uses the base plug-flow/batch exponential decay formula, ignoring that a well-mixed chamber has a residence-time distribution and obeys the CSTR relation C_out/C_in = 1/(1 + k tau)",
+    "shortcut_code": "def solve(temperature_C=1500.0, time_s=1.0, destruction_percent=99.93, target1_percent=99.999, target2_percent=99.9999, rule_of_thumb_time_s=1.0, voc_destruction_percent=99.99):\n    import math\n    # Plug-flow/batch shortcut: C/C0 = exp(-k*t).\n    measured_remaining = 1.0 - destruction_percent / 100.0\n    k = -math.log(measured_remaining) / time_s\n\n    target1_remaining = 1.0 - target1_percent / 100.0\n    t1 = -math.log(target1_remaining) / k\n\n    target2_remaining = 1.0 - target2_percent / 100.0\n    t2 = -math.log(target2_remaining) / k\n\n    voc_remaining = 1.0 - voc_destruction_percent / 100.0\n    k_voc = -math.log(voc_remaining) / rule_of_thumb_time_s\n\n    return {\"1\": {\"value\": t1, \"unit\": \"s\"}, \"2\": {\"value\": t2, \"unit\": \"s\"}, \"3\": {\"value\": k_voc, \"unit\": \"s^-1\"}}",
+    "shortcut_value": 1.585,
+    "separation": 0.999,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base dn_10.36 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 1.584835301829688,
+      "2": 1.9018023621927491,
+      "3": 9.210340371975184
+    }
+  },
+  {
+    "id": "trap_holton_60_gen",
+    "book": "synthesized",
+    "parent_id": "holton_60",
+    "control_id": "holton_60",
+    "problem": "Consider a thermally stratified liquid contained in a rotating annulus of inner radius 0.8 m, outer radius 1.0 m, and depth 0.1 m. The temperature at the bottom boundary is held constant at T0. The geostrophic velocity at the lower boundary is 0.010 m s^-1 in the positive azimuthal direction. The fluid satisfies an equation of state with rho0 = 10^3 kg m^-3 and epsilon = 2 x 10^-4 K^-1. If the temperature increases linearly with height along the outer radial boundary at a rate of 1 degrees C cm^-1 and is constant with height along the inner radial boundary, determine the geostrophic velocity at the upper boundary for a rotation rate of Omega = 1 rad s^-1. Assume that the temperature depends linearly on radius at each level.",
+    "code": "def solve(r_inner=0.8, r_outer=1.0, depth=0.1, rho0=1e3, eps=2e-4, lower_velocity=0.010, dTdz_outer_C_per_cm=1.0, Omega=1.0):\n    g = 9.81\n    # Convert 1 deg C per cm to K per m; temperature differences in C and K are identical.\n    dTdz_outer = dTdz_outer_C_per_cm * 100.0\n    f = 2.0 * Omega\n    dr = r_outer - r_inner\n    # T(r,z)-T0 = dTdz_outer*z*(r-r_inner)/dr, so dT/dr = dTdz_outer*z/dr.\n    # Thermal wind: f*dv/dz = g*eps*dT/dr.\n    shear_contribution = (g * eps / f) * dTdz_outer / dr * (depth**2 / 2.0)\n    v_top = lower_velocity + shear_contribution\n    return {\"1\": {\"value\": v_top, \"unit\": \"m s^-1\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 0.01245,
+        "unit": "m s^-1"
+      }
+    ],
+    "category": "atmospheric_dynamics",
+    "topic": "definition_confusion",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "definition_confusion",
+    "shortcut": "the base thermal-wind calculation with an implicit zero lower-boundary velocity, ignoring the specified barotropic/reference velocity",
+    "shortcut_code": "def solve(r_inner=0.8, r_outer=1.0, depth=0.1, rho0=1e3, eps=2e-4, lower_velocity=0.010, dTdz_outer_C_per_cm=1.0, Omega=1.0):\n    g = 9.81\n    # Autopilot use of the base method: convert the imposed outer-wall gradient and integrate\n    # the thermal-wind shear upward while implicitly taking the lower-boundary velocity as zero.\n    dTdz_outer = dTdz_outer_C_per_cm * 100.0\n    f = 2.0 * Omega\n    dr = r_outer - r_inner\n    v_top = (g * eps / f) * dTdz_outer / dr * (depth**2 / 2.0)\n    return {\"1\": {\"value\": v_top, \"unit\": \"m s^-1\"}}",
+    "shortcut_value": 0.002453,
+    "separation": 0.803,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base holton_60 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 0.002452500000000001
+    }
+  },
+  {
+    "id": "trap_air_229_gen",
+    "book": "synthesized",
+    "parent_id": "air_229",
+    "control_id": "air_229",
+    "problem": "The jet stream meanders north and south as a narrow barotropic Rossby wave packet centered on a wavelength of λ = 8000 km and amplitude of A = 1200 km relative to reference latitude Φ = 50°N. Winds in this jet are U_o = 40 m s^-1. Treating the packet as a freely propagating barotropic Rossby wave packet embedded in this uniform background flow, calculate the envelope translation distance (D) over Δt = 12 h. Express your answer in km.",
+    "code": "def solve(lambda_km=8000.0, A_km=1200.0, Phi_deg=50.0, U_o=40.0, Delta_t_h=12.0):\n    import math\n    two_omega_over_R = 2.29e-11  # m^-1 s^-1\n    lambda_m = lambda_km * 1000.0\n    Phi_rad = math.radians(Phi_deg)\n    Delta_t_s = Delta_t_h * 3600.0\n    beta = two_omega_over_R * math.cos(Phi_rad)\n    k = 2.0 * math.pi / lambda_m\n    # For a 1D barotropic Rossby wave packet, omega = U*k - beta/k,\n    # so the zonal group velocity is d omega/d k = U + beta/k^2.\n    c_group = U_o + beta / (k * k)\n    D_km = c_group * Delta_t_s / 1000.0\n    return {\"1\": {\"value\": D_km, \"unit\": \"km\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 2759.0,
+        "unit": "km"
+      }
+    ],
+    "category": "atmospheric_dynamics",
+    "topic": "definition_confusion",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "definition_confusion",
+    "shortcut": "phase-speed translation from the base problem, using c = U - beta/k^2 instead of the packet group velocity",
+    "shortcut_code": "def solve(lambda_km=8000.0, A_km=1200.0, Phi_deg=50.0, U_o=40.0, Delta_t_h=12.0):\n    import math\n    two_omega_over_R = 2.29e-11  # m^-1 s^-1\n    lambda_m = lambda_km * 1000.0\n    Phi_rad = math.radians(Phi_deg)\n    Delta_t_s = Delta_t_h * 3600.0\n    beta = two_omega_over_R * math.cos(Phi_rad)\n    c_intrinsic = -beta * (lambda_m / (2.0 * math.pi))**2\n    c_phase = U_o + c_intrinsic\n    D_km = c_phase * Delta_t_s / 1000.0\n    return {\"1\": {\"value\": D_km, \"unit\": \"km\"}}",
+    "shortcut_value": 697.1,
+    "separation": 0.747,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base air_229 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 697.1227317025797
+    }
+  },
+  {
+    "id": "trap_p_64_gen",
+    "book": "synthesized",
+    "parent_id": "p_64",
+    "control_id": "p_64",
+    "problem": "Determine the ratio of the number of moles of dry air to the number of moles of isooctane (C8H18) — called the molar air-fuel ratio — for ideal complete combustion. Take dry air to contain 20.95% O2 by volume, with mean molecular weight of dry air 28.97 g/mol and molecular weight of isooctane 114 g/mol. Express your answer as a dimensionless ratio.",
+    "code": "def solve(O2_vol_percent=20.95, MW_air_g_per_mol=28.97, MW_C8H18_g_per_mol=114.0):\n    # Complete combustion: C8H18 + 12.5 O2 -> 8 CO2 + 9 H2O\n    moles_O2_per_mole_fuel = 12.5\n    O2_mole_fraction = O2_vol_percent / 100.0  # ideal-gas volume fraction equals mole fraction\n    moles_air_per_mole_fuel = moles_O2_per_mole_fuel / O2_mole_fraction\n    molar_afr = moles_air_per_mole_fuel / 1.0\n    return {\"1\": {\"value\": molar_afr, \"unit\": \"dimensionless\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 59.67,
+        "unit": "dimensionless"
+      }
+    ],
+    "category": "atmospheric_chemistry",
+    "topic": "definition_confusion",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "definition_confusion",
+    "shortcut": "the base mass air-fuel-ratio calculation, which converts moles of air and fuel to masses even though the prompt asks for a molar ratio",
+    "shortcut_code": "def solve(O2_vol_percent=20.95, MW_air_g_per_mol=28.97, MW_C8H18_g_per_mol=114.0):\n    # Autopilot shortcut: compute the base problem's mass air-fuel ratio instead.\n    moles_O2_per_mole_fuel = 12.5\n    O2_mole_fraction = O2_vol_percent / 100.0\n    moles_air_per_mole_fuel = moles_O2_per_mole_fuel / O2_mole_fraction\n    mass_air_g = moles_air_per_mole_fuel * MW_air_g_per_mol\n    mass_fuel_g = 1.0 * MW_C8H18_g_per_mol\n    afr = mass_air_g / mass_fuel_g\n    return {\"1\": {\"value\": afr, \"unit\": \"dimensionless\"}}",
+    "shortcut_value": 15.16,
+    "separation": 0.746,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base p_64 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 15.162458652598083
+    }
+  },
+  {
+    "id": "trap_air_318_gen",
+    "book": "synthesized",
+    "parent_id": "air_318",
+    "control_id": "air_318",
+    "problem": "Cold-air flow speed 10 m s⁻¹ changes to 2 m s⁻¹ after passing a hydraulic jump. This air is 10°C colder than the surroundings. Along the top of the cold air, the pressure after the jump is 50 Pa lower than before the jump. How high can the hydraulic jump jump? Assume: ΔΘ_v = ΔT = 10 K, |g|/T_v = 0.0333 m s⁻² K⁻¹, air density ρ = 1.20 kg m⁻³, and initial height z₁ = 0. Express your answer in m.",
+    "code": "def solve(u1=10.0, u2=2.0, delta_T=10.0, g_over_Tv=0.0333, pressure_drop_Pa=50.0, rho=1.20):\n    # Reduced gravity\n    g_prime = g_over_Tv * delta_T\n\n    # Bernoulli along the top streamline with pressure change included:\n    # 0.5*u1^2 + p1/rho + g'*z1 = 0.5*u2^2 + p2/rho + g'*z2\n    # pressure_drop_Pa = p1 - p2, z1 = 0\n    kinetic_term = 0.5 * (u1**2 - u2**2)\n    pressure_term = pressure_drop_Pa / rho\n    z2 = (kinetic_term + pressure_term) / g_prime\n\n    return {\"1\": {\"value\": round(z2), \"unit\": \"m\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 269,
+        "unit": "m"
+      }
+    ],
+    "category": "atmospheric_dynamics",
+    "topic": "formula_selection",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "the base Bernoulli calculation with pressure assumed constant, ignoring the stated 50 Pa pressure drop",
+    "shortcut_code": "def solve(u1=10.0, u2=2.0, delta_T=10.0, g_over_Tv=0.0333):\n    # Reduced gravity\n    g_prime = g_over_Tv * delta_T\n\n    # Incorrect shortcut: assumes pressure is constant along the top streamline\n    z2 = (u1**2 - u2**2) / (2 * g_prime)\n\n    return {\"1\": {\"value\": round(z2), \"unit\": \"m\"}}",
+    "shortcut_value": 144,
+    "separation": 0.465,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base air_318 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 144.0
+    }
+  },
+  {
+    "id": "trap_snp_49_gen",
+    "book": "synthesized",
+    "parent_id": "snp_49",
+    "control_id": "snp_49",
+    "problem": "A singly charged spherical particle with D_p = 100 nm has a certain electrical mobility. Calculate the volume-equivalent diameters of compact nonspherical agglomerate particles that have the same electrical mobility if they carry 2, 3, or 4 elementary charges. The agglomerates have dynamic shape factor chi = 1.50, while the reference 100 nm particle is spherical. Assume T = 298 K and 1 atm. At these conditions use air viscosity mu = 1.8e-5 Pa s and mean free path lambda = 67.09 nm. Use the Cunningham slip correction C_c(D_p) = 1 + (2 lambda / D_p)[1.257 + 0.4 exp(-1.1/(2 lambda / D_p))]. For a nonspherical particle, include the shape factor in the drag: Z = n e C_c(D_p)/(3 pi mu chi D_p). Report the three diameters in nm.",
+    "code": "def solve(Dp_nm=100.0, T=298.0, P_atm=1.0, chi=1.50, mu=1.8e-5, lambda_nm=67.09):\n    import math\n\n    e = 1.602176634e-19  # C\n    Dp0 = Dp_nm * 1e-9\n    lam = lambda_nm * 1e-9\n\n    def Cc(Dp):\n        Kn = 2.0 * lam / Dp\n        return 1.0 + Kn * (1.257 + 0.4 * math.exp(-1.1 / Kn))\n\n    def mobility(Dp, n, shape_factor):\n        return n * e * Cc(Dp) / (3.0 * math.pi * mu * shape_factor * Dp)\n\n    Z_target = mobility(Dp0, 1, 1.0)  # reference particle is spherical\n\n    def solve_diameter(n):\n        lo, hi = 1e-9, 1e-5\n        for _ in range(200):\n            mid = 0.5 * (lo + hi)\n            if mobility(mid, n, chi) > Z_target:\n                lo = mid\n            else:\n                hi = mid\n        return 0.5 * (lo + hi)\n\n    results = {}\n    for i, n in enumerate([2, 3, 4], start=1):\n        Dp = solve_diameter(n)\n        results[str(i)] = {\"value\": Dp * 1e9, \"unit\": \"nm\"}\n    return results",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 118.4,
+        "unit": "nm"
+      },
+      {
+        "sub": "2",
+        "value": 151.6,
+        "unit": "nm"
+      },
+      {
+        "sub": "3",
+        "value": 181.9,
+        "unit": "nm"
+      }
+    ],
+    "category": "atmospheric_aerosols",
+    "topic": "formula_selection",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "the base spherical-particle mobility calculation, which ignores the nonspherical dynamic shape factor",
+    "shortcut_code": "def solve(Dp_nm=100.0, T=298.0, P_atm=1.0, chi=1.50, mu=1.8e-5, lambda_nm=67.09):\n    import math\n\n    e = 1.602176634e-19  # C\n    Dp0 = Dp_nm * 1e-9\n    lam = lambda_nm * 1e-9\n\n    def Cc(Dp):\n        Kn = 2.0 * lam / Dp\n        return 1.0 + Kn * (1.257 + 0.4 * math.exp(-1.1 / Kn))\n\n    def mobility(Dp, n):\n        return n * e * Cc(Dp) / (3.0 * math.pi * mu * Dp)\n\n    Z_target = mobility(Dp0, 1)\n\n    def solve_diameter(n):\n        lo, hi = 1e-9, 1e-5\n        for _ in range(200):\n            mid = 0.5 * (lo + hi)\n            if mobility(mid, n) > Z_target:\n                lo = mid\n            else:\n                hi = mid\n        return 0.5 * (lo + hi)\n\n    results = {}\n    for i, n in enumerate([2, 3, 4], start=1):\n        Dp = solve_diameter(n)\n        results[str(i)] = {\"value\": Dp * 1e9, \"unit\": \"nm\"}\n    return results",
+    "shortcut_value": 151.6,
+    "separation": 0.309,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base snp_49 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 151.55875552971625,
+      "2": 196.38365642176404,
+      "3": 238.1394983394042
+    }
+  },
+  {
+    "id": "trap_p_84_gen",
+    "book": "synthesized",
+    "parent_id": "p_84",
+    "control_id": "p_84",
+    "problem": "If 40 liters of water in the form of drops 0.5 mm in diameter was poured into the top of a cumulus cloud and all of the drops froze into graupel particles of bulk density 0.40 g/cm^3 and grew to a diameter of 5 mm before they emerged from the base of the cloud, which had an area of 10 km^2, what would be the liquid-equivalent amount of precipitation induced? Take the density of liquid water to be 1.0 g/cm^3. Express your answer in [mm].",
+    "code": "def solve(V_i_L=40.0, d_i_mm=0.5, d_f_mm=5.0, rho_graupel_g_cm3=0.40, rho_water_g_cm3=1.0, A_km2=10.0):\n    # Convert initial liquid-water volume from liters to cubic meters\n    V_i = V_i_L * 1e-3\n\n    # Number of particles is conserved. Geometric particle volume scales as diameter cubed.\n    volume_ratio = (d_f_mm / d_i_mm) ** 3\n\n    # The final graupel geometric volume is not all liquid water equivalent.\n    # Liquid-equivalent volume is reduced by bulk-density / liquid-water-density.\n    V_liquid_equiv = V_i * volume_ratio * (rho_graupel_g_cm3 / rho_water_g_cm3)\n\n    # Convert cloud base area from square kilometers to square meters\n    A = A_km2 * 1e6\n\n    # Precipitation depth in meters, then millimeters\n    precip_mm = (V_liquid_equiv / A) * 1000.0\n\n    return {\"1\": {\"value\": precip_mm, \"unit\": \"mm\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 0.0016,
+        "unit": "mm"
+      }
+    ],
+    "category": "cloud_physics",
+    "topic": "definition_confusion",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "definition_confusion",
+    "shortcut": "uses the base liquid-drop volume-scaling method, treating the final 5 mm graupel particles as if their full geometric volume were liquid water",
+    "shortcut_code": "def solve(V_i_L=40.0, d_i_mm=0.5, d_f_mm=5.0, rho_graupel_g_cm3=0.40, rho_water_g_cm3=1.0, A_km2=10.0):\n    # Base-method shortcut: treats the final 5 mm particles as liquid drops and ignores bulk density.\n    V_i = V_i_L * 1e-3\n    volume_ratio = (d_f_mm / d_i_mm) ** 3\n    V_f = V_i * volume_ratio\n    A = A_km2 * 1e6\n    rainfall_mm = (V_f / A) * 1000.0\n    return {\"1\": {\"value\": rainfall_mm, \"unit\": \"mm\"}}",
+    "shortcut_value": 0.004,
+    "separation": 1.5,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base p_84 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 0.004
+    }
+  },
+  {
+    "id": "trap_holton_52_gen",
+    "book": "synthesized",
+    "parent_id": "holton_52",
+    "control_id": "holton_52",
+    "problem": "Suppose that the mass of air in an entraining cumulus updraft increases exponentially with height so that m = m0 e^{z/H} where H = 8 km and m0 is the mass at a reference level. If the updraft speed is 3 m s^-1 at 2 km height, what is its value at a height of 8 km, assuming that the updraft has a constant upward net buoyancy acceleration of 0.005 m s^-2 throughout this layer?",
+    "code": "def solve(H_km=8.0, w0=3.0, z0_km=2.0, z1_km=8.0, B=0.005):\n    import math\n    H = H_km * 1000.0\n    z0 = z0_km * 1000.0\n    z1 = z1_km * 1000.0\n    dz = z1 - z0\n    # Entraining updraft kinetic-energy/momentum equation with constant buoyancy:\n    # w dw/dz = B - w^2/H\n    # Let y = w^2: dy/dz + (2/H)y = 2B.\n    decay = math.exp(-2.0 * dz / H)\n    w1_sq = w0 * w0 * decay + B * H * (1.0 - decay)\n    w1 = math.sqrt(w1_sq)\n    return {\"1\": {\"value\": w1, \"unit\": \"m/s\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 5.752,
+        "unit": "m/s"
+      }
+    ],
+    "category": "atmospheric_dynamics",
+    "topic": "formula_selection",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "the zero-net-buoyancy entrainment-decay formula from the base problem, which ignores the stated buoyancy source term",
+    "shortcut_code": "def solve(H_km=8.0, w0=3.0, z0_km=2.0, z1_km=8.0, B=0.005):\n    import math\n    H = H_km * 1000.0\n    z0 = z0_km * 1000.0\n    z1 = z1_km * 1000.0\n    # Autopilot use of the zero-net-buoyancy base result, ignoring B.\n    w1 = w0 * math.exp(-(z1 - z0) / H)\n    return {\"1\": {\"value\": w1, \"unit\": \"m/s\"}}",
+    "shortcut_value": 1.417,
+    "separation": 0.754,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base holton_52 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 1.417099658223044
+    }
+  },
+  {
+    "id": "trap_dn_8.4_gen",
+    "book": "synthesized",
+    "parent_id": "dn_8.4",
+    "control_id": "dn_8.4",
+    "problem": "A typical coal is 10 wt % ash. Most modern power plants grind their coal to an average particle size of about 100 um. If the ash were uniformly distributed in the coal, what would be the expected size of the remaining ash particles after the coal was burned? Particles as small as 1 um are regularly found in this ash. Explain how they are probably formed. Assume material volumes are additive and that the ash minerals have density 4.0 times the density of the combustible coal matrix.",
+    "code": "def solve(coal_particle_size_um=100.0, ash_mass_fraction=0.10, rho_ash_over_coal_matrix=4.0):\n    import math\n    # Let total mass be 1 arbitrary unit. Then ash mass is w and combustible matrix mass is 1-w.\n    w = ash_mass_fraction\n    rho_matrix = 1.0\n    rho_ash = rho_ash_over_coal_matrix * rho_matrix\n\n    # Convert mass fractions to volumes using the specified densities.\n    V_ash_rel = w / rho_ash\n    V_matrix_rel = (1.0 - w) / rho_matrix\n    volume_fraction_ash = V_ash_rel / (V_ash_rel + V_matrix_rel)\n\n    # For a spherical coal particle, the ash volume scales with diameter cubed.\n    V_coal = (math.pi / 6.0) * coal_particle_size_um**3\n    V_ash = volume_fraction_ash * V_coal\n    d_ash = (6.0 * V_ash / math.pi) ** (1.0 / 3.0)\n\n    return {\"1\": {\"value\": d_ash, \"unit\": \"um\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 30.01,
+        "unit": "um"
+      }
+    ],
+    "category": "atmospheric_aerosols",
+    "topic": "formula_selection",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "uses the base equal-density shortcut, taking 10 wt % ash as 10 vol % ash",
+    "shortcut_code": "def solve(coal_particle_size_um=100.0, ash_mass_fraction=0.10, rho_ash_over_coal_matrix=4.0):\n    import math\n    # Autopilot shortcut from the base problem: treat wt fraction as volume fraction.\n    volume_fraction_ash = ash_mass_fraction\n    V_coal = (math.pi / 6.0) * coal_particle_size_um**3\n    V_ash = volume_fraction_ash * V_coal\n    d_ash = (6.0 * V_ash / math.pi) ** (1.0 / 3.0)\n    return {\"1\": {\"value\": d_ash, \"unit\": \"um\"}}",
+    "shortcut_value": 46.42,
+    "separation": 0.547,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base dn_8.4 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 46.41588833612778
+    }
+  },
+  {
+    "id": "trap_air_159_gen",
+    "book": "synthesized",
+    "parent_id": "air_159",
+    "control_id": "air_159",
+    "problem": "Within a cloud, suppose air density is rho_air = 1 kg m^-3 and the excess water mixing ratio is r_E = 4 g kg^-1. Take the density of liquid water to be 1000 kg m^-3. The excess water condenses uniformly onto a population of identical spherical liquid drops that initially have radius 20 μm. Find the final drop radius R for a hydrometeor count of n = 10^9 m^-3. Express your answer in μm.",
+    "code": "def solve(rho_air=1.0, r_E_g_per_kg=4.0, rho_water=1000.0, R0_um=20.0, n=1e9):\n    import math\n    r_E = r_E_g_per_kg / 1000.0  # kg water per kg air\n    R0_m = R0_um * 1e-6\n    condensed_volume_per_drop = (rho_air * r_E) / (rho_water * n)  # m^3 liquid water per drop\n    R_final_m = (R0_m**3 + (3.0 * condensed_volume_per_drop) / (4.0 * math.pi)) ** (1.0 / 3.0)\n    R_final_um = R_final_m * 1e6\n    return {\"1\": {\"value\": round(R_final_um, 2), \"unit\": \"μm\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 20.77,
+        "unit": "μm"
+      }
+    ],
+    "category": "cloud_physics",
+    "topic": "formula_selection",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "formula_selection",
+    "shortcut": "the base method, which treats the condensed excess water as if it makes the whole drop from zero initial radius",
+    "shortcut_code": "def solve(rho_air=1.0, r_E_g_per_kg=4.0, rho_water=1000.0, n=1e9):\n    import math\n    r_E = r_E_g_per_kg / 1000.0  # kg water per kg air\n    R_m = (3.0 * rho_air * r_E / (4.0 * math.pi * rho_water * n)) ** (1.0 / 3.0)\n    R_um = R_m * 1e6\n    return {\"1\": {\"value\": round(R_um, 2), \"unit\": \"μm\"}}",
+    "shortcut_value": 9.85,
+    "separation": 0.526,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base air_159 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 9.85
+    }
+  },
+  {
+    "id": "trap_air_238_gen",
+    "book": "synthesized",
+    "parent_id": "air_238",
+    "control_id": "air_238",
+    "problem": "Air of initial mixed-layer potential temperature Θ₀ = 10°C (283 K) comes to rest over a 20°C sea surface. Divergence is β = 10⁻⁶ s⁻¹, and the initial environmental temperature lapse rate is Γ = 3.3 K km⁻¹, meaning temperature decreases upward at this rate. The dry-adiabatic lapse rate is Γd = 9.8 K km⁻¹. Find the time τ that estimates when the new warm airmass has maximum thickness. Use the implicit equation τ ≈ c · ( Θ₀ / (|g| · β · γ₀ · e^(βτ)) )^(1/3), where γ₀ is the initial potential-temperature gradient and c = 140. Iterate to find the solution, starting with an initial guess of τ = 0. Express your answer in days.",
+    "code": "def solve(Theta0=283.0, beta=1e-6, lapse_rate_K_per_km=3.3, dry_adiabatic_lapse_rate_K_per_km=9.8, c=140.0, g_abs=9.8):\n    import math\n    # Convert environmental temperature lapse rate to potential-temperature gradient:\n    # dtheta/dz ≈ Gamma_d - Gamma, in K/km, then convert to K/m.\n    gamma0 = (dry_adiabatic_lapse_rate_K_per_km - lapse_rate_K_per_km) / 1000.0\n    tau = 0.0\n    for _ in range(10000):\n        denominator = g_abs * beta * gamma0 * math.exp(beta * tau)\n        tau_new = c * (Theta0 / denominator) ** (1.0 / 3.0)\n        if abs(tau_new - tau) < 1e-3:\n            tau = tau_new\n            break\n        tau = tau_new\n    return {\"1\": {\"value\": tau / 86400.0, \"unit\": \"days\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": 2.48,
+        "unit": "days"
+      }
+    ],
+    "category": "boundary_layer",
+    "topic": "definition_confusion",
+    "difficulty": "medium",
+    "verified": true,
+    "trap_type": "definition_confusion",
+    "shortcut": "the base iteration with γ₀ taken directly as 3.3 K km⁻¹, ignoring that the given quantity is a temperature lapse rate rather than a potential-temperature gradient",
+    "shortcut_code": "def solve(Theta0=283.0, beta=1e-6, lapse_rate_K_per_km=3.3, dry_adiabatic_lapse_rate_K_per_km=9.8, c=140.0, g_abs=9.8):\n    import math\n    # Shortcut mistake: treat the environmental temperature lapse rate as if it were already\n    # the potential-temperature gradient required by the formula.\n    gamma0 = lapse_rate_K_per_km / 1000.0\n    tau = 0.0\n    for _ in range(10000):\n        denominator = g_abs * beta * gamma0 * math.exp(beta * tau)\n        tau_new = c * (Theta0 / denominator) ** (1.0 / 3.0)\n        if abs(tau_new - tau) < 1e-3:\n            tau = tau_new\n            break\n        tau = tau_new\n    return {\"1\": {\"value\": tau / 86400.0, \"unit\": \"days\"}}",
+    "shortcut_value": 3.058,
+    "separation": 0.233,
+    "is_control": false,
+    "trap_certified": false,
+    "note": "gpt55-generated, Claude-adjudicated (strict); derived from base air_238 (=control); shortcut=base method.",
+    "provenance": "generate_traps+human_adjudicated",
+    "shortcut_sub": "1",
+    "shortcut_values": {
+      "1": 3.057636307500437
+    }
+  }
+]

@@ -1,0 +1,19 @@
+model,rescued
+Gemini-3.1-Pro (reasoning),123
+DeepSeek-V4-flash (reasoning),121
+DeepSeek-V4-flash,121
+Qwen-3.5-397B (reasoning),120
+DeepSeek-V4-pro (reasoning),119
+Kimi K2.6,119
+Qwen-3.5-397B,115
+Qwen-3.6-27B,114
+DeepSeek-V4-pro,109
+gpt-5.5,101
+Kimi K2.6 (reasoning),100
+gpt-5.5 (reasoning),98
+Qwen-3.5-9B (reasoning),96
+Qwen-3.6-27B (reasoning),96
+Qwen-3.5-9B,74
+Qwen-2.5-72B,58
+__total_passing__,28884
+__total_rescued__,1684

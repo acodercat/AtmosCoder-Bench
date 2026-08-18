@@ -1,0 +1,202 @@
+[
+ {
+  "id": "MCQ_6_1",
+  "parent_id": "MCQ_6",
+  "variant": 1,
+  "source": "AtmosSci-Bench",
+  "problem": "\nIn a circular conduit with varying diameters, diameter D1=1.5 m, transitions to D2=2.5 m. \nThe velocity at the outlet profile was measured: V2=2.5 m/s. \nCalculate the discharge and the mean velocity at the inlet profile V1. \nAlso, determine the type of flow in both conduit profiles (whether the flow is laminar or turbulent). \nThe kinematic viscosity of water is v=1e-06 m²/s.\n        ",
+  "sub_answers": [
+   {
+    "sub": "1",
+    "value": "12.272",
+    "unit": "m^3/s"
+   },
+   {
+    "sub": "2",
+    "value": "6.944",
+    "unit": "m/s"
+   }
+  ],
+  "category": "Hydrology"
+ },
+ {
+  "id": "MCQ_6_2",
+  "parent_id": "MCQ_6",
+  "variant": 2,
+  "source": "AtmosSci-Bench",
+  "problem": "\nIn a circular conduit with varying diameters, diameter D1=1.6 m, transitions to D2=3.7 m. \nThe velocity at the outlet profile was measured: V2=3.9 m/s. \nCalculate the discharge and the mean velocity at the inlet profile V1. \nAlso, determine the type of flow in both conduit profiles (whether the flow is laminar or turbulent). \nThe kinematic viscosity of water is v=0.0002725 m²/s.\n        ",
+  "sub_answers": [
+   {
+    "sub": "1",
+    "value": "41.933",
+    "unit": "m^3/s"
+   },
+   {
+    "sub": "2",
+    "value": "20.856",
+    "unit": "m/s"
+   }
+  ],
+  "category": "Hydrology"
+ },
+ {
+  "id": "MCQ_6_3",
+  "parent_id": "MCQ_6",
+  "variant": 3,
+  "source": "AtmosSci-Bench",
+  "problem": "\nIn a circular conduit with varying diameters, diameter D1=2.2 m, transitions to D2=4.1 m. \nThe velocity at the outlet profile was measured: V2=1.8 m/s. \nCalculate the discharge and the mean velocity at the inlet profile V1. \nAlso, determine the type of flow in both conduit profiles (whether the flow is laminar or turbulent). \nThe kinematic viscosity of water is v=0.0002446 m²/s.\n        ",
+  "sub_answers": [
+   {
+    "sub": "1",
+    "value": "23.765",
+    "unit": "m^3/s"
+   },
+   {
+    "sub": "2",
+    "value": "6.252",
+    "unit": "m/s"
+   }
+  ],
+  "category": "Hydrology"
+ },
+ {
+  "id": "MCQ_6_4",
+  "parent_id": "MCQ_6",
+  "variant": 4,
+  "source": "AtmosSci-Bench",
+  "problem": "\nIn a circular conduit with varying diameters, diameter D1=4.8 m, transitions to D2=0.8 m. \nThe velocity at the outlet profile was measured: V2=3.0 m/s. \nCalculate the discharge and the mean velocity at the inlet profile V1. \nAlso, determine the type of flow in both conduit profiles (whether the flow is laminar or turbulent). \nThe kinematic viscosity of water is v=0.0006068 m²/s.\n        ",
+  "sub_answers": [
+   {
+    "sub": "1",
+    "value": "1.508",
+    "unit": "m^3/s"
+   },
+   {
+    "sub": "2",
+    "value": "0.083",
+    "unit": "m/s"
+   }
+  ],
+  "category": "Hydrology"
+ },
+ {
+  "id": "MCQ_6_5",
+  "parent_id": "MCQ_6",
+  "variant": 5,
+  "source": "AtmosSci-Bench",
+  "problem": "\nIn a circular conduit with varying diameters, diameter D1=3.7 m, transitions to D2=4.9 m. \nThe velocity at the outlet profile was measured: V2=9.5 m/s. \nCalculate the discharge and the mean velocity at the inlet profile V1. \nAlso, determine the type of flow in both conduit profiles (whether the flow is laminar or turbulent). \nThe kinematic viscosity of water is v=0.0007496 m²/s.\n        ",
+  "sub_answers": [
+   {
+    "sub": "1",
+    "value": "179.145",
+    "unit": "m^3/s"
+   },
+   {
+    "sub": "2",
+    "value": "16.661",
+    "unit": "m/s"
+   }
+  ],
+  "category": "Hydrology"
+ },
+ {
+  "id": "MCQ_6_6",
+  "parent_id": "MCQ_6",
+  "variant": 6,
+  "source": "AtmosSci-Bench",
+  "problem": "\nIn a circular conduit with varying diameters, diameter D1=0.2 m, transitions to D2=1.6 m. \nThe velocity at the outlet profile was measured: V2=3.8 m/s. \nCalculate the discharge and the mean velocity at the inlet profile V1. \nAlso, determine the type of flow in both conduit profiles (whether the flow is laminar or turbulent). \nThe kinematic viscosity of water is v=0.000734 m²/s.\n        ",
+  "sub_answers": [
+   {
+    "sub": "1",
+    "value": "7.64",
+    "unit": "m^3/s"
+   },
+   {
+    "sub": "2",
+    "value": "243.2",
+    "unit": "m/s"
+   }
+  ],
+  "category": "Hydrology"
+ },
+ {
+  "id": "MCQ_6_7",
+  "parent_id": "MCQ_6",
+  "variant": 7,
+  "source": "AtmosSci-Bench",
+  "problem": "\nIn a circular conduit with varying diameters, diameter D1=4.3 m, transitions to D2=1.5 m. \nThe velocity at the outlet profile was measured: V2=3.5 m/s. \nCalculate the discharge and the mean velocity at the inlet profile V1. \nAlso, determine the type of flow in both conduit profiles (whether the flow is laminar or turbulent). \nThe kinematic viscosity of water is v=0.0004843 m²/s.\n        ",
+  "sub_answers": [
+   {
+    "sub": "1",
+    "value": "6.185",
+    "unit": "m^3/s"
+   },
+   {
+    "sub": "2",
+    "value": "0.426",
+    "unit": "m/s"
+   }
+  ],
+  "category": "Hydrology"
+ },
+ {
+  "id": "MCQ_6_8",
+  "parent_id": "MCQ_6",
+  "variant": 8,
+  "source": "AtmosSci-Bench",
+  "problem": "\nIn a circular conduit with varying diameters, diameter D1=1.9 m, transitions to D2=4.9 m. \nThe velocity at the outlet profile was measured: V2=2.2 m/s. \nCalculate the discharge and the mean velocity at the inlet profile V1. \nAlso, determine the type of flow in both conduit profiles (whether the flow is laminar or turbulent). \nThe kinematic viscosity of water is v=0.0001303 m²/s.\n        ",
+  "sub_answers": [
+   {
+    "sub": "1",
+    "value": "41.486",
+    "unit": "m^3/s"
+   },
+   {
+    "sub": "2",
+    "value": "14.632",
+    "unit": "m/s"
+   }
+  ],
+  "category": "Hydrology"
+ },
+ {
+  "id": "MCQ_6_9",
+  "parent_id": "MCQ_6",
+  "variant": 9,
+  "source": "AtmosSci-Bench",
+  "problem": "\nIn a circular conduit with varying diameters, diameter D1=4.3 m, transitions to D2=0.2 m. \nThe velocity at the outlet profile was measured: V2=1.7 m/s. \nCalculate the discharge and the mean velocity at the inlet profile V1. \nAlso, determine the type of flow in both conduit profiles (whether the flow is laminar or turbulent). \nThe kinematic viscosity of water is v=7.96e-05 m²/s.\n        ",
+  "sub_answers": [
+   {
+    "sub": "1",
+    "value": "0.053",
+    "unit": "m^3/s"
+   },
+   {
+    "sub": "2",
+    "value": "0.004",
+    "unit": "m/s"
+   }
+  ],
+  "category": "Hydrology"
+ },
+ {
+  "id": "MCQ_6_10",
+  "parent_id": "MCQ_6",
+  "variant": 10,
+  "source": "AtmosSci-Bench",
+  "problem": "\nIn a circular conduit with varying diameters, diameter D1=0.1 m, transitions to D2=4.3 m. \nThe velocity at the outlet profile was measured: V2=0.6 m/s. \nCalculate the discharge and the mean velocity at the inlet profile V1. \nAlso, determine the type of flow in both conduit profiles (whether the flow is laminar or turbulent). \nThe kinematic viscosity of water is v=0.0002975 m²/s.\n        ",
+  "sub_answers": [
+   {
+    "sub": "1",
+    "value": "8.713",
+    "unit": "m^3/s"
+   },
+   {
+    "sub": "2",
+    "value": "1109.4",
+    "unit": "m/s"
+   }
+  ],
+  "category": "Hydrology"
+ }
+]

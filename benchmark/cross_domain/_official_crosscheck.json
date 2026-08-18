@@ -1,0 +1,367 @@
+[
+  {
+    "id": "eco_12",
+    "domain": "ecology",
+    "source": "018_hw2.md",
+    "label": "018-hw2-2a",
+    "stored": [
+      7.885514018691589
+    ],
+    "official": [
+      7.9
+    ],
+    "verdict": "MATCH",
+    "note": "2a exploitation efficiency: C.E. = plants consumed / total plants produced = 67.5/856 = 0.079 = 7.9%"
+  },
+  {
+    "id": "eco_13",
+    "domain": "ecology",
+    "source": "018_hw2.md",
+    "label": "018-hw2-2b",
+    "stored": [
+      55.25925925925925
+    ],
+    "official": [
+      0.55
+    ],
+    "verdict": "MISMATCH",
+    "note": "A.E. = 37.3 / 67.5 = 0.55 = 55%"
+  },
+  {
+    "id": "eco_14",
+    "domain": "ecology",
+    "source": "018_hw2.md",
+    "label": "018-hw2-2c",
+    "stored": [
+      1.3404825737265416
+    ],
+    "official": [
+      1.34
+    ],
+    "verdict": "MATCH",
+    "note": "c. P.E. = Pn/An = 0.5/37.3 = 0.0134 = 1.34%"
+  },
+  {
+    "id": "eco_15",
+    "domain": "ecology",
+    "source": "018_hw2.md",
+    "label": "018-hw2-4b",
+    "stored": [
+      820674.2124226746
+    ],
+    "official": [
+      819000.0
+    ],
+    "verdict": "MATCH",
+    "note": "8.19 x 10^17 kg / 1.0 x 10^12 kg km^-3 = 8.19 x 10^5 km^3"
+  },
+  {
+    "id": "eco_2",
+    "domain": "ecology",
+    "source": "018_hw1.md",
+    "label": "eco-HW1-1c",
+    "stored": [
+      0.351,
+      -67.73247
+    ],
+    "official": [
+      0.351,
+      -16.146,
+      -67.743
+    ],
+    "verdict": "MISMATCH",
+    "note": "E ’ = 0.320 + 0.031 = 0.351 V; G ’ = ... = -16.146 kcal mol^-1; G ’ = ... = -67.743 kJ mol^-1"
+  },
+  {
+    "id": "eco_22",
+    "domain": "ecology",
+    "source": "018_hw3.md",
+    "label": "018-hw3-1b",
+    "stored": [
+      0.5
+    ],
+    "official": [
+      0.5
+    ],
+    "verdict": "MATCH",
+    "note": "The growth rate must be equal to the dilution rate at steady state. D = f/V = 500 ml day /1000 ml = 0.5 day"
+  },
+  {
+    "id": "eco_23",
+    "domain": "ecology",
+    "source": "018_hw3.md",
+    "label": "018-hw3-1c",
+    "stored": [
+      1.3862943611198906
+    ],
+    "official": [
+      1.39
+    ],
+    "verdict": "MATCH",
+    "note": "c. Doubling time = ln(2)/r = ln(2)/0.5 day^-1 = 1.39 days"
+  },
+  {
+    "id": "eco_24",
+    "domain": "ecology",
+    "source": "018_hw3.md",
+    "label": "018-hw3-1d",
+    "stored": [
+      999.9999999999999
+    ],
+    "official": [
+      1000.0
+    ],
+    "verdict": "MATCH",
+    "note": "d. ... N ~ Si/Q = ... = 10^3 cell ml^-1"
+  },
+  {
+    "id": "eco_3",
+    "domain": "ecology",
+    "source": "007_pset3.md",
+    "label": "007_pset3-2",
+    "stored": [
+      109.28061504667785
+    ],
+    "official": [
+      109.28
+    ],
+    "verdict": "MATCH",
+    "note": "δ34S Sample = ... = 109.28 permil"
+  },
+  {
+    "id": "env_10",
+    "domain": "environmental_chemistry",
+    "source": "85_hw2.md",
+    "label": "env-HW2-2c",
+    "stored": [
+      2.485339738238448
+    ],
+    "official": null,
+    "verdict": "NO_OFFICIAL",
+    "note": "not stated in key"
+  },
+  {
+    "id": "env_19",
+    "domain": "environmental_chemistry",
+    "source": "85_hw3.md",
+    "label": "85-HW3-Q1c",
+    "stored": [
+      156.25,
+      625.0
+    ],
+    "official": null,
+    "verdict": "NO_OFFICIAL",
+    "note": "not stated in key"
+  },
+  {
+    "id": "env_20",
+    "domain": "environmental_chemistry",
+    "source": "85_hw3.md",
+    "label": "85-HW3-Q3",
+    "stored": [
+      63.39391990789875,
+      31.696959953949374,
+      8.315999999999999
+    ],
+    "official": null,
+    "verdict": "NO_OFFICIAL",
+    "note": "not stated in key"
+  },
+  {
+    "id": "env_25",
+    "domain": "environmental_chemistry",
+    "source": "85_hw5.md",
+    "label": "85-HW5-Q3",
+    "stored": [
+      0.20639216310174976,
+      0.24616609953070465
+    ],
+    "official": [
+      0.243,
+      0.204
+    ],
+    "verdict": "MISMATCH",
+    "note": "Slope = 1/n = 0.243; Average K_F = 0.204"
+  },
+  {
+    "id": "env_28",
+    "domain": "environmental_chemistry",
+    "source": "85_hw8.md",
+    "label": "env-HW8-Q2b",
+    "stored": [
+      0.27972027972027974
+    ],
+    "official": null,
+    "verdict": "NO_OFFICIAL",
+    "note": "not stated in key"
+  },
+  {
+    "id": "env_29",
+    "domain": "environmental_chemistry",
+    "source": "85_hw8.md",
+    "label": "env-HW8-Q2c",
+    "stored": [
+      241.31249999999997
+    ],
+    "official": [
+      241.0
+    ],
+    "verdict": "MATCH",
+    "note": "2.c. From Lecture 19, Equation 12: P = ... = 241 kg VSS/d"
+  },
+  {
+    "id": "env_30",
+    "domain": "environmental_chemistry",
+    "source": "85_hw8.md",
+    "label": "env-HW8-Q2d",
+    "stored": [
+      0.16279069767441862
+    ],
+    "official": [
+      0.16
+    ],
+    "verdict": "MATCH",
+    "note": "From Lecture 19, Eq. 37 ... r = 0,16"
+  },
+  {
+    "id": "env_31",
+    "domain": "environmental_chemistry",
+    "source": "85_hw8.md",
+    "label": "env-HW8-Q2e",
+    "stored": [
+      300.83625000000006
+    ],
+    "official": [
+      300.0
+    ],
+    "verdict": "MATCH",
+    "note": "2.e oxygen requirement: ≈ 300 kg O2/d"
+  },
+  {
+    "id": "env_32",
+    "domain": "environmental_chemistry",
+    "source": "85_hw6.md",
+    "label": "hw6-1",
+    "stored": [
+      3.0157201754605376,
+      4.773602565353416
+    ],
+    "official": null,
+    "verdict": "NO_OFFICIAL",
+    "note": "not stated in key"
+  },
+  {
+    "id": "env_35",
+    "domain": "environmental_chemistry",
+    "source": "85_hw6.md",
+    "label": "hw6-4-cod",
+    "stored": [
+      2.869999610030028
+    ],
+    "official": [
+      2.89
+    ],
+    "verdict": "MATCH",
+    "note": "Oxidation of FOG"
+  },
+  {
+    "id": "env_36",
+    "domain": "environmental_chemistry",
+    "source": "85_hw7.md",
+    "label": "85-HW7-1a",
+    "stored": [
+      0.789141414141414
+    ],
+    "official": [
+      0.8
+    ],
+    "verdict": "MATCH",
+    "note": "a. Hydraulic residence time t_R"
+  },
+  {
+    "id": "env_38",
+    "domain": "environmental_chemistry",
+    "source": "85_hw7.md",
+    "label": "85-HW7-1c",
+    "stored": [
+      2.6371308016877637
+    ],
+    "official": [
+      51.0
+    ],
+    "verdict": "MISMATCH",
+    "note": "Design solids retention time (sludge age)"
+  },
+  {
+    "id": "env_39",
+    "domain": "environmental_chemistry",
+    "source": "85_hw7.md",
+    "label": "85-HW7-1d",
+    "stored": [
+      7580.010520778538
+    ],
+    "official": [
+      6288.0
+    ],
+    "verdict": "MISMATCH",
+    "note": "d. Reactor biomass concentration X"
+  },
+  {
+    "id": "env_40",
+    "domain": "environmental_chemistry",
+    "source": "85_hw7.md",
+    "label": "85-HW7-1e",
+    "stored": [
+      3.9058390320883745
+    ],
+    "official": [
+      4.7
+    ],
+    "verdict": "MISMATCH",
+    "note": "e. Effluent substrate concentration S"
+  },
+  {
+    "id": "env_41",
+    "domain": "environmental_chemistry",
+    "source": "85_hw7.md",
+    "label": "85-HW7-1f",
+    "stored": [
+      0.0495
+    ],
+    "official": [
+      1.43
+    ],
+    "verdict": "MISMATCH",
+    "note": "f. Substrate utilization rate"
+  },
+  {
+    "id": "env_43",
+    "domain": "environmental_chemistry",
+    "source": "85_hw7.md",
+    "label": "85-HW7-1h",
+    "stored": [
+      1.714938588974579,
+      0.015091459582976295
+    ],
+    "official": [
+      1.08,
+      0.01
+    ],
+    "verdict": "MISMATCH",
+    "note": "h. Recycle ratio r; Recycle flow rate Q_R"
+  },
+  {
+    "id": "env_44",
+    "domain": "environmental_chemistry",
+    "source": "85_hw7.md",
+    "label": "85-HW7-1i",
+    "stored": [
+      6.930796656730377e-05
+    ],
+    "official": [
+      0.00025
+    ],
+    "verdict": "MISMATCH",
+    "note": "i. Sludge wasting rate Q_W"
+  }
+]

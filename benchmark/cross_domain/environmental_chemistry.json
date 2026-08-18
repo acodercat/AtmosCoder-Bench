@@ -1,0 +1,628 @@
+[
+  {
+    "id": "env_14",
+    "book": "MIT OCW Environmental Chemistry & Engineering (1.85 Water & Wastewater Treatment; 1.061 Transport Processes), CC BY-NC-SA",
+    "problem": "You have been asked to assess a newly constructed wetland that is 40 m x 300 m. The design flow depth and rate are h = 1 m and Q = 0.1 m^3/s, respectively. You release 300 g of dye at the inlet of the wetland and record the concentration of dye at the outlet.\n\nTime and concentration data:\n0 hr: 0 µg/L; 2 hr: 0 µg/L; 4 hr: 5 µg/L; 6 hr: 10 µg/L; 8 hr: 50 µg/L; 10 hr: 60 µg/L; 12 hr: 20 µg/L; 14 hr: 10 µg/L; 16 hr: 5 µg/L; 18 hr: 5 µg/L; 20 hr: 0 µg/L; 22 hr: 5 µg/L; 24 hr: 0 µg/L; 26 hr: 15 µg/L; 28 hr: 30 µg/L; 30 hr: 40 µg/L; 32 hr: 40 µg/L; 34 hr: 30 µg/L; 36 hr: 20 µg/L; 38 hr: 20 µg/L; 40 hr: 10 µg/L.\n\nThe wetland plants can uptake phosphorus at a rate of K = 0.05 hr^-1. What fraction of phosphorus load entering the wetland is removed?",
+    "code": "def solve(\n    width_m=40.0,\n    length_m=300.0,\n    h_m=1.0,\n    Q_m3s=0.1,\n    dye_mass_g=300.0,\n    K_hr=0.05,\n    times_hr=(0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40),\n    conc_ugL=(0,0,5,10,50,60,20,10,5,5,0,5,0,15,30,40,40,30,20,20,10),\n):\n    # Compute mean residence time (centroid) from RTD\n    # C(t) is the tracer concentration curve at outlet.\n    # Mean residence time = integral(t*C dt) / integral(C dt)\n\n    # Numerical integration via trapezoidal rule\n    def trapz(x, y):\n        s = 0.0\n        for i in range(len(x) - 1):\n            dx = x[i+1] - x[i]\n            s += 0.5 * (y[i] + y[i+1]) * dx\n        return s\n\n    t = list(times_hr)\n    C = list(conc_ugL)\n\n    integral_C = trapz(t, C)               # µg/L * hr\n    tC = [t[i] * C[i] for i in range(len(t))]\n    integral_tC = trapz(t, tC)             # hr * µg/L * hr\n\n    t_mean_hr = integral_tC / integral_C   # mean residence time (hr)\n\n    # Fraction removed for first-order uptake in a plug-flow-like reactor:\n    # Using the RTD, fraction remaining = integral( exp(-K*t) * E(t) dt )\n    # where E(t) = C(t)/integral(C dt)\n    # Fraction removed = 1 - integral(exp(-K*t)*E(t)dt)\n    expC = [math_exp(-K_hr * t[i]) * C[i] for i in range(len(t))]\n    integral_expC = trapz(t, expC)\n    fraction_remaining = integral_expC / integral_C\n    fraction_removed = 1.0 - fraction_remaining\n\n    return {\n        \"1\": {\"value\": fraction_removed, \"unit\": \"fraction\"},\n    }\n\n\ndef math_exp(x):\n    import math\n    return math.exp(x)",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.610170007079858",
+        "unit": ""
+      }
+    ],
+    "category": "water_treatment_design",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "environmental_chemistry",
+    "provenance": {
+      "source": "061_hw3.md",
+      "label": "env-HW3-2e",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "env_3",
+    "book": "MIT OCW Environmental Chemistry & Engineering (1.85 Water & Wastewater Treatment; 1.061 Transport Processes), CC BY-NC-SA",
+    "problem": "A slug of tracer is released into a smooth irrigation canal at x = 0 m. The canal is 1 m deep by 1 m wide with a mean velocity U = 1 m/s. The isotropic diffusivity is D = 0.01 m^2/s. At x = 500 m the tracer distribution is Gaussian with standard deviation sigma_1 = 32 m. Estimate the coefficient of shear dispersion, K_X1, in the first reach x = 0 to 500 m.",
+    "code": "def solve(x=500.0, depth=1.0, width=1.0, U=1.0, D=0.01, sigma_1=32.0):\n    # Time of travel to reach x\n    t = x / U  # seconds\n\n    # For a Gaussian tracer distribution, variance = 2 * K * t\n    # sigma^2 = 2 * K_X1 * t  =>  K_X1 = sigma^2 / (2 * t)\n    variance = sigma_1 ** 2\n    K_X1 = variance / (2.0 * t)\n\n    return {\n        \"1\": {\"value\": K_X1, \"unit\": \"m^2/s\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "1.024",
+        "unit": ""
+      }
+    ],
+    "category": "solute_transport",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "environmental_chemistry",
+    "provenance": {
+      "source": "061_hw7.md",
+      "label": "env-HW7-1a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "env_1",
+    "book": "MIT OCW Environmental Chemistry & Engineering (1.85 Water & Wastewater Treatment; 1.061 Transport Processes), CC BY-NC-SA",
+    "problem": "Nitrate is a common groundwater contaminant in rural areas. The water standard for nitrate is 10 mg/L. Consider a small lake which receives input from a river at rate Q_R = 0.1 m^3 s^-1 and from groundwater seepage at rate Q_G = 0.005 m^3 s^-1. The river inflow is free of nitrate, but the groundwater contains nitrate percolated from septic tanks around the lake. The mean nitrate concentration in the groundwater is 40 mg/L. The lake volume is 10^5 m^3. Assuming the nitrate concentration has reached a steady state in the lake, what is the nitrate concentration in the lake outflow?",
+    "code": "def solve(Q_R=0.1, Q_G=0.005, C_R=0.0, C_G=40.0, V=1e5, standard=10.0):\n    # Steady state mass balance:\n    # Input mass rate = Q_R*C_R + Q_G*C_G\n    # Output flow (assuming no other losses) = Q_R + Q_G\n    # Steady state: C_lake * Q_out = input mass rate\n\n    input_mass_rate = Q_R * C_R + Q_G * C_G  # (m^3/s)*(mg/L)\n    Q_out = Q_R + Q_G  # m^3/s\n\n    C_out = input_mass_rate / Q_out  # mg/L\n\n    return {\"1\": {\"value\": C_out, \"unit\": \"mg/L\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "1.9047619047619047",
+        "unit": ""
+      }
+    ],
+    "category": "reactor_mass_balance",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "environmental_chemistry",
+    "provenance": {
+      "source": "061_hw1.md",
+      "label": "061-hw1-2a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "env_25",
+    "book": "MIT OCW Environmental Chemistry & Engineering (1.85 Water & Wastewater Treatment; 1.061 Transport Processes), CC BY-NC-SA",
+    "problem": "A wastewater containing phenol at a concentration of 0.4 mg/L is to be treated by granular activated carbon. Batch tests have been performed in the laboratory to determine the relative adsorption of phenol by GAC. Testing entails adding a mass of carbon to V = 1 liter of the 0.4 mg/L solution, allowing the solution to reach equilibrium over 6 days, and then measuring the resulting equilibrium concentration of phenol. Results are shown in the table below. Develop a Freundlich isotherm to fit these data. Data: mass of carbon M = 0.52 g, initial concentration C0 = 0.400 mg/L, equilibrium concentration Ce = 0.322 mg/L; M = 2.32 g, C0 = 0.400 mg/L, Ce = 0.117 mg/L; M = 3.46 g, C0 = 0.400 mg/L, Ce = 0.051 mg/L; M = 3.84 g, C0 = 0.400 mg/L, Ce = 0.039 mg/L; M = 4.50 g, C0 = 0.400 mg/L, Ce = 0.023 mg/L; M = 5.40 g, C0 = 0.400 mg/L, Ce = 0.012 mg/L; M = 6.67 g, C0 = 0.400 mg/L, Ce = 0.0061 mg/L; M = 7.60 g, C0 = 0.400 mg/L, Ce = 0.0042 mg/L; M = 8.82 g, C0 = 0.400 mg/L, Ce = 0.0023 mg/L.",
+    "code": "import math\n\ndef solve(V=1.0,\n          C0=0.400,\n          data=None):\n    # data: list of (M grams, Ce mg/L)\n    if data is None:\n        data = [\n            (0.52, 0.322),\n            (2.32, 0.117),\n            (3.46, 0.051),\n            (3.84, 0.039),\n            (4.50, 0.023),\n            (5.40, 0.012),\n            (6.67, 0.0061),\n            (7.60, 0.0042),\n            (8.82, 0.0023),\n        ]\n\n    # Freundlich isotherm: qe = K * Ce^(1/n)\n    # qe = (C0 - Ce) * V / M  [mg adsorbed per gram carbon]\n    # Linearize: log10(qe) = log10(K) + (1/n) * log10(Ce)\n\n    xs = []  # log10(Ce)\n    ys = []  # log10(qe)\n    for M, Ce in data:\n        qe = (C0 - Ce) * V / M  # mg/g\n        xs.append(math.log10(Ce))\n        ys.append(math.log10(qe))\n\n    n_pts = len(xs)\n    sx = sum(xs)\n    sy = sum(ys)\n    sxx = sum(x * x for x in xs)\n    sxy = sum(x * y for x, y in zip(xs, ys))\n\n    slope = (n_pts * sxy - sx * sy) / (n_pts * sxx - sx * sx)\n    intercept = (sy - slope * sx) / n_pts\n\n    # slope = 1/n\n    inv_n = slope\n    K = 10 ** intercept  # (mg/g)(L/mg)^(1/n)\n\n    # Report quantity 1 = K, quantity 2 = 1/n (the Freundlich exponent)\n    return {\n        \"1\": {\"value\": K, \"unit\": \"(mg/g)(L/mg)^(1/n)\"},\n        \"2\": {\"value\": inv_n, \"unit\": \"dimensionless\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.204",
+        "unit": "(mg/g)(L/mg)^(1/n)"
+      },
+      {
+        "sub": "2",
+        "value": "0.243",
+        "unit": ""
+      }
+    ],
+    "category": "phase_partitioning",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "environmental_chemistry",
+    "provenance": {
+      "source": "85_hw5.md",
+      "label": "85-HW5-Q3",
+      "gt_method": "official_answer_key",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ],
+      "gt_source": "MIT OCW 1.85 answer key",
+      "superseded_consensus_gt": true,
+      "note": "official values assigned to the solver's own return order (K_F, then 1/n slope)"
+    }
+  },
+  {
+    "id": "env_19",
+    "book": "MIT OCW Environmental Chemistry & Engineering (1.85 Water & Wastewater Treatment; 1.061 Transport Processes), CC BY-NC-SA",
+    "problem": "A wastewater is proposed to be treated in a rectangular sedimentation tank having a detention time of 2 hours and a depth of 4 meters. If the wastewater flow rate is 7,500 m3/day, what needs to be the area and volume of the sedimentation tank?",
+    "code": "def solve(detention_time_hr=2, depth_m=4, flow_rate_m3_per_day=7500):\n    # Convert detention time to days\n    detention_time_day = detention_time_hr / 24.0\n\n    # Volume = flow rate * detention time\n    volume_m3 = flow_rate_m3_per_day * detention_time_day\n\n    # Area = volume / depth\n    area_m2 = volume_m3 / depth_m\n\n    return {\n        \"1\": {\"value\": area_m2, \"unit\": \"m^2\"},\n        \"2\": {\"value\": volume_m3, \"unit\": \"m^3\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "156.25",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "625.0",
+        "unit": ""
+      }
+    ],
+    "category": "water_treatment_design",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "environmental_chemistry",
+    "provenance": {
+      "source": "85_hw3.md",
+      "label": "85-HW3-Q1c",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "env_5",
+    "book": "MIT OCW Environmental Chemistry & Engineering (1.85 Water & Wastewater Treatment; 1.061 Transport Processes), CC BY-NC-SA",
+    "problem": "Combined sewers are municipal wastewater collection systems in which sanitary sewerage and storm water are combined. During storm events, combined sewer overflows discharge excess water to rivers and streams. Fecal coliform concentration is reported as organisms per 100 ml, and the concentration of fecal coliform bacteria in combined sewer overflow water is typically 6 million organisms per 100 ml. Consider a CSO located at the shoreline 1 kilometer upstream of a public beach. There is a prevailing along-shore current of 0.1 m/s from the CSO to the beach. Under Massachusetts's regulations, if the fecal coliform count at the beach exceeds 200 organisms per 100 ml, then swimming is prohibited. Consider a storm that causes 1000 m^3 of wastewater to discharge from the CSO. Assume the discharge occurs instantaneously and instantly mixes over the depth of the water, which is 2 meters. Assume a horizontal diffusivity of 1 m^2 s^-1. Determine the time after the storm at which it will be safe to swim at the beach.",
+    "code": "import math\n\ndef solve(C_cso=6e6,          # organisms per 100 ml\n          distance=1000.0,    # m upstream to beach\n          U=0.1,              # m/s along-shore current\n          C_limit=200.0,      # organisms per 100 ml (threshold)\n          V_discharge=1000.0, # m^3 discharged\n          H=2.0,              # m depth\n          D=1.0):             # m^2/s horizontal diffusivity\n    \n    # Total mass (number of organisms) discharged\n    # Concentration 6e6 org/100ml -> convert to org/m^3\n    # 100 ml = 100e-6 m^3 = 1e-4 m^3\n    C_cso_per_m3 = C_cso / 1e-4          # organisms per m^3\n    M = C_cso_per_m3 * V_discharge       # total organisms\n\n    # Threshold concentration in org/m^3\n    C_limit_per_m3 = C_limit / 1e-4\n\n    # 2D instantaneous release mixed over depth H:\n    # C(x,y,t) = M / (4*pi*D*t*H) * exp(-((x - U t)^2 + y^2)/(4 D t))\n    # At beach: x = distance, y = 0\n    def conc(t):\n        if t <= 0:\n            return 0.0\n        pref = M / (4.0 * math.pi * D * t * H)\n        arg = -((distance - U * t) ** 2) / (4.0 * D * t)\n        return pref * math.exp(arg)\n\n    # Concentration rises then falls. \"Safe\" = time after which concentration\n    # stays below the limit permanently (the falling crossing).\n    # Find peak time approximately, then search the descending branch.\n\n    # Scan to find time range\n    # Rough scan\n    dt = 1.0\n    t = dt\n    peak_t = dt\n    peak_c = conc(dt)\n    tmax = 100000.0\n    while t < tmax:\n        c = conc(t)\n        if c > peak_c:\n            peak_c = c\n            peak_t = t\n        t += dt\n\n    # If peak never exceeds limit, it's always safe (t=0)\n    if peak_c <= C_limit_per_m3:\n        return {\"1\": {\"value\": 0.0, \"unit\": \"s\"}}\n\n    # Find descending crossing: search from peak_t onward where conc drops below limit\n    lo = peak_t\n    hi = peak_t\n    # expand hi until conc < limit\n    while conc(hi) > C_limit_per_m3 and hi < tmax * 10:\n        hi *= 2.0\n\n    # bisection for descending crossing\n    for _ in range(200):\n        mid = 0.5 * (lo + hi)\n        if conc(mid) > C_limit_per_m3:\n            lo = mid\n        else:\n            hi = mid\n\n    t_safe = 0.5 * (lo + hi)\n\n    return {\"1\": {\"value\": t_safe, \"unit\": \"s\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "15143.314832004547",
+        "unit": ""
+      }
+    ],
+    "category": "solute_transport",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "environmental_chemistry",
+    "provenance": {
+      "source": "061_hw4.md",
+      "label": "061-hw4-2d",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "env_10",
+    "book": "MIT OCW Environmental Chemistry & Engineering (1.85 Water & Wastewater Treatment; 1.061 Transport Processes), CC BY-NC-SA",
+    "problem": "A plug-flow treatment reactor and a completely-mixed treatment reactor each treat an influent flow with a concentration of 150 mg/L of total toxic organics (TTO) and a flow rate of 380 L/min. The reaction is first-order with a rate constant of 0.4 hr^-1. How many times larger than the plug-flow reactor must the completely-mixed reactor be to achieve 80% removal?",
+    "code": "def solve(C0=150.0, Q=380.0, k=0.4, removal=0.80):\n    import math\n    \n    # Effluent concentration after 80% removal\n    C = C0 * (1 - removal)\n    \n    # For PFR (first-order): C/C0 = exp(-k * tau_pfr)\n    # tau_pfr = -ln(C/C0) / k\n    ratio = C / C0\n    tau_pfr = -math.log(ratio) / k  # hr\n    \n    # For CMFR (first-order): C/C0 = 1 / (1 + k * tau_cmfr)\n    # tau_cmfr = (C0/C - 1) / k\n    tau_cmfr = (C0 / C - 1) / k  # hr\n    \n    # Volume ratio = tau ratio (same Q)\n    volume_ratio = tau_cmfr / tau_pfr\n    \n    return {\"1\": {\"value\": volume_ratio, \"unit\": \"dimensionless\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "2.485339738238448",
+        "unit": ""
+      }
+    ],
+    "category": "reactor_mass_balance",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "environmental_chemistry",
+    "provenance": {
+      "source": "85_hw2.md",
+      "label": "env-HW2-2c",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "env_20",
+    "book": "MIT OCW Environmental Chemistry & Engineering (1.85 Water & Wastewater Treatment; 1.061 Transport Processes), CC BY-NC-SA",
+    "problem": "A rectangular sedimentation basin is to be designed for a flow of 1.0 mgd (million gallons per day) using a 2:1 length:width ratio, an overflow rate of 0.00077 fps (feet per second), and a detention time of 3.0 hr. What are the dimensions of the basin?",
+    "code": "def solve(flow_mgd=1.0, lw_ratio=2.0, overflow_rate_fps=0.00077, detention_hr=3.0):\n    # Unit conversions\n    # 1 mgd = 1e6 gallons/day; 1 gallon = 0.133681 ft^3\n    gal_to_ft3 = 0.133681\n    flow_ft3_per_day = flow_mgd * 1e6 * gal_to_ft3\n    flow_ft3_per_sec = flow_ft3_per_day / (24 * 3600)  # cfs\n\n    # Overflow rate = Q / surface area  => A = Q / overflow_rate\n    surface_area = flow_ft3_per_sec / overflow_rate_fps  # ft^2\n\n    # A = L * W, L = lw_ratio * W  => A = lw_ratio * W^2\n    width = (surface_area / lw_ratio) ** 0.5\n    length = lw_ratio * width\n\n    # Detention time = Volume / Q  => Volume = Q * t\n    detention_sec = detention_hr * 3600\n    volume = flow_ft3_per_sec * detention_sec  # ft^3\n\n    # Depth = Volume / surface_area\n    depth = volume / surface_area\n\n    return {\n        \"1\": {\"value\": length, \"unit\": \"ft\"},\n        \"2\": {\"value\": width, \"unit\": \"ft\"},\n        \"3\": {\"value\": depth, \"unit\": \"ft\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "63.39391990789875",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "31.696959953949374",
+        "unit": ""
+      },
+      {
+        "sub": "3",
+        "value": "8.315999999999999",
+        "unit": ""
+      }
+    ],
+    "category": "water_treatment_design",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "environmental_chemistry",
+    "provenance": {
+      "source": "85_hw3.md",
+      "label": "85-HW3-Q3",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "env_12",
+    "book": "MIT OCW Environmental Chemistry & Engineering (1.85 Water & Wastewater Treatment; 1.061 Transport Processes), CC BY-NC-SA",
+    "problem": "You have been asked to assess a newly constructed wetland that is 40 m x 300 m. The design flow depth and rate are h = 1 m and Q = 0.1 m^3/s, respectively. You release 300 g of dye at the inlet of the wetland and record the concentration of dye at the outlet.\n\nTime and concentration data:\n0 hr: 0 µg/L; 2 hr: 0 µg/L; 4 hr: 5 µg/L; 6 hr: 10 µg/L; 8 hr: 50 µg/L; 10 hr: 60 µg/L; 12 hr: 20 µg/L; 14 hr: 10 µg/L; 16 hr: 5 µg/L; 18 hr: 5 µg/L; 20 hr: 0 µg/L; 22 hr: 5 µg/L; 24 hr: 0 µg/L; 26 hr: 15 µg/L; 28 hr: 30 µg/L; 30 hr: 40 µg/L; 32 hr: 40 µg/L; 34 hr: 30 µg/L; 36 hr: 20 µg/L; 38 hr: 20 µg/L; 40 hr: 10 µg/L.\n\nWhat is the total mass of dye observed to exit the wetland?",
+    "code": "def solve(width=40.0, length=300.0, h=1.0, Q=0.1,\n          times_hr=None, conc_ugL=None, mass_released_g=300.0):\n    if times_hr is None:\n        times_hr = [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40]\n    if conc_ugL is None:\n        conc_ugL = [0,0,5,10,50,60,20,10,5,5,0,5,0,15,30,40,40,30,20,20,10]\n\n    # Convert time to seconds\n    times_s = [t * 3600.0 for t in times_hr]\n    # Convert concentration from µg/L to g/m^3\n    # 1 µg/L = 1e-6 g / 1e-3 m^3 = 1e-3 g/m^3\n    conc_gm3 = [c * 1e-3 for c in conc_ugL]\n\n    # Mass flux = Q * C ; integrate over time (trapezoidal)\n    # M = integral( Q * C dt )\n    total_mass = 0.0\n    for i in range(len(times_s) - 1):\n        dt = times_s[i+1] - times_s[i]\n        avg_c = (conc_gm3[i] + conc_gm3[i+1]) / 2.0\n        total_mass += Q * avg_c * dt\n\n    return {\"1\": {\"value\": total_mass, \"unit\": \"g\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "266.4",
+        "unit": ""
+      }
+    ],
+    "category": "solute_transport",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "environmental_chemistry",
+    "provenance": {
+      "source": "061_hw3.md",
+      "label": "env-HW3-2a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "env_28",
+    "book": "MIT OCW Environmental Chemistry & Engineering (1.85 Water & Wastewater Treatment; 1.061 Transport Processes), CC BY-NC-SA",
+    "problem": "The aeration tank for a completely mixed aeration process is being sized for a design wastewater flow of 4500 m3/d. The influent COD is 150 mg/L. The design effluent COD is 7 mg/L. Recommended design parameters are a sludge age of 10 days and MLVSS of 1400 mg/L. The kinetic constants from a bench-scale treatability study are Y = 0.60 mg VSS/mg COD and ke = 0.06 per day. Calculate the food/microorganism ratio.",
+    "code": "def solve(Q=4500.0, S0=150.0, S=7.0, sludge_age=10.0, MLVSS=1400.0, Y=0.60, ke=0.06):\n    # F/M ratio derived from mean cell residence time relationship:\n    # 1/theta_c = Y*(F/M)*E - ke   where E = (S0 - S)/S0 (substrate utilization efficiency)\n    # Rearranged: F/M = (1/theta_c + ke) / (Y * E)\n\n    E = (S0 - S) / S0  # fraction of substrate removed\n\n    FM = (1.0 / sludge_age + ke) / (Y * E)\n\n    return {\n        \"1\": {\"value\": FM, \"unit\": \"mg COD / mg VSS-day\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.27972027972027974",
+        "unit": ""
+      }
+    ],
+    "category": "water_treatment_design",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "environmental_chemistry",
+    "provenance": {
+      "source": "85_hw8.md",
+      "label": "env-HW8-Q2b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "env_23",
+    "book": "MIT OCW Environmental Chemistry & Engineering (1.85 Water & Wastewater Treatment; 1.061 Transport Processes), CC BY-NC-SA",
+    "problem": "During rain storms the street run-off is conveyed to a river by a concrete culvert. During a large storm event a peak flow of q = 0.5 m^3/s in the culvert and Q = 4.5 m^3/s in the river upstream of the culvert are maintained. During the storm the river has width B = 10 m, depth h = 2 m, isotropic turbulent diffusion D = 0.05 m^2/s, and longitudinal dispersion Kx = 0.5 m^2/s. The culvert inflow enters the river at x = 0. What time scale describes the transport between the culvert and x = L, where L = 2 km downstream of the culvert inflow?",
+    "code": "def solve(q=0.5, Q=4.5, B=10.0, h=2.0, D=0.05, Kx=0.5, L=2000.0):\n    # Total flow after mixing\n    Q_total = Q + q  # m^3/s\n    \n    # Cross-sectional area of river\n    A = B * h  # m^2\n    \n    # Mean velocity in river\n    u = Q_total / A  # m/s\n    \n    # Advection time scale for transport from culvert to x = L\n    t = L / u  # s\n    \n    return {\n        \"1\": {\"value\": t, \"unit\": \"s\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "8000.0",
+        "unit": ""
+      }
+    ],
+    "category": "solute_transport",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "environmental_chemistry",
+    "provenance": {
+      "source": "061_hw6.md",
+      "label": "061-hw6-2b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "env_29",
+    "book": "MIT OCW Environmental Chemistry & Engineering (1.85 Water & Wastewater Treatment; 1.061 Transport Processes), CC BY-NC-SA",
+    "problem": "The aeration tank for a completely mixed aeration process is being sized for a design wastewater flow of 4500 m3/d. The influent COD is 150 mg/L. The design effluent COD is 7 mg/L. Recommended design parameters are a sludge age of 10 days and MLVSS of 1400 mg/L. The kinetic constants from a bench-scale treatability study are Y = 0.60 mg VSS/mg COD and ke = 0.06 per day. Calculate the sludge production rate.",
+    "code": "def solve(Q=4500.0, S0=150.0, S=7.0, sludge_age=10.0, MLVSS=1400.0, Y=0.60, ke=0.06):\n    # Q: design flow (m3/d)\n    # S0: influent COD (mg/L)\n    # S: effluent COD (mg/L)\n    # sludge_age: SRT (days)\n    # MLVSS: mixed liquor volatile suspended solids (mg/L)\n    # Y: yield coefficient (mg VSS/mg COD)\n    # ke: endogenous decay coefficient (1/day)\n\n    # Observed yield\n    Yobs = Y / (1.0 + ke * sludge_age)  # mg VSS/mg COD\n\n    # Substrate (COD) removed, in mass units: mg/L * m3/d\n    # 1 mg/L * 1 m3 = 1 g ; so mg/L * m3/d = g/d\n    COD_removed = Q * (S0 - S)  # g/d\n\n    # Sludge production rate (g VSS/d)\n    Px_g_per_d = Yobs * COD_removed  # g/d\n\n    # Convert to kg/d\n    Px_kg_per_d = Px_g_per_d / 1000.0\n\n    return {\n        \"1\": {\"value\": Px_kg_per_d, \"unit\": \"kg VSS/d\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "241.31249999999997",
+        "unit": ""
+      }
+    ],
+    "category": "water_treatment_design",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "environmental_chemistry",
+    "provenance": {
+      "source": "85_hw8.md",
+      "label": "env-HW8-Q2c",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "env_30",
+    "book": "MIT OCW Environmental Chemistry & Engineering (1.85 Water & Wastewater Treatment; 1.061 Transport Processes), CC BY-NC-SA",
+    "problem": "The aeration tank for a completely mixed aeration process is being sized for a design wastewater flow of 4500 m3/d. The influent COD is 150 mg/L. The design effluent COD is 7 mg/L. Recommended design parameters are a sludge age of 10 days and MLVSS of 1400 mg/L. The expected Sludge Volume Index is 100 ml/g. The kinetic constants from a bench-scale treatability study are Y = 0.60 mg VSS/mg COD and ke = 0.06 per day. Calculate the sludge recycle ratio.",
+    "code": "def solve(Q=4500.0, S0=150.0, S=7.0, theta_c=10.0, MLVSS=1400.0, SVI=100.0, Y=0.60, ke=0.06):\n    # Q: design flow (m3/d)\n    # S0: influent COD (mg/L)\n    # S: effluent COD (mg/L)\n    # theta_c: sludge age (d)\n    # MLVSS: mixed liquor VSS (mg/L)\n    # SVI: sludge volume index (mL/g)\n    # Y: yield (mg VSS/mg COD)\n    # ke: endogenous decay coefficient (1/d)\n\n    # Maximum recycle concentration from SVI (mg/L)\n    # SVI in mL/g -> Xr = 1e6 / SVI (mg/L)\n    Xr = 1.0e6 / SVI\n\n    # Mass balance around aeration tank for recycle ratio:\n    # X (1 + R) = R * Xr  =>  R = X / (Xr - X)\n    X = MLVSS\n    R = X / (Xr - X)\n\n    return {\"1\": {\"value\": R, \"unit\": \"dimensionless\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.16279069767441862",
+        "unit": ""
+      }
+    ],
+    "category": "water_treatment_design",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "environmental_chemistry",
+    "provenance": {
+      "source": "85_hw8.md",
+      "label": "env-HW8-Q2d",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "env_31",
+    "book": "MIT OCW Environmental Chemistry & Engineering (1.85 Water & Wastewater Treatment; 1.061 Transport Processes), CC BY-NC-SA",
+    "problem": "The aeration tank for a completely mixed aeration process is being sized for a design wastewater flow of 4500 m3/d. The influent COD is 150 mg/L. The design effluent COD is 7 mg/L. Recommended design parameters are a sludge age of 10 days and MLVSS of 1400 mg/L. The kinetic constants from a bench-scale treatability study are Y = 0.60 mg VSS/mg COD and ke = 0.06 per day. Calculate the oxygen requirement.",
+    "code": "def solve(Q=4500.0, S0=150.0, S=7.0, sludge_age=10.0, MLVSS=1400.0,\n          Y=0.60, ke=0.06):\n    # Physical/biological constants\n    O2_per_biomass = 1.42  # mg O2 / mg VSS (oxygen equivalent of cell tissue)\n\n    # Substrate (COD) removed per day, kg/d\n    # Q [m3/d] * (S0 - S) [mg/L = g/m3] / 1000 -> kg/d\n    substrate_removed = Q * (S0 - S) / 1000.0  # kg COD/d\n\n    # Net biomass production (Px), kg VSS/d\n    # Px = Y * (S0 - S) * Q / (1 + ke * sludge_age)\n    Px = (Y * substrate_removed) / (1.0 + ke * sludge_age)  # kg VSS/d\n\n    # Oxygen requirement, kg O2/d\n    # RO = Q*(S0-S)/1000 - 1.42*Px\n    oxygen_requirement = substrate_removed - O2_per_biomass * Px  # kg O2/d\n\n    return {\n        \"1\": {\"value\": oxygen_requirement, \"unit\": \"kg O2/d\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "300.83625000000006",
+        "unit": ""
+      }
+    ],
+    "category": "water_treatment_design",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "environmental_chemistry",
+    "provenance": {
+      "source": "85_hw8.md",
+      "label": "env-HW8-Q2e",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "env_32",
+    "book": "MIT OCW Environmental Chemistry & Engineering (1.85 Water & Wastewater Treatment; 1.061 Transport Processes), CC BY-NC-SA",
+    "problem": "You need to design an air stripper for groundwater contaminated by benzene. Your groundwater extraction system will generate 0.1 m^3/s at a concentration of 100 µg/L. You need to reduce the concentration to the MCL under the Safe Drinking Water Act, which is 5 µg/L. Your manufacturer’s representative tells you that their 3.5-inch plastic tripacks have a value of K_La = 0.011 s^-1. Determine the diameter and height of the tower assuming a water flow rate of 0.014 m/s and stripping factor of 3.5.",
+    "code": "def solve(Q=0.1, C_in=100.0, C_out=5.0, KLa=0.011, v_water=0.014, R=3.5):\n    import math\n    \n    # Cross-sectional area from water flow rate (loading)\n    # Q = v * A  => A = Q / v\n    A = Q / v_water  # m^2\n    \n    # Diameter\n    D = math.sqrt(4.0 * A / math.pi)  # m\n    \n    # Height of packing using the design equation for air stripping\n    # HTU = v_water / KLa\n    HTU = v_water / KLa  # m\n    \n    # NTU = (R/(R-1)) * ln( (Cin/Cout)*(R-1)/R + 1/R )\n    NTU = (R / (R - 1.0)) * math.log((C_in / C_out) * (R - 1.0) / R + 1.0 / R)\n    \n    # Height\n    Z = HTU * NTU  # m\n    \n    return {\n        \"1\": {\"value\": D, \"unit\": \"m\"},\n        \"2\": {\"value\": Z, \"unit\": \"m\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "3.0157201754605376",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "4.773602565353416",
+        "unit": ""
+      }
+    ],
+    "category": "water_treatment_design",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "environmental_chemistry",
+    "provenance": {
+      "source": "85_hw6.md",
+      "label": "hw6-1",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "env_35",
+    "book": "MIT OCW Environmental Chemistry & Engineering (1.85 Water & Wastewater Treatment; 1.061 Transport Processes), CC BY-NC-SA",
+    "problem": "Fats, oils, and grease (“FOG”) is represented by the generic chemical formula C8H16O. Determine the COD of FOG.",
+    "code": "def solve(C=8, H=16, O=1):\n    # Atomic weights (physical constants)\n    aw_C = 12.011\n    aw_H = 1.008\n    aw_O = 15.999\n    aw_O2 = 2 * aw_O\n\n    # FOG molecular formula: C_C H_H O_O (default C8H16O)\n    # Oxidation reaction:\n    # C_a H_b O_c + n O2 -> a CO2 + (b/2) H2O\n    # Oxygen balance: 2n + c = 2a + b/2  => n = (2a + b/2 - c)/2 = a + b/4 - c/2\n    a = C\n    b = H\n    c = O\n\n    n_O2 = a + b / 4 - c / 2  # moles O2 per mole FOG\n\n    # Molecular weight of FOG\n    MW_FOG = a * aw_C + b * aw_H + c * aw_O\n\n    # Mass of O2 required per mass of FOG = g O2 per g FOG = COD\n    mass_O2 = n_O2 * aw_O2\n\n    COD = mass_O2 / MW_FOG  # g O2 per g FOG\n\n    return {\n        \"1\": {\"value\": COD, \"unit\": \"g O2 per g FOG\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "2.869999610030028",
+        "unit": ""
+      }
+    ],
+    "category": "water_treatment_design",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "environmental_chemistry",
+    "provenance": {
+      "source": "85_hw6.md",
+      "label": "hw6-4-cod",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "env_36",
+    "book": "MIT OCW Environmental Chemistry & Engineering (1.85 Water & Wastewater Treatment; 1.061 Transport Processes), CC BY-NC-SA",
+    "problem": "A small community wishes to construct an activated sludge wastewater treatment plant to treat their wastewater. The wastewater from the community has an average flow rate of 0.0088 m^3/s (0.2 mgd) and an influent substrate concentration of 300 mg/L as COD. Tests on the wastewater indicate the likely concentration of settled sludge from the secondary clarifier will be 12,000 mg VSS/L. The reactor kinetic constants are μMAX = 0.4 hr^-1, K_S = 75 mg/L as COD, Y = 0.4 g VSS/g COD, and k_d = 0.004 hr^-1. The design engineer proposes a fully mixed aeration tank reactor with a volume of 25 cubic meters. The design safety factor is to be 20. What is the hydraulic residence time of the reactor?",
+    "code": "def solve(Q=0.0088, V=25.0):\n    # Hydraulic residence time = V / Q\n    tau_s = V / Q          # seconds\n    tau_hr = tau_s / 3600.0  # hours\n\n    return {\n        \"1\": {\"value\": tau_hr, \"unit\": \"hr\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.789141414141414",
+        "unit": ""
+      }
+    ],
+    "category": "water_treatment_design",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "environmental_chemistry",
+    "provenance": {
+      "source": "85_hw7.md",
+      "label": "85-HW7-1a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "envw_1",
+    "book": "MIT OCW 1.77 Water Quality Control (CC BY-NC-SA)",
+    "problem": "An infinitely long partitioned cylinder is filled with stationary pure water on the right side of the partition, and water with an initial concentration C0 = 10 mg/L of dissolved CO2 on the left. At time t = 0 the partition is removed. By inducing turbulence in the system it is possible to increase the diffusion coefficient. Suppose homogeneous and isotropic turbulence is generated by oscillating a grid and the turbulent diffusion coefficient is approximately 1 cm^2/s. How long will it take the concentration of CO2 at x = 50 cm to the right of the partition to reach 1 mg/L?",
+    "code": "import math\n\ndef solve(C0=10.0, C_target=1.0, x_cm=50.0, D_cm2_s=1.0):\n    # Step initial condition diffusion:\n    # C(x,t) = (C0/2) * erfc( x / (2*sqrt(D*t)) )\n    # Solve for t given C(x,t)=C_target.\n\n    # erfc via math.erfc; need inverse erfc.\n    ratio = C_target / (C0 / 2.0)  # = erfc(arg)\n    # ratio must be in (0,2)\n\n    # Find arg such that erfc(arg) = ratio  (arg > 0 since ratio < 1)\n    def erfc(z):\n        return math.erfc(z)\n\n    # Bisection to invert erfc\n    lo, hi = 0.0, 10.0\n    for _ in range(200):\n        mid = 0.5 * (lo + hi)\n        if erfc(mid) > ratio:\n            lo = mid\n        else:\n            hi = mid\n    arg = 0.5 * (lo + hi)\n\n    # arg = x / (2*sqrt(D*t))  ->  t = x^2 / (4 * D * arg^2)\n    t_s = (x_cm ** 2) / (4.0 * D_cm2_s * arg ** 2)\n\n    return {\n        \"1\": {\"value\": t_s, \"unit\": \"s\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "761.0932004721808",
+        "unit": ""
+      }
+    ],
+    "category": "solute_transport",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "environmental_chemistry",
+    "provenance": {
+      "source": "pset1.md",
+      "label": "pset1-2b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "envw_3",
+    "book": "MIT OCW 1.77 Water Quality Control (CC BY-NC-SA)",
+    "problem": "Ethylene glycol (CH2OH-CH2OH) is used for de-icing at Logan Airport and some of it runs off into Boston Harbor. Treat the portion of the harbor as a well-mixed water body for which the surface area is 2 km^2 and the mean depth at low tide is 8 m. During a winter storm, a total of 10^4 kg of ethylene glycol runs off quasi-instantaneously into this portion of the harbor at low tide. The ethylene glycol is oxidized to CO2 and H2O causing a decrease in the harbor dissolved oxygen concentration. Assuming that all of the ethylene glycol is oxidized, and that the oxidation takes place instantaneously, what is the maximum decrease in harbor DO concentration, expressed as mg/L?",
+    "code": "def solve(surface_area_km2=2.0, mean_depth_m=8.0, mass_glycol_kg=1e4):\n    # Molar masses (g/mol)\n    M_glycol = 2*12.011 + 6*1.008 + 2*15.999  # C2H6O2\n    M_O2 = 2*15.999\n\n    # Oxidation reaction:\n    # C2H6O2 + 5/2 O2 -> 2 CO2 + 3 H2O\n    # 1 mol glycol consumes 2.5 mol O2\n    O2_per_glycol = 2.5\n\n    # Volume of water body\n    surface_area_m2 = surface_area_km2 * 1e6\n    volume_m3 = surface_area_m2 * mean_depth_m\n    volume_L = volume_m3 * 1000.0\n\n    # Moles of glycol\n    mass_glycol_g = mass_glycol_kg * 1000.0\n    mol_glycol = mass_glycol_g / M_glycol\n\n    # Moles and mass of O2 consumed\n    mol_O2 = mol_glycol * O2_per_glycol\n    mass_O2_g = mol_O2 * M_O2\n    mass_O2_mg = mass_O2_g * 1000.0\n\n    # Decrease in DO concentration (mg/L)\n    delta_DO = mass_O2_mg / volume_L\n\n    return {\"1\": {\"value\": delta_DO, \"unit\": \"mg/L\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.8055177386092672",
+        "unit": ""
+      }
+    ],
+    "category": "reaction_kinetics",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "environmental_chemistry",
+    "provenance": {
+      "source": "quiz2.md",
+      "label": "quiz2-1b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "envw_5",
+    "book": "MIT OCW 1.77 Water Quality Control (CC BY-NC-SA)",
+    "problem": "A paper manufacturing plant proposes to discharge its treated waste effluent into the epilimnion of a lake, through an outfall pipe. In order to characterize advection and diffusion in the lake, 300 kg of Rhodamine WT, a fluorescent dye, was injected uniformly over the epilimnion in a time span of several minutes. The procedure was followed three times after the dye release—at times of 7, 10 and 13 hours. The data were analyzed by converting the areas within the individual isoquants of the skewed patch into equivalent circular areas of radius r. The result is the data shown below, which for the three different times shows concentration as a function of the square of the equivalent radius r^2.\n\nTime (hours), Concentration (ppb), Equivalent radius squared r^2 (m^2):\n7, 20, 0.10 x 10^6\n7, 10, 0.30 x 10^6\n7, 2.5, 0.90 x 10^6\n7, 1.0, 1.10 x 10^6\n10, 10, 0.10 x 10^6\n10, 6.0, 0.62 x 10^6\n10, 1.5, 1.24 x 10^6\n10, 1.0, 1.96 x 10^6\n13, 7.0, 0.09 x 10^6\n13, 5.0, 0.51 x 10^6\n13, 2.0, 1.29 x 10^6\n13, 1.0, 2.40 x 10^6\n\nDetermine the radial diffusivity, E_r, as a function of time.",
+    "code": "import math\n\ndef solve(\n    M_dye_kg=300.0,\n    t1_hr=7.0,\n    t2_hr=10.0,\n    t3_hr=13.0,\n    # Time 7 hr data\n    C1a_ppb=20.0, r2_1a_m2=0.10e6,\n    C1b_ppb=10.0, r2_1b_m2=0.30e6,\n    C1c_ppb=2.5,  r2_1c_m2=0.90e6,\n    C1d_ppb=1.0,  r2_1d_m2=1.10e6,\n    # Time 10 hr data\n    C2a_ppb=10.0, r2_2a_m2=0.10e6,\n    C2b_ppb=6.0,  r2_2b_m2=0.62e6,\n    C2c_ppb=1.5,  r2_2c_m2=1.24e6,\n    C2d_ppb=1.0,  r2_2d_m2=1.96e6,\n    # Time 13 hr data\n    C3a_ppb=7.0,  r2_3a_m2=0.09e6,\n    C3b_ppb=5.0,  r2_3b_m2=0.51e6,\n    C3c_ppb=2.0,  r2_3c_m2=1.29e6,\n    C3d_ppb=1.0,  r2_3d_m2=2.40e6,\n):\n    # physical constant\n    s_per_hr = 3600.0\n\n    def linfit_slope(xs, ys):\n        n = len(xs)\n        sx = sum(xs)\n        sy = sum(ys)\n        sxx = sum(x * x for x in xs)\n        sxy = sum(x * y for x, y in zip(xs, ys))\n        slope = (n * sxy - sx * sy) / (n * sxx - sx * sx)\n        return slope\n\n    def compute_Er(t_hr, r2_list, C_list):\n        # ln(C) = ln(C0) - r^2/(4 E_r t); slope = -1/(4 E_r t)\n        xs = r2_list\n        ys = [math.log(C) for C in C_list]\n        slope = linfit_slope(xs, ys)  # units 1/m^2\n        t_s = t_hr * s_per_hr\n        E_r = -1.0 / (4.0 * t_s * slope)  # m^2/s\n        return E_r\n\n    Er1 = compute_Er(\n        t1_hr,\n        [r2_1a_m2, r2_1b_m2, r2_1c_m2, r2_1d_m2],\n        [C1a_ppb, C1b_ppb, C1c_ppb, C1d_ppb],\n    )\n    Er2 = compute_Er(\n        t2_hr,\n        [r2_2a_m2, r2_2b_m2, r2_2c_m2, r2_2d_m2],\n        [C2a_ppb, C2b_ppb, C2c_ppb, C2d_ppb],\n    )\n    Er3 = compute_Er(\n        t3_hr,\n        [r2_3a_m2, r2_3b_m2, r2_3c_m2, r2_3d_m2],\n        [C3a_ppb, C3b_ppb, C3c_ppb, C3d_ppb],\n    )\n\n    return {\n        \"1\": {\"value\": Er1, \"unit\": \"m^2/s\"},\n        \"2\": {\"value\": Er2, \"unit\": \"m^2/s\"},\n        \"3\": {\"value\": Er3, \"unit\": \"m^2/s\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "3.525024729927434",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "5.228860339690357",
+        "unit": ""
+      },
+      {
+        "sub": "3",
+        "value": "6.193063222364701",
+        "unit": ""
+      }
+    ],
+    "category": "solute_transport",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "environmental_chemistry",
+    "provenance": {
+      "source": "pset2.md",
+      "label": "pset2-2b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "envw_10",
+    "book": "MIT OCW 1.77 Water Quality Control (CC BY-NC-SA)",
+    "problem": "A small tidal embayment receives a steady freshwater discharge of 0.01 m^3/s that contains suspended solids with concentration of 20 mg/L. The inflow contains trace amounts of a chemical which is sorbed to the particles. Assuming equilibrium partitioning with a solid-water partition coefficient of 10^4 cm^3/g, estimate the percentage of the chemical in the sorbed phase in the inflow.",
+    "code": "def solve(freshwater_discharge_m3_s=0.01, suspended_solids_mg_L=20.0, Kd_cm3_g=1e4):\n    # Convert suspended solids concentration to consistent units\n    # suspended_solids: mg/L -> g/cm^3\n    # 1 mg/L = 1e-3 g / 1e3 cm^3 = 1e-6 g/cm^3\n    ss_g_cm3 = suspended_solids_mg_L * 1e-6  # g/cm^3\n\n    # Kd in cm^3/g (already given)\n    # Fraction sorbed f_s = (Kd * M) / (1 + Kd * M)\n    # where M is solids concentration in g/cm^3\n    KdM = Kd_cm3_g * ss_g_cm3  # dimensionless\n\n    fraction_sorbed = KdM / (1.0 + KdM)\n    percent_sorbed = fraction_sorbed * 100.0\n\n    return {\"1\": {\"value\": percent_sorbed, \"unit\": \"%\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "16.666666666666664",
+        "unit": ""
+      }
+    ],
+    "category": "phase_partitioning",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "environmental_chemistry",
+    "provenance": {
+      "source": "final.md",
+      "label": "final-3c",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  }
+]

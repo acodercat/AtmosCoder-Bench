@@ -1,0 +1,262 @@
+model,setting,difficulty,log2_bin,bin_low_tokens,n_problem_runs,n_passed,accuracy_pct,single_attempt_pct
+gpt-5.5 (reasoning),reasoning,high,6,64,10,10,100.0,99.8
+gpt-5.5 (reasoning),reasoning,high,7,128,62,61,98.39,99.8
+gpt-5.5 (reasoning),reasoning,high,8,256,213,207,97.18,99.8
+gpt-5.5 (reasoning),reasoning,high,9,512,114,102,89.47,99.8
+gpt-5.5 (reasoning),reasoning,high,11,2048,2,2,100.0,99.8
+gpt-5.5 (reasoning),reasoning,low,6,64,80,80,100.0,99.8
+gpt-5.5 (reasoning),reasoning,low,7,128,48,48,100.0,99.8
+gpt-5.5 (reasoning),reasoning,low,8,256,4,4,100.0,99.8
+gpt-5.5 (reasoning),reasoning,medium,5,32,3,3,100.0,99.8
+gpt-5.5 (reasoning),reasoning,medium,6,64,118,118,100.0,99.8
+gpt-5.5 (reasoning),reasoning,medium,7,128,423,414,97.87,99.8
+gpt-5.5 (reasoning),reasoning,medium,8,256,220,218,99.09,99.8
+gpt-5.5 (reasoning),reasoning,medium,9,512,9,8,88.89,99.8
+Gemini-3.1-Pro (reasoning),reasoning,high,5,32,1,0,0.0,100.0
+Gemini-3.1-Pro (reasoning),reasoning,high,6,64,2,1,50.0,100.0
+Gemini-3.1-Pro (reasoning),reasoning,high,7,128,44,43,97.73,100.0
+Gemini-3.1-Pro (reasoning),reasoning,high,8,256,269,250,92.94,100.0
+Gemini-3.1-Pro (reasoning),reasoning,high,9,512,81,70,86.42,100.0
+Gemini-3.1-Pro (reasoning),reasoning,high,10,1024,4,1,25.0,100.0
+Gemini-3.1-Pro (reasoning),reasoning,high,11,2048,1,0,0.0,100.0
+Gemini-3.1-Pro (reasoning),reasoning,low,6,64,11,11,100.0,100.0
+Gemini-3.1-Pro (reasoning),reasoning,low,7,128,112,112,100.0,100.0
+Gemini-3.1-Pro (reasoning),reasoning,low,8,256,9,9,100.0,100.0
+Gemini-3.1-Pro (reasoning),reasoning,medium,6,64,9,9,100.0,100.0
+Gemini-3.1-Pro (reasoning),reasoning,medium,7,128,384,381,99.22,100.0
+Gemini-3.1-Pro (reasoning),reasoning,medium,8,256,375,364,97.07,100.0
+Gemini-3.1-Pro (reasoning),reasoning,medium,9,512,6,5,83.33,100.0
+Kimi K2.6 (reasoning),reasoning,high,6,64,1,1,100.0,74.2
+Kimi K2.6 (reasoning),reasoning,high,7,128,19,18,94.74,74.2
+Kimi K2.6 (reasoning),reasoning,high,8,256,54,54,100.0,74.2
+Kimi K2.6 (reasoning),reasoning,high,9,512,11,11,100.0,74.2
+Kimi K2.6 (reasoning),reasoning,high,13,8192,42,41,97.62,74.2
+Kimi K2.6 (reasoning),reasoning,high,14,16384,61,58,95.08,74.2
+Kimi K2.6 (reasoning),reasoning,low,6,64,39,39,100.0,74.2
+Kimi K2.6 (reasoning),reasoning,low,7,128,82,82,100.0,74.2
+Kimi K2.6 (reasoning),reasoning,low,8,256,10,10,100.0,74.2
+Kimi K2.6 (reasoning),reasoning,low,14,16384,1,1,100.0,74.2
+Kimi K2.6 (reasoning),reasoning,medium,6,64,32,32,100.0,74.2
+Kimi K2.6 (reasoning),reasoning,medium,7,128,297,291,97.98,74.2
+Kimi K2.6 (reasoning),reasoning,medium,8,256,215,212,98.6,74.2
+Kimi K2.6 (reasoning),reasoning,medium,9,512,4,4,100.0,74.2
+Kimi K2.6 (reasoning),reasoning,medium,13,8192,56,55,98.21,74.2
+Kimi K2.6 (reasoning),reasoning,medium,14,16384,47,46,97.87,74.2
+DeepSeek-V4-pro (reasoning),reasoning,high,7,128,26,26,100.0,94.1
+DeepSeek-V4-pro (reasoning),reasoning,high,8,256,190,173,91.05,94.1
+DeepSeek-V4-pro (reasoning),reasoning,high,9,512,118,100,84.75,94.1
+DeepSeek-V4-pro (reasoning),reasoning,high,10,1024,1,1,100.0,94.1
+DeepSeek-V4-pro (reasoning),reasoning,high,13,8192,7,1,14.29,94.1
+DeepSeek-V4-pro (reasoning),reasoning,low,6,64,2,2,100.0,94.1
+DeepSeek-V4-pro (reasoning),reasoning,low,7,128,109,109,100.0,94.1
+DeepSeek-V4-pro (reasoning),reasoning,low,8,256,21,21,100.0,94.1
+DeepSeek-V4-pro (reasoning),reasoning,medium,6,64,7,7,100.0,94.1
+DeepSeek-V4-pro (reasoning),reasoning,medium,7,128,253,246,97.23,94.1
+DeepSeek-V4-pro (reasoning),reasoning,medium,8,256,471,455,96.6,94.1
+DeepSeek-V4-pro (reasoning),reasoning,medium,9,512,25,24,96.0,94.1
+DeepSeek-V4-pro (reasoning),reasoning,medium,14,16384,1,1,100.0,94.1
+Qwen-3.5-397B (reasoning),reasoning,high,7,128,27,25,92.59,98.8
+Qwen-3.5-397B (reasoning),reasoning,high,8,256,168,142,84.52,98.8
+Qwen-3.5-397B (reasoning),reasoning,high,9,512,184,156,84.78,98.8
+Qwen-3.5-397B (reasoning),reasoning,high,10,1024,14,11,78.57,98.8
+Qwen-3.5-397B (reasoning),reasoning,high,11,2048,1,0,0.0,98.8
+Qwen-3.5-397B (reasoning),reasoning,high,12,4096,1,1,100.0,98.8
+Qwen-3.5-397B (reasoning),reasoning,high,13,8192,2,1,50.0,98.8
+Qwen-3.5-397B (reasoning),reasoning,low,6,64,9,9,100.0,98.8
+Qwen-3.5-397B (reasoning),reasoning,low,7,128,90,90,100.0,98.8
+Qwen-3.5-397B (reasoning),reasoning,low,8,256,31,31,100.0,98.8
+Qwen-3.5-397B (reasoning),reasoning,low,9,512,2,2,100.0,98.8
+Qwen-3.5-397B (reasoning),reasoning,medium,6,64,9,9,100.0,98.8
+Qwen-3.5-397B (reasoning),reasoning,medium,7,128,258,256,99.22,98.8
+Qwen-3.5-397B (reasoning),reasoning,medium,8,256,443,426,96.16,98.8
+Qwen-3.5-397B (reasoning),reasoning,medium,9,512,47,43,91.49,98.8
+Qwen-3.5-397B (reasoning),reasoning,medium,10,1024,2,0,0.0,98.8
+Qwen-3.5-397B (reasoning),reasoning,medium,11,2048,2,2,100.0,98.8
+Qwen-3.5-397B (reasoning),reasoning,medium,12,4096,2,2,100.0,98.8
+DeepSeek-V4-flash (reasoning),reasoning,high,7,128,30,27,90.0,99.6
+DeepSeek-V4-flash (reasoning),reasoning,high,8,256,227,187,82.38,99.6
+DeepSeek-V4-flash (reasoning),reasoning,high,9,512,131,101,77.1,99.6
+DeepSeek-V4-flash (reasoning),reasoning,high,10,1024,7,6,85.71,99.6
+DeepSeek-V4-flash (reasoning),reasoning,high,11,2048,2,0,0.0,99.6
+DeepSeek-V4-flash (reasoning),reasoning,high,12,4096,1,0,0.0,99.6
+DeepSeek-V4-flash (reasoning),reasoning,low,6,64,4,4,100.0,99.6
+DeepSeek-V4-flash (reasoning),reasoning,low,7,128,93,92,98.92,99.6
+DeepSeek-V4-flash (reasoning),reasoning,low,8,256,35,35,100.0,99.6
+DeepSeek-V4-flash (reasoning),reasoning,medium,6,64,3,3,100.0,99.6
+DeepSeek-V4-flash (reasoning),reasoning,medium,7,128,236,234,99.15,99.6
+DeepSeek-V4-flash (reasoning),reasoning,medium,8,256,501,471,94.01,99.6
+DeepSeek-V4-flash (reasoning),reasoning,medium,9,512,32,29,90.62,99.6
+DeepSeek-V4-flash (reasoning),reasoning,medium,10,1024,1,0,0.0,99.6
+gpt-5.5,non-reasoning,high,7,128,45,38,84.44,99.8
+gpt-5.5,non-reasoning,high,8,256,193,158,81.87,99.8
+gpt-5.5,non-reasoning,high,9,512,152,111,73.03,99.8
+gpt-5.5,non-reasoning,high,10,1024,9,5,55.56,99.8
+gpt-5.5,non-reasoning,high,11,2048,2,0,0.0,99.8
+gpt-5.5,non-reasoning,low,6,64,56,56,100.0,99.8
+gpt-5.5,non-reasoning,low,7,128,72,72,100.0,99.8
+gpt-5.5,non-reasoning,low,8,256,4,4,100.0,99.8
+gpt-5.5,non-reasoning,medium,6,64,42,42,100.0,99.8
+gpt-5.5,non-reasoning,medium,7,128,380,366,96.32,99.8
+gpt-5.5,non-reasoning,medium,8,256,332,318,95.78,99.8
+gpt-5.5,non-reasoning,medium,9,512,15,15,100.0,99.8
+gpt-5.5,non-reasoning,medium,10,1024,3,0,0.0,99.8
+Qwen-3.5-397B,non-reasoning,high,7,128,1,0,0.0,98.2
+Qwen-3.5-397B,non-reasoning,high,8,256,20,16,80.0,98.2
+Qwen-3.5-397B,non-reasoning,high,9,512,82,66,80.49,98.2
+Qwen-3.5-397B,non-reasoning,high,10,1024,121,98,80.99,98.2
+Qwen-3.5-397B,non-reasoning,high,11,2048,76,59,77.63,98.2
+Qwen-3.5-397B,non-reasoning,high,12,4096,63,46,73.02,98.2
+Qwen-3.5-397B,non-reasoning,high,13,8192,24,17,70.83,98.2
+Qwen-3.5-397B,non-reasoning,low,6,64,1,1,100.0,98.2
+Qwen-3.5-397B,non-reasoning,low,7,128,31,31,100.0,98.2
+Qwen-3.5-397B,non-reasoning,low,8,256,79,79,100.0,98.2
+Qwen-3.5-397B,non-reasoning,low,9,512,19,19,100.0,98.2
+Qwen-3.5-397B,non-reasoning,low,10,1024,1,1,100.0,98.2
+Qwen-3.5-397B,non-reasoning,medium,7,128,30,29,96.67,98.2
+Qwen-3.5-397B,non-reasoning,medium,8,256,309,307,99.35,98.2
+Qwen-3.5-397B,non-reasoning,medium,9,512,239,226,94.56,98.2
+Qwen-3.5-397B,non-reasoning,medium,10,1024,127,123,96.85,98.2
+Qwen-3.5-397B,non-reasoning,medium,11,2048,32,30,93.75,98.2
+Qwen-3.5-397B,non-reasoning,medium,12,4096,24,19,79.17,98.2
+Qwen-3.5-397B,non-reasoning,medium,13,8192,6,2,33.33,98.2
+Kimi K2.6,non-reasoning,high,8,256,6,4,66.67,94.1
+Kimi K2.6,non-reasoning,high,9,512,26,22,84.62,94.1
+Kimi K2.6,non-reasoning,high,10,1024,72,69,95.83,94.1
+Kimi K2.6,non-reasoning,high,11,2048,64,61,95.31,94.1
+Kimi K2.6,non-reasoning,high,12,4096,58,51,87.93,94.1
+Kimi K2.6,non-reasoning,high,13,8192,87,71,81.61,94.1
+Kimi K2.6,non-reasoning,high,14,16384,27,17,62.96,94.1
+Kimi K2.6,non-reasoning,low,6,64,1,1,100.0,94.1
+Kimi K2.6,non-reasoning,low,7,128,23,23,100.0,94.1
+Kimi K2.6,non-reasoning,low,8,256,72,72,100.0,94.1
+Kimi K2.6,non-reasoning,low,9,512,28,28,100.0,94.1
+Kimi K2.6,non-reasoning,low,10,1024,7,7,100.0,94.1
+Kimi K2.6,non-reasoning,low,11,2048,1,1,100.0,94.1
+Kimi K2.6,non-reasoning,medium,6,64,1,1,100.0,94.1
+Kimi K2.6,non-reasoning,medium,7,128,21,21,100.0,94.1
+Kimi K2.6,non-reasoning,medium,8,256,104,99,95.19,94.1
+Kimi K2.6,non-reasoning,medium,9,512,237,226,95.36,94.1
+Kimi K2.6,non-reasoning,medium,10,1024,204,189,92.65,94.1
+Kimi K2.6,non-reasoning,medium,11,2048,89,84,94.38,94.1
+Kimi K2.6,non-reasoning,medium,12,4096,48,46,95.83,94.1
+Kimi K2.6,non-reasoning,medium,13,8192,49,45,91.84,94.1
+Kimi K2.6,non-reasoning,medium,14,16384,6,4,66.67,94.1
+Qwen-3.6-27B (reasoning),reasoning,high,6,64,3,3,100.0,85.9
+Qwen-3.6-27B (reasoning),reasoning,high,7,128,41,37,90.24,85.9
+Qwen-3.6-27B (reasoning),reasoning,high,8,256,117,96,82.05,85.9
+Qwen-3.6-27B (reasoning),reasoning,high,9,512,86,71,82.56,85.9
+Qwen-3.6-27B (reasoning),reasoning,high,10,1024,8,5,62.5,85.9
+Qwen-3.6-27B (reasoning),reasoning,high,11,2048,4,3,75.0,85.9
+Qwen-3.6-27B (reasoning),reasoning,high,12,4096,3,3,100.0,85.9
+Qwen-3.6-27B (reasoning),reasoning,high,13,8192,15,7,46.67,85.9
+Qwen-3.6-27B (reasoning),reasoning,low,5,32,2,2,100.0,85.9
+Qwen-3.6-27B (reasoning),reasoning,low,6,64,51,51,100.0,85.9
+Qwen-3.6-27B (reasoning),reasoning,low,7,128,41,41,100.0,85.9
+Qwen-3.6-27B (reasoning),reasoning,low,8,256,21,21,100.0,85.9
+Qwen-3.6-27B (reasoning),reasoning,low,9,512,4,4,100.0,85.9
+Qwen-3.6-27B (reasoning),reasoning,low,10,1024,1,1,100.0,85.9
+Qwen-3.6-27B (reasoning),reasoning,low,11,2048,2,2,100.0,85.9
+Qwen-3.6-27B (reasoning),reasoning,low,13,8192,7,7,100.0,85.9
+Qwen-3.6-27B (reasoning),reasoning,medium,5,32,2,2,100.0,85.9
+Qwen-3.6-27B (reasoning),reasoning,medium,6,64,59,55,93.22,85.9
+Qwen-3.6-27B (reasoning),reasoning,medium,7,128,334,323,96.71,85.9
+Qwen-3.6-27B (reasoning),reasoning,medium,8,256,207,195,94.2,85.9
+Qwen-3.6-27B (reasoning),reasoning,medium,9,512,58,53,91.38,85.9
+Qwen-3.6-27B (reasoning),reasoning,medium,10,1024,10,9,90.0,85.9
+Qwen-3.6-27B (reasoning),reasoning,medium,11,2048,12,12,100.0,85.9
+Qwen-3.6-27B (reasoning),reasoning,medium,12,4096,11,9,81.82,85.9
+Qwen-3.6-27B (reasoning),reasoning,medium,13,8192,24,24,100.0,85.9
+Qwen-3.6-27B (reasoning),reasoning,medium,15,32768,1,0,0.0,85.9
+DeepSeek-V4-pro,non-reasoning,high,7,128,14,13,92.86,99.2
+DeepSeek-V4-pro,non-reasoning,high,8,256,126,96,76.19,99.2
+DeepSeek-V4-pro,non-reasoning,high,9,512,178,109,61.24,99.2
+DeepSeek-V4-pro,non-reasoning,high,10,1024,61,31,50.82,99.2
+DeepSeek-V4-pro,non-reasoning,high,11,2048,10,7,70.0,99.2
+DeepSeek-V4-pro,non-reasoning,high,12,4096,3,1,33.33,99.2
+DeepSeek-V4-pro,non-reasoning,low,6,64,4,4,100.0,99.2
+DeepSeek-V4-pro,non-reasoning,low,7,128,100,98,98.0,99.2
+DeepSeek-V4-pro,non-reasoning,low,8,256,28,26,92.86,99.2
+DeepSeek-V4-pro,non-reasoning,medium,6,64,2,2,100.0,99.2
+DeepSeek-V4-pro,non-reasoning,medium,7,128,179,170,94.97,99.2
+DeepSeek-V4-pro,non-reasoning,medium,8,256,495,448,90.51,99.2
+DeepSeek-V4-pro,non-reasoning,medium,9,512,85,68,80.0,99.2
+DeepSeek-V4-pro,non-reasoning,medium,10,1024,8,5,62.5,99.2
+DeepSeek-V4-pro,non-reasoning,medium,11,2048,3,2,66.67,99.2
+DeepSeek-V4-pro,non-reasoning,medium,12,4096,1,0,0.0,99.2
+DeepSeek-V4-flash,non-reasoning,high,7,128,11,10,90.91,99.6
+DeepSeek-V4-flash,non-reasoning,high,8,256,126,90,71.43,99.6
+DeepSeek-V4-flash,non-reasoning,high,9,512,187,129,68.98,99.6
+DeepSeek-V4-flash,non-reasoning,high,10,1024,68,39,57.35,99.6
+DeepSeek-V4-flash,non-reasoning,high,11,2048,4,0,0.0,99.6
+DeepSeek-V4-flash,non-reasoning,high,12,4096,1,0,0.0,99.6
+DeepSeek-V4-flash,non-reasoning,low,6,64,7,7,100.0,99.6
+DeepSeek-V4-flash,non-reasoning,low,7,128,97,96,98.97,99.6
+DeepSeek-V4-flash,non-reasoning,low,8,256,26,24,92.31,99.6
+DeepSeek-V4-flash,non-reasoning,low,9,512,2,0,0.0,99.6
+DeepSeek-V4-flash,non-reasoning,medium,6,64,5,5,100.0,99.6
+DeepSeek-V4-flash,non-reasoning,medium,7,128,181,169,93.37,99.6
+DeepSeek-V4-flash,non-reasoning,medium,8,256,459,399,86.93,99.6
+DeepSeek-V4-flash,non-reasoning,medium,9,512,119,97,81.51,99.6
+DeepSeek-V4-flash,non-reasoning,medium,10,1024,10,1,10.0,99.6
+Qwen-3.6-27B,non-reasoning,high,8,256,35,24,68.57,96.6
+Qwen-3.6-27B,non-reasoning,high,9,512,120,80,66.67,96.6
+Qwen-3.6-27B,non-reasoning,high,10,1024,107,64,59.81,96.6
+Qwen-3.6-27B,non-reasoning,high,11,2048,63,39,61.9,96.6
+Qwen-3.6-27B,non-reasoning,high,12,4096,48,19,39.58,96.6
+Qwen-3.6-27B,non-reasoning,high,13,8192,3,0,0.0,96.6
+Qwen-3.6-27B,non-reasoning,low,7,128,49,49,100.0,96.6
+Qwen-3.6-27B,non-reasoning,low,8,256,73,73,100.0,96.6
+Qwen-3.6-27B,non-reasoning,low,9,512,9,9,100.0,96.6
+Qwen-3.6-27B,non-reasoning,medium,7,128,25,25,100.0,96.6
+Qwen-3.6-27B,non-reasoning,medium,8,256,342,315,92.11,96.6
+Qwen-3.6-27B,non-reasoning,medium,9,512,273,229,83.88,96.6
+Qwen-3.6-27B,non-reasoning,medium,10,1024,74,59,79.73,96.6
+Qwen-3.6-27B,non-reasoning,medium,11,2048,31,22,70.97,96.6
+Qwen-3.6-27B,non-reasoning,medium,12,4096,11,3,27.27,96.6
+Qwen-3.6-27B,non-reasoning,medium,13,8192,1,1,100.0,96.6
+Qwen-3.5-9B (reasoning),reasoning,high,7,128,6,5,83.33,68.0
+Qwen-3.5-9B (reasoning),reasoning,high,8,256,86,61,70.93,68.0
+Qwen-3.5-9B (reasoning),reasoning,high,9,512,85,49,57.65,68.0
+Qwen-3.5-9B (reasoning),reasoning,high,10,1024,9,1,11.11,68.0
+Qwen-3.5-9B (reasoning),reasoning,high,13,8192,28,11,39.29,68.0
+Qwen-3.5-9B (reasoning),reasoning,low,6,64,4,4,100.0,68.0
+Qwen-3.5-9B (reasoning),reasoning,low,7,128,46,45,97.83,68.0
+Qwen-3.5-9B (reasoning),reasoning,low,8,256,68,68,100.0,68.0
+Qwen-3.5-9B (reasoning),reasoning,low,9,512,1,1,100.0,68.0
+Qwen-3.5-9B (reasoning),reasoning,low,13,8192,4,4,100.0,68.0
+Qwen-3.5-9B (reasoning),reasoning,medium,6,64,1,0,0.0,68.0
+Qwen-3.5-9B (reasoning),reasoning,medium,7,128,84,80,95.24,68.0
+Qwen-3.5-9B (reasoning),reasoning,medium,8,256,381,340,89.24,68.0
+Qwen-3.5-9B (reasoning),reasoning,medium,9,512,55,42,76.36,68.0
+Qwen-3.5-9B (reasoning),reasoning,medium,10,1024,2,1,50.0,68.0
+Qwen-3.5-9B (reasoning),reasoning,medium,12,4096,1,1,100.0,68.0
+Qwen-3.5-9B (reasoning),reasoning,medium,13,8192,29,24,82.76,68.0
+Qwen-3.5-9B,non-reasoning,high,8,256,12,8,66.67,93.1
+Qwen-3.5-9B,non-reasoning,high,9,512,99,56,56.57,93.1
+Qwen-3.5-9B,non-reasoning,high,10,1024,97,39,40.21,93.1
+Qwen-3.5-9B,non-reasoning,high,11,2048,59,19,32.2,93.1
+Qwen-3.5-9B,non-reasoning,high,12,4096,45,16,35.56,93.1
+Qwen-3.5-9B,non-reasoning,high,13,8192,37,10,27.03,93.1
+Qwen-3.5-9B,non-reasoning,low,7,128,17,17,100.0,93.1
+Qwen-3.5-9B,non-reasoning,low,8,256,85,80,94.12,93.1
+Qwen-3.5-9B,non-reasoning,low,9,512,23,21,91.3,93.1
+Qwen-3.5-9B,non-reasoning,low,10,1024,4,4,100.0,93.1
+Qwen-3.5-9B,non-reasoning,low,11,2048,1,0,0.0,93.1
+Qwen-3.5-9B,non-reasoning,medium,7,128,13,11,84.62,93.1
+Qwen-3.5-9B,non-reasoning,medium,8,256,207,168,81.16,93.1
+Qwen-3.5-9B,non-reasoning,medium,9,512,270,188,69.63,93.1
+Qwen-3.5-9B,non-reasoning,medium,10,1024,133,87,65.41,93.1
+Qwen-3.5-9B,non-reasoning,medium,11,2048,64,45,70.31,93.1
+Qwen-3.5-9B,non-reasoning,medium,12,4096,35,19,54.29,93.1
+Qwen-3.5-9B,non-reasoning,medium,13,8192,17,5,29.41,93.1
+Qwen-2.5-72B,non-reasoning,high,7,128,13,1,7.69,96.3
+Qwen-2.5-72B,non-reasoning,high,8,256,192,40,20.83,96.3
+Qwen-2.5-72B,non-reasoning,high,9,512,152,19,12.5,96.3
+Qwen-2.5-72B,non-reasoning,high,10,1024,11,0,0.0,96.3
+Qwen-2.5-72B,non-reasoning,low,6,64,7,7,100.0,96.3
+Qwen-2.5-72B,non-reasoning,low,7,128,87,70,80.46,96.3
+Qwen-2.5-72B,non-reasoning,low,8,256,37,34,91.89,96.3
+Qwen-2.5-72B,non-reasoning,medium,6,64,14,10,71.43,96.3
+Qwen-2.5-72B,non-reasoning,medium,7,128,202,117,57.92,96.3
+Qwen-2.5-72B,non-reasoning,medium,8,256,479,222,46.35,96.3
+Qwen-2.5-72B,non-reasoning,medium,9,512,66,17,25.76,96.3

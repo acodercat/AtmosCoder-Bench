@@ -1,0 +1,17 @@
+model,low,medium,high
+gpt-5.5 (reasoning),100.0,98.8,97.8
+Gemini-3.1-Pro (reasoning),100.0,98.4,91.0
+Kimi K2.6 (reasoning),100.0,97.7,86.6
+DeepSeek-V4-pro (reasoning),100.0,97.3,85.1
+Qwen-3.5-397B (reasoning),100.0,97.3,88.1
+DeepSeek-V4-flash (reasoning),100.0,96.5,80.6
+gpt-5.5,100.0,97.3,79.9
+Qwen-3.5-397B,100.0,96.5,82.1
+Kimi K2.6,100.0,93.8,85.8
+Qwen-3.6-27B (reasoning),100.0,94.6,72.4
+DeepSeek-V4-pro,95.5,90.7,62.7
+DeepSeek-V4-flash,97.7,88.4,70.9
+Qwen-3.6-27B,100.0,88.0,60.4
+Qwen-3.5-9B (reasoning),100.0,87.6,52.2
+Qwen-3.5-9B,97.7,74.4,44.0
+Qwen-2.5-72B,81.8,44.6,13.4

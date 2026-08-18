@@ -1,0 +1,6 @@
+model,overall,hydrology,environmental_chemistry,ecology,soil
+gpt-5.5,93.1,94.6,90.5,89.5,94.4
+Kimi K2.6,92.4,94.6,95.2,78.9,94.4
+Qwen-3.6-27B,88.5,75.7,95.2,89.5,94.4
+DeepSeek-V4-flash,90.1,86.5,81.0,89.5,96.3
+Qwen-2.5-72B,42.0,37.8,14.3,57.9,50.0

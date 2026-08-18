@@ -1,0 +1,859 @@
+model,protocol,setting,log10_lo,log10_hi,n_problem_runs
+gpt-5.5 (reasoning),code,reasoning,1.7,1.8,3
+gpt-5.5 (reasoning),code,reasoning,1.8,1.9,12
+gpt-5.5 (reasoning),code,reasoning,1.9,2.0,38
+gpt-5.5 (reasoning),code,reasoning,2.0,2.1,47
+gpt-5.5 (reasoning),code,reasoning,2.1,2.2,79
+gpt-5.5 (reasoning),code,reasoning,2.2,2.3,94
+gpt-5.5 (reasoning),code,reasoning,2.3,2.4,155
+gpt-5.5 (reasoning),code,reasoning,2.4,2.5,147
+gpt-5.5 (reasoning),code,reasoning,2.5,2.6,140
+gpt-5.5 (reasoning),code,reasoning,2.6,2.7,161
+gpt-5.5 (reasoning),code,reasoning,2.7,2.8,145
+gpt-5.5 (reasoning),code,reasoning,2.8,2.9,92
+gpt-5.5 (reasoning),code,reasoning,2.9,3.0,84
+gpt-5.5 (reasoning),code,reasoning,3.0,3.1,57
+gpt-5.5 (reasoning),code,reasoning,3.1,3.2,34
+gpt-5.5 (reasoning),code,reasoning,3.2,3.3,13
+gpt-5.5 (reasoning),code,reasoning,3.3,3.4,3
+gpt-5.5 (reasoning),code,reasoning,3.4,3.5,1
+gpt-5.5 (reasoning),code,reasoning,3.5,3.6,1
+gpt-5.5 (reasoning),code,reasoning,3.6,3.7,1
+gpt-5.5 (reasoning),code,reasoning,3.7,3.8,1
+gpt-5.5 (reasoning),code,reasoning,3.8,3.9,0
+gpt-5.5 (reasoning),code,reasoning,3.9,4.0,0
+gpt-5.5 (reasoning),code,reasoning,4.0,4.1,0
+gpt-5.5 (reasoning),code,reasoning,4.1,4.2,0
+gpt-5.5 (reasoning),code,reasoning,4.2,4.3,0
+gpt-5.5 (reasoning),code,reasoning,4.3,4.4,0
+gpt-5.5 (reasoning),code,reasoning,4.4,4.5,0
+gpt-5.5 (reasoning),code,reasoning,4.5,4.6,0
+gpt-5.5 (reasoning),code,reasoning,4.6,4.7,0
+gpt-5.5 (reasoning),code,reasoning,4.7,4.8,0
+gpt-5.5 (reasoning),code,reasoning,4.8,4.9,0
+gpt-5.5 (reasoning),code,reasoning,4.9,5.0,0
+gpt-5.5 (reasoning),code,reasoning,5.0,5.1,0
+gpt-5.5 (reasoning),code,reasoning,5.1,5.2,0
+gpt-5.5 (reasoning),code,reasoning,5.2,5.3,0
+gpt-5.5 (reasoning),code,reasoning,5.3,5.4,0
+gpt-5.5 (reasoning),code,reasoning,5.4,5.5,0
+gpt-5.5 (reasoning),code,reasoning,5.5,5.6,0
+Gemini-3.1-Pro (reasoning),code,reasoning,1.7,1.8,0
+Gemini-3.1-Pro (reasoning),code,reasoning,1.8,1.9,0
+Gemini-3.1-Pro (reasoning),code,reasoning,1.9,2.0,0
+Gemini-3.1-Pro (reasoning),code,reasoning,2.0,2.1,0
+Gemini-3.1-Pro (reasoning),code,reasoning,2.1,2.2,0
+Gemini-3.1-Pro (reasoning),code,reasoning,2.2,2.3,0
+Gemini-3.1-Pro (reasoning),code,reasoning,2.3,2.4,0
+Gemini-3.1-Pro (reasoning),code,reasoning,2.4,2.5,0
+Gemini-3.1-Pro (reasoning),code,reasoning,2.5,2.6,0
+Gemini-3.1-Pro (reasoning),code,reasoning,2.6,2.7,6
+Gemini-3.1-Pro (reasoning),code,reasoning,2.7,2.8,32
+Gemini-3.1-Pro (reasoning),code,reasoning,2.8,2.9,168
+Gemini-3.1-Pro (reasoning),code,reasoning,2.9,3.0,370
+Gemini-3.1-Pro (reasoning),code,reasoning,3.0,3.1,537
+Gemini-3.1-Pro (reasoning),code,reasoning,3.1,3.2,167
+Gemini-3.1-Pro (reasoning),code,reasoning,3.2,3.3,20
+Gemini-3.1-Pro (reasoning),code,reasoning,3.3,3.4,4
+Gemini-3.1-Pro (reasoning),code,reasoning,3.4,3.5,4
+Gemini-3.1-Pro (reasoning),code,reasoning,3.5,3.6,0
+Gemini-3.1-Pro (reasoning),code,reasoning,3.6,3.7,0
+Gemini-3.1-Pro (reasoning),code,reasoning,3.7,3.8,0
+Gemini-3.1-Pro (reasoning),code,reasoning,3.8,3.9,0
+Gemini-3.1-Pro (reasoning),code,reasoning,3.9,4.0,0
+Gemini-3.1-Pro (reasoning),code,reasoning,4.0,4.1,0
+Gemini-3.1-Pro (reasoning),code,reasoning,4.1,4.2,0
+Gemini-3.1-Pro (reasoning),code,reasoning,4.2,4.3,0
+Gemini-3.1-Pro (reasoning),code,reasoning,4.3,4.4,0
+Gemini-3.1-Pro (reasoning),code,reasoning,4.4,4.5,0
+Gemini-3.1-Pro (reasoning),code,reasoning,4.5,4.6,0
+Gemini-3.1-Pro (reasoning),code,reasoning,4.6,4.7,0
+Gemini-3.1-Pro (reasoning),code,reasoning,4.7,4.8,0
+Gemini-3.1-Pro (reasoning),code,reasoning,4.8,4.9,0
+Gemini-3.1-Pro (reasoning),code,reasoning,4.9,5.0,0
+Gemini-3.1-Pro (reasoning),code,reasoning,5.0,5.1,0
+Gemini-3.1-Pro (reasoning),code,reasoning,5.1,5.2,0
+Gemini-3.1-Pro (reasoning),code,reasoning,5.2,5.3,0
+Gemini-3.1-Pro (reasoning),code,reasoning,5.3,5.4,0
+Gemini-3.1-Pro (reasoning),code,reasoning,5.4,5.5,0
+Gemini-3.1-Pro (reasoning),code,reasoning,5.5,5.6,0
+Kimi K2.6 (reasoning),code,reasoning,1.7,1.8,0
+Kimi K2.6 (reasoning),code,reasoning,1.8,1.9,0
+Kimi K2.6 (reasoning),code,reasoning,1.9,2.0,0
+Kimi K2.6 (reasoning),code,reasoning,2.0,2.1,0
+Kimi K2.6 (reasoning),code,reasoning,2.1,2.2,0
+Kimi K2.6 (reasoning),code,reasoning,2.2,2.3,0
+Kimi K2.6 (reasoning),code,reasoning,2.3,2.4,0
+Kimi K2.6 (reasoning),code,reasoning,2.4,2.5,0
+Kimi K2.6 (reasoning),code,reasoning,2.5,2.6,0
+Kimi K2.6 (reasoning),code,reasoning,2.6,2.7,0
+Kimi K2.6 (reasoning),code,reasoning,2.7,2.8,1
+Kimi K2.6 (reasoning),code,reasoning,2.8,2.9,1
+Kimi K2.6 (reasoning),code,reasoning,2.9,3.0,5
+Kimi K2.6 (reasoning),code,reasoning,3.0,3.1,18
+Kimi K2.6 (reasoning),code,reasoning,3.1,3.2,20
+Kimi K2.6 (reasoning),code,reasoning,3.2,3.3,27
+Kimi K2.6 (reasoning),code,reasoning,3.3,3.4,45
+Kimi K2.6 (reasoning),code,reasoning,3.4,3.5,40
+Kimi K2.6 (reasoning),code,reasoning,3.5,3.6,51
+Kimi K2.6 (reasoning),code,reasoning,3.6,3.7,61
+Kimi K2.6 (reasoning),code,reasoning,3.7,3.8,74
+Kimi K2.6 (reasoning),code,reasoning,3.8,3.9,85
+Kimi K2.6 (reasoning),code,reasoning,3.9,4.0,102
+Kimi K2.6 (reasoning),code,reasoning,4.0,4.1,117
+Kimi K2.6 (reasoning),code,reasoning,4.1,4.2,90
+Kimi K2.6 (reasoning),code,reasoning,4.2,4.3,21
+Kimi K2.6 (reasoning),code,reasoning,4.3,4.4,6
+Kimi K2.6 (reasoning),code,reasoning,4.4,4.5,9
+Kimi K2.6 (reasoning),code,reasoning,4.5,4.6,286
+Kimi K2.6 (reasoning),code,reasoning,4.6,4.7,126
+Kimi K2.6 (reasoning),code,reasoning,4.7,4.8,3
+Kimi K2.6 (reasoning),code,reasoning,4.8,4.9,52
+Kimi K2.6 (reasoning),code,reasoning,4.9,5.0,12
+Kimi K2.6 (reasoning),code,reasoning,5.0,5.1,17
+Kimi K2.6 (reasoning),code,reasoning,5.1,5.2,14
+Kimi K2.6 (reasoning),code,reasoning,5.2,5.3,25
+Kimi K2.6 (reasoning),code,reasoning,5.3,5.4,0
+Kimi K2.6 (reasoning),code,reasoning,5.4,5.5,0
+Kimi K2.6 (reasoning),code,reasoning,5.5,5.6,0
+DeepSeek-V4-pro (reasoning),code,reasoning,1.7,1.8,0
+DeepSeek-V4-pro (reasoning),code,reasoning,1.8,1.9,0
+DeepSeek-V4-pro (reasoning),code,reasoning,1.9,2.0,0
+DeepSeek-V4-pro (reasoning),code,reasoning,2.0,2.1,0
+DeepSeek-V4-pro (reasoning),code,reasoning,2.1,2.2,0
+DeepSeek-V4-pro (reasoning),code,reasoning,2.2,2.3,0
+DeepSeek-V4-pro (reasoning),code,reasoning,2.3,2.4,0
+DeepSeek-V4-pro (reasoning),code,reasoning,2.4,2.5,2
+DeepSeek-V4-pro (reasoning),code,reasoning,2.5,2.6,9
+DeepSeek-V4-pro (reasoning),code,reasoning,2.6,2.7,21
+DeepSeek-V4-pro (reasoning),code,reasoning,2.7,2.8,52
+DeepSeek-V4-pro (reasoning),code,reasoning,2.8,2.9,84
+DeepSeek-V4-pro (reasoning),code,reasoning,2.9,3.0,110
+DeepSeek-V4-pro (reasoning),code,reasoning,3.0,3.1,123
+DeepSeek-V4-pro (reasoning),code,reasoning,3.1,3.2,110
+DeepSeek-V4-pro (reasoning),code,reasoning,3.2,3.3,111
+DeepSeek-V4-pro (reasoning),code,reasoning,3.3,3.4,109
+DeepSeek-V4-pro (reasoning),code,reasoning,3.4,3.5,104
+DeepSeek-V4-pro (reasoning),code,reasoning,3.5,3.6,90
+DeepSeek-V4-pro (reasoning),code,reasoning,3.6,3.7,68
+DeepSeek-V4-pro (reasoning),code,reasoning,3.7,3.8,68
+DeepSeek-V4-pro (reasoning),code,reasoning,3.8,3.9,61
+DeepSeek-V4-pro (reasoning),code,reasoning,3.9,4.0,51
+DeepSeek-V4-pro (reasoning),code,reasoning,4.0,4.1,37
+DeepSeek-V4-pro (reasoning),code,reasoning,4.1,4.2,23
+DeepSeek-V4-pro (reasoning),code,reasoning,4.2,4.3,2
+DeepSeek-V4-pro (reasoning),code,reasoning,4.3,4.4,1
+DeepSeek-V4-pro (reasoning),code,reasoning,4.4,4.5,27
+DeepSeek-V4-pro (reasoning),code,reasoning,4.5,4.6,29
+DeepSeek-V4-pro (reasoning),code,reasoning,4.6,4.7,4
+DeepSeek-V4-pro (reasoning),code,reasoning,4.7,4.8,4
+DeepSeek-V4-pro (reasoning),code,reasoning,4.8,4.9,1
+DeepSeek-V4-pro (reasoning),code,reasoning,4.9,5.0,1
+DeepSeek-V4-pro (reasoning),code,reasoning,5.0,5.1,3
+DeepSeek-V4-pro (reasoning),code,reasoning,5.1,5.2,2
+DeepSeek-V4-pro (reasoning),code,reasoning,5.2,5.3,1
+DeepSeek-V4-pro (reasoning),code,reasoning,5.3,5.4,0
+DeepSeek-V4-pro (reasoning),code,reasoning,5.4,5.5,0
+DeepSeek-V4-pro (reasoning),code,reasoning,5.5,5.6,0
+Qwen-3.5-397B (reasoning),code,reasoning,1.7,1.8,0
+Qwen-3.5-397B (reasoning),code,reasoning,1.8,1.9,0
+Qwen-3.5-397B (reasoning),code,reasoning,1.9,2.0,0
+Qwen-3.5-397B (reasoning),code,reasoning,2.0,2.1,0
+Qwen-3.5-397B (reasoning),code,reasoning,2.1,2.2,0
+Qwen-3.5-397B (reasoning),code,reasoning,2.2,2.3,0
+Qwen-3.5-397B (reasoning),code,reasoning,2.3,2.4,0
+Qwen-3.5-397B (reasoning),code,reasoning,2.4,2.5,0
+Qwen-3.5-397B (reasoning),code,reasoning,2.5,2.6,0
+Qwen-3.5-397B (reasoning),code,reasoning,2.6,2.7,0
+Qwen-3.5-397B (reasoning),code,reasoning,2.7,2.8,15
+Qwen-3.5-397B (reasoning),code,reasoning,2.8,2.9,42
+Qwen-3.5-397B (reasoning),code,reasoning,2.9,3.0,72
+Qwen-3.5-397B (reasoning),code,reasoning,3.0,3.1,78
+Qwen-3.5-397B (reasoning),code,reasoning,3.1,3.2,74
+Qwen-3.5-397B (reasoning),code,reasoning,3.2,3.3,58
+Qwen-3.5-397B (reasoning),code,reasoning,3.3,3.4,61
+Qwen-3.5-397B (reasoning),code,reasoning,3.4,3.5,58
+Qwen-3.5-397B (reasoning),code,reasoning,3.5,3.6,64
+Qwen-3.5-397B (reasoning),code,reasoning,3.6,3.7,90
+Qwen-3.5-397B (reasoning),code,reasoning,3.7,3.8,200
+Qwen-3.5-397B (reasoning),code,reasoning,3.8,3.9,208
+Qwen-3.5-397B (reasoning),code,reasoning,3.9,4.0,128
+Qwen-3.5-397B (reasoning),code,reasoning,4.0,4.1,105
+Qwen-3.5-397B (reasoning),code,reasoning,4.1,4.2,39
+Qwen-3.5-397B (reasoning),code,reasoning,4.2,4.3,8
+Qwen-3.5-397B (reasoning),code,reasoning,4.3,4.4,1
+Qwen-3.5-397B (reasoning),code,reasoning,4.4,4.5,3
+Qwen-3.5-397B (reasoning),code,reasoning,4.5,4.6,4
+Qwen-3.5-397B (reasoning),code,reasoning,4.6,4.7,0
+Qwen-3.5-397B (reasoning),code,reasoning,4.7,4.8,0
+Qwen-3.5-397B (reasoning),code,reasoning,4.8,4.9,0
+Qwen-3.5-397B (reasoning),code,reasoning,4.9,5.0,0
+Qwen-3.5-397B (reasoning),code,reasoning,5.0,5.1,0
+Qwen-3.5-397B (reasoning),code,reasoning,5.1,5.2,0
+Qwen-3.5-397B (reasoning),code,reasoning,5.2,5.3,0
+Qwen-3.5-397B (reasoning),code,reasoning,5.3,5.4,0
+Qwen-3.5-397B (reasoning),code,reasoning,5.4,5.5,0
+Qwen-3.5-397B (reasoning),code,reasoning,5.5,5.6,0
+DeepSeek-V4-flash (reasoning),code,reasoning,1.7,1.8,0
+DeepSeek-V4-flash (reasoning),code,reasoning,1.8,1.9,0
+DeepSeek-V4-flash (reasoning),code,reasoning,1.9,2.0,0
+DeepSeek-V4-flash (reasoning),code,reasoning,2.0,2.1,0
+DeepSeek-V4-flash (reasoning),code,reasoning,2.1,2.2,0
+DeepSeek-V4-flash (reasoning),code,reasoning,2.2,2.3,0
+DeepSeek-V4-flash (reasoning),code,reasoning,2.3,2.4,0
+DeepSeek-V4-flash (reasoning),code,reasoning,2.4,2.5,11
+DeepSeek-V4-flash (reasoning),code,reasoning,2.5,2.6,32
+DeepSeek-V4-flash (reasoning),code,reasoning,2.6,2.7,32
+DeepSeek-V4-flash (reasoning),code,reasoning,2.7,2.8,80
+DeepSeek-V4-flash (reasoning),code,reasoning,2.8,2.9,73
+DeepSeek-V4-flash (reasoning),code,reasoning,2.9,3.0,108
+DeepSeek-V4-flash (reasoning),code,reasoning,3.0,3.1,139
+DeepSeek-V4-flash (reasoning),code,reasoning,3.1,3.2,137
+DeepSeek-V4-flash (reasoning),code,reasoning,3.2,3.3,134
+DeepSeek-V4-flash (reasoning),code,reasoning,3.3,3.4,121
+DeepSeek-V4-flash (reasoning),code,reasoning,3.4,3.5,107
+DeepSeek-V4-flash (reasoning),code,reasoning,3.5,3.6,100
+DeepSeek-V4-flash (reasoning),code,reasoning,3.6,3.7,77
+DeepSeek-V4-flash (reasoning),code,reasoning,3.7,3.8,56
+DeepSeek-V4-flash (reasoning),code,reasoning,3.8,3.9,33
+DeepSeek-V4-flash (reasoning),code,reasoning,3.9,4.0,26
+DeepSeek-V4-flash (reasoning),code,reasoning,4.0,4.1,15
+DeepSeek-V4-flash (reasoning),code,reasoning,4.1,4.2,13
+DeepSeek-V4-flash (reasoning),code,reasoning,4.2,4.3,5
+DeepSeek-V4-flash (reasoning),code,reasoning,4.3,4.4,4
+DeepSeek-V4-flash (reasoning),code,reasoning,4.4,4.5,2
+DeepSeek-V4-flash (reasoning),code,reasoning,4.5,4.6,1
+DeepSeek-V4-flash (reasoning),code,reasoning,4.6,4.7,0
+DeepSeek-V4-flash (reasoning),code,reasoning,4.7,4.8,2
+DeepSeek-V4-flash (reasoning),code,reasoning,4.8,4.9,0
+DeepSeek-V4-flash (reasoning),code,reasoning,4.9,5.0,0
+DeepSeek-V4-flash (reasoning),code,reasoning,5.0,5.1,0
+DeepSeek-V4-flash (reasoning),code,reasoning,5.1,5.2,0
+DeepSeek-V4-flash (reasoning),code,reasoning,5.2,5.3,0
+DeepSeek-V4-flash (reasoning),code,reasoning,5.3,5.4,0
+DeepSeek-V4-flash (reasoning),code,reasoning,5.4,5.5,0
+DeepSeek-V4-flash (reasoning),code,reasoning,5.5,5.6,0
+gpt-5.5,code,non-reasoning,1.7,1.8,0
+gpt-5.5,code,non-reasoning,1.8,1.9,10
+gpt-5.5,code,non-reasoning,1.9,2.0,32
+gpt-5.5,code,non-reasoning,2.0,2.1,54
+gpt-5.5,code,non-reasoning,2.1,2.2,92
+gpt-5.5,code,non-reasoning,2.2,2.3,173
+gpt-5.5,code,non-reasoning,2.3,2.4,217
+gpt-5.5,code,non-reasoning,2.4,2.5,239
+gpt-5.5,code,non-reasoning,2.5,2.6,174
+gpt-5.5,code,non-reasoning,2.6,2.7,120
+gpt-5.5,code,non-reasoning,2.7,2.8,95
+gpt-5.5,code,non-reasoning,2.8,2.9,57
+gpt-5.5,code,non-reasoning,2.9,3.0,28
+gpt-5.5,code,non-reasoning,3.0,3.1,9
+gpt-5.5,code,non-reasoning,3.1,3.2,5
+gpt-5.5,code,non-reasoning,3.2,3.3,0
+gpt-5.5,code,non-reasoning,3.3,3.4,0
+gpt-5.5,code,non-reasoning,3.4,3.5,2
+gpt-5.5,code,non-reasoning,3.5,3.6,0
+gpt-5.5,code,non-reasoning,3.6,3.7,0
+gpt-5.5,code,non-reasoning,3.7,3.8,0
+gpt-5.5,code,non-reasoning,3.8,3.9,1
+gpt-5.5,code,non-reasoning,3.9,4.0,0
+gpt-5.5,code,non-reasoning,4.0,4.1,0
+gpt-5.5,code,non-reasoning,4.1,4.2,0
+gpt-5.5,code,non-reasoning,4.2,4.3,0
+gpt-5.5,code,non-reasoning,4.3,4.4,0
+gpt-5.5,code,non-reasoning,4.4,4.5,0
+gpt-5.5,code,non-reasoning,4.5,4.6,0
+gpt-5.5,code,non-reasoning,4.6,4.7,0
+gpt-5.5,code,non-reasoning,4.7,4.8,0
+gpt-5.5,code,non-reasoning,4.8,4.9,0
+gpt-5.5,code,non-reasoning,4.9,5.0,0
+gpt-5.5,code,non-reasoning,5.0,5.1,0
+gpt-5.5,code,non-reasoning,5.1,5.2,0
+gpt-5.5,code,non-reasoning,5.2,5.3,0
+gpt-5.5,code,non-reasoning,5.3,5.4,0
+gpt-5.5,code,non-reasoning,5.4,5.5,0
+gpt-5.5,code,non-reasoning,5.5,5.6,0
+Qwen-3.5-397B,code,non-reasoning,1.7,1.8,0
+Qwen-3.5-397B,code,non-reasoning,1.8,1.9,0
+Qwen-3.5-397B,code,non-reasoning,1.9,2.0,0
+Qwen-3.5-397B,code,non-reasoning,2.0,2.1,1
+Qwen-3.5-397B,code,non-reasoning,2.1,2.2,2
+Qwen-3.5-397B,code,non-reasoning,2.2,2.3,5
+Qwen-3.5-397B,code,non-reasoning,2.3,2.4,49
+Qwen-3.5-397B,code,non-reasoning,2.4,2.5,115
+Qwen-3.5-397B,code,non-reasoning,2.5,2.6,135
+Qwen-3.5-397B,code,non-reasoning,2.6,2.7,151
+Qwen-3.5-397B,code,non-reasoning,2.7,2.8,136
+Qwen-3.5-397B,code,non-reasoning,2.8,2.9,109
+Qwen-3.5-397B,code,non-reasoning,2.9,3.0,97
+Qwen-3.5-397B,code,non-reasoning,3.0,3.1,99
+Qwen-3.5-397B,code,non-reasoning,3.1,3.2,102
+Qwen-3.5-397B,code,non-reasoning,3.2,3.3,58
+Qwen-3.5-397B,code,non-reasoning,3.3,3.4,44
+Qwen-3.5-397B,code,non-reasoning,3.4,3.5,34
+Qwen-3.5-397B,code,non-reasoning,3.5,3.6,37
+Qwen-3.5-397B,code,non-reasoning,3.6,3.7,34
+Qwen-3.5-397B,code,non-reasoning,3.7,3.8,38
+Qwen-3.5-397B,code,non-reasoning,3.8,3.9,24
+Qwen-3.5-397B,code,non-reasoning,3.9,4.0,21
+Qwen-3.5-397B,code,non-reasoning,4.0,4.1,12
+Qwen-3.5-397B,code,non-reasoning,4.1,4.2,3
+Qwen-3.5-397B,code,non-reasoning,4.2,4.3,2
+Qwen-3.5-397B,code,non-reasoning,4.3,4.4,0
+Qwen-3.5-397B,code,non-reasoning,4.4,4.5,0
+Qwen-3.5-397B,code,non-reasoning,4.5,4.6,0
+Qwen-3.5-397B,code,non-reasoning,4.6,4.7,0
+Qwen-3.5-397B,code,non-reasoning,4.7,4.8,0
+Qwen-3.5-397B,code,non-reasoning,4.8,4.9,0
+Qwen-3.5-397B,code,non-reasoning,4.9,5.0,0
+Qwen-3.5-397B,code,non-reasoning,5.0,5.1,0
+Qwen-3.5-397B,code,non-reasoning,5.1,5.2,0
+Qwen-3.5-397B,code,non-reasoning,5.2,5.3,0
+Qwen-3.5-397B,code,non-reasoning,5.3,5.4,0
+Qwen-3.5-397B,code,non-reasoning,5.4,5.5,0
+Qwen-3.5-397B,code,non-reasoning,5.5,5.6,0
+Kimi K2.6,code,non-reasoning,1.7,1.8,0
+Kimi K2.6,code,non-reasoning,1.8,1.9,0
+Kimi K2.6,code,non-reasoning,1.9,2.0,0
+Kimi K2.6,code,non-reasoning,2.0,2.1,2
+Kimi K2.6,code,non-reasoning,2.1,2.2,6
+Kimi K2.6,code,non-reasoning,2.2,2.3,14
+Kimi K2.6,code,non-reasoning,2.3,2.4,22
+Kimi K2.6,code,non-reasoning,2.4,2.5,42
+Kimi K2.6,code,non-reasoning,2.5,2.6,56
+Kimi K2.6,code,non-reasoning,2.6,2.7,85
+Kimi K2.6,code,non-reasoning,2.7,2.8,74
+Kimi K2.6,code,non-reasoning,2.8,2.9,103
+Kimi K2.6,code,non-reasoning,2.9,3.0,109
+Kimi K2.6,code,non-reasoning,3.0,3.1,100
+Kimi K2.6,code,non-reasoning,3.1,3.2,98
+Kimi K2.6,code,non-reasoning,3.2,3.3,80
+Kimi K2.6,code,non-reasoning,3.3,3.4,67
+Kimi K2.6,code,non-reasoning,3.4,3.5,50
+Kimi K2.6,code,non-reasoning,3.5,3.6,48
+Kimi K2.6,code,non-reasoning,3.6,3.7,27
+Kimi K2.6,code,non-reasoning,3.7,3.8,36
+Kimi K2.6,code,non-reasoning,3.8,3.9,44
+Kimi K2.6,code,non-reasoning,3.9,4.0,42
+Kimi K2.6,code,non-reasoning,4.0,4.1,44
+Kimi K2.6,code,non-reasoning,4.1,4.2,44
+Kimi K2.6,code,non-reasoning,4.2,4.3,86
+Kimi K2.6,code,non-reasoning,4.3,4.4,6
+Kimi K2.6,code,non-reasoning,4.4,4.5,5
+Kimi K2.6,code,non-reasoning,4.5,4.6,12
+Kimi K2.6,code,non-reasoning,4.6,4.7,3
+Kimi K2.6,code,non-reasoning,4.7,4.8,1
+Kimi K2.6,code,non-reasoning,4.8,4.9,2
+Kimi K2.6,code,non-reasoning,4.9,5.0,0
+Kimi K2.6,code,non-reasoning,5.0,5.1,0
+Kimi K2.6,code,non-reasoning,5.1,5.2,0
+Kimi K2.6,code,non-reasoning,5.2,5.3,0
+Kimi K2.6,code,non-reasoning,5.3,5.4,0
+Kimi K2.6,code,non-reasoning,5.4,5.5,0
+Kimi K2.6,code,non-reasoning,5.5,5.6,0
+Qwen-3.6-27B (reasoning),code,reasoning,1.7,1.8,0
+Qwen-3.6-27B (reasoning),code,reasoning,1.8,1.9,0
+Qwen-3.6-27B (reasoning),code,reasoning,1.9,2.0,0
+Qwen-3.6-27B (reasoning),code,reasoning,2.0,2.1,0
+Qwen-3.6-27B (reasoning),code,reasoning,2.1,2.2,0
+Qwen-3.6-27B (reasoning),code,reasoning,2.2,2.3,0
+Qwen-3.6-27B (reasoning),code,reasoning,2.3,2.4,0
+Qwen-3.6-27B (reasoning),code,reasoning,2.4,2.5,0
+Qwen-3.6-27B (reasoning),code,reasoning,2.5,2.6,0
+Qwen-3.6-27B (reasoning),code,reasoning,2.6,2.7,0
+Qwen-3.6-27B (reasoning),code,reasoning,2.7,2.8,0
+Qwen-3.6-27B (reasoning),code,reasoning,2.8,2.9,0
+Qwen-3.6-27B (reasoning),code,reasoning,2.9,3.0,0
+Qwen-3.6-27B (reasoning),code,reasoning,3.0,3.1,0
+Qwen-3.6-27B (reasoning),code,reasoning,3.1,3.2,5
+Qwen-3.6-27B (reasoning),code,reasoning,3.2,3.3,11
+Qwen-3.6-27B (reasoning),code,reasoning,3.3,3.4,46
+Qwen-3.6-27B (reasoning),code,reasoning,3.4,3.5,68
+Qwen-3.6-27B (reasoning),code,reasoning,3.5,3.6,108
+Qwen-3.6-27B (reasoning),code,reasoning,3.6,3.7,193
+Qwen-3.6-27B (reasoning),code,reasoning,3.7,3.8,197
+Qwen-3.6-27B (reasoning),code,reasoning,3.8,3.9,144
+Qwen-3.6-27B (reasoning),code,reasoning,3.9,4.0,136
+Qwen-3.6-27B (reasoning),code,reasoning,4.0,4.1,119
+Qwen-3.6-27B (reasoning),code,reasoning,4.1,4.2,69
+Qwen-3.6-27B (reasoning),code,reasoning,4.2,4.3,23
+Qwen-3.6-27B (reasoning),code,reasoning,4.3,4.4,20
+Qwen-3.6-27B (reasoning),code,reasoning,4.4,4.5,51
+Qwen-3.6-27B (reasoning),code,reasoning,4.5,4.6,85
+Qwen-3.6-27B (reasoning),code,reasoning,4.6,4.7,14
+Qwen-3.6-27B (reasoning),code,reasoning,4.7,4.8,3
+Qwen-3.6-27B (reasoning),code,reasoning,4.8,4.9,11
+Qwen-3.6-27B (reasoning),code,reasoning,4.9,5.0,1
+Qwen-3.6-27B (reasoning),code,reasoning,5.0,5.1,3
+Qwen-3.6-27B (reasoning),code,reasoning,5.1,5.2,1
+Qwen-3.6-27B (reasoning),code,reasoning,5.2,5.3,0
+Qwen-3.6-27B (reasoning),code,reasoning,5.3,5.4,0
+Qwen-3.6-27B (reasoning),code,reasoning,5.4,5.5,0
+Qwen-3.6-27B (reasoning),code,reasoning,5.5,5.6,0
+DeepSeek-V4-pro,code,non-reasoning,1.7,1.8,0
+DeepSeek-V4-pro,code,non-reasoning,1.8,1.9,0
+DeepSeek-V4-pro,code,non-reasoning,1.9,2.0,0
+DeepSeek-V4-pro,code,non-reasoning,2.0,2.1,5
+DeepSeek-V4-pro,code,non-reasoning,2.1,2.2,25
+DeepSeek-V4-pro,code,non-reasoning,2.2,2.3,111
+DeepSeek-V4-pro,code,non-reasoning,2.3,2.4,147
+DeepSeek-V4-pro,code,non-reasoning,2.4,2.5,236
+DeepSeek-V4-pro,code,non-reasoning,2.5,2.6,232
+DeepSeek-V4-pro,code,non-reasoning,2.6,2.7,180
+DeepSeek-V4-pro,code,non-reasoning,2.7,2.8,127
+DeepSeek-V4-pro,code,non-reasoning,2.8,2.9,94
+DeepSeek-V4-pro,code,non-reasoning,2.9,3.0,50
+DeepSeek-V4-pro,code,non-reasoning,3.0,3.1,36
+DeepSeek-V4-pro,code,non-reasoning,3.1,3.2,28
+DeepSeek-V4-pro,code,non-reasoning,3.2,3.3,12
+DeepSeek-V4-pro,code,non-reasoning,3.3,3.4,11
+DeepSeek-V4-pro,code,non-reasoning,3.4,3.5,2
+DeepSeek-V4-pro,code,non-reasoning,3.5,3.6,3
+DeepSeek-V4-pro,code,non-reasoning,3.6,3.7,2
+DeepSeek-V4-pro,code,non-reasoning,3.7,3.8,1
+DeepSeek-V4-pro,code,non-reasoning,3.8,3.9,2
+DeepSeek-V4-pro,code,non-reasoning,3.9,4.0,0
+DeepSeek-V4-pro,code,non-reasoning,4.0,4.1,1
+DeepSeek-V4-pro,code,non-reasoning,4.1,4.2,1
+DeepSeek-V4-pro,code,non-reasoning,4.2,4.3,2
+DeepSeek-V4-pro,code,non-reasoning,4.3,4.4,0
+DeepSeek-V4-pro,code,non-reasoning,4.4,4.5,0
+DeepSeek-V4-pro,code,non-reasoning,4.5,4.6,0
+DeepSeek-V4-pro,code,non-reasoning,4.6,4.7,0
+DeepSeek-V4-pro,code,non-reasoning,4.7,4.8,0
+DeepSeek-V4-pro,code,non-reasoning,4.8,4.9,0
+DeepSeek-V4-pro,code,non-reasoning,4.9,5.0,0
+DeepSeek-V4-pro,code,non-reasoning,5.0,5.1,0
+DeepSeek-V4-pro,code,non-reasoning,5.1,5.2,0
+DeepSeek-V4-pro,code,non-reasoning,5.2,5.3,0
+DeepSeek-V4-pro,code,non-reasoning,5.3,5.4,0
+DeepSeek-V4-pro,code,non-reasoning,5.4,5.5,0
+DeepSeek-V4-pro,code,non-reasoning,5.5,5.6,0
+DeepSeek-V4-flash,code,non-reasoning,1.7,1.8,0
+DeepSeek-V4-flash,code,non-reasoning,1.8,1.9,0
+DeepSeek-V4-flash,code,non-reasoning,1.9,2.0,2
+DeepSeek-V4-flash,code,non-reasoning,2.0,2.1,8
+DeepSeek-V4-flash,code,non-reasoning,2.1,2.2,51
+DeepSeek-V4-flash,code,non-reasoning,2.2,2.3,75
+DeepSeek-V4-flash,code,non-reasoning,2.3,2.4,143
+DeepSeek-V4-flash,code,non-reasoning,2.4,2.5,219
+DeepSeek-V4-flash,code,non-reasoning,2.5,2.6,213
+DeepSeek-V4-flash,code,non-reasoning,2.6,2.7,196
+DeepSeek-V4-flash,code,non-reasoning,2.7,2.8,130
+DeepSeek-V4-flash,code,non-reasoning,2.8,2.9,117
+DeepSeek-V4-flash,code,non-reasoning,2.9,3.0,63
+DeepSeek-V4-flash,code,non-reasoning,3.0,3.1,43
+DeepSeek-V4-flash,code,non-reasoning,3.1,3.2,31
+DeepSeek-V4-flash,code,non-reasoning,3.2,3.3,10
+DeepSeek-V4-flash,code,non-reasoning,3.3,3.4,2
+DeepSeek-V4-flash,code,non-reasoning,3.4,3.5,1
+DeepSeek-V4-flash,code,non-reasoning,3.5,3.6,3
+DeepSeek-V4-flash,code,non-reasoning,3.6,3.7,1
+DeepSeek-V4-flash,code,non-reasoning,3.7,3.8,0
+DeepSeek-V4-flash,code,non-reasoning,3.8,3.9,0
+DeepSeek-V4-flash,code,non-reasoning,3.9,4.0,0
+DeepSeek-V4-flash,code,non-reasoning,4.0,4.1,0
+DeepSeek-V4-flash,code,non-reasoning,4.1,4.2,0
+DeepSeek-V4-flash,code,non-reasoning,4.2,4.3,0
+DeepSeek-V4-flash,code,non-reasoning,4.3,4.4,0
+DeepSeek-V4-flash,code,non-reasoning,4.4,4.5,0
+DeepSeek-V4-flash,code,non-reasoning,4.5,4.6,0
+DeepSeek-V4-flash,code,non-reasoning,4.6,4.7,0
+DeepSeek-V4-flash,code,non-reasoning,4.7,4.8,0
+DeepSeek-V4-flash,code,non-reasoning,4.8,4.9,0
+DeepSeek-V4-flash,code,non-reasoning,4.9,5.0,0
+DeepSeek-V4-flash,code,non-reasoning,5.0,5.1,0
+DeepSeek-V4-flash,code,non-reasoning,5.1,5.2,0
+DeepSeek-V4-flash,code,non-reasoning,5.2,5.3,0
+DeepSeek-V4-flash,code,non-reasoning,5.3,5.4,0
+DeepSeek-V4-flash,code,non-reasoning,5.4,5.5,0
+DeepSeek-V4-flash,code,non-reasoning,5.5,5.6,0
+Qwen-3.6-27B,code,non-reasoning,1.7,1.8,0
+Qwen-3.6-27B,code,non-reasoning,1.8,1.9,0
+Qwen-3.6-27B,code,non-reasoning,1.9,2.0,0
+Qwen-3.6-27B,code,non-reasoning,2.0,2.1,0
+Qwen-3.6-27B,code,non-reasoning,2.1,2.2,1
+Qwen-3.6-27B,code,non-reasoning,2.2,2.3,11
+Qwen-3.6-27B,code,non-reasoning,2.3,2.4,58
+Qwen-3.6-27B,code,non-reasoning,2.4,2.5,92
+Qwen-3.6-27B,code,non-reasoning,2.5,2.6,142
+Qwen-3.6-27B,code,non-reasoning,2.6,2.7,201
+Qwen-3.6-27B,code,non-reasoning,2.7,2.8,183
+Qwen-3.6-27B,code,non-reasoning,2.8,2.9,133
+Qwen-3.6-27B,code,non-reasoning,2.9,3.0,103
+Qwen-3.6-27B,code,non-reasoning,3.0,3.1,83
+Qwen-3.6-27B,code,non-reasoning,3.1,3.2,60
+Qwen-3.6-27B,code,non-reasoning,3.2,3.3,52
+Qwen-3.6-27B,code,non-reasoning,3.3,3.4,42
+Qwen-3.6-27B,code,non-reasoning,3.4,3.5,35
+Qwen-3.6-27B,code,non-reasoning,3.5,3.6,27
+Qwen-3.6-27B,code,non-reasoning,3.6,3.7,31
+Qwen-3.6-27B,code,non-reasoning,3.7,3.8,25
+Qwen-3.6-27B,code,non-reasoning,3.8,3.9,17
+Qwen-3.6-27B,code,non-reasoning,3.9,4.0,6
+Qwen-3.6-27B,code,non-reasoning,4.0,4.1,2
+Qwen-3.6-27B,code,non-reasoning,4.1,4.2,0
+Qwen-3.6-27B,code,non-reasoning,4.2,4.3,1
+Qwen-3.6-27B,code,non-reasoning,4.3,4.4,2
+Qwen-3.6-27B,code,non-reasoning,4.4,4.5,1
+Qwen-3.6-27B,code,non-reasoning,4.5,4.6,0
+Qwen-3.6-27B,code,non-reasoning,4.6,4.7,0
+Qwen-3.6-27B,code,non-reasoning,4.7,4.8,0
+Qwen-3.6-27B,code,non-reasoning,4.8,4.9,0
+Qwen-3.6-27B,code,non-reasoning,4.9,5.0,0
+Qwen-3.6-27B,code,non-reasoning,5.0,5.1,0
+Qwen-3.6-27B,code,non-reasoning,5.1,5.2,0
+Qwen-3.6-27B,code,non-reasoning,5.2,5.3,0
+Qwen-3.6-27B,code,non-reasoning,5.3,5.4,0
+Qwen-3.6-27B,code,non-reasoning,5.4,5.5,0
+Qwen-3.6-27B,code,non-reasoning,5.5,5.6,0
+Qwen-3.5-9B (reasoning),code,reasoning,1.7,1.8,0
+Qwen-3.5-9B (reasoning),code,reasoning,1.8,1.9,0
+Qwen-3.5-9B (reasoning),code,reasoning,1.9,2.0,0
+Qwen-3.5-9B (reasoning),code,reasoning,2.0,2.1,0
+Qwen-3.5-9B (reasoning),code,reasoning,2.1,2.2,0
+Qwen-3.5-9B (reasoning),code,reasoning,2.2,2.3,0
+Qwen-3.5-9B (reasoning),code,reasoning,2.3,2.4,0
+Qwen-3.5-9B (reasoning),code,reasoning,2.4,2.5,0
+Qwen-3.5-9B (reasoning),code,reasoning,2.5,2.6,0
+Qwen-3.5-9B (reasoning),code,reasoning,2.6,2.7,0
+Qwen-3.5-9B (reasoning),code,reasoning,2.7,2.8,2
+Qwen-3.5-9B (reasoning),code,reasoning,2.8,2.9,21
+Qwen-3.5-9B (reasoning),code,reasoning,2.9,3.0,31
+Qwen-3.5-9B (reasoning),code,reasoning,3.0,3.1,65
+Qwen-3.5-9B (reasoning),code,reasoning,3.1,3.2,50
+Qwen-3.5-9B (reasoning),code,reasoning,3.2,3.3,33
+Qwen-3.5-9B (reasoning),code,reasoning,3.3,3.4,32
+Qwen-3.5-9B (reasoning),code,reasoning,3.4,3.5,35
+Qwen-3.5-9B (reasoning),code,reasoning,3.5,3.6,67
+Qwen-3.5-9B (reasoning),code,reasoning,3.6,3.7,96
+Qwen-3.5-9B (reasoning),code,reasoning,3.7,3.8,133
+Qwen-3.5-9B (reasoning),code,reasoning,3.8,3.9,110
+Qwen-3.5-9B (reasoning),code,reasoning,3.9,4.0,73
+Qwen-3.5-9B (reasoning),code,reasoning,4.0,4.1,58
+Qwen-3.5-9B (reasoning),code,reasoning,4.1,4.2,32
+Qwen-3.5-9B (reasoning),code,reasoning,4.2,4.3,3
+Qwen-3.5-9B (reasoning),code,reasoning,4.3,4.4,3
+Qwen-3.5-9B (reasoning),code,reasoning,4.4,4.5,135
+Qwen-3.5-9B (reasoning),code,reasoning,4.5,4.6,196
+Qwen-3.5-9B (reasoning),code,reasoning,4.6,4.7,4
+Qwen-3.5-9B (reasoning),code,reasoning,4.7,4.8,51
+Qwen-3.5-9B (reasoning),code,reasoning,4.8,4.9,17
+Qwen-3.5-9B (reasoning),code,reasoning,4.9,5.0,15
+Qwen-3.5-9B (reasoning),code,reasoning,5.0,5.1,3
+Qwen-3.5-9B (reasoning),code,reasoning,5.1,5.2,42
+Qwen-3.5-9B (reasoning),code,reasoning,5.2,5.3,1
+Qwen-3.5-9B (reasoning),code,reasoning,5.3,5.4,0
+Qwen-3.5-9B (reasoning),code,reasoning,5.4,5.5,0
+Qwen-3.5-9B (reasoning),code,reasoning,5.5,5.6,0
+Qwen-3.5-9B,code,non-reasoning,1.7,1.8,0
+Qwen-3.5-9B,code,non-reasoning,1.8,1.9,0
+Qwen-3.5-9B,code,non-reasoning,1.9,2.0,0
+Qwen-3.5-9B,code,non-reasoning,2.0,2.1,0
+Qwen-3.5-9B,code,non-reasoning,2.1,2.2,0
+Qwen-3.5-9B,code,non-reasoning,2.2,2.3,1
+Qwen-3.5-9B,code,non-reasoning,2.3,2.4,26
+Qwen-3.5-9B,code,non-reasoning,2.4,2.5,72
+Qwen-3.5-9B,code,non-reasoning,2.5,2.6,91
+Qwen-3.5-9B,code,non-reasoning,2.6,2.7,124
+Qwen-3.5-9B,code,non-reasoning,2.7,2.8,150
+Qwen-3.5-9B,code,non-reasoning,2.8,2.9,127
+Qwen-3.5-9B,code,non-reasoning,2.9,3.0,124
+Qwen-3.5-9B,code,non-reasoning,3.0,3.1,100
+Qwen-3.5-9B,code,non-reasoning,3.1,3.2,76
+Qwen-3.5-9B,code,non-reasoning,3.2,3.3,71
+Qwen-3.5-9B,code,non-reasoning,3.3,3.4,66
+Qwen-3.5-9B,code,non-reasoning,3.4,3.5,51
+Qwen-3.5-9B,code,non-reasoning,3.5,3.6,34
+Qwen-3.5-9B,code,non-reasoning,3.6,3.7,41
+Qwen-3.5-9B,code,non-reasoning,3.7,3.8,32
+Qwen-3.5-9B,code,non-reasoning,3.8,3.9,29
+Qwen-3.5-9B,code,non-reasoning,3.9,4.0,35
+Qwen-3.5-9B,code,non-reasoning,4.0,4.1,21
+Qwen-3.5-9B,code,non-reasoning,4.1,4.2,18
+Qwen-3.5-9B,code,non-reasoning,4.2,4.3,8
+Qwen-3.5-9B,code,non-reasoning,4.3,4.4,4
+Qwen-3.5-9B,code,non-reasoning,4.4,4.5,0
+Qwen-3.5-9B,code,non-reasoning,4.5,4.6,2
+Qwen-3.5-9B,code,non-reasoning,4.6,4.7,0
+Qwen-3.5-9B,code,non-reasoning,4.7,4.8,1
+Qwen-3.5-9B,code,non-reasoning,4.8,4.9,4
+Qwen-3.5-9B,code,non-reasoning,4.9,5.0,0
+Qwen-3.5-9B,code,non-reasoning,5.0,5.1,0
+Qwen-3.5-9B,code,non-reasoning,5.1,5.2,0
+Qwen-3.5-9B,code,non-reasoning,5.2,5.3,0
+Qwen-3.5-9B,code,non-reasoning,5.3,5.4,0
+Qwen-3.5-9B,code,non-reasoning,5.4,5.5,0
+Qwen-3.5-9B,code,non-reasoning,5.5,5.6,0
+Qwen-2.5-72B,code,non-reasoning,1.7,1.8,0
+Qwen-2.5-72B,code,non-reasoning,1.8,1.9,1
+Qwen-2.5-72B,code,non-reasoning,1.9,2.0,3
+Qwen-2.5-72B,code,non-reasoning,2.0,2.1,17
+Qwen-2.5-72B,code,non-reasoning,2.1,2.2,26
+Qwen-2.5-72B,code,non-reasoning,2.2,2.3,78
+Qwen-2.5-72B,code,non-reasoning,2.3,2.4,188
+Qwen-2.5-72B,code,non-reasoning,2.4,2.5,231
+Qwen-2.5-72B,code,non-reasoning,2.5,2.6,275
+Qwen-2.5-72B,code,non-reasoning,2.6,2.7,203
+Qwen-2.5-72B,code,non-reasoning,2.7,2.8,127
+Qwen-2.5-72B,code,non-reasoning,2.8,2.9,72
+Qwen-2.5-72B,code,non-reasoning,2.9,3.0,39
+Qwen-2.5-72B,code,non-reasoning,3.0,3.1,20
+Qwen-2.5-72B,code,non-reasoning,3.1,3.2,6
+Qwen-2.5-72B,code,non-reasoning,3.2,3.3,7
+Qwen-2.5-72B,code,non-reasoning,3.3,3.4,6
+Qwen-2.5-72B,code,non-reasoning,3.4,3.5,2
+Qwen-2.5-72B,code,non-reasoning,3.5,3.6,1
+Qwen-2.5-72B,code,non-reasoning,3.6,3.7,4
+Qwen-2.5-72B,code,non-reasoning,3.7,3.8,1
+Qwen-2.5-72B,code,non-reasoning,3.8,3.9,0
+Qwen-2.5-72B,code,non-reasoning,3.9,4.0,0
+Qwen-2.5-72B,code,non-reasoning,4.0,4.1,0
+Qwen-2.5-72B,code,non-reasoning,4.1,4.2,0
+Qwen-2.5-72B,code,non-reasoning,4.2,4.3,1
+Qwen-2.5-72B,code,non-reasoning,4.3,4.4,0
+Qwen-2.5-72B,code,non-reasoning,4.4,4.5,0
+Qwen-2.5-72B,code,non-reasoning,4.5,4.6,0
+Qwen-2.5-72B,code,non-reasoning,4.6,4.7,0
+Qwen-2.5-72B,code,non-reasoning,4.7,4.8,0
+Qwen-2.5-72B,code,non-reasoning,4.8,4.9,0
+Qwen-2.5-72B,code,non-reasoning,4.9,5.0,0
+Qwen-2.5-72B,code,non-reasoning,5.0,5.1,0
+Qwen-2.5-72B,code,non-reasoning,5.1,5.2,0
+Qwen-2.5-72B,code,non-reasoning,5.2,5.3,0
+Qwen-2.5-72B,code,non-reasoning,5.3,5.4,0
+Qwen-2.5-72B,code,non-reasoning,5.4,5.5,0
+Qwen-2.5-72B,code,non-reasoning,5.5,5.6,0
+gpt-5.5 (reasoning),direct,reasoning,1.7,1.8,0
+gpt-5.5 (reasoning),direct,reasoning,1.8,1.9,0
+gpt-5.5 (reasoning),direct,reasoning,1.9,2.0,0
+gpt-5.5 (reasoning),direct,reasoning,2.0,2.1,0
+gpt-5.5 (reasoning),direct,reasoning,2.1,2.2,2
+gpt-5.5 (reasoning),direct,reasoning,2.2,2.3,8
+gpt-5.5 (reasoning),direct,reasoning,2.3,2.4,27
+gpt-5.5 (reasoning),direct,reasoning,2.4,2.5,100
+gpt-5.5 (reasoning),direct,reasoning,2.5,2.6,214
+gpt-5.5 (reasoning),direct,reasoning,2.6,2.7,222
+gpt-5.5 (reasoning),direct,reasoning,2.7,2.8,220
+gpt-5.5 (reasoning),direct,reasoning,2.8,2.9,198
+gpt-5.5 (reasoning),direct,reasoning,2.9,3.0,141
+gpt-5.5 (reasoning),direct,reasoning,3.0,3.1,92
+gpt-5.5 (reasoning),direct,reasoning,3.1,3.2,50
+gpt-5.5 (reasoning),direct,reasoning,3.2,3.3,20
+gpt-5.5 (reasoning),direct,reasoning,3.3,3.4,7
+gpt-5.5 (reasoning),direct,reasoning,3.4,3.5,0
+gpt-5.5 (reasoning),direct,reasoning,3.5,3.6,0
+gpt-5.5 (reasoning),direct,reasoning,3.6,3.7,0
+gpt-5.5 (reasoning),direct,reasoning,3.7,3.8,0
+gpt-5.5 (reasoning),direct,reasoning,3.8,3.9,0
+gpt-5.5 (reasoning),direct,reasoning,3.9,4.0,0
+gpt-5.5 (reasoning),direct,reasoning,4.0,4.1,0
+gpt-5.5 (reasoning),direct,reasoning,4.1,4.2,0
+gpt-5.5 (reasoning),direct,reasoning,4.2,4.3,0
+gpt-5.5 (reasoning),direct,reasoning,4.3,4.4,0
+gpt-5.5 (reasoning),direct,reasoning,4.4,4.5,0
+gpt-5.5 (reasoning),direct,reasoning,4.5,4.6,0
+gpt-5.5 (reasoning),direct,reasoning,4.6,4.7,0
+gpt-5.5 (reasoning),direct,reasoning,4.7,4.8,0
+gpt-5.5 (reasoning),direct,reasoning,4.8,4.9,0
+gpt-5.5 (reasoning),direct,reasoning,4.9,5.0,0
+gpt-5.5 (reasoning),direct,reasoning,5.0,5.1,0
+gpt-5.5 (reasoning),direct,reasoning,5.1,5.2,0
+gpt-5.5 (reasoning),direct,reasoning,5.2,5.3,0
+gpt-5.5 (reasoning),direct,reasoning,5.3,5.4,0
+gpt-5.5 (reasoning),direct,reasoning,5.4,5.5,0
+gpt-5.5 (reasoning),direct,reasoning,5.5,5.6,0
+DeepSeek-V4-flash (reasoning),direct,reasoning,1.7,1.8,0
+DeepSeek-V4-flash (reasoning),direct,reasoning,1.8,1.9,0
+DeepSeek-V4-flash (reasoning),direct,reasoning,1.9,2.0,0
+DeepSeek-V4-flash (reasoning),direct,reasoning,2.0,2.1,0
+DeepSeek-V4-flash (reasoning),direct,reasoning,2.1,2.2,0
+DeepSeek-V4-flash (reasoning),direct,reasoning,2.2,2.3,0
+DeepSeek-V4-flash (reasoning),direct,reasoning,2.3,2.4,0
+DeepSeek-V4-flash (reasoning),direct,reasoning,2.4,2.5,0
+DeepSeek-V4-flash (reasoning),direct,reasoning,2.5,2.6,1
+DeepSeek-V4-flash (reasoning),direct,reasoning,2.6,2.7,8
+DeepSeek-V4-flash (reasoning),direct,reasoning,2.7,2.8,17
+DeepSeek-V4-flash (reasoning),direct,reasoning,2.8,2.9,29
+DeepSeek-V4-flash (reasoning),direct,reasoning,2.9,3.0,41
+DeepSeek-V4-flash (reasoning),direct,reasoning,3.0,3.1,58
+DeepSeek-V4-flash (reasoning),direct,reasoning,3.1,3.2,105
+DeepSeek-V4-flash (reasoning),direct,reasoning,3.2,3.3,97
+DeepSeek-V4-flash (reasoning),direct,reasoning,3.3,3.4,101
+DeepSeek-V4-flash (reasoning),direct,reasoning,3.4,3.5,113
+DeepSeek-V4-flash (reasoning),direct,reasoning,3.5,3.6,124
+DeepSeek-V4-flash (reasoning),direct,reasoning,3.6,3.7,107
+DeepSeek-V4-flash (reasoning),direct,reasoning,3.7,3.8,115
+DeepSeek-V4-flash (reasoning),direct,reasoning,3.8,3.9,98
+DeepSeek-V4-flash (reasoning),direct,reasoning,3.9,4.0,89
+DeepSeek-V4-flash (reasoning),direct,reasoning,4.0,4.1,87
+DeepSeek-V4-flash (reasoning),direct,reasoning,4.1,4.2,57
+DeepSeek-V4-flash (reasoning),direct,reasoning,4.2,4.3,25
+DeepSeek-V4-flash (reasoning),direct,reasoning,4.3,4.4,17
+DeepSeek-V4-flash (reasoning),direct,reasoning,4.4,4.5,6
+DeepSeek-V4-flash (reasoning),direct,reasoning,4.5,4.6,0
+DeepSeek-V4-flash (reasoning),direct,reasoning,4.6,4.7,0
+DeepSeek-V4-flash (reasoning),direct,reasoning,4.7,4.8,2
+DeepSeek-V4-flash (reasoning),direct,reasoning,4.8,4.9,6
+DeepSeek-V4-flash (reasoning),direct,reasoning,4.9,5.0,0
+DeepSeek-V4-flash (reasoning),direct,reasoning,5.0,5.1,2
+DeepSeek-V4-flash (reasoning),direct,reasoning,5.1,5.2,2
+DeepSeek-V4-flash (reasoning),direct,reasoning,5.2,5.3,1
+DeepSeek-V4-flash (reasoning),direct,reasoning,5.3,5.4,0
+DeepSeek-V4-flash (reasoning),direct,reasoning,5.4,5.5,0
+DeepSeek-V4-flash (reasoning),direct,reasoning,5.5,5.6,0
+gpt-5.5,direct,non-reasoning,1.7,1.8,0
+gpt-5.5,direct,non-reasoning,1.8,1.9,0
+gpt-5.5,direct,non-reasoning,1.9,2.0,0
+gpt-5.5,direct,non-reasoning,2.0,2.1,1
+gpt-5.5,direct,non-reasoning,2.1,2.2,2
+gpt-5.5,direct,non-reasoning,2.2,2.3,27
+gpt-5.5,direct,non-reasoning,2.3,2.4,102
+gpt-5.5,direct,non-reasoning,2.4,2.5,179
+gpt-5.5,direct,non-reasoning,2.5,2.6,264
+gpt-5.5,direct,non-reasoning,2.6,2.7,230
+gpt-5.5,direct,non-reasoning,2.7,2.8,188
+gpt-5.5,direct,non-reasoning,2.8,2.9,122
+gpt-5.5,direct,non-reasoning,2.9,3.0,79
+gpt-5.5,direct,non-reasoning,3.0,3.1,61
+gpt-5.5,direct,non-reasoning,3.1,3.2,23
+gpt-5.5,direct,non-reasoning,3.2,3.3,22
+gpt-5.5,direct,non-reasoning,3.3,3.4,8
+gpt-5.5,direct,non-reasoning,3.4,3.5,0
+gpt-5.5,direct,non-reasoning,3.5,3.6,0
+gpt-5.5,direct,non-reasoning,3.6,3.7,0
+gpt-5.5,direct,non-reasoning,3.7,3.8,0
+gpt-5.5,direct,non-reasoning,3.8,3.9,0
+gpt-5.5,direct,non-reasoning,3.9,4.0,0
+gpt-5.5,direct,non-reasoning,4.0,4.1,0
+gpt-5.5,direct,non-reasoning,4.1,4.2,0
+gpt-5.5,direct,non-reasoning,4.2,4.3,0
+gpt-5.5,direct,non-reasoning,4.3,4.4,0
+gpt-5.5,direct,non-reasoning,4.4,4.5,0
+gpt-5.5,direct,non-reasoning,4.5,4.6,0
+gpt-5.5,direct,non-reasoning,4.6,4.7,0
+gpt-5.5,direct,non-reasoning,4.7,4.8,0
+gpt-5.5,direct,non-reasoning,4.8,4.9,0
+gpt-5.5,direct,non-reasoning,4.9,5.0,0
+gpt-5.5,direct,non-reasoning,5.0,5.1,0
+gpt-5.5,direct,non-reasoning,5.1,5.2,0
+gpt-5.5,direct,non-reasoning,5.2,5.3,0
+gpt-5.5,direct,non-reasoning,5.3,5.4,0
+gpt-5.5,direct,non-reasoning,5.4,5.5,0
+gpt-5.5,direct,non-reasoning,5.5,5.6,0
+Qwen-3.6-27B (reasoning),direct,reasoning,1.7,1.8,0
+Qwen-3.6-27B (reasoning),direct,reasoning,1.8,1.9,0
+Qwen-3.6-27B (reasoning),direct,reasoning,1.9,2.0,0
+Qwen-3.6-27B (reasoning),direct,reasoning,2.0,2.1,0
+Qwen-3.6-27B (reasoning),direct,reasoning,2.1,2.2,0
+Qwen-3.6-27B (reasoning),direct,reasoning,2.2,2.3,0
+Qwen-3.6-27B (reasoning),direct,reasoning,2.3,2.4,0
+Qwen-3.6-27B (reasoning),direct,reasoning,2.4,2.5,0
+Qwen-3.6-27B (reasoning),direct,reasoning,2.5,2.6,0
+Qwen-3.6-27B (reasoning),direct,reasoning,2.6,2.7,0
+Qwen-3.6-27B (reasoning),direct,reasoning,2.7,2.8,0
+Qwen-3.6-27B (reasoning),direct,reasoning,2.8,2.9,0
+Qwen-3.6-27B (reasoning),direct,reasoning,2.9,3.0,0
+Qwen-3.6-27B (reasoning),direct,reasoning,3.0,3.1,0
+Qwen-3.6-27B (reasoning),direct,reasoning,3.1,3.2,0
+Qwen-3.6-27B (reasoning),direct,reasoning,3.2,3.3,0
+Qwen-3.6-27B (reasoning),direct,reasoning,3.3,3.4,0
+Qwen-3.6-27B (reasoning),direct,reasoning,3.4,3.5,1
+Qwen-3.6-27B (reasoning),direct,reasoning,3.5,3.6,1
+Qwen-3.6-27B (reasoning),direct,reasoning,3.6,3.7,1
+Qwen-3.6-27B (reasoning),direct,reasoning,3.7,3.8,15
+Qwen-3.6-27B (reasoning),direct,reasoning,3.8,3.9,87
+Qwen-3.6-27B (reasoning),direct,reasoning,3.9,4.0,160
+Qwen-3.6-27B (reasoning),direct,reasoning,4.0,4.1,232
+Qwen-3.6-27B (reasoning),direct,reasoning,4.1,4.2,224
+Qwen-3.6-27B (reasoning),direct,reasoning,4.2,4.3,201
+Qwen-3.6-27B (reasoning),direct,reasoning,4.3,4.4,131
+Qwen-3.6-27B (reasoning),direct,reasoning,4.4,4.5,56
+Qwen-3.6-27B (reasoning),direct,reasoning,4.5,4.6,10
+Qwen-3.6-27B (reasoning),direct,reasoning,4.6,4.7,1
+Qwen-3.6-27B (reasoning),direct,reasoning,4.7,4.8,122
+Qwen-3.6-27B (reasoning),direct,reasoning,4.8,4.9,47
+Qwen-3.6-27B (reasoning),direct,reasoning,4.9,5.0,9
+Qwen-3.6-27B (reasoning),direct,reasoning,5.0,5.1,4
+Qwen-3.6-27B (reasoning),direct,reasoning,5.1,5.2,4
+Qwen-3.6-27B (reasoning),direct,reasoning,5.2,5.3,1
+Qwen-3.6-27B (reasoning),direct,reasoning,5.3,5.4,1
+Qwen-3.6-27B (reasoning),direct,reasoning,5.4,5.5,0
+Qwen-3.6-27B (reasoning),direct,reasoning,5.5,5.6,0
+DeepSeek-V4-flash,direct,non-reasoning,1.7,1.8,0
+DeepSeek-V4-flash,direct,non-reasoning,1.8,1.9,0
+DeepSeek-V4-flash,direct,non-reasoning,1.9,2.0,0
+DeepSeek-V4-flash,direct,non-reasoning,2.0,2.1,0
+DeepSeek-V4-flash,direct,non-reasoning,2.1,2.2,0
+DeepSeek-V4-flash,direct,non-reasoning,2.2,2.3,1
+DeepSeek-V4-flash,direct,non-reasoning,2.3,2.4,14
+DeepSeek-V4-flash,direct,non-reasoning,2.4,2.5,51
+DeepSeek-V4-flash,direct,non-reasoning,2.5,2.6,72
+DeepSeek-V4-flash,direct,non-reasoning,2.6,2.7,152
+DeepSeek-V4-flash,direct,non-reasoning,2.7,2.8,223
+DeepSeek-V4-flash,direct,non-reasoning,2.8,2.9,215
+DeepSeek-V4-flash,direct,non-reasoning,2.9,3.0,184
+DeepSeek-V4-flash,direct,non-reasoning,3.0,3.1,132
+DeepSeek-V4-flash,direct,non-reasoning,3.1,3.2,107
+DeepSeek-V4-flash,direct,non-reasoning,3.2,3.3,97
+DeepSeek-V4-flash,direct,non-reasoning,3.3,3.4,26
+DeepSeek-V4-flash,direct,non-reasoning,3.4,3.5,19
+DeepSeek-V4-flash,direct,non-reasoning,3.5,3.6,9
+DeepSeek-V4-flash,direct,non-reasoning,3.6,3.7,4
+DeepSeek-V4-flash,direct,non-reasoning,3.7,3.8,2
+DeepSeek-V4-flash,direct,non-reasoning,3.8,3.9,0
+DeepSeek-V4-flash,direct,non-reasoning,3.9,4.0,0
+DeepSeek-V4-flash,direct,non-reasoning,4.0,4.1,0
+DeepSeek-V4-flash,direct,non-reasoning,4.1,4.2,0
+DeepSeek-V4-flash,direct,non-reasoning,4.2,4.3,0
+DeepSeek-V4-flash,direct,non-reasoning,4.3,4.4,0
+DeepSeek-V4-flash,direct,non-reasoning,4.4,4.5,0
+DeepSeek-V4-flash,direct,non-reasoning,4.5,4.6,0
+DeepSeek-V4-flash,direct,non-reasoning,4.6,4.7,0
+DeepSeek-V4-flash,direct,non-reasoning,4.7,4.8,0
+DeepSeek-V4-flash,direct,non-reasoning,4.8,4.9,0
+DeepSeek-V4-flash,direct,non-reasoning,4.9,5.0,0
+DeepSeek-V4-flash,direct,non-reasoning,5.0,5.1,0
+DeepSeek-V4-flash,direct,non-reasoning,5.1,5.2,0
+DeepSeek-V4-flash,direct,non-reasoning,5.2,5.3,0
+DeepSeek-V4-flash,direct,non-reasoning,5.3,5.4,0
+DeepSeek-V4-flash,direct,non-reasoning,5.4,5.5,0
+DeepSeek-V4-flash,direct,non-reasoning,5.5,5.6,0
+Qwen-3.6-27B,direct,non-reasoning,1.7,1.8,0
+Qwen-3.6-27B,direct,non-reasoning,1.8,1.9,0
+Qwen-3.6-27B,direct,non-reasoning,1.9,2.0,0
+Qwen-3.6-27B,direct,non-reasoning,2.0,2.1,0
+Qwen-3.6-27B,direct,non-reasoning,2.1,2.2,0
+Qwen-3.6-27B,direct,non-reasoning,2.2,2.3,0
+Qwen-3.6-27B,direct,non-reasoning,2.3,2.4,0
+Qwen-3.6-27B,direct,non-reasoning,2.4,2.5,0
+Qwen-3.6-27B,direct,non-reasoning,2.5,2.6,1
+Qwen-3.6-27B,direct,non-reasoning,2.6,2.7,14
+Qwen-3.6-27B,direct,non-reasoning,2.7,2.8,58
+Qwen-3.6-27B,direct,non-reasoning,2.8,2.9,102
+Qwen-3.6-27B,direct,non-reasoning,2.9,3.0,204
+Qwen-3.6-27B,direct,non-reasoning,3.0,3.1,212
+Qwen-3.6-27B,direct,non-reasoning,3.1,3.2,185
+Qwen-3.6-27B,direct,non-reasoning,3.2,3.3,134
+Qwen-3.6-27B,direct,non-reasoning,3.3,3.4,97
+Qwen-3.6-27B,direct,non-reasoning,3.4,3.5,85
+Qwen-3.6-27B,direct,non-reasoning,3.5,3.6,74
+Qwen-3.6-27B,direct,non-reasoning,3.6,3.7,69
+Qwen-3.6-27B,direct,non-reasoning,3.7,3.8,36
+Qwen-3.6-27B,direct,non-reasoning,3.8,3.9,26
+Qwen-3.6-27B,direct,non-reasoning,3.9,4.0,11
+Qwen-3.6-27B,direct,non-reasoning,4.0,4.1,0
+Qwen-3.6-27B,direct,non-reasoning,4.1,4.2,0
+Qwen-3.6-27B,direct,non-reasoning,4.2,4.3,0
+Qwen-3.6-27B,direct,non-reasoning,4.3,4.4,0
+Qwen-3.6-27B,direct,non-reasoning,4.4,4.5,0
+Qwen-3.6-27B,direct,non-reasoning,4.5,4.6,0
+Qwen-3.6-27B,direct,non-reasoning,4.6,4.7,0
+Qwen-3.6-27B,direct,non-reasoning,4.7,4.8,0
+Qwen-3.6-27B,direct,non-reasoning,4.8,4.9,0
+Qwen-3.6-27B,direct,non-reasoning,4.9,5.0,0
+Qwen-3.6-27B,direct,non-reasoning,5.0,5.1,0
+Qwen-3.6-27B,direct,non-reasoning,5.1,5.2,0
+Qwen-3.6-27B,direct,non-reasoning,5.2,5.3,0
+Qwen-3.6-27B,direct,non-reasoning,5.3,5.4,0
+Qwen-3.6-27B,direct,non-reasoning,5.4,5.5,0
+Qwen-3.6-27B,direct,non-reasoning,5.5,5.6,0

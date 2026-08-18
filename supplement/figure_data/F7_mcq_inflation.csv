@@ -1,0 +1,7 @@
+model,option_source,option_all670,option_clean480,code_all670,code_clean480,delta_all670,delta_clean480,rescue_correct,rescue_total,rescue_pct
+Gemini-3.1-Pro,in-house,94.5,96.5,60.0,78.3,34.5,18.1,238,268,88.8
+DeepSeek-R1,paper,88.5,,53.0,70.4,35.5,,,,
+gpt-5.5,in-house,80.1,85.8,49.6,66.0,30.6,19.8,223,338,66.0
+DeepSeek-V4-flash,in-house,88.1,90.0,43.3,57.7,44.8,32.3,309,380,81.3
+DeepSeek-V3,paper,63.3,,27.2,37.9,36.1,,,,
+Qwen-2.5-72B,paper,57.0,,19.3,25.4,37.8,,,,

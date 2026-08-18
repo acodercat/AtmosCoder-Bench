@@ -1,0 +1,10 @@
+difficulty,subs,n_problems,mean_pass_pct
+low,1,35,97.9
+low,2,7,97.9
+low,3+,2,100.0
+medium,1,199,90.5
+medium,2,36,85.9
+medium,3+,23,83.4
+high,1,71,75.0
+high,2,25,69.8
+high,3+,38,62.6

@@ -1,0 +1,83 @@
+# AtmosCoder-Bench model registry — EXAMPLE
+#
+# Copy to `models.toml` (gitignored) and fill in your own credentials:
+#     cp models.example.toml models.toml
+#
+# Each [section] name is what you pass to the runner as --model.
+# Required per section: `model_id` (or `api_model`) and `api_key`.
+# `provider` selects the client (default "openai" = any OpenAI-compatible
+# endpoint); known providers: openai, anthropic, moonshot, qwen, azure,
+# google, openai_responses.
+#
+# Naming convention used throughout the repo: a bare section name is the
+# NON-reasoning setting; a `-reasoning` suffix is the same backbone with
+# reasoning enabled (via reasoning_effort, thinking_level, or an
+# extra_body toggle, depending on the provider).
+
+# --- OpenAI-compatible chat endpoint (the default provider) ---------------
+["gpt-5.5"]
+model_id = "gpt-5.5"
+api_key = "YOUR_OPENAI_API_KEY"
+base_url = "https://api.openai.com/v1"
+temperature = 0.1
+max_tokens = 16384
+
+# --- OpenAI Responses API (needed for reasoning SUMMARIES) ----------------
+["gpt-5.5-reasoning"]
+provider = "openai_responses"
+model_id = "gpt-5.5"
+api_key = "YOUR_OPENAI_API_KEY"
+base_url = "https://api.openai.com/v1"
+reasoning_effort = "medium"
+reasoning_summary = "auto"
+temperature = 1
+max_tokens = 16384
+timeout = 600.0
+
+# --- Anthropic (native Messages API) ---------------------------------------
+[claude]
+provider = "anthropic"
+model_id = "claude-opus-5"
+api_key = "YOUR_ANTHROPIC_API_KEY"
+base_url = "https://api.anthropic.com"
+
+# --- Google Gemini (native generateContent; exposes thought summaries) -----
+[gemini-reasoning]
+provider = "google"
+model_id = "gemini-3.1-pro-preview"
+api_key = "YOUR_GOOGLE_API_KEY"
+base_url = "https://generativelanguage.googleapis.com/v1beta"
+thinking_level = "medium"     # low / medium / high
+temperature = 0.1
+max_tokens = 16384
+timeout = 600.0
+
+# --- Any model via OpenRouter ----------------------------------------------
+["qwen3.5-9b"]
+model_id = "qwen/qwen3.5-9b"
+api_key = "YOUR_OPENROUTER_API_KEY"
+base_url = "https://openrouter.ai/api/v1"
+temperature = 0.1
+max_tokens = 16384
+
+# --- Self-hosted open-weights model (e.g. an SGLang or vLLM server) --------
+# `api_model` is the id the endpoint reports, decoupled from the section
+# name; pass --out-name to merge results with another route's result file.
+[local-model]
+provider = "moonshot"
+api_model = "my-model"
+api_key = "EMPTY"
+base_url = "http://localhost:8000/v1"
+max_tokens = 16384
+timeout = 600.0
+# Reasoning toggle for chat-template-controlled models; select at runtime
+# with --thinking on|off.
+extra_body = { chat_template_kwargs = { thinking = false } }
+
+# --- Azure OpenAI -----------------------------------------------------------
+[azure-example]
+provider = "azure"
+model_id = "your-deployment-name"
+api_key = "YOUR_AZURE_API_KEY"
+base_url = "https://YOUR-RESOURCE.openai.azure.com/openai/v1"
+temperature = 1

@@ -1,0 +1,17 @@
+model,tokens_M_per_run,accuracy,sd,setting,backbone_pair,tokens_understated_dagger
+gpt-5.5 (reasoning),0.354,97.6,0.1,reasoning,gpt55,yes
+Gemini-3.1-Pro (reasoning),0.603,96.0,0.7,reasoning,,yes
+Kimi K2.6 (reasoning),13.606,93.8,1.4,reasoning,kimi-k2.6,no
+DeepSeek-V4-pro (reasoning),2.91,93.3,0.6,reasoning,deepseek-v4-pro,no
+Qwen-3.5-397B (reasoning),2.563,93.2,1.3,reasoning,qwen3.5-397b,no
+DeepSeek-V4-flash (reasoning),1.37,91.1,0.8,reasoning,deepseek-v4-flash,no
+gpt-5.5,0.293,90.8,1.4,non-reasoning,gpt55,no
+Qwen-3.5-397B,0.839,90.5,0.7,non-reasoning,qwen3.5-397b,no
+Kimi K2.6,2.365,90.1,0.3,non-reasoning,kimi-k2.6,no
+Qwen-3.6-27B (reasoning),5.426,88.5,0.6,reasoning,qwen3.6-27b,no
+DeepSeek-V4-pro,0.404,82.6,0.7,non-reasoning,deepseek-v4-pro,no
+DeepSeek-V4-flash,0.357,81.7,1.4,non-reasoning,deepseek-v4-flash,no
+Qwen-3.6-27B,0.738,79.4,0.7,non-reasoning,qwen3.6-27b,no
+Qwen-3.5-9B (reasoning),12.041,76.9,1.1,reasoning,qwen3.5-9b,no
+Qwen-3.5-9B,1.467,63.4,1.3,non-reasoning,qwen3.5-9b,no
+Qwen-2.5-72B,0.384,41.1,1.8,non-reasoning,,no

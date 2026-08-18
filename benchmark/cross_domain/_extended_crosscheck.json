@@ -1,0 +1,1233 @@
+[
+  {
+    "id": "hyd_1",
+    "domain": "hydrology",
+    "label": "hyd-ps2-2a",
+    "stored": [
+      26.17910447761194,
+      11.607480821994512
+    ],
+    "official": null,
+    "verdict": "NO_OFFICIAL",
+    "note": "not in key"
+  },
+  {
+    "id": "hyd_11",
+    "domain": "hydrology",
+    "label": "ps5-2a",
+    "stored": [
+      0.0005000117795470379
+    ],
+    "official": null,
+    "verdict": "NO_OFFICIAL",
+    "note": "not in key"
+  },
+  {
+    "id": "hyd_12",
+    "domain": "hydrology",
+    "label": "ps5-2b",
+    "stored": [
+      999.976441460942
+    ],
+    "official": null,
+    "verdict": "NO_OFFICIAL",
+    "note": "not in key"
+  },
+  {
+    "id": "hyd_15",
+    "domain": "hydrology",
+    "label": "ps1-1",
+    "stored": [
+      2445500000000000.0
+    ],
+    "official": null,
+    "verdict": "NO_OFFICIAL",
+    "note": "not in key"
+  },
+  {
+    "id": "hyd_17",
+    "domain": "hydrology",
+    "label": "ps1-5a",
+    "stored": [
+      0.009433981132056603,
+      122.0053832080835
+    ],
+    "official": null,
+    "verdict": "NO_OFFICIAL",
+    "note": "not in key"
+  },
+  {
+    "id": "hyd_18",
+    "domain": "hydrology",
+    "label": "ps1-5b",
+    "stored": [
+      2.830194339616981
+    ],
+    "official": null,
+    "verdict": "NO_OFFICIAL",
+    "note": "not in key"
+  },
+  {
+    "id": "hyd_19",
+    "domain": "hydrology",
+    "label": "ps1-5c",
+    "stored": [
+      0.0721387551874857,
+      14.117919505991889
+    ],
+    "official": null,
+    "verdict": "NO_OFFICIAL",
+    "note": "not in key"
+  },
+  {
+    "id": "hyd_2",
+    "domain": "hydrology",
+    "label": "hyd-ps2-2b",
+    "stored": [
+      1754.0
+    ],
+    "official": null,
+    "verdict": "NO_OFFICIAL",
+    "note": "not in key"
+  },
+  {
+    "id": "hyd_20",
+    "domain": "hydrology",
+    "label": "ps1-6",
+    "stored": [
+      80.0,
+      370.0,
+      423.0,
+      100.0,
+      35.0,
+      65.0,
+      20.0,
+      360.0,
+      380.0,
+      0.023,
+      0.02
+    ],
+    "official": null,
+    "verdict": "NO_OFFICIAL",
+    "note": "not in key"
+  },
+  {
+    "id": "hyd_21",
+    "domain": "hydrology",
+    "label": "ps1-8a",
+    "stored": [
+      0.5,
+      4.0,
+      3.0,
+      7.5
+    ],
+    "official": null,
+    "verdict": "NO_OFFICIAL",
+    "note": "not in key"
+  },
+  {
+    "id": "hyd_22",
+    "domain": "hydrology",
+    "label": "ps1-8b",
+    "stored": [
+      8.0
+    ],
+    "official": null,
+    "verdict": "NO_OFFICIAL",
+    "note": "not in key"
+  },
+  {
+    "id": "hyd_24",
+    "domain": "hydrology",
+    "label": "ps7-4b",
+    "stored": [
+      2.2527288772027987
+    ],
+    "official": [
+      2.249
+    ],
+    "verdict": "MATCH",
+    "note": "“H0 = 2 . 2 4 η …”"
+  },
+  {
+    "id": "hyd_25",
+    "domain": "hydrology",
+    "label": "hyd-ps8-1a",
+    "stored": [
+      0.06292395011389236,
+      0.04212264429111801
+    ],
+    "official": [
+      0.063,
+      0.042
+    ],
+    "verdict": "MATCH",
+    "note": "\"Vc^2/2g = 0.063 m\"; \"VT = 5/5.5 = 0.909 m/s\" and \"maximum change in velocity [head] ... about 0.021 m\""
+  },
+  {
+    "id": "hyd_26",
+    "domain": "hydrology",
+    "label": "hyd-ps8-1b",
+    "stored": [
+      0.0020801305822774345
+    ],
+    "official": [
+      0.00206
+    ],
+    "verdict": "MATCH",
+    "note": "ΔH = (V1 − V2)^2 / 2g = 2.06E−3 m"
+  },
+  {
+    "id": "hyd_27",
+    "domain": "hydrology",
+    "label": "hyd-ps8-1c",
+    "stored": [
+      6.933768607591448e-05
+    ],
+    "official": [
+      6.89e-05
+    ],
+    "verdict": "MATCH",
+    "note": "Sf = ΔH_EX/λ = 2.06·10^-3 / 30 = 6.89·10^-5"
+  },
+  {
+    "id": "hyd_28",
+    "domain": "hydrology",
+    "label": "hyd-ps8-1d",
+    "stored": [
+      0.024348077479344598
+    ],
+    "official": [
+      0.0242
+    ],
+    "verdict": "MATCH",
+    "note": "if you use n=0.0242, as I did"
+  },
+  {
+    "id": "hyd_29",
+    "domain": "hydrology",
+    "label": "hyd-ps8-2b",
+    "stored": [
+      1.0866928777002711,
+      0.44194930007592825
+    ],
+    "official": null,
+    "verdict": "NO_OFFICIAL",
+    "note": "not in key"
+  },
+  {
+    "id": "hyd_3",
+    "domain": "hydrology",
+    "label": "hyd-ps2-2c",
+    "stored": [
+      17.54
+    ],
+    "official": null,
+    "verdict": "NO_OFFICIAL",
+    "note": "not in key"
+  },
+  {
+    "id": "hyd_30",
+    "domain": "hydrology",
+    "label": "hyd-ps8-3a",
+    "stored": [
+      8.788406681532212
+    ],
+    "official": [
+      8.8
+    ],
+    "verdict": "MATCH",
+    "note": "H=3.0m⇒ q=8.8 m3/s per m"
+  },
+  {
+    "id": "hyd_32",
+    "domain": "hydrology",
+    "label": "hyd-ps8-3c",
+    "stored": [
+      6.228405997580175,
+      1.4449925074724783
+    ],
+    "official": [
+      6.2,
+      1.45
+    ],
+    "verdict": "MATCH",
+    "note": "Solve by iteration: h2=6.2m, V2=1.45m/s"
+  },
+  {
+    "id": "hyd_33",
+    "domain": "hydrology",
+    "label": "hyd-ps8-4a",
+    "stored": [
+      135000.0
+    ],
+    "official": [
+      135.0
+    ],
+    "verdict": "MISMATCH",
+    "note": "F=...1000.0.6.(0.5.1)30^2=135kN/m"
+  },
+  {
+    "id": "hyd_34",
+    "domain": "hydrology",
+    "label": "hyd-ps8-4b",
+    "stored": [
+      11.899213514208228,
+      2.521175030952976
+    ],
+    "official": [
+      11.9,
+      2.52
+    ],
+    "verdict": "MATCH",
+    "note": "h2=11.9 m ... V2 = 2.52 m/s"
+  },
+  {
+    "id": "hyd_35",
+    "domain": "hydrology",
+    "label": "hyd-ps8-4c",
+    "stored": [
+      34.65039203352308,
+      13688.067618074958
+    ],
+    "official": [
+      34.7,
+      13700.0
+    ],
+    "verdict": "MATCH",
+    "note": "△H=H-H2=34.7m ... Rate of energy dissipation ... =10.2·10^6 W/m =13.7·10^3 HP/m"
+  },
+  {
+    "id": "hyd_36",
+    "domain": "hydrology",
+    "label": "hyd-ps8-5a",
+    "stored": [
+      274657.4533799533
+    ],
+    "official": null,
+    "verdict": "NO_OFFICIAL",
+    "note": "not in key"
+  },
+  {
+    "id": "hyd_37",
+    "domain": "hydrology",
+    "label": "hyd-ps8-5b",
+    "stored": [
+      0.08548831978399285
+    ],
+    "official": [
+      0.09
+    ],
+    "verdict": "MISMATCH",
+    "note": "Headloss due to cofferdam ≈ E1 - E3 = 0.085 ≈ 0.09 m"
+  },
+  {
+    "id": "hyd_38",
+    "domain": "hydrology",
+    "label": "hyd-ps8-5c",
+    "stored": [
+      5.853855374132642,
+      4.880788257544194
+    ],
+    "official": [
+      5.94,
+      4.81
+    ],
+    "verdict": "MATCH",
+    "note": "h2=5.94m ... V2=...=4.81m/s"
+  },
+  {
+    "id": "hyd_39",
+    "domain": "hydrology",
+    "label": "ps4-3a",
+    "stored": [
+      4.266256768456914
+    ],
+    "official": [
+      4.26
+    ],
+    "verdict": "MATCH",
+    "note": "q = V2 h2 = 6.990 · 0.61 = 4.26 m^3/s / m"
+  },
+  {
+    "id": "hyd_40",
+    "domain": "hydrology",
+    "label": "ps4-4a",
+    "stored": [
+      4.042836100598515,
+      2.4735111073435716
+    ],
+    "official": [
+      4.05,
+      2.47
+    ],
+    "verdict": "MATCH",
+    "note": "h2 ... = 4.05 m ... V2 = V1 h1/h2 = 2.47 m/s"
+  },
+  {
+    "id": "hyd_41",
+    "domain": "hydrology",
+    "label": "ps9-1b",
+    "stored": [
+      3.9528247813454787
+    ],
+    "official": [
+      3.96
+    ],
+    "verdict": "MATCH",
+    "note": "“... same as in problem 1 h1=396m”"
+  },
+  {
+    "id": "hyd_42",
+    "domain": "hydrology",
+    "label": "ps9-2b",
+    "stored": [
+      3.9528247813454787
+    ],
+    "official": [
+      3.96
+    ],
+    "verdict": "MATCH",
+    "note": "“h1=396m” / “hy=396m”"
+  },
+  {
+    "id": "hyd_44",
+    "domain": "hydrology",
+    "label": "ps9-6c",
+    "stored": [
+      0.666369785129584,
+      4.697091719714351
+    ],
+    "official": [
+      0.67,
+      4.7
+    ],
+    "verdict": "MATCH",
+    "note": "bn=√ghc ... =4.70m/s; hbn=...=0.67m"
+  },
+  {
+    "id": "hyd_48",
+    "domain": "hydrology",
+    "label": "ps6-P5a",
+    "stored": [
+      201.45816000000005
+    ],
+    "official": [
+      200.0
+    ],
+    "verdict": "MATCH",
+    "note": "From the manometer recding pA-NB= (SGm-SGW)fwgd = (1'30-1).1000.9'8.0'068≈200Pa"
+  },
+  {
+    "id": "hyd_5",
+    "domain": "hydrology",
+    "label": "hyd-final-8a",
+    "stored": [
+      0.0005000117795470379
+    ],
+    "official": null,
+    "verdict": "NO_OFFICIAL",
+    "note": "not in key"
+  },
+  {
+    "id": "hyd_51",
+    "domain": "hydrology",
+    "label": "ps6-P5d",
+    "stored": [
+      1.4155353120373289
+    ],
+    "official": [
+      1.4
+    ],
+    "verdict": "MATCH",
+    "note": "359= 2 1000.CD(0'4.2).082 CD=140"
+  },
+  {
+    "id": "hyd_6",
+    "domain": "hydrology",
+    "label": "hyd-final-8b",
+    "stored": [
+      999.976441460942
+    ],
+    "official": null,
+    "verdict": "NO_OFFICIAL",
+    "note": "not in key"
+  },
+  {
+    "id": "hyd_8",
+    "domain": "hydrology",
+    "label": "hyd-ps1-2a",
+    "stored": [
+      2.974348288830464e-06
+    ],
+    "official": [
+      2.99e-06
+    ],
+    "verdict": "MATCH",
+    "note": "D = ... = 2'99·10^-6 m ≈ 3 μm"
+  },
+  {
+    "id": "hyd_9",
+    "domain": "hydrology",
+    "label": "hyd-ps1-3b",
+    "stored": [
+      0.5500490721919492
+    ],
+    "official": [
+      0.551,
+      0.007
+    ],
+    "verdict": "MISMATCH",
+    "note": "μ = 0'551 ± 0'007 N·s/m^2"
+  },
+  {
+    "id": "soil_1",
+    "domain": "soil",
+    "label": "das-c4-Ex3.2a",
+    "stored": [
+      1958.3333333333335
+    ],
+    "official": [
+      1958.3
+    ],
+    "verdict": "MATCH",
+    "note": "Part a: rho = M/V = 2350/1.2 = 1958.3 kg/m^3"
+  },
+  {
+    "id": "soil_10",
+    "domain": "soil",
+    "label": "das-c5-ex3.4c",
+    "stored": [
+      0.6119865667786103
+    ],
+    "official": [
+      0.61
+    ],
+    "verdict": "MATCH",
+    "note": "e = w G_s = (0.23)(2.66) = 0.61"
+  },
+  {
+    "id": "soil_102",
+    "domain": "soil",
+    "label": "das-c14-ex7.2",
+    "stored": [
+      0.0022703361056266255
+    ],
+    "official": [
+      0.0227
+    ],
+    "verdict": "MISMATCH",
+    "note": "k = ... = 2.27 × 10^-2 mm/sec"
+  },
+  {
+    "id": "soil_103",
+    "domain": "soil",
+    "label": "das-c14-ex7.3",
+    "stored": [
+      0.14997905053433833
+    ],
+    "official": [
+      0.15
+    ],
+    "verdict": "MATCH",
+    "note": "a = 0.15 in.^2"
+  },
+  {
+    "id": "soil_11",
+    "domain": "soil",
+    "label": "das-c5-ex3.5",
+    "stored": [
+      0.6313213703099511,
+      2.6101141924959217
+    ],
+    "official": [
+      0.63,
+      2.61
+    ],
+    "verdict": "MATCH",
+    "note": "Void ratio, e = ... = 0.63; ... G_s = 2.61"
+  },
+  {
+    "id": "soil_12",
+    "domain": "soil",
+    "label": "das-c5-ex3.7",
+    "stored": [
+      22.194285714285645
+    ],
+    "official": [
+      22.9
+    ],
+    "verdict": "MATCH",
+    "note": "D_r = ... = 0.229 = 22.9%"
+  },
+  {
+    "id": "soil_128",
+    "domain": "soil",
+    "label": "das-c15-ex7.7",
+    "stored": [
+      0.013769531249999996
+    ],
+    "official": [
+      0.014
+    ],
+    "verdict": "MATCH",
+    "note": "k₂ = 0.014 cm/sec"
+  },
+  {
+    "id": "soil_129",
+    "domain": "soil",
+    "label": "das-c15-ex7.8",
+    "stored": [
+      0.00962926635123213
+    ],
+    "official": [
+      0.0097
+    ],
+    "verdict": "MATCH",
+    "note": "k = ... = 0.0097 cm/s"
+  },
+  {
+    "id": "soil_13",
+    "domain": "soil",
+    "label": "das-c7-ex4.2",
+    "stored": [
+      39.713123971890106
+    ],
+    "official": [
+      39.7
+    ],
+    "verdict": "MATCH",
+    "note": "LL = w_N (N/25)^0.121 = (40.8)(20/25)^0.121 = 39.7"
+  },
+  {
+    "id": "soil_130",
+    "domain": "soil",
+    "label": "das-c15-ex7.9",
+    "stored": [
+      0.011863122857647493
+    ],
+    "official": [
+      0.0119
+    ],
+    "verdict": "MATCH",
+    "note": "= 0.0119 cm/sec"
+  },
+  {
+    "id": "soil_132",
+    "domain": "soil",
+    "label": "das-c15-ex7.11",
+    "stored": [
+      5.1431713358543415e-09
+    ],
+    "official": [
+      5.14e-09
+    ],
+    "verdict": "MATCH",
+    "note": "At a void ratio of 0.75, k = ... = 0.514 × 10^-8 cm/sec"
+  },
+  {
+    "id": "soil_156",
+    "domain": "soil",
+    "label": "das-c18-ex8.2",
+    "stored": [
+      97.20000000000002
+    ],
+    "official": [
+      97.2
+    ],
+    "verdict": "MATCH",
+    "note": "Q = ... = 97.2 m^3/day"
+  },
+  {
+    "id": "soil_157",
+    "domain": "soil",
+    "label": "das-c18-ex8.3",
+    "stored": [
+      0.451008
+    ],
+    "official": [
+      0.452
+    ],
+    "verdict": "MATCH",
+    "note": "Considering the two halves, the flow rate is 0.452 m^3/day/m."
+  },
+  {
+    "id": "soil_158",
+    "domain": "soil",
+    "label": "das-c18-ex8.4",
+    "stored": [
+      50.10992937542462
+    ],
+    "official": [
+      50.12
+    ],
+    "verdict": "MATCH",
+    "note": "q = sqrt((5.67)(11.34))(20)(2.5/8) = 50.12 ft^3/day/ft"
+  },
+  {
+    "id": "soil_2",
+    "domain": "soil",
+    "label": "das-c4-Ex3.2b",
+    "stored": [
+      1803.2535297728668
+    ],
+    "official": [
+      1803.3
+    ],
+    "verdict": "MATCH",
+    "note": "Part b ... \\rho_d = ... = 1803.3 kg/m^3"
+  },
+  {
+    "id": "soil_215",
+    "domain": "soil",
+    "label": "das-c23-ex10.2a",
+    "stored": [
+      170.71067811865476
+    ],
+    "official": [
+      170.7
+    ],
+    "verdict": "MATCH",
+    "note": "a. Major principal stress 5 170.7 kN/m<sup>2</sup>"
+  },
+  {
+    "id": "soil_216",
+    "domain": "soil",
+    "label": "das-c23-ex10.2b",
+    "stored": [
+      29.289321881345245
+    ],
+    "official": [
+      29.3
+    ],
+    "verdict": "MATCH",
+    "note": "b. Minor principal stress 5 29.3 kN/m²"
+  },
+  {
+    "id": "soil_217",
+    "domain": "soil",
+    "label": "das-c23-ex10.3",
+    "stored": [
+      0.0,
+      0.0042170270126038936,
+      0.014194879915761557,
+      0.017743551620425645,
+      0.0136658408336098,
+      0.005128956935141626
+    ],
+    "official": [
+      0.0,
+      0.0043,
+      0.0133,
+      0.018,
+      0.0137,
+      0.0051
+    ],
+    "verdict": "MISMATCH",
+    "note": "Table in Example 10.3: Δσz at Z = 0, 2, 4, 6, 10, 20 m"
+  },
+  {
+    "id": "soil_218",
+    "domain": "soil",
+    "label": "das-c23-ex10.4",
+    "stored": [
+      0.03134317567927439,
+      0.026042416988106838,
+      0.016027990422317583,
+      0.008412879639354177,
+      0.0042170270126038936
+    ],
+    "official": [
+      0.031,
+      0.026,
+      0.0158,
+      0.009,
+      0.004
+    ],
+    "verdict": "MISMATCH",
+    "note": "Δσz = (P/z²) I1 (kN/m²): 0.031, 0.026, 0.0158, 0.009, 0.004"
+  },
+  {
+    "id": "soil_219",
+    "domain": "soil",
+    "label": "das-c23-ex10.5",
+    "stored": [
+      0.22720193019014326
+    ],
+    "official": [
+      0.227
+    ],
+    "verdict": "MATCH",
+    "note": "Δσz = 0.182 + 0.045 = 0.227 kN/m^2"
+  },
+  {
+    "id": "soil_220",
+    "domain": "soil",
+    "label": "das-c23-ex10.6",
+    "stored": [
+      0.33138289478229227
+    ],
+    "official": [
+      0.337
+    ],
+    "verdict": "MATCH",
+    "note": "Thus, the total is ... Δσz = 0.23 + 0.107 = 0.337 kN/m^2"
+  },
+  {
+    "id": "soil_221",
+    "domain": "soil",
+    "label": "das-c23-ex10.7",
+    "stored": [
+      90.22315265974657
+    ],
+    "official": [
+      90.2
+    ],
+    "verdict": "MATCH",
+    "note": "Δσz = 0.902 q = (0.902)(100) = 90.2 kN/m²"
+  },
+  {
+    "id": "soil_222",
+    "domain": "soil",
+    "label": "das-c23-ex10.8",
+    "stored": [
+      12.732395447351628,
+      -12.732395447351628
+    ],
+    "official": [
+      12.7,
+      -12.7
+    ],
+    "verdict": "MATCH",
+    "note": "Δσz = (0.127)(100) = 12.7 kN/m² at x = +1 m ... Δσz = (-0.127)(100) = -12.7 kN/m² at x = -1 m"
+  },
+  {
+    "id": "soil_223",
+    "domain": "soil",
+    "label": "das-c21-ex9.5a",
+    "stored": [
+      27.45509210526316,
+      24.0345,
+      3.4205921052631574,
+      48.04318421052631,
+      41.202,
+      6.841184210526315
+    ],
+    "official": [
+      27.46,
+      24.03,
+      3.43,
+      48.05,
+      41.2,
+      6.85
+    ],
+    "verdict": "MATCH",
+    "note": "Table lists Point A: total stress 27.46, pore water pressure 24.03, effective stress 3.43; Point B: total stress 48.05, pore water pressure 41.2, effective stress 6.85."
+  },
+  {
+    "id": "soil_228",
+    "domain": "soil",
+    "label": "das-c20-ex9.1A",
+    "stored": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "official": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "verdict": "MATCH",
+    "note": "At Point A, Total stress: σA = 0; Pore water pressure: uA = 0; Effective stress: σ′A = 0"
+  },
+  {
+    "id": "soil_229",
+    "domain": "soil",
+    "label": "das-c20-ex9.1B",
+    "stored": [
+      99.0,
+      0.0,
+      99.0
+    ],
+    "official": [
+      99.0,
+      0.0,
+      99.0
+    ],
+    "verdict": "MATCH",
+    "note": "At Point B, σB = 6 × 16.5 = 99 kN/m²; uB = 0 kN/m²; σ′B = 99 − 0 = 99 kN/m²"
+  },
+  {
+    "id": "soil_230",
+    "domain": "soil",
+    "label": "das-c20-ex9.1C",
+    "stored": [
+      349.25,
+      127.53,
+      221.72
+    ],
+    "official": [
+      349.25,
+      127.53,
+      221.72
+    ],
+    "verdict": "MATCH",
+    "note": "At Point C... = 349.25 kN/m^2; u_c = ... 127.53 kN/m^2; σ'_C = ... 221.72 kN/m^2"
+  },
+  {
+    "id": "soil_231",
+    "domain": "soil",
+    "label": "das-c20-ex9.2",
+    "stored": [
+      4.492917847025495
+    ],
+    "official": [
+      4.49
+    ],
+    "verdict": "MATCH",
+    "note": "h = 4.49 m"
+  },
+  {
+    "id": "soil_236",
+    "domain": "soil",
+    "label": "das-c29-Ex11.11",
+    "stored": [
+      0.2405507369420145
+    ],
+    "official": [
+      2.74
+    ],
+    "verdict": "MISMATCH",
+    "note": "Total consolidation settlement = 2.15 + 0.59 = 2.74 in."
+  },
+  {
+    "id": "soil_237",
+    "domain": "soil",
+    "label": "das-c29-Ex11.12",
+    "stored": [
+      0.6957841039943858
+    ],
+    "official": [
+      69.59
+    ],
+    "verdict": "MISMATCH",
+    "note": "U_z = 1 - 0.304 = 0.6959 = 69.59%"
+  },
+  {
+    "id": "soil_240",
+    "domain": "soil",
+    "label": "das-c27-ex11.3",
+    "stored": [
+      1.5171269408557544,
+      0.6742171875,
+      0.639941875,
+      0.624781640625,
+      0.602370859375,
+      0.5746869531249998,
+      0.5318428124999999,
+      0.46658789062500006,
+      0.39408242187500014
+    ],
+    "official": [
+      1.52,
+      0.671,
+      0.637,
+      0.622,
+      0.599,
+      0.572,
+      0.529,
+      0.464,
+      0.39
+    ],
+    "verdict": "MATCH",
+    "note": "Hs = ... = 1.52 cm; table e = Hv/Hs: 0.671, 0.637, 0.622, 0.599, 0.572, 0.529, 0.464, 0.390"
+  },
+  {
+    "id": "soil_241",
+    "domain": "soil",
+    "label": "das-c27-ex11.5",
+    "stored": [
+      388.40580693395646,
+      4.572169593101313
+    ],
+    "official": [
+      390.48,
+      4.6
+    ],
+    "verdict": "MATCH",
+    "note": "sigma_c' = 390.48 kN/m^2 ... OCR = 390.48/84.95 ≈ 4.6"
+  },
+  {
+    "id": "soil_243",
+    "domain": "soil",
+    "label": "das-c32-ex12.2",
+    "stored": [
+      38.21901330567901,
+      27.55169264964857,
+      0.6271614214638959,
+      14.79173829530066
+    ],
+    "official": [
+      40.0,
+      27.0,
+      14.6
+    ],
+    "verdict": "MISMATCH",
+    "note": "Peak strength: τf (kN/m²) = 40 + σ′ tan 27; Residual strength: τr (kN/m²) = σ′ tan 14.6"
+  },
+  {
+    "id": "soil_247",
+    "domain": "soil",
+    "label": "das-c28-ex11.6a",
+    "stored": [
+      0.33219280948873653,
+      0.14999999999999888
+    ],
+    "official": [
+      0.33,
+      0.15
+    ],
+    "verdict": "MATCH",
+    "note": "Cc = ... = 0.33; Cs/Cc = 0.05/0.33 = 0.15"
+  },
+  {
+    "id": "soil_248",
+    "domain": "soil",
+    "label": "das-c28-ex11.6b",
+    "stored": [
+      0.5693398985691138
+    ],
+    "official": [
+      0.57
+    ],
+    "verdict": "MATCH",
+    "note": "e_3 = 0.8 - 0.33 log(1000/200) ≈ 0.57"
+  },
+  {
+    "id": "soil_249",
+    "domain": "soil",
+    "label": "das-c28-ex11.7",
+    "stored": [
+      0.16689779984854605,
+      0.2273193966337028
+    ],
+    "official": [
+      0.167,
+      0.228
+    ],
+    "verdict": "MATCH",
+    "note": "From Eq. (11.40)... ≈ 0.167; From Eq. (11.44)... = 0.228"
+  },
+  {
+    "id": "soil_251",
+    "domain": "soil",
+    "label": "das-c28-ex11.8b",
+    "stored": [
+      0.02505494065564068
+    ],
+    "official": [
+      0.025,
+      25.0
+    ],
+    "verdict": "MISMATCH",
+    "note": "S_c = ... = 0.025 m = 25 mm"
+  },
+  {
+    "id": "soil_253",
+    "domain": "soil",
+    "label": "das-c28-ex11.9a",
+    "stored": [
+      0.7351297644403638
+    ],
+    "official": [
+      0.735
+    ],
+    "verdict": "MATCH",
+    "note": "Part a: e = 0.8 - 0.178 log(176.08/76.08) = 0.735"
+  },
+  {
+    "id": "soil_265",
+    "domain": "soil",
+    "label": "das-c34-ex12.8b",
+    "stored": [
+      22.88538047615857
+    ],
+    "official": [
+      22.9
+    ],
+    "verdict": "MATCH",
+    "note": "φ′ = sin⁻¹[...] = 22.9°"
+  },
+  {
+    "id": "soil_266",
+    "domain": "soil",
+    "label": "das-c34-ex12.9",
+    "stored": [
+      50.90808259233078
+    ],
+    "official": [
+      50.59
+    ],
+    "verdict": "MATCH",
+    "note": "( \\Delta \\sigma _ { d } ) _ { f } = 5 0 . 5 9 \\mathrm { \\ k N / m } ^ { 2 }"
+  },
+  {
+    "id": "soil_268",
+    "domain": "soil",
+    "label": "das-c34-ex12.11",
+    "stored": [
+      31.26461479631588
+    ],
+    "official": [
+      29.44
+    ],
+    "verdict": "MISMATCH",
+    "note": "= 29.44 kN/m²"
+  },
+  {
+    "id": "soil_269",
+    "domain": "soil",
+    "label": "das-c33-Ex12.3a",
+    "stored": [
+      15.713861048008214
+    ],
+    "official": [
+      17.46
+    ],
+    "verdict": "MISMATCH",
+    "note": "or \\(\\phi' = \\mathbf{17.46}^{\\circ}\\)"
+  },
+  {
+    "id": "soil_270",
+    "domain": "soil",
+    "label": "das-c33-Ex12.3b",
+    "stored": [
+      52.856930524004106
+    ],
+    "official": [
+      53.73
+    ],
+    "verdict": "MATCH",
+    "note": "θ = 45° + 17.46°/2 = 53.73°"
+  },
+  {
+    "id": "soil_271",
+    "domain": "soil",
+    "label": "das-c33-Ex12.4a",
+    "stored": [
+      176.39792487545364,
+      49.604185829504466
+    ],
+    "official": [
+      176.36,
+      49.59
+    ],
+    "verdict": "MATCH",
+    "note": "σ′ = 176.36 kN/m^2 and τf = 49.59 kN/m^2"
+  },
+  {
+    "id": "soil_272",
+    "domain": "soil",
+    "label": "das-c33-Ex12.4b",
+    "stored": [
+      192.0
+    ],
+    "official": [
+      192.0
+    ],
+    "verdict": "MATCH",
+    "note": "σ′ = ... cos 90 = 192 kN/m^2"
+  },
+  {
+    "id": "soil_273",
+    "domain": "soil",
+    "label": "das-c33-Ex12.5",
+    "stored": [
+      176.98261953729093
+    ],
+    "official": [
+      177.0
+    ],
+    "verdict": "MATCH",
+    "note": "(Δσd)f = σ1′ − σ3′ = 277 − 100 = 177 kN/m^2"
+  },
+  {
+    "id": "soil_3",
+    "domain": "soil",
+    "label": "das-c4-Ex3.2c",
+    "stored": [
+      0.5028391489361701
+    ],
+    "official": [
+      0.503
+    ],
+    "verdict": "MATCH",
+    "note": "Void ratio: e = V_v / V_s = 0.402 / 0.798 = 0.503"
+  },
+  {
+    "id": "soil_5",
+    "domain": "soil",
+    "label": "das-c4-Ex3.2e",
+    "stored": [
+      46.3488176075933
+    ],
+    "official": [
+      46.3
+    ],
+    "verdict": "MATCH",
+    "note": "S = ... = 0.463 = 46.3%"
+  },
+  {
+    "id": "soil_6",
+    "domain": "soil",
+    "label": "das-c4-Ex3.2f",
+    "stored": [
+      0.18609576427255978
+    ],
+    "official": [
+      0.186
+    ],
+    "verdict": "MATCH",
+    "note": "Part f ... = {\\bf { 0 . 1 8 6 \\ m ^ { 3 } } }"
+  },
+  {
+    "id": "soil_7",
+    "domain": "soil",
+    "label": "das-c5-ex3.3",
+    "stored": [
+      2070.4
+    ],
+    "official": [
+      2070.4
+    ],
+    "verdict": "MATCH",
+    "note": "So, total mass of water to be added equals 207.04 × 10 = 2070.4 kg"
+  },
+  {
+    "id": "soil_8",
+    "domain": "soil",
+    "label": "das-c5-ex3.4a",
+    "stored": [
+      126.69
+    ],
+    "official": [
+      126.7
+    ],
+    "verdict": "MATCH",
+    "note": "gamma_sat = ... = 126.69 lb/ft^3 approx 126.7 lb/ft^3"
+  },
+  {
+    "id": "soil_9",
+    "domain": "soil",
+    "label": "das-c5-ex3.4b",
+    "stored": [
+      2.6608111599070012
+    ],
+    "official": [
+      2.66
+    ],
+    "verdict": "MATCH",
+    "note": "G_s = 2.66"
+  }
+]

@@ -1,0 +1,126 @@
+{
+ "generated_by": "defect-reviewed cross-domain generalization suite",
+ "domains": {
+  "ecology": {
+   "n": 19,
+   "by_category": {
+    "ecosystem_energetics": 8,
+    "population_dynamics": 5,
+    "residence_time_flux": 3,
+    "biogeochemical_cycles": 1,
+    "community_ecology": 1,
+    "nutrient_budgets": 1
+   },
+   "gt_method": "cross_model_consensus_K2",
+   "verify": "100% @5% (eval.verify --input)"
+  },
+  "environmental_chemistry": {
+   "n": 21,
+   "by_category": {
+    "water_treatment_design": 10,
+    "solute_transport": 6,
+    "reactor_mass_balance": 2,
+    "phase_partitioning": 2,
+    "reaction_kinetics": 1
+   },
+   "gt_method": "cross_model_consensus_K2",
+   "verify": "100% @5% (eval.verify --input)"
+  },
+  "hydrology": {
+   "n": 37,
+   "by_category": {
+    "open_channel_flow": 19,
+    "groundwater_flow": 6,
+    "aquifer_properties": 3,
+    "pipe_flow": 3,
+    "well_hydraulics": 2,
+    "solute_transport": 2,
+    "hydrostatics_pressure": 1,
+    "surface_water_balance": 1
+   },
+   "gt_method": "cross_model_consensus_K2",
+   "verify": "100% @5% (eval.verify --input)"
+  },
+  "soil": {
+   "n": 54,
+   "by_category": {
+    "effective_stress": 13,
+    "phase_relations": 12,
+    "permeability_seepage": 10,
+    "shear_strength": 10,
+    "consolidation_settlement": 9
+   },
+   "gt_method": "cross_model_consensus_K2",
+   "verify": "100% @5% (eval.verify --input)"
+  }
+ },
+ "total": 131,
+ "review": {
+  "pass_1_defect_review": {
+   "scanned": 102,
+   "removed": [
+    {
+     "id": "env_42",
+     "reason": "self-admittedly needs a lecture-only F/M definition not in text (non-self-contained)"
+    },
+    {
+     "id": "eco_25",
+     "reason": "trophic topology comes from a missing food-web figure (non-self-contained)"
+    }
+   ],
+   "borderline_kept": [
+    {
+     "id": "eco_8",
+     "note": "O2 given as 1.0 mol/500 mL is physically unrealistic (likely OCR unit corruption) but internally consistent"
+    },
+    {
+     "id": "hyd_51",
+     "note": "drag coefficient may rely on figure-defined section geometry"
+    },
+    {
+     "id": "soil_243",
+     "note": "regression fit over 4 non-collinear points; method (least-squares) standard but unstated"
+    }
+   ],
+   "false_alarms": "15 'duplicate' groups were shared-setup sub-parts (distinct full text); most LLM figure/table flags were inlined tables",
+   "note": "ran on the 102-problem pool that existed at the time; the suite was expanded afterwards"
+  },
+  "pass_2_answer_key_repair": {
+   "removed": [
+    {
+     "id": "env_38",
+     "reason": "official answer unreachable from the problem statement (1.85 activated-sludge assignment; consensus GT disagreed with the course answer key)"
+    },
+    {
+     "id": "env_39",
+     "reason": "official answer unreachable from the problem statement (1.85 activated-sludge assignment; consensus GT disagreed with the course answer key)"
+    },
+    {
+     "id": "env_40",
+     "reason": "official answer unreachable from the problem statement (1.85 activated-sludge assignment; consensus GT disagreed with the course answer key)"
+    },
+    {
+     "id": "env_41",
+     "reason": "official answer unreachable from the problem statement (1.85 activated-sludge assignment; consensus GT disagreed with the course answer key)"
+    },
+    {
+     "id": "env_43",
+     "reason": "official answer unreachable from the problem statement (1.85 activated-sludge assignment; consensus GT disagreed with the course answer key)"
+    },
+    {
+     "id": "env_44",
+     "reason": "official answer unreachable from the problem statement (1.85 activated-sludge assignment; consensus GT disagreed with the course answer key)"
+    }
+   ],
+   "repaired": [
+    {
+     "id": "env_25",
+     "action": "sub_answers reordered to the official key's order and values replaced with the key's"
+    }
+   ],
+   "note": "see docs/results/CROSS_DOMAIN_RESULTS.md Finding 4"
+  },
+  "removed_total": 8,
+  "residual_risk": "convergent-wrong GT cannot be fully excluded without re-deriving all items; ~12 hand-verified exact"
+ }
+}

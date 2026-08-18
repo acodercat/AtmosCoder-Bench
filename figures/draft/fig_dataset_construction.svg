@@ -1,0 +1,295 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 920" font-family="Helvetica, Arial, sans-serif">
+  <!-- ============ defs ============ -->
+  <defs>
+    <marker id="arr" markerWidth="9" markerHeight="8" refX="7.5" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#6b6a66"/>
+    </marker>
+    <marker id="arrB" markerWidth="9" markerHeight="8" refX="7.5" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#2a78d6"/>
+    </marker>
+  </defs>
+  <rect width="1240" height="920" fill="#ffffff"/>
+
+  <!-- ================================================================ -->
+  <!-- PANEL a — core-set construction                                   -->
+  <!-- ================================================================ -->
+  <text x="28" y="42" font-size="16" font-weight="bold" fill="#0b0b0b">a</text>
+  <text x="46" y="42" font-size="12.5" font-weight="600" fill="#0b0b0b">Core-set construction</text>
+
+  <!-- row 1 -->
+  <g stroke="#c9c8c2" stroke-width="1" fill="#f7f7f5">
+    <rect x="40"  y="64" width="140" height="96" rx="6"/>
+    <rect x="212" y="64" width="136" height="96" rx="6"/>
+    <rect x="380" y="64" width="180" height="96" rx="6"/>
+    <rect x="592" y="64" width="192" height="96" rx="6"/>
+  </g>
+  <rect x="816" y="64" width="384" height="170" rx="6" fill="#eaf2fc" stroke="#2a78d6" stroke-width="1.2"/>
+
+  <g font-size="9" fill="#52514e">
+    <text x="52" y="84" font-size="10" font-weight="bold" fill="#0b0b0b">13 textbooks</text>
+    <text x="52" y="100">undergraduate +</text>
+    <text x="52" y="113">graduate level</text>
+    <text x="52" y="133" fill="#8a8984">PDF sources</text>
+
+    <text x="224" y="84" font-size="10" font-weight="bold" fill="#0b0b0b">MinerU OCR</text>
+    <text x="224" y="100">formula + table</text>
+    <text x="224" y="113">recognition</text>
+    <text x="224" y="133" fill="#8a8984">&#8594; structured Markdown</text>
+
+    <text x="392" y="82" font-size="10" font-weight="bold" fill="#0b0b0b">Problem extraction</text>
+    <text x="392" y="96" font-size="8.5">read page by page, end to end</text>
+    <text x="392" y="108" font-size="8.5">+ LLM quality screen: self-contained,</text>
+    <text x="392" y="120" font-size="8.5">answerable, OCR-clean &#8594; candidates</text>
+    <text x="392" y="136" font-size="8.5" fill="#a04543">drop: derivation-only,</text>
+    <text x="392" y="148" font-size="8.5" fill="#a04543">figure- / data-dependent</text>
+
+    <text x="604" y="84" font-size="10" font-weight="bold" fill="#0b0b0b">Blind solve() synthesis</text>
+    <text x="604" y="100">given values &#8594; parameters</text>
+    <text x="604" y="113">stdlib only &#183; explicit units</text>
+    <text x="604" y="126">returns {sub: value, unit}</text>
+    <text x="604" y="144" font-style="italic" fill="#8a8984">author never sees the answer</text>
+  </g>
+
+  <!-- GT box internals -->
+  <text x="828" y="84" font-size="10" font-weight="bold" fill="#0b0b0b">Ground truth — two regimes, cross-vendor</text>
+  <rect x="828" y="94" width="360" height="56" rx="4" fill="#ffffff" stroke="#c9c8c2" stroke-width="1"/>
+  <g font-size="8.5" fill="#52514e">
+    <text x="838" y="108" font-weight="bold" fill="#0b0b0b">Official-answer regime (solutions manual)</text>
+    <text x="838" y="121">textbook value reproduced by a blind solver</text>
+    <text x="838" y="133">(told units/count only) + second-vendor witness</text>
+  </g>
+  <rect x="828" y="158" width="360" height="46" rx="4" fill="#ffffff" stroke="#c9c8c2" stroke-width="1"/>
+  <g font-size="8.5" fill="#52514e">
+    <text x="838" y="172" font-weight="bold" fill="#0b0b0b">Consensus regime (no solutions)</text>
+    <text x="838" y="185">author: Claude Opus 4.8 (blind) &#183; witnesses: GPT-5.5,</text>
+    <text x="838" y="197">Gemini 3.1 Pro — position-by-position agreement</text>
+  </g>
+  <g font-size="8.5">
+    <text x="828" y="222" font-weight="bold" fill="#0b0b0b">+ human review of every admitted problem (both regimes)</text>
+  </g>
+
+  <!-- row-1 arrows -->
+  <g stroke="#6b6a66" stroke-width="1.4" fill="none">
+    <line x1="180" y1="112" x2="208" y2="112" marker-end="url(#arr)"/>
+    <line x1="348" y1="112" x2="376" y2="112" marker-end="url(#arr)"/>
+    <line x1="560" y1="112" x2="588" y2="112" marker-end="url(#arr)"/>
+    <line x1="784" y1="112" x2="812" y2="112" marker-end="url(#arr)"/>
+    <!-- elbow GT -> row 2 -->
+    <path d="M1008,234 L1008,246 L165,246 L165,254" marker-end="url(#arr)"/>
+  </g>
+
+  <!-- row 2 -->
+  <g stroke="#c9c8c2" stroke-width="1" fill="#f7f7f5">
+    <rect x="40"  y="258" width="250" height="88" rx="6"/>
+    <rect x="324" y="258" width="280" height="88" rx="6"/>
+    <rect x="638" y="258" width="230" height="88" rx="6"/>
+  </g>
+  <rect x="902" y="258" width="298" height="88" rx="6" fill="#2a78d6" stroke="#1c5cab" stroke-width="1.2"/>
+
+  <g font-size="9" fill="#52514e">
+    <text x="52" y="278" font-size="10" font-weight="bold" fill="#0b0b0b">Defect audit &amp; curation</text>
+    <text x="52" y="293">deterministic structural checks</text>
+    <text x="52" y="305">+ 3-model well-posedness consensus</text>
+    <text x="52" y="317" font-weight="bold" fill="#0b0b0b">+ expert manual review of every flag</text>
+    <text x="52" y="333" fill="#a04543">repair &#8594; re-verify &#183; irreparable &#8594; removed</text>
+
+    <text x="336" y="278" font-size="10" font-weight="bold" fill="#0b0b0b">De-scaffolding (difficulty calibration)</text>
+    <text x="336" y="294">pass 1: handed-over formulas &#183; pass 2: constants</text>
+    <text x="336" y="307">triple gate: blind recovery + audit +</text>
+    <text x="336" y="319">cross-vendor reproduction</text>
+    <text x="336" y="337" fill="#4a3aa7">169 pre-strip pairs preserved &#8594; panel c</text>
+
+    <text x="650" y="278" font-size="10" font-weight="bold" fill="#0b0b0b">Annotation (not gating)</text>
+    <text x="650" y="294">10-class category &#183; two-vendor consensus</text>
+    <text x="650" y="307">difficulty rubric (reasoning model):</text>
+    <text x="650" y="320">44 low &#183; 258 medium &#183; 134 high</text>
+  </g>
+  <text x="918" y="296" font-size="26" font-weight="bold" fill="#ffffff">436</text>
+  <text x="982" y="296" font-size="11" font-weight="bold" fill="#ffffff">confirmed core problems</text>
+  <text x="918" y="318" font-size="8.5" fill="#dce9fb">298 single-part &#183; 138 multi-part (&#8804;14 subs)</text>
+  <text x="918" y="331" font-size="8.5" fill="#dce9fb">724 graded sub-answers &#183; model sees text only</text>
+
+  <!-- row-2 arrows -->
+  <g stroke="#6b6a66" stroke-width="1.4" fill="none">
+    <line x1="290" y1="302" x2="320" y2="302" marker-end="url(#arr)"/>
+    <line x1="604" y1="302" x2="634" y2="302" marker-end="url(#arr)"/>
+    <line x1="868" y1="302" x2="898" y2="302" marker-end="url(#arr)"/>
+  </g>
+
+  <!-- core -> panels b & c -->
+  <g stroke="#2a78d6" stroke-width="1.4" fill="none">
+    <path d="M1051,346 L1051,372 L88,372 L88,494" marker-end="url(#arrB)"/>
+    <path d="M1051,372 L964,372 L964,408" marker-end="url(#arrB)"/>
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- PANEL b — robustness variant families                             -->
+  <!-- ================================================================ -->
+  <text x="28" y="404" font-size="16" font-weight="bold" fill="#0b0b0b">b</text>
+  <text x="46" y="404" font-size="12.5" font-weight="600" fill="#0b0b0b">Robustness variant families</text>
+
+  <rect x="40" y="498" width="96" height="44" rx="6" fill="#eaf2fc" stroke="#2a78d6" stroke-width="1.2"/>
+  <text x="88" y="516" font-size="10" font-weight="bold" fill="#0b0b0b" text-anchor="middle">436 core</text>
+  <text x="88" y="530" font-size="8.5" fill="#52514e" text-anchor="middle">parents</text>
+
+  <rect x="168" y="478" width="204" height="84" rx="6" fill="#f7f7f5" stroke="#c9c8c2"/>
+  <text x="180" y="498" font-size="10" font-weight="bold" fill="#0b0b0b">Parameter typing &amp;</text>
+  <text x="180" y="511" font-size="10" font-weight="bold" fill="#0b0b0b">constant demotion</text>
+  <text x="180" y="527" font-size="9" fill="#52514e">INPUT_TEXT / INPUT_HIDDEN / CONSTANT</text>
+  <text x="180" y="540" font-size="9" fill="#52514e">constants demoted out of signature</text>
+  <text x="180" y="553" font-size="8.5" fill="#8a8984">(output proven bit-identical)</text>
+
+  <!-- numeric family -->
+  <rect x="414" y="412" width="286" height="110" rx="6" fill="#e6f6f0" stroke="#1baf7a" stroke-width="1.2"/>
+  <text x="426" y="430" font-size="10" font-weight="bold" fill="#0b0b0b">Numeric variants — contamination probe</text>
+  <g font-size="8.5" fill="#52514e">
+    <text x="426" y="445">deterministic gates: whitelist &#183; appears in text &#183;</text>
+    <text x="426" y="457">output must move &#183; AST faithfulness audit</text>
+    <text x="426" y="469">GT: de-rounded full-precision solver twin</text>
+    <text x="426" y="481">rewrite: Opus 4.8 &#183; review: GPT-5.5 + Gemini 3.1 Pro</text>
+    <text x="426" y="493">(problem unbroken, answer still correct) &#183; fail &#8594; rewrite</text>
+  </g>
+  <text x="426" y="511" font-size="9.5" font-weight="bold" fill="#0b0b0b">1,730 = 346 parents &#215; 5&#160;&#160;&#183;&#160;&#160;90 core-only (unsafe)</text>
+
+  <!-- paraphrase family -->
+  <rect x="414" y="540" width="286" height="96" rx="6" fill="#fdf3dc" stroke="#eda100" stroke-width="1.2"/>
+  <text x="426" y="558" font-size="10" font-weight="bold" fill="#0b0b0b">Paraphrase variants — linguistic probe</text>
+  <g font-size="8.5" fill="#52514e">
+    <text x="426" y="573">rewrite &#215;5 by Opus 4.8 — values, solver, GT fixed</text>
+    <text x="426" y="585">fidelity gate: magnitudes survive &#183; edit-ratio &#8805; &#952;</text>
+    <text x="426" y="597">review: GPT-5.5 + Gemini equivalence &#183; fail &#8594; rewrite</text>
+  </g>
+  <text x="426" y="615" font-size="9.5" font-weight="bold" fill="#0b0b0b">2,180 = 436 parents &#215; 5</text>
+
+  <text x="414" y="652" font-size="8.5" font-weight="bold" fill="#0b0b0b">+ human expert spot-audit of a random sample (both families)</text>
+
+  <!-- panel-b arrows -->
+  <g stroke="#6b6a66" stroke-width="1.4" fill="none">
+    <line x1="136" y1="520" x2="164" y2="520" marker-end="url(#arr)"/>
+    <path d="M372,520 L392,520 L392,467 L410,467" marker-end="url(#arr)"/>
+    <path d="M392,520 L392,588 L410,588" marker-end="url(#arr)"/>
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- PANEL c — diagnostic families                                     -->
+  <!-- ================================================================ -->
+  <text x="728" y="404" font-size="16" font-weight="bold" fill="#0b0b0b">c</text>
+  <text x="746" y="404" font-size="12.5" font-weight="600" fill="#0b0b0b">Diagnostic families</text>
+
+  <rect x="728" y="412" width="472" height="150" rx="6" fill="#edebf9" stroke="#4a3aa7" stroke-width="1.2"/>
+  <text x="740" y="430" font-size="10" font-weight="bold" fill="#0b0b0b">Trap set — 67 certified (template-matching probe)</text>
+  <g font-size="8.5" fill="#52514e">
+    <text x="740" y="446">single-trigger edit of one core problem;</text>
+    <text x="740" y="458">untouched parent = built-in control &#8594; &#8220;Trap Gap&#8221;</text>
+    <text x="740" y="474">gates: unique GT &#183; shortcut vs correct</text>
+    <text x="740" y="486">separation &gt; 5% (range 13&#8211;880%, median 65%)</text>
+    <text x="740" y="498">&#183; fairness (a careful model solves it)</text>
+    <text x="740" y="510">&#183; self-containment audit</text>
+    <text x="740" y="526">sourcing: convergent-failure mining +</text>
+    <text x="740" y="538">trigger perturbation of clean problems</text>
+  </g>
+  <!-- taxonomy mini-bars (n per mechanism) -->
+  <text x="1078" y="440" font-size="8.5" font-weight="bold" fill="#0b0b0b">taxonomy (n)</text>
+  <g font-size="8" fill="#52514e" text-anchor="end">
+    <text x="1072" y="456">formula-selection</text>
+    <text x="1072" y="473">definition-confusion</text>
+    <text x="1072" y="490">sign / direction</text>
+    <text x="1072" y="507">averaging-space</text>
+    <text x="1072" y="524">regime-boundary</text>
+    <text x="1072" y="541">geometry detail</text>
+  </g>
+  <g fill="#4a3aa7">
+    <rect x="1078" y="448" width="110" height="10" rx="2"/>
+    <rect x="1078" y="465" width="75"  height="10" rx="2"/>
+    <rect x="1078" y="482" width="40"  height="10" rx="2"/>
+    <rect x="1078" y="499" width="40"  height="10" rx="2"/>
+    <rect x="1078" y="516" width="22"  height="10" rx="2"/>
+    <rect x="1078" y="533" width="9"   height="10" rx="2"/>
+  </g>
+  <g font-size="8" fill="#0b0b0b">
+    <text x="1182" y="456" text-anchor="end" fill="#ffffff">25</text>
+    <text x="1157" y="473">17</text>
+    <text x="1122" y="490">9</text>
+    <text x="1122" y="507">9</text>
+    <text x="1104" y="524">5</text>
+    <text x="1091" y="541">2</text>
+  </g>
+
+  <rect x="728" y="582" width="286" height="76" rx="6" fill="#eaf2fc" stroke="#2a78d6" stroke-width="1"/>
+  <text x="740" y="600" font-size="10" font-weight="bold" fill="#0b0b0b">Scaffolding-ablation pairs — 169</text>
+  <g font-size="8.5" fill="#52514e">
+    <text x="740" y="615">original (with hints) &#8596; stripped = released core</text>
+    <text x="740" y="627">same solver &amp; GT — isolates recall effect</text>
+    <text x="740" y="643" fill="#8a8984">preserved at de-scaffolding (panel a)</text>
+  </g>
+
+  <rect x="1038" y="582" width="162" height="76" rx="6" fill="#ffffff" stroke="#4a3aa7" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="1050" y="600" font-size="9.5" font-weight="bold" fill="#0b0b0b">Contradiction family</text>
+  <g font-size="8.5" fill="#52514e">
+    <text x="1050" y="615">seed stage &#183; 6 items</text>
+    <text x="1050" y="627">epistemic-honesty probe</text>
+    <text x="1050" y="643" fill="#8a8984">(spec — not yet a claim)</text>
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- PANEL d — released corpus & grading                               -->
+  <!-- ================================================================ -->
+  <text x="28" y="696" font-size="16" font-weight="bold" fill="#0b0b0b">d</text>
+  <text x="46" y="696" font-size="12.5" font-weight="600" fill="#0b0b0b">Released corpus &amp; execution-graded evaluation</text>
+
+  <!-- composition proportional bar (4,346 instances) -->
+  <g font-size="8.5" fill="#52514e">
+    <text x="40"  y="718">Core 436</text>
+    <text x="255" y="718" text-anchor="middle">Numeric 1,730 (346 &#215; 5)</text>
+    <text x="480" y="718" text-anchor="middle">Paraphrase 2,180 (436 &#215; 5)</text>
+  </g>
+  <g>
+    <rect x="40"    y="724" width="71.4"  height="36" rx="4" fill="#2a78d6"/>
+    <rect x="113.4" y="724" width="283.4" height="36" rx="4" fill="#1baf7a"/>
+    <rect x="398.8" y="724" width="357.2" height="36" rx="4" fill="#eda100"/>
+  </g>
+  <text x="756" y="718" font-size="9.5" font-weight="bold" fill="#0b0b0b" text-anchor="end">&#931; = 4,346 evaluation instances</text>
+
+  <!-- chips -->
+  <rect x="40"  y="776" width="256" height="26" rx="13" fill="#edebf9" stroke="#4a3aa7" stroke-width="1"/>
+  <text x="52" y="793" font-size="8.5" fill="#0b0b0b">+ diagnostics: 67 traps (67 built-in controls)</text>
+  <rect x="306" y="776" width="150" height="26" rx="13" fill="#eaf2fc" stroke="#2a78d6" stroke-width="1"/>
+  <text x="318" y="793" font-size="8.5" fill="#0b0b0b">+ 169 scaffolding pairs</text>
+  <rect x="466" y="776" width="290" height="26" rx="13" fill="#f7f7f5" stroke="#c9c8c2" stroke-width="1"/>
+  <text x="478" y="793" font-size="8.5" fill="#52514e">+ external MCQ set, execution-graded (reported apart)</text>
+
+  <!-- difficulty mini-bar -->
+  <text x="40" y="826" font-size="8.5" font-weight="bold" fill="#0b0b0b">difficulty (rubric)</text>
+  <rect x="40"    y="832" width="30.3"  height="18" rx="3" fill="#86b6ef"/>
+  <rect x="72.3"  y="832" width="177.5" height="18" rx="3" fill="#2a78d6"/>
+  <rect x="251.8" y="832" width="92.2"  height="18" rx="3" fill="#104281"/>
+  <text x="352" y="845" font-size="8.5" fill="#52514e">44 low &#183; 258 medium &#183; 134 high</text>
+  <text x="40" y="872" font-size="8.5" fill="#8a8984">10-class taxonomy — dynamics 116 &#183; thermodynamics 89 &#183; chemistry 51 &#183; air quality 37 &#183; + 6 more classes</text>
+
+  <!-- grading box -->
+  <rect x="800" y="708" width="400" height="150" rx="6" fill="#ffffff" stroke="#2a78d6" stroke-width="1.2"/>
+  <text x="812" y="726" font-size="10" font-weight="bold" fill="#0b0b0b">Execution-based grading</text>
+  <rect x="812" y="736" width="110" height="30" rx="4" fill="#f7f7f5" stroke="#c9c8c2"/>
+  <text x="867" y="755" font-size="8.5" fill="#0b0b0b" text-anchor="middle">problem text only</text>
+  <rect x="956" y="722" width="106" height="26" rx="4" fill="#f7f7f5" stroke="#c9c8c2"/>
+  <text x="1009" y="739" font-size="8.5" fill="#0b0b0b" text-anchor="middle">code: solve()</text>
+  <rect x="956" y="756" width="106" height="26" rx="4" fill="#f7f7f5" stroke="#c9c8c2"/>
+  <text x="1009" y="773" font-size="8.5" fill="#0b0b0b" text-anchor="middle">direct: \boxed{}</text>
+  <rect x="1096" y="736" width="92" height="30" rx="4" fill="#eaf2fc" stroke="#2a78d6"/>
+  <text x="1142" y="755" font-size="8.5" font-weight="bold" fill="#0b0b0b" text-anchor="middle">unified grader</text>
+  <g stroke="#6b6a66" stroke-width="1.2" fill="none">
+    <path d="M922,751 L936,751 L936,735 L952,735" marker-end="url(#arr)"/>
+    <path d="M936,751 L936,769 L952,769" marker-end="url(#arr)"/>
+    <path d="M1062,735 L1078,735 L1078,751 L1092,751" marker-end="url(#arr)"/>
+    <path d="M1062,769 L1078,769 L1078,751" fill="none"/>
+  </g>
+  <g font-size="8.5" fill="#52514e">
+    <text x="812" y="800">&#183; 5% relative tolerance per sub-answer</text>
+    <text x="812" y="814">&#183; unit-aware: cm &#8596; m &#183; % &#8596; fraction</text>
+    <text x="812" y="828">&#183; multiple acceptable values &#183; positional fallback</text>
+    <text x="812" y="842">&#183; ungradable output &#8594; fed back (self-repair, &#8804;5 tries)</text>
+  </g>
+
+  <!-- footer -->
+  <text x="40" y="900" font-size="8" fill="#8a8984">All counts derived from benchmark/*.json &#183; per-stage implementation: pipeline/ (Stage &#8594; Module map) &#183; empirical results: docs/results/</text>
+</svg>

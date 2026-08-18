@@ -1,0 +1,7 @@
+model,code_5pct,code_10pct,code_20pct,option_mode
+gemini-3.1-pro,60.0,61.0,61.9,94.48
+deepseek-r1,53.0,54.6,55.7,88.51
+gpt55,49.6,50.6,53.0,80.15
+deepseek-v4-flash,43.3,44.0,45.8,88.06
+deepseek-v3,27.2,28.1,29.6,63.28
+qwen-2.5-72b,19.3,20.0,21.9,57.01

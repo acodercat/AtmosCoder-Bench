@@ -1,0 +1,624 @@
+{
+  "flagged": [
+    {
+      "id": "eco_11",
+      "domain": "ecology",
+      "category": "ecosystem_energetics",
+      "det": [],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "Productivity units/values (hundreds of g C m^-2 day^-1) are unrealistically high and likely unit-corrupted"
+      },
+      "problem": "In a salt marsh, it is assumed that the only source of primary productivity is a marsh grass called Spartina. For a patch of marshland, the Gross Primary Productivity (GPP) is 400 g C m^-2 day^-1, the NPP is 325 g C m^-2 day^-1, and the NCP is 200 g C m^-2 day^-1. What is the res",
+      "answers": [
+        "75.0",
+        "125.0"
+      ]
+    },
+    {
+      "id": "eco_17",
+      "domain": "ecology",
+      "category": "ecosystem_energetics",
+      "det": [
+        "external-ref:['below', 'diagram']"
+      ],
+      "audit": {
+        "verdict": "OK",
+        "issue": ""
+      },
+      "problem": "Below is an energy flow diagram for Ricky the Raccoon. P = 0.5 kcal yr^-1, R = 19.5 kcal yr^-1, I = 35 kcal yr^-1, F = 15 kcal yr^-1. Calculate the assimilation efficiency.",
+      "answers": [
+        "57.14285714285714"
+      ]
+    },
+    {
+      "id": "eco_20",
+      "domain": "ecology",
+      "category": "population_dynamics",
+      "det": [
+        "external-ref:['table']"
+      ],
+      "audit": {
+        "verdict": "OK",
+        "issue": ""
+      },
+      "problem": "Jonathan and Skylar obtain data to construct a life table.\n\n| X | n_x | b_x |\n|---:|---:|---:|\n| 0 | 500 | 0 |\n| 1 | 100 | 2.5 |\n| 2 | 5 | 3 |\n| 3 | 0 | 0 |\n\nx = age or interval\n\nn_x = number of individuals surviving to age x\n\nb_x = per capita births during age interval x to x+1\n",
+      "answers": [
+        "0.53"
+      ]
+    },
+    {
+      "id": "eco_21",
+      "domain": "ecology",
+      "category": "population_dynamics",
+      "det": [
+        "external-ref:['table']"
+      ],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "Ambiguous age timing for births during intervals; mean generation time could use x or interval midpoints/endpoints."
+      },
+      "problem": "Jonathan and Skylar obtain data to construct a life table.\n\n| X | n_x | b_x |\n|---:|---:|---:|\n| 0 | 500 | 0 |\n| 1 | 100 | 2.5 |\n| 2 | 5 | 3 |\n| 3 | 0 | 0 |\n\nx = age or interval\n\nn_x = number of individuals surviving to age x\n\nb_x = per capita births during age interval x to x+1\n",
+      "answers": [
+        "1.0566037735849056"
+      ]
+    },
+    {
+      "id": "eco_25",
+      "domain": "ecology",
+      "category": "ecosystem_energetics",
+      "det": [],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "Refers to a missing food web figure/topology and carbon/biomass conversion is unclear."
+      },
+      "problem": "Baby Jill is stuck on an uninhabited island. The food web quickly comes to look like this. In this web: NPP (plants) = 200 kg/day; Mice AE (assimilation efficiency) = 20%; Ferret EE (exploitation efficiency) = 50%; Baby Jill EE = 40%; I_M (Mice ingestion) = 20 kg/day; Mice PE (pr",
+      "answers": [
+        "16.000000000000004"
+      ]
+    },
+    {
+      "id": "eco_7",
+      "domain": "ecology",
+      "category": "residence_time_flux",
+      "det": [],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "Ambiguous: mean residence time is not defined relative to which carbon flux/productivity, leading to multiple plausible biomass calculations."
+      },
+      "problem": "In an aquatic ecosystem, A is the amount of CO2 reduced to organic carbon by phytoplankton; B is the amount of CO2 reduced to organic carbon by rooted aquatic plants; C is the amount of organic carbon respired by phytoplankton; D is the amount of organic carbon respired by rooted",
+      "answers": [
+        "33000.0"
+      ]
+    },
+    {
+      "id": "eco_8",
+      "domain": "ecology",
+      "category": "ecosystem_energetics",
+      "det": [],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "O2 amounts are physically nonsensical for 500 mL surface water (1 mol dissolved O2), suggesting corrupted or unrealistic units."
+      },
+      "problem": "You want to measure the productivity of a sample of surface water from the Charles River. At 9 am you collect two 500 mL bottles of water, one completely opaque and one clear, measure their O2 content, seal them, and leave them in the river. 8 hours later you retrieve your sample",
+      "answers": [
+        "1.29"
+      ]
+    },
+    {
+      "id": "env_12",
+      "domain": "environmental_chemistry",
+      "category": "solute_transport",
+      "det": [],
+      "audit": {
+        "verdict": "?",
+        "issue": "I'm sorry, but I cannot assist with that request."
+      },
+      "problem": "You have been asked to assess a newly constructed wetland that is 40 m x 300 m. The design flow depth and rate are h = 1 m and Q = 0.1 m^3/s, respectively. You release 300 g of dye at the inlet of the wetland and record the concentration of dye at the outlet.\n\nTime and concentrat",
+      "answers": [
+        "266.4"
+      ]
+    },
+    {
+      "id": "env_14",
+      "domain": "environmental_chemistry",
+      "category": "water_treatment_design",
+      "det": [],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "Tracer concentration data ends while still nonzero, so RTD/tail is incomplete and phosphorus removal calculation is ambiguous."
+      },
+      "problem": "You have been asked to assess a newly constructed wetland that is 40 m x 300 m. The design flow depth and rate are h = 1 m and Q = 0.1 m^3/s, respectively. You release 300 g of dye at the inlet of the wetland and record the concentration of dye at the outlet.\n\nTime and concentrat",
+      "answers": [
+        "0.610170007079858"
+      ]
+    },
+    {
+      "id": "env_23",
+      "domain": "environmental_chemistry",
+      "category": "solute_transport",
+      "det": [],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "Ambiguous: “time scale describes the transport” could mean advective travel time, longitudinal dispersion time, or mixing/diffusion time."
+      },
+      "problem": "During rain storms the street run-off is conveyed to a river by a concrete culvert. During a large storm event a peak flow of q = 0.5 m^3/s in the culvert and Q = 4.5 m^3/s in the river upstream of the culvert are maintained. During the storm the river has width B = 10 m, depth h",
+      "answers": [
+        "8000.0"
+      ]
+    },
+    {
+      "id": "env_25",
+      "domain": "environmental_chemistry",
+      "category": "phase_partitioning",
+      "det": [
+        "external-ref:['below', 'table']"
+      ],
+      "audit": {
+        "verdict": "OK",
+        "issue": ""
+      },
+      "problem": "A wastewater containing phenol at a concentration of 0.4 mg/L is to be treated by granular activated carbon. Batch tests have been performed in the laboratory to determine the relative adsorption of phenol by GAC. Testing entails adding a mass of carbon to V = 1 liter of the 0.4 ",
+      "answers": [
+        "0.20639216310174976",
+        "0.24616609953070465"
+      ]
+    },
+    {
+      "id": "env_30",
+      "domain": "environmental_chemistry",
+      "category": "water_treatment_design",
+      "det": [],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "Sludge recycle ratio is ambiguous: SVI relates to MLSS/RAS solids but only MLVSS is given, and wasting/solids-balance assumptions are unspecified."
+      },
+      "problem": "The aeration tank for a completely mixed aeration process is being sized for a design wastewater flow of 4500 m3/d. The influent COD is 150 mg/L. The design effluent COD is 7 mg/L. Recommended design parameters are a sludge age of 10 days and MLVSS of 1400 mg/L. The expected Slud",
+      "answers": [
+        "0.16279069767441862"
+      ]
+    },
+    {
+      "id": "env_38",
+      "domain": "environmental_chemistry",
+      "category": "water_treatment_design",
+      "det": [],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "Ambiguous: 'design sludge age' and application of safety factor are not defined; multiple activated-sludge formulas/data uses are possible and key design assumptions are missing."
+      },
+      "problem": "A small community wishes to construct an activated sludge wastewater treatment plant to treat their wastewater. The wastewater from the community has an average flow rate of 0.0088 m^3/s (0.2 mgd) and an influent substrate concentration of 300 mg/L as COD. Tests on the wastewater",
+      "answers": [
+        "2.6371308016877637"
+      ]
+    },
+    {
+      "id": "env_39",
+      "domain": "environmental_chemistry",
+      "category": "water_treatment_design",
+      "det": [],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "Ambiguous/missing design criterion: safety factor is not defined, and biomass concentration requires SRT/effluent substrate or recycle/wasting information."
+      },
+      "problem": "A small community wishes to construct an activated sludge wastewater treatment plant to treat their wastewater. The wastewater from the community has an average flow rate of 0.0088 m^3/s (0.2 mgd) and an influent substrate concentration of 300 mg/L as COD. Tests on the wastewater",
+      "answers": [
+        "7580.010520778538"
+      ]
+    },
+    {
+      "id": "env_40",
+      "domain": "environmental_chemistry",
+      "category": "water_treatment_design",
+      "det": [],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "Ambiguous: 'design safety factor is 20' is not defined/how applied; multiple reasonable COD calculations possible, with some given data unused."
+      },
+      "problem": "A small community wishes to construct an activated sludge wastewater treatment plant to treat their wastewater. The wastewater from the community has an average flow rate of 0.0088 m^3/s (0.2 mgd) and an influent substrate concentration of 300 mg/L as COD. Tests on the wastewater",
+      "answers": [
+        "3.9058390320883745"
+      ]
+    },
+    {
+      "id": "env_41",
+      "domain": "environmental_chemistry",
+      "category": "water_treatment_design",
+      "det": [],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "Ambiguous definition of substrate utilization rate U and use of safety factor/biomass concentration; multiple reasonable computations possible."
+      },
+      "problem": "A small community wishes to construct an activated sludge wastewater treatment plant to treat their wastewater. The wastewater from the community has an average flow rate of 0.0088 m^3/s (0.2 mgd) and an influent substrate concentration of 300 mg/L as COD. Tests on the wastewater",
+      "answers": [
+        "0.0495"
+      ]
+    },
+    {
+      "id": "env_42",
+      "domain": "environmental_chemistry",
+      "category": "water_treatment_design",
+      "det": [],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "References a lecture-specific F/M definition not provided; required definition/interpretation is ambiguous."
+      },
+      "problem": "A small community wishes to construct an activated sludge wastewater treatment plant to treat their wastewater. The wastewater from the community has an average flow rate of 0.0088 m^3/s (0.2 mgd) and an influent substrate concentration of 300 mg/L as COD. Tests on the wastewater",
+      "answers": [
+        "1.2036711525649568"
+      ]
+    },
+    {
+      "id": "env_44",
+      "domain": "environmental_chemistry",
+      "category": "water_treatment_design",
+      "det": [],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "Undefined/ambiguous use of design safety factor; sludge wasting calculation depends on assumptions such as SRT definition and effluent solids neglect."
+      },
+      "problem": "A small community wishes to construct an activated sludge wastewater treatment plant to treat their wastewater. The wastewater from the community has an average flow rate of 0.0088 m^3/s (0.2 mgd) and an influent substrate concentration of 300 mg/L as COD. Tests on the wastewater",
+      "answers": [
+        "6.930796656730377e-05"
+      ]
+    },
+    {
+      "id": "env_5",
+      "domain": "environmental_chemistry",
+      "category": "solute_transport",
+      "det": [],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "Ambiguous transport model/geometry and crossing time; shoreline boundary and definition of 'safe after storm' not specified."
+      },
+      "problem": "Combined sewers are municipal wastewater collection systems in which sanitary sewerage and storm water are combined. During storm events, combined sewer overflows discharge excess water to rivers and streams. Fecal coliform concentration is reported as organisms per 100 ml, and t",
+      "answers": [
+        "15143.314832004547"
+      ]
+    },
+    {
+      "id": "hyd_20",
+      "domain": "hydrology",
+      "category": "groundwater_flow",
+      "det": [
+        "external-ref:['following table']"
+      ],
+      "audit": {
+        "verdict": "OK",
+        "issue": ""
+      },
+      "problem": "Three piezometers A, B, and C are located 1000 m apart in a line in an unconfined aquifer. Fill in the blank spaces in the following table. Piezometer A: ground surface = 450 msl m, depth of piezometer = blank, depth to water = 27 m, pressure head = 53 m, elevation head = blank, ",
+      "answers": [
+        "80.0",
+        "370.0",
+        "423.0",
+        "100.0",
+        "35.0",
+        "65.0",
+        "20.0",
+        "360.0",
+        "380.0",
+        "0.023",
+        "0.02"
+      ]
+    },
+    {
+      "id": "hyd_21",
+      "domain": "hydrology",
+      "category": "groundwater_flow",
+      "det": [
+        "answer-equals-input:3.0"
+      ],
+      "audit": {
+        "verdict": "OK",
+        "issue": ""
+      },
+      "problem": "In a heterogeneous system, 1-D groundwater flow is perpendicular to layers of varying hydraulic conductivity. The flow across the system, q, is 1 m/day. The layer properties are K1 = 20 m/day, K2 = 5 m/day, K3 = 10 m/day; b1 = 10 m, b2 = 20 m, b3 = 30 m. Using Darcy's Law, find t",
+      "answers": [
+        "0.5",
+        "4.0",
+        "3.0",
+        "7.5"
+      ]
+    },
+    {
+      "id": "hyd_3",
+      "domain": "hydrology",
+      "category": "groundwater_flow",
+      "det": [],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "Flow direction relative to the layered formations is not specified; different equivalent conductivities/discharges are possible."
+      },
+      "problem": "An aquifer has three different formations. Formation A has a thickness of 30 ft and a hydraulic conductivity of 7.0 ft/day. Formation B has a thickness of 15 ft and a conductivity of 78 ft/day. Formation C has a thickness of 22 ft and a conductivity of 17 ft/day. Assume that each",
+      "answers": [
+        "17.54"
+      ]
+    },
+    {
+      "id": "hyd_30",
+      "domain": "hydrology",
+      "category": "open_channel_flow",
+      "det": [
+        "external-ref:['above']"
+      ],
+      "audit": {
+        "verdict": "OK",
+        "issue": ""
+      },
+      "problem": "Flow from a reservoir passes over a rounded crest into a rectangular channel, the spillway, running down the face of a 100 m dam. The level in the reservoir is H above the elevation of the spillway crest. The spillway is b = 10 m wide and the slope of the face of the dam is 1.2 v",
+      "answers": [
+        "8.788406681532212"
+      ]
+    },
+    {
+      "id": "hyd_36",
+      "domain": "hydrology",
+      "category": "open_channel_flow",
+      "det": [],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "Geometry/orientation and hydraulic assumptions are ambiguous; force estimate could use different widths/control volumes."
+      },
+      "problem": "Close to the middle reach of a natural channel, a cofferdam enclosure is constructed in order to enable the concrete foundations for a bridge pier to be constructed. The cofferdam is 15 m wide and 50 m long and has rounded corners to minimize its effect on the flow in the channel",
+      "answers": [
+        "274657.4533799533"
+      ]
+    },
+    {
+      "id": "hyd_37",
+      "domain": "hydrology",
+      "category": "open_channel_flow",
+      "det": [],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "Ambiguous: headloss could be computed from stated depths only if bed elevations/assumptions are known, or via cofferdam obstruction coefficients not provided."
+      },
+      "problem": "Close to the middle reach of a natural channel, a cofferdam enclosure is constructed in order to enable the concrete foundations for a bridge pier to be constructed. The cofferdam is 15 m wide and 50 m long and has rounded corners to minimize its effect on the flow in the channel",
+      "answers": [
+        "0.08548831978399285"
+      ]
+    },
+    {
+      "id": "hyd_38",
+      "domain": "hydrology",
+      "category": "open_channel_flow",
+      "det": [],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "Ill-posed: determining h2 requires assumptions/loss coefficients or control condition not given; cofferdam orientation/effective minimum width is also ambiguous."
+      },
+      "problem": "Close to the middle reach of a natural channel, a cofferdam enclosure is constructed in order to enable the concrete foundations for a bridge pier to be constructed. The cofferdam is 15 m wide and 50 m long and has rounded corners to minimize its effect on the flow in the channel",
+      "answers": [
+        "5.853855374132642",
+        "4.880788257544194"
+      ]
+    },
+    {
+      "id": "hyd_42",
+      "domain": "hydrology",
+      "category": "open_channel_flow",
+      "det": [],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "Ambiguous sluice-gate hydraulics; downstream/tailwater and roughness data may be needed, and the given contraction coefficient/formula is not enough to determine a unique depth."
+      },
+      "problem": "A water flowrate of Q = 10 m^3/s is being discharged in a very long rectangular channel of width b = 2 m and tall sidewalls. The channel is made of concrete, with a finished surface. The bottom slope is S0 = 5 · 10^-3. Halfway down the channel, water has to go under a gate. The g",
+      "answers": [
+        "3.9528247813454787"
+      ]
+    },
+    {
+      "id": "hyd_48",
+      "domain": "hydrology",
+      "category": "pipe_flow",
+      "det": [],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "Ambiguous without figure/geometry: elevations/locations of A and B and manometer configuration are not specified; extra duct/cylinder data suggest missing diagram/context."
+      },
+      "problem": "Water at 20°C flows at an average velocity of 80 cm/s through a horizontal rectangular duct. The duct is 1 m high and 2 m wide. A circular cylinder 40 cm in diameter is placed in the duct so that it spans the entire width of the duct. A differential manometer is set up so that th",
+      "answers": [
+        "201.45816000000005"
+      ]
+    },
+    {
+      "id": "hyd_51",
+      "domain": "hydrology",
+      "category": "pipe_flow",
+      "det": [],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "References locations A/B and sections 1/2 without defining their relation to the cylinder; likely depends on missing figure/diagram."
+      },
+      "problem": "Water at 20°C flows at an average velocity of 80 cm/s through a horizontal rectangular duct. The duct is 1 m high and 2 m wide. A circular cylinder 40 cm in diameter is placed in the duct so that it spans the entire width of the duct. A differential manometer is set up so that th",
+      "answers": [
+        "1.4155353120373289"
+      ]
+    },
+    {
+      "id": "hyd_8",
+      "domain": "hydrology",
+      "category": "hydrostatics_pressure",
+      "det": [
+        "external-ref:['below']"
+      ],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "Requires water surface tension/contact angle (and density) at 20°C not provided in text"
+      },
+      "problem": "When the pressure in a liquid gets below vapor pressure, vapor bubbles are formed. This phenomenon is called cavitation. If these bubbles are then dragged to regions of higher pressure, they may suddenly collapse and cause damage to the container walls. What diameter D of clean g",
+      "answers": [
+        "2.974348288830464e-06"
+      ]
+    },
+    {
+      "id": "soil_126",
+      "domain": "soil",
+      "category": "shear_strength",
+      "det": [
+        "external-ref:['shown below']"
+      ],
+      "audit": {
+        "verdict": "OK",
+        "issue": ""
+      },
+      "problem": "The properties of seven different clayey soils are shown below. Sensitivity, S_t, refers to the loss of strength when the soil is remolded or disturbed. It is defined as the ratio of the undisturbed strength (τ_f-undisturbed) to the remolded strength (τ_f-remolded) at the same mo",
+      "answers": [
+        "1.2857142857142858",
+        "6.8",
+        "2.411764705882353",
+        "13.18181818181818",
+        "8.679245283018869",
+        "4.736842105263158",
+        "0.25333333333333335"
+      ]
+    },
+    {
+      "id": "soil_221",
+      "domain": "soil",
+      "category": "effective_stress",
+      "det": [
+        "external-ref:['eq. (']"
+      ],
+      "audit": {
+        "verdict": "OK",
+        "issue": ""
+      },
+      "problem": "A vertical flexible strip load of finite width and infinite length has width B = 4 m and load per unit area q = 100 kN/m². For point A, z = 1 m and x = 1 m, where x is measured from the strip centerline. Determine the vertical stress increase Δσz at A using Eq. (10.19): Δσz = (q/",
+      "answers": [
+        "90.22315265974657"
+      ]
+    },
+    {
+      "id": "soil_241",
+      "domain": "soil",
+      "category": "consolidation_settlement",
+      "det": [
+        "external-ref:['below', 'table']"
+      ],
+      "audit": {
+        "verdict": "OK",
+        "issue": ""
+      },
+      "problem": "A soil profile has water content w = 32%, plastic limit PL = 23%, liquid limit LL = 51%. At point A, the present effective pressure is computed from a 2.5 m layer with unit weight 15.6 kN/m^3 and a 5 m layer with total unit weight 19 kN/m^3 below the water table; use gamma_w = 9.",
+      "answers": [
+        "388.40580693395646",
+        "4.572169593101313"
+      ]
+    },
+    {
+      "id": "soil_243",
+      "domain": "soil",
+      "category": "shear_strength",
+      "det": [],
+      "audit": {
+        "verdict": "SUSPECT",
+        "issue": "Ambiguous fitting method for strength relationships from non-collinear test data is not specified."
+      },
+      "problem": "Following are the results of four drained direct shear tests on an overconsolidated clay. Diameter of specimen = 50 mm. Height of specimen = 25 mm. Test 1: normal force N = 150 N, shear force at failure Speak = 157.5 N, residual shear force Sresidual = 44.2 N. Test 2: normal forc",
+      "answers": [
+        "38.21901330567901",
+        "27.55169264964857",
+        "0.6271614214638959",
+        "14.79173829530066"
+      ]
+    },
+    {
+      "id": "soil_247",
+      "domain": "soil",
+      "category": "consolidation_settlement",
+      "det": [
+        "external-ref:['plot']"
+      ],
+      "audit": {
+        "verdict": "OK",
+        "issue": ""
+      },
+      "problem": "The following values were determined from an average e-log σ′ plot for a laboratory consolidation test. Loading branch: e = 0.80 at σ′ = 200 kN/m² and e = 0.70 at σ′ = 400 kN/m². Unloading branch: e = 0.570 at σ′ = 200 kN/m² and e = 0.555 at σ′ = 400 kN/m². Calculate the compress",
+      "answers": [
+        "0.33219280948873653",
+        "0.14999999999999888"
+      ]
+    }
+  ],
+  "duplicates": {
+    "on your first day as a urop in the chisholm lab, you want to impress your new boss by setting up an experiment that comb": [
+      "ecology/eco_24",
+      "ecology/eco_22",
+      "ecology/eco_23"
+    ],
+    "jonathan and skylar obtain data to construct a life table. | x | n_x | b_x | |---:|---:|---:| | 0 | 500 | 0 | | 1 | 100 ": [
+      "ecology/eco_20",
+      "ecology/eco_21"
+    ],
+    "you are a scientist studying elephant ecology in the kibale forest of uganda. as part of your project you have collected": [
+      "ecology/eco_12",
+      "ecology/eco_13",
+      "ecology/eco_14"
+    ],
+    "you have been asked to assess a newly constructed wetland that is 40 m x 300 m. the design flow depth and rate are h = 1": [
+      "environmental_chemistry/env_14",
+      "environmental_chemistry/env_12"
+    ],
+    "the aeration tank for a completely mixed aeration process is being sized for a design wastewater flow of 4500 m3/d. the ": [
+      "environmental_chemistry/env_28",
+      "environmental_chemistry/env_29",
+      "environmental_chemistry/env_30",
+      "environmental_chemistry/env_31"
+    ],
+    "a small community wishes to construct an activated sludge wastewater treatment plant to treat their wastewater. the wast": [
+      "environmental_chemistry/env_36",
+      "environmental_chemistry/env_38",
+      "environmental_chemistry/env_39",
+      "environmental_chemistry/env_40",
+      "environmental_chemistry/env_41",
+      "environmental_chemistry/env_42",
+      "environmental_chemistry/env_43",
+      "environmental_chemistry/env_44"
+    ],
+    "an aquifer has three different formations. formation a has a thickness of 30 ft and a hydraulic conductivity of 7.0 ft/d": [
+      "hydrology/hyd_3",
+      "hydrology/hyd_1",
+      "hydrology/hyd_2"
+    ],
+    "a confined, homogeneous, and isotropic aquifer lies beneath a circular island of radius 100 m in a lake. a pumping well ": [
+      "hydrology/hyd_5",
+      "hydrology/hyd_6",
+      "hydrology/hyd_11",
+      "hydrology/hyd_12"
+    ],
+    "a long wide rectangular straight channel has sand dunes on the bottom. the dunes have height h = 1 m and length λ = 30 m": [
+      "hydrology/hyd_26",
+      "hydrology/hyd_27"
+    ],
+    "given observations of the piezometric heads in three observation wells: well a has x-coordinate 0 m, y-coordinate 0 m, p": [
+      "hydrology/hyd_17",
+      "hydrology/hyd_18"
+    ],
+    "water at 20°c flows at an average velocity of 80 cm/s through a horizontal rectangular duct. the duct is 1 m high and 2 ": [
+      "hydrology/hyd_48",
+      "hydrology/hyd_51"
+    ],
+    "in a heterogeneous system, 1-d groundwater flow is perpendicular to layers of varying hydraulic conductivity. the flow a": [
+      "hydrology/hyd_22",
+      "hydrology/hyd_21"
+    ],
+    "close to the middle reach of a natural channel, a cofferdam enclosure is constructed in order to enable the concrete fou": [
+      "hydrology/hyd_36",
+      "hydrology/hyd_37",
+      "hydrology/hyd_38"
+    ],
+    "a stressed soil element has normal stress +150 kn/m² and shear stress -50 kn/m² on plane ad, and normal stress +50 kn/m²": [
+      "soil/soil_215",
+      "soil/soil_216"
+    ],
+    "for a moist soil sample, the following are given: total volume v = 1.2 m^3, total mass m = 2350 kg, moisture content w =": [
+      "soil/soil_1",
+      "soil/soil_2",
+      "soil/soil_3",
+      "soil/soil_5",
+      "soil/soil_6"
+    ]
+  }
+}

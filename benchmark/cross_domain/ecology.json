@@ -1,0 +1,559 @@
+[
+  {
+    "id": "eco_2",
+    "book": "MIT OCW Ecology, Geobiology & Biogeochemistry (1.018J Ecology I: The Earth System; 1.020 Ecology II: Engineering for Sustainability; 12.007 Geobiology; 7.014 Introductory Biology), CC BY-NC-SA",
+    "problem": "Consider the following reaction: NADH + H+ + fumarate ⇒ succinate + NAD+. Using the following standard reduction potentials at 25°C and pH 7, calculate the ΔE°' of the reaction and the ΔG°' of the reaction. Relevant half-reactions: fumarate + 2H+ + 2e− ⇒ succinate, E°' = +0.031 V; NAD+ + H+ + 2e− ⇒ NADH, E°' = -0.320 V.",
+    "code": "def solve(E_fumarate=0.031, E_NAD=-0.320, n=2):\n    # Physical constants\n    F = 96485.0  # Faraday constant, C/mol\n\n    # Reaction: NADH + H+ + fumarate => succinate + NAD+\n    # Cathode (reduction, electron acceptor): fumarate + 2H+ + 2e- => succinate\n    # Anode (oxidation, electron donor): NADH => NAD+ + H+ + 2e-\n    # E°' = E°'(acceptor) - E°'(donor)\n    E_acceptor = E_fumarate\n    E_donor = E_NAD\n\n    delta_E = E_acceptor - E_donor  # V\n\n    # ΔG°' = -n F ΔE°'\n    delta_G = -n * F * delta_E  # J/mol\n    delta_G_kJ = delta_G / 1000.0  # kJ/mol\n\n    return {\n        \"1\": {\"value\": delta_E, \"unit\": \"V\"},\n        \"2\": {\"value\": delta_G_kJ, \"unit\": \"kJ/mol\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.351",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "-67.73247",
+        "unit": ""
+      }
+    ],
+    "category": "ecosystem_energetics",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "ecology",
+    "provenance": {
+      "source": "018_hw1.md",
+      "label": "eco-HW1-1c",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "eco_18",
+    "book": "MIT OCW Ecology, Geobiology & Biogeochemistry (1.018J Ecology I: The Earth System; 1.020 Ecology II: Engineering for Sustainability; 12.007 Geobiology; 7.014 Introductory Biology), CC BY-NC-SA",
+    "problem": "Over IAP, Jonathan and Skylar decide to go on a sea monster diving tour of the Caribbean. To their delight, they’ve come across a pygmy Kraken population. Skylar decides they should use a mark and recapture method to determine the population size. They catch, mark, and release 100 pygmy Krakens. Several weeks later, they catch 100 pygmy Krakens again. 10 of them are marked. Using the data gathered from this method, approximately how many pygmy Krakens are in the population?",
+    "code": "def solve(marked_first=100, caught_second=100, recaptured_marked=10):\n    # Lincoln-Petersen estimator: N = (M * C) / R\n    N = (marked_first * caught_second) / recaptured_marked\n    return {\"1\": {\"value\": N, \"unit\": \"pygmy Krakens\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "1000.0",
+        "unit": ""
+      }
+    ],
+    "category": "population_dynamics",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "ecology",
+    "provenance": {
+      "source": "018_exam2.md",
+      "label": "eco-exam2-4a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "eco_7",
+    "book": "MIT OCW Ecology, Geobiology & Biogeochemistry (1.018J Ecology I: The Earth System; 1.020 Ecology II: Engineering for Sustainability; 12.007 Geobiology; 7.014 Introductory Biology), CC BY-NC-SA",
+    "problem": "In an aquatic ecosystem, A is the amount of CO2 reduced to organic carbon by phytoplankton; B is the amount of CO2 reduced to organic carbon by rooted aquatic plants; C is the amount of organic carbon respired by phytoplankton; D is the amount of organic carbon respired by rooted aquatic plants; E is the respiration of the zooplankton, bacteria, and fish in the water; and F is the respiration of the mud-dwelling organisms and bacteria. A = 200,000 g C year^-1; B = 20,000 g C year^-1; C = 50,000 g C year^-1; D = 50,000 g C year^-1; Net Community Production = 2000 g C year^-1; and Mean Residence Time = 0.15 years. Find the total biomass of the ecosystem. Show your work and state any assumptions made.",
+    "code": "def solve(A=200000.0, B=20000.0, C=50000.0, D=50000.0,\n          NCP=2000.0, MRT=0.15):\n    # A: CO2 reduced by phytoplankton (GPP phyto)\n    # B: CO2 reduced by rooted plants (GPP plants)\n    # C: respiration by phytoplankton\n    # D: respiration by rooted plants\n    # E: respiration zooplankton/bacteria/fish (unknown)\n    # F: respiration mud organisms/bacteria (unknown)\n    # NCP: Net Community Production\n    # MRT: Mean Residence Time (years)\n\n    # Gross Primary Production = total CO2 reduced to organic C\n    GPP = A + B  # g C / year\n\n    # Net Community Production = GPP - total respiration\n    # NCP = GPP - (C + D + E + F)\n    # so heterotrophic + remaining respiration:\n    total_respiration = GPP - NCP  # = C + D + E + F\n    E_plus_F = total_respiration - (C + D)  # not directly requested\n\n    # Mean Residence Time = Biomass / throughput flux\n    # Throughput flux through the standing biomass = GPP (total carbon fixed)\n    # Biomass = MRT * GPP\n    biomass = MRT * GPP  # (years) * (g C / year) = g C\n\n    return {\n        \"1\": {\"value\": biomass, \"unit\": \"g C\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "33000.0",
+        "unit": ""
+      }
+    ],
+    "category": "residence_time_flux",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "ecology",
+    "provenance": {
+      "source": "018_exam1.md",
+      "label": "018-exam1-3b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "eco_3",
+    "book": "MIT OCW Ecology, Geobiology & Biogeochemistry (1.018J Ecology I: The Earth System; 1.020 Ecology II: Engineering for Sustainability; 12.007 Geobiology; 7.014 Introductory Biology), CC BY-NC-SA",
+    "problem": "A ratio of 32S/34S of 20.031 was measured for a sample of sulfate. The same ratio in the Canyon Diablo Troilite is 22.22. What is the δ34S value for the sulfate sample?",
+    "code": "def solve(sample_ratio_32S_34S=20.031, standard_ratio_32S_34S=22.22):\n    # delta 34S is defined using the 34S/32S ratio.\n    # Given ratios are 32S/34S, so invert to get 34S/32S.\n    R_sample = 1.0 / sample_ratio_32S_34S\n    R_standard = 1.0 / standard_ratio_32S_34S\n\n    delta_34S = (R_sample / R_standard - 1.0) * 1000.0\n\n    return {\n        \"1\": {\"value\": delta_34S, \"unit\": \"per mil\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "109.28061504667785",
+        "unit": ""
+      }
+    ],
+    "category": "biogeochemical_cycles",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "ecology",
+    "provenance": {
+      "source": "007_pset3.md",
+      "label": "007_pset3-2",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "eco_16",
+    "book": "",
+    "problem": "You spend some time roaming the woods of Suburbia, observing how four species spend their day (% of time spent on the following activities).\n\n| Species | Rest | Competition | Eating |\n|---|---:|---|---|\n| Rat | 30% | 15% chasing mice | 55% eating seeds |\n| Mouse | 30% | 25% chasing rats | 45% eating seeds |\n| Raccoon | 85% | -- | 15% eating rats |\n| Coyote | 80% | -- | 20% eating raccoons |\n\nBased on your observational data, what is the trophic level of each species?",
+    "code": "def solve(\n    # Rat diet composition (%)\n    rat_eating_seeds=55.0,\n    # Mouse diet composition (%)\n    mouse_eating_seeds=45.0,\n    # Raccoon diet composition (%)\n    raccoon_eating_rats=15.0,\n    # Coyote diet composition (%)\n    coyote_eating_rats=0.0,\n    coyote_eating_raccoons=20.0,\n):\n    # Physical/ecological constant: trophic level of primary producers (plants/seeds)\n    TL_PRODUCER = 1.0\n\n    # Trophic level = 1 + weighted average of the trophic levels of prey items,\n    # weighted by the fraction of diet each prey contributes.\n\n    # --- Rat ---\n    # Rat eats only seeds (a producer, TL = 1). Any diet fraction not accounted\n    # for as consuming another organism is producer-based feeding.\n    # Rat's food: 100% seeds -> prey TL = producer level\n    rat_prey_TL = TL_PRODUCER\n    TL_rat = 1.0 + rat_prey_TL\n\n    # --- Mouse ---\n    # Mouse eats only seeds (producer).\n    mouse_prey_TL = TL_PRODUCER\n    TL_mouse = 1.0 + mouse_prey_TL\n\n    # --- Raccoon ---\n    # Raccoon eats rats (its entire feeding is on rats).\n    # Weight prey TL by the composition of the diet (only rats listed).\n    raccoon_diet_total = raccoon_eating_rats\n    if raccoon_diet_total > 0:\n        raccoon_prey_TL = (raccoon_eating_rats * TL_rat) / raccoon_diet_total\n    else:\n        raccoon_prey_TL = 0.0\n    TL_raccoon = 1.0 + raccoon_prey_TL\n\n    # --- Coyote ---\n    # Coyote eats raccoons (and possibly rats).\n    coyote_diet_total = coyote_eating_rats + coyote_eating_raccoons\n    if coyote_diet_total > 0:\n        coyote_prey_TL = (\n            coyote_eating_rats * TL_rat\n            + coyote_eating_raccoons * TL_raccoon\n        ) / coyote_diet_total\n    else:\n        coyote_prey_TL = 0.0\n    TL_coyote = 1.0 + coyote_prey_TL\n\n    return {\n        \"1\": {\"value\": TL_rat, \"unit\": \"trophic level\"},\n        \"2\": {\"value\": TL_mouse, \"unit\": \"trophic level\"},\n        \"3\": {\"value\": TL_raccoon, \"unit\": \"trophic level\"},\n        \"4\": {\"value\": TL_coyote, \"unit\": \"trophic level\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "2.0",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "2.0",
+        "unit": ""
+      },
+      {
+        "sub": "3",
+        "value": "3.0",
+        "unit": ""
+      },
+      {
+        "sub": "4",
+        "value": "4.0",
+        "unit": ""
+      }
+    ],
+    "category": "community_ecology",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "ecology",
+    "provenance": {
+      "source": "018_exam2.md",
+      "label": "eco-exam2-3b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "eco_24",
+    "book": "MIT OCW Ecology, Geobiology & Biogeochemistry (1.018J Ecology I: The Earth System; 1.020 Ecology II: Engineering for Sustainability; 12.007 Geobiology; 7.014 Introductory Biology), CC BY-NC-SA",
+    "problem": "On your first day as a UROP in the Chisholm Lab, you want to impress your new boss by setting up an experiment that combines two of her favorite things: chemostats and Prochlorococcus. You decide to make a phosphorous-limited system. You put 10^8 Prochlorococcus cells into your culture vessel, turn on the chemostat, and allow it to reach steady state. The average Prochlorococcus cell contains 10^-15 g P cell^-1. You have set up your fresh culture media, the influent to your chemostat, so it has a concentration of 10^-12 g P ml^-1. Approximate the cell concentration in the culture vessel at steady state.",
+    "code": "def solve(influent_P_conc_g_per_ml=1e-12, P_per_cell_g=1e-15, initial_cells=1e8):\n    # At steady state in a P-limited chemostat, essentially all incoming\n    # phosphorus is taken up into cells. The residual dissolved P is negligible.\n    # Cell concentration = (P available per volume) / (P per cell)\n\n    # influent_P_conc_g_per_ml : g P per ml\n    # P_per_cell_g : g P per cell\n\n    cell_conc_per_ml = influent_P_conc_g_per_ml / P_per_cell_g  # cells per ml\n\n    return {\n        \"1\": {\"value\": cell_conc_per_ml, \"unit\": \"cells ml^-1\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "999.9999999999999",
+        "unit": ""
+      }
+    ],
+    "category": "nutrient_budgets",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "ecology",
+    "provenance": {
+      "source": "018_hw3.md",
+      "label": "018-hw3-1d",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "eco_6",
+    "book": "MIT OCW Ecology, Geobiology & Biogeochemistry (1.018J Ecology I: The Earth System; 1.020 Ecology II: Engineering for Sustainability; 12.007 Geobiology; 7.014 Introductory Biology), CC BY-NC-SA",
+    "problem": "For ammonium breakdown in a wastewater treatment plant, use the selected process NH4+ + NO2- -> N2 + 2 H2O. For this process under standard conditions, ΔG°' = -357.8 kJ mol^-1. Standard conditions are 1 M for solutes and 1 atm for gases. After you turn on your wastewater treatment plant, you find that you’re not getting as much energy as you thought you would. You measure the NH4+ concentration and find that it is only 0.01 M. Using your selected process, what would you expect your energy yield to be at 1 atm and 298 K? Use ΔG' = ΔG°' + RT ln(Q), with R = 8.31 J K^-1 mol^-1, and assume all other solutes are at 1 M and gases are at 1 atm.",
+    "code": "def solve(dG0=-357.8, NH4=0.01, NO2=1.0, N2=1.0, R=8.31, T=298.0):\n    import math\n    # Reaction: NH4+ + NO2- -> N2 + 2 H2O\n    # Q = [N2] / ([NH4+][NO2-])   (water and its activity = 1)\n    Q = N2 / (NH4 * NO2)\n    # dG0 in kJ/mol, RT in J/mol -> convert\n    dG = dG0 + (R * T * math.log(Q)) / 1000.0\n    return {\"1\": {\"value\": dG, \"unit\": \"kJ mol^-1\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "-346.3958486548228",
+        "unit": ""
+      }
+    ],
+    "category": "ecosystem_energetics",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "ecology",
+    "provenance": {
+      "source": "018_exam1.md",
+      "label": "018-exam1-1d",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "eco_20",
+    "book": "",
+    "problem": "Jonathan and Skylar obtain data to construct a life table.\n\n| X | n_x | b_x |\n|---:|---:|---:|\n| 0 | 500 | 0 |\n| 1 | 100 | 2.5 |\n| 2 | 5 | 3 |\n| 3 | 0 | 0 |\n\nx = age or interval\n\nn_x = number of individuals surviving to age x\n\nb_x = per capita births during age interval x to x+1\n\nl_x = proportion of individuals surviving to age x\n\nWhat is the net replacement (R_o)?",
+    "code": "def solve(n0=500, n1=100, n2=5, n3=0, b0=0.0, b1=2.5, b2=3.0, b3=0.0):\n    # Life table calculation of net reproductive rate R_o = sum(l_x * b_x)\n    n = [n0, n1, n2, n3]\n    b = [b0, b1, b2, b3]\n\n    # l_x = proportion surviving to age x (relative to initial cohort)\n    N0 = n[0]\n    l = [nx / N0 for nx in n]\n\n    R_o = sum(l[x] * b[x] for x in range(len(n)))\n\n    return {\"1\": {\"value\": R_o, \"unit\": \"offspring per individual\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.53",
+        "unit": ""
+      }
+    ],
+    "category": "population_dynamics",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "ecology",
+    "provenance": {
+      "source": "018_exam2.md",
+      "label": "eco-exam2-4g",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "eco_9",
+    "book": "MIT OCW Ecology, Geobiology & Biogeochemistry (1.018J Ecology I: The Earth System; 1.020 Ecology II: Engineering for Sustainability; 12.007 Geobiology; 7.014 Introductory Biology), CC BY-NC-SA",
+    "problem": "You have developed a pilot scale algal production system designed to study how you might maximize the production of lipids by algae for use in biofuels. You decide to grow the cells in a nitrogen-limited chemostat. You have an old broken down pump, and it can only pump media into the chemostat at one speed: 200 L per day. What volume of culture would you set up if you wanted your cells to grow at a specific growth rate, r, of 0.8 day^-1?",
+    "code": "def solve(flow_rate_L_per_day=200.0, growth_rate_per_day=0.8):\n    # In a chemostat at steady state, dilution rate D = flow_rate / volume\n    # equals the specific growth rate r.\n    # So V = flow_rate / r\n    volume_L = flow_rate_L_per_day / growth_rate_per_day\n    return {\n        \"1\": {\"value\": volume_L, \"unit\": \"L\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "250.0",
+        "unit": ""
+      }
+    ],
+    "category": "residence_time_flux",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "ecology",
+    "provenance": {
+      "source": "018_exam3.md",
+      "label": "eco-018exam3-5b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "eco_8",
+    "book": "MIT OCW Ecology, Geobiology & Biogeochemistry (1.018J Ecology I: The Earth System; 1.020 Ecology II: Engineering for Sustainability; 12.007 Geobiology; 7.014 Introductory Biology), CC BY-NC-SA",
+    "problem": "You want to measure the productivity of a sample of surface water from the Charles River. At 9 am you collect two 500 mL bottles of water, one completely opaque and one clear, measure their O2 content, seal them, and leave them in the river. 8 hours later you retrieve your samples and measure their O2 content, reported as total amount of O2 in the 500 mL sample. At 9 am, the opaque bottle contains 1.0 mol O2 and the clear bottle contains 1.0 mol O2. At 5 pm, the opaque bottle contains 0.37 mol O2 and the clear bottle contains 1.23 mol O2. Calculate the GPP in g C hour^-1 of your water sample. The molecular weight of C is 12 g mol^-1 and O2 is 32 g mol^-1.",
+    "code": "def solve(opaque_start=1.0, opaque_end=0.37, clear_start=1.0, clear_end=1.23,\n          duration_hours=8.0, mw_C=12.0, mw_O2=32.0):\n    # Respiration: O2 consumed in opaque bottle (no photosynthesis)\n    respiration = opaque_start - opaque_end  # mol O2\n\n    # NPP: net O2 change in clear bottle\n    npp = clear_end - clear_start  # mol O2\n\n    # GPP = NPP + respiration (in mol O2 over duration)\n    gpp_O2 = npp + respiration  # mol O2\n\n    # Convert mol O2 to mol C: photosynthesis 1:1 (CO2 + H2O -> CH2O + O2)\n    gpp_C_mol = gpp_O2  # mol C\n\n    # Convert to grams C\n    gpp_C_g = gpp_C_mol * mw_C  # g C\n\n    # Per hour\n    gpp_rate = gpp_C_g / duration_hours\n\n    return {\"1\": {\"value\": gpp_rate, \"unit\": \"g C hour^-1\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "1.29",
+        "unit": ""
+      }
+    ],
+    "category": "ecosystem_energetics",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "ecology",
+    "provenance": {
+      "source": "018_exam1.md",
+      "label": "018-exam1-3c",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "eco_21",
+    "book": "MIT OCW Ecology, Geobiology & Biogeochemistry (1.018J Ecology I: The Earth System; 1.020 Ecology II: Engineering for Sustainability; 12.007 Geobiology; 7.014 Introductory Biology), CC BY-NC-SA",
+    "problem": "Jonathan and Skylar obtain data to construct a life table.\n\n| X | n_x | b_x |\n|---:|---:|---:|\n| 0 | 500 | 0 |\n| 1 | 100 | 2.5 |\n| 2 | 5 | 3 |\n| 3 | 0 | 0 |\n\nx = age or interval\n\nn_x = number of individuals surviving to age x\n\nb_x = per capita births during age interval x to x+1\n\nl_x = proportion of individuals surviving to age x\n\nWhat is the mean generation time (G) for this population?",
+    "code": "def solve(n0=500, n1=100, n2=5, n3=0,\n          b0=0.0, b1=2.5, b2=3.0, b3=0.0):\n    # Ages\n    ages = [0, 1, 2, 3]\n    n = [n0, n1, n2, n3]\n    b = [b0, b1, b2, b3]\n\n    # Survivorship l_x = n_x / n_0\n    l = [nx / n[0] for nx in n]\n\n    # Net reproductive rate R0 = sum(l_x * b_x)\n    R0 = sum(l[i] * b[i] for i in range(len(ages)))\n\n    # Mean generation time G = sum(x * l_x * b_x) / sum(l_x * b_x)\n    numerator = sum(ages[i] * l[i] * b[i] for i in range(len(ages)))\n    G = numerator / R0\n\n    return {\"1\": {\"value\": G, \"unit\": \"time units (age intervals)\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "1.0566037735849056",
+        "unit": ""
+      }
+    ],
+    "category": "population_dynamics",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "ecology",
+    "provenance": {
+      "source": "018_exam2.md",
+      "label": "eco-exam2-bonus1",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "eco_15",
+    "book": "MIT OCW Ecology, Geobiology & Biogeochemistry (1.018J Ecology I: The Earth System; 1.020 Ecology II: Engineering for Sustainability; 12.007 Geobiology; 7.014 Introductory Biology), CC BY-NC-SA",
+    "problem": "Approximately 23% of the energy available at the Earth’s surface is used for evaporating water, either evaporation from free water surfaces or transpiration from plants. How much water, in km^3 year^-1, is evaporated? Assume the energy available at the surface of the Earth is 553 W m^-2, the latent heat of vaporization is 2.5 x 10^6 J kg^-1, the density of water is 1.0 x 10^12 kg km^-3, the radius of Earth is 6.38 x 10^6 m, and there are 31,536,000 seconds in a year.",
+    "code": "def solve(fraction=0.23, energy_flux=553.0, latent_heat=2.5e6,\n          water_density=1.0e12, earth_radius=6.38e6, seconds_per_year=31536000.0):\n    import math\n\n    # Surface area of Earth (m^2)\n    surface_area = 4.0 * math.pi * earth_radius**2  # m^2\n\n    # Energy used for evaporation (W = J/s) over whole surface\n    energy_for_evap = fraction * energy_flux * surface_area  # J/s\n\n    # Mass of water evaporated per second (kg/s)\n    mass_rate = energy_for_evap / latent_heat  # kg/s\n\n    # Mass per year (kg/year)\n    mass_per_year = mass_rate * seconds_per_year  # kg/year\n\n    # Convert to volume (km^3/year)\n    volume_per_year = mass_per_year / water_density  # km^3/year\n\n    return {\"1\": {\"value\": volume_per_year, \"unit\": \"km^3 year^-1\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "820674.2124226746",
+        "unit": ""
+      }
+    ],
+    "category": "residence_time_flux",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "ecology",
+    "provenance": {
+      "source": "018_hw2.md",
+      "label": "018-hw2-4b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "eco_11",
+    "book": "MIT OCW Ecology, Geobiology & Biogeochemistry (1.018J Ecology I: The Earth System; 1.020 Ecology II: Engineering for Sustainability; 12.007 Geobiology; 7.014 Introductory Biology), CC BY-NC-SA",
+    "problem": "In a salt marsh, it is assumed that the only source of primary productivity is a marsh grass called Spartina. For a patch of marshland, the Gross Primary Productivity (GPP) is 400 g C m^-2 day^-1, the NPP is 325 g C m^-2 day^-1, and the NCP is 200 g C m^-2 day^-1. What is the respiration rate of autotrophs and heterotrophs in this system?",
+    "code": "def solve(GPP=400.0, NPP=325.0, NCP=200.0):\n    # GPP = Gross Primary Productivity (g C m^-2 day^-1)\n    # NPP = Net Primary Productivity = GPP - autotrophic respiration\n    # NCP = Net Community Productivity = GPP - (autotrophic + heterotrophic respiration)\n\n    # Autotrophic respiration\n    Ra = GPP - NPP\n\n    # Total community respiration = GPP - NCP\n    R_total = GPP - NCP\n\n    # Heterotrophic respiration\n    Rh = R_total - Ra\n\n    return {\n        \"1\": {\"value\": Ra, \"unit\": \"g C m^-2 day^-1\"},\n        \"2\": {\"value\": Rh, \"unit\": \"g C m^-2 day^-1\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "75.0",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "125.0",
+        "unit": ""
+      }
+    ],
+    "category": "ecosystem_energetics",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "ecology",
+    "provenance": {
+      "source": "018_exam3.md",
+      "label": "eco-018exam3-6b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "eco_22",
+    "book": "MIT OCW Ecology, Geobiology & Biogeochemistry (1.018J Ecology I: The Earth System; 1.020 Ecology II: Engineering for Sustainability; 12.007 Geobiology; 7.014 Introductory Biology), CC BY-NC-SA",
+    "problem": "On your first day as a UROP in the Chisholm Lab, you want to impress your new boss by setting up an experiment that combines two of her favorite things: chemostats and Prochlorococcus. You decide to make a phosphorous-limited system. You put 10^8 Prochlorococcus cells into your culture vessel, turn on the chemostat, and allow it to reach steady state. The volume of your chemostat is 1000 ml, the flow rate is 500 ml day^-1, and you know r_max for Prochlorococcus is 15 day^-1. What is the growth rate of Prochlorococcus?",
+    "code": "def solve(initial_cells=1e8, volume_ml=1000.0, flow_rate_ml_per_day=500.0, r_max_per_day=15.0):\n    # At steady state, growth rate = dilution rate D = flow rate / volume\n    dilution_rate = flow_rate_ml_per_day / volume_ml  # day^-1\n    growth_rate = dilution_rate\n    return {\"1\": {\"value\": growth_rate, \"unit\": \"day^-1\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.5",
+        "unit": ""
+      }
+    ],
+    "category": "population_dynamics",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "ecology",
+    "provenance": {
+      "source": "018_hw3.md",
+      "label": "018-hw3-1b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "eco_12",
+    "book": "MIT OCW Ecology, Geobiology & Biogeochemistry (1.018J Ecology I: The Earth System; 1.020 Ecology II: Engineering for Sustainability; 12.007 Geobiology; 7.014 Introductory Biology), CC BY-NC-SA",
+    "problem": "You are a scientist studying elephant ecology in the Kibale Forest of Uganda. As part of your project you have collected the following data: Kibale Forest net primary production = 856.0 kcal m^-2 yr^-1; total biomass of elephants = 9.70 kcal m^-2. Elephants: food consumed (I) = 67.5 kcal m^-2 yr^-1; fecal material and urine lost (F) = 30.2 kcal m^-2 yr^-1; maintenance metabolism (R) = 36.8 kcal m^-2 yr^-1; growth (P) = 0.50 kcal m^-2 yr^-1. What is the exploitation efficiency of the elephants?",
+    "code": "def solve(npp=856.0, biomass=9.70, I=67.5, F=30.2, R=36.8, P=0.50):\n    # Exploitation efficiency = ingestion (food consumed) / net primary production available\n    exploitation_efficiency = (I / npp) * 100.0  # as percent\n    return {\n        \"1\": {\"value\": exploitation_efficiency, \"unit\": \"%\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "7.885514018691589",
+        "unit": ""
+      }
+    ],
+    "category": "ecosystem_energetics",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "ecology",
+    "provenance": {
+      "source": "018_hw2.md",
+      "label": "018-hw2-2a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "eco_23",
+    "book": "MIT OCW Ecology, Geobiology & Biogeochemistry (1.018J Ecology I: The Earth System; 1.020 Ecology II: Engineering for Sustainability; 12.007 Geobiology; 7.014 Introductory Biology), CC BY-NC-SA",
+    "problem": "On your first day as a UROP in the Chisholm Lab, you want to impress your new boss by setting up an experiment that combines two of her favorite things: chemostats and Prochlorococcus. You decide to make a phosphorous-limited system. You put 10^8 Prochlorococcus cells into your culture vessel, turn on the chemostat, and allow it to reach steady state. The volume of your chemostat is 1000 ml, the flow rate is 500 ml day^-1, and you know r_max for Prochlorococcus is 15 day^-1. What is the doubling time of this population?",
+    "code": "def solve(initial_cells=1e8, volume_ml=1000.0, flow_rate_ml_day=500.0, r_max_day=15.0):\n    import math\n\n    # At steady state in a chemostat, the specific growth rate equals\n    # the dilution rate D = flow rate / volume.\n    dilution_rate = flow_rate_ml_day / volume_ml  # day^-1\n\n    # Doubling time = ln(2) / growth rate\n    doubling_time = math.log(2) / dilution_rate  # days\n\n    return {\n        \"1\": {\"value\": doubling_time, \"unit\": \"day\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "1.3862943611198906",
+        "unit": ""
+      }
+    ],
+    "category": "population_dynamics",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "ecology",
+    "provenance": {
+      "source": "018_hw3.md",
+      "label": "018-hw3-1c",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "eco_13",
+    "book": "MIT OCW Ecology, Geobiology & Biogeochemistry (1.018J Ecology I: The Earth System; 1.020 Ecology II: Engineering for Sustainability; 12.007 Geobiology; 7.014 Introductory Biology), CC BY-NC-SA",
+    "problem": "You are a scientist studying elephant ecology in the Kibale Forest of Uganda. As part of your project you have collected the following data: Kibale Forest net primary production = 856.0 kcal m^-2 yr^-1; total biomass of elephants = 9.70 kcal m^-2. Elephants: food consumed (I) = 67.5 kcal m^-2 yr^-1; fecal material and urine lost (F) = 30.2 kcal m^-2 yr^-1; maintenance metabolism (R) = 36.8 kcal m^-2 yr^-1; growth (P) = 0.50 kcal m^-2 yr^-1. What is the assimilation efficiency of the elephants?",
+    "code": "def solve(npp=856.0, biomass=9.70, I=67.5, F=30.2, R=36.8, P=0.50):\n    # Assimilation efficiency = (I - F) / I * 100\n    assimilation = I - F\n    efficiency = assimilation / I * 100.0\n    return {\"1\": {\"value\": efficiency, \"unit\": \"%\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "55.25925925925925",
+        "unit": ""
+      }
+    ],
+    "category": "ecosystem_energetics",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "ecology",
+    "provenance": {
+      "source": "018_hw2.md",
+      "label": "018-hw2-2b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "eco_14",
+    "book": "MIT OCW Ecology, Geobiology & Biogeochemistry (1.018J Ecology I: The Earth System; 1.020 Ecology II: Engineering for Sustainability; 12.007 Geobiology; 7.014 Introductory Biology), CC BY-NC-SA",
+    "problem": "You are a scientist studying elephant ecology in the Kibale Forest of Uganda. As part of your project you have collected the following data: Kibale Forest net primary production = 856.0 kcal m^-2 yr^-1; total biomass of elephants = 9.70 kcal m^-2. Elephants: food consumed (I) = 67.5 kcal m^-2 yr^-1; fecal material and urine lost (F) = 30.2 kcal m^-2 yr^-1; maintenance metabolism (R) = 36.8 kcal m^-2 yr^-1; growth (P) = 0.50 kcal m^-2 yr^-1. What is the production efficiency of the elephants?",
+    "code": "def solve(I=67.5, F=30.2, R=36.8, P=0.50, biomass=9.70, npp=856.0):\n    # Production efficiency = P / A, where A (assimilation) = I - F\n    A = I - F\n    production_efficiency = P / A * 100.0  # percent\n    return {\n        \"1\": {\"value\": production_efficiency, \"unit\": \"%\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "1.3404825737265416",
+        "unit": ""
+      }
+    ],
+    "category": "ecosystem_energetics",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "ecology",
+    "provenance": {
+      "source": "018_hw2.md",
+      "label": "018-hw2-2c",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "eco_17",
+    "book": "MIT OCW Ecology, Geobiology & Biogeochemistry (1.018J Ecology I: The Earth System; 1.020 Ecology II: Engineering for Sustainability; 12.007 Geobiology; 7.014 Introductory Biology), CC BY-NC-SA",
+    "problem": "Below is an energy flow diagram for Ricky the Raccoon. P = 0.5 kcal yr^-1, R = 19.5 kcal yr^-1, I = 35 kcal yr^-1, F = 15 kcal yr^-1. Calculate the assimilation efficiency.",
+    "code": "def solve(P=0.5, R=19.5, I=35.0, F=15.0):\n    # Assimilation A = I - F\n    A = I - F\n    # Assimilation efficiency = A / I\n    assimilation_efficiency = A / I\n    return {\n        \"1\": {\"value\": assimilation_efficiency * 100, \"unit\": \"%\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "57.14285714285714",
+        "unit": ""
+      }
+    ],
+    "category": "ecosystem_energetics",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "ecology",
+    "provenance": {
+      "source": "018_exam2.md",
+      "label": "eco-exam2-3c",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  }
+]

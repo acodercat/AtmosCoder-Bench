@@ -1,0 +1,23 @@
+model,protocol,setting,n_problem_runs,p10,p25,p50,p75,p90,p99,mean,p90_over_p50,mean_over_p50
+gpt-5.5 (reasoning),code,reasoning,1308,140,217,367,591,933,1698,469.7,2.54,1.28
+Gemini-3.1-Pro (reasoning),code,reasoning,1308,742,865,1037,1184,1322,1903,1043.3,1.27,1.01
+Kimi K2.6 (reasoning),code,reasoning,1308,2745,5989,12968,34219,48298,163538,26121.3,3.72,2.01
+DeepSeek-V4-pro (reasoning),code,reasoning,1308,722,1091,2136,4804,10326,42321,5422.3,4.83,2.54
+Qwen-3.5-397B (reasoning),code,reasoning,1308,1003,1916,5351,7594,10606,16739,5498.5,1.98,1.03
+DeepSeek-V4-flash (reasoning),code,reasoning,1308,601,978,1720,3209,5587,15866,2745.7,3.25,1.6
+gpt-5.5,code,non-reasoning,1308,140,191,269,395,572,1036,328.6,2.13,1.22
+Qwen-3.5-397B,code,non-reasoning,1308,293,409,728,1518,4071,10639,1534.0,5.59,2.11
+Kimi K2.6,code,non-reasoning,1308,378,666,1379,4968,14899,32927,4386.1,10.8,3.18
+Qwen-3.6-27B (reasoning),code,reasoning,1308,3163,4429,6554,11294,30424,72684,11218.2,4.64,1.71
+DeepSeek-V4-pro,code,non-reasoning,1308,197,264,356,539,854,2830,535.8,2.4,1.5
+DeepSeek-V4-flash,code,non-reasoning,1308,198,261,374,570,852,1647,474.3,2.28,1.27
+Qwen-3.6-27B,code,non-reasoning,1308,295,417,603,1186,2866,7634,1214.4,4.75,2.01
+Qwen-3.5-9B (reasoning),code,reasoning,1308,1326,3920,7540,31630,47799,154342,21186.5,6.34,2.81
+Qwen-3.5-9B,code,non-reasoning,1308,345,508,888,2124,5803,17243,2411.9,6.53,2.72
+Qwen-2.5-72B,code,non-reasoning,1308,202,257,345,476,675,2100,442.0,1.96,1.28
+gpt-5.5 (reasoning),direct,reasoning,1301,313,390,544,781,1077,1701,636.3,1.98,1.17
+DeepSeek-V4-flash (reasoning),direct,reasoning,1308,1166,1831,3705,7285,12051,30070,6156.3,3.25,1.66
+gpt-5.5,direct,non-reasoning,1308,250,321,432,616,945,1824,532.5,2.19,1.23
+Qwen-3.6-27B (reasoning),direct,reasoning,1308,8302,10760,14818,21938,58670,88797,22143.3,3.96,1.49
+DeepSeek-V4-flash,direct,non-reasoning,1308,389,522,725,1119,1652,3175,913.0,2.28,1.26
+Qwen-3.6-27B,direct,non-reasoning,1308,728,955,1348,2338,4123,7770,1943.8,3.06,1.44

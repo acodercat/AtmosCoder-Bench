@@ -1,0 +1,54 @@
+expected_unit,answered_unit,count
+%,dimensionless,391
+h,s,325
+km,m,103
+days,years,93
+cm/s,m/s,74
+m/s,cm/s,68
+m,km,67
+days,s,48
+cm,m,47
+inches,m,46
+cm^2/s,m^2/s,42
+min,s,40
+hours,s,39
+ns,s,39
+us,s,39
+ft^3/min,ft^3/hr,22
+cm^3 min^-1,cm^3 s^-1,20
+years,s,19
+°C,°C,17
+cm^3 min^-1,cm^3/s,16
+days,yr,12
+years,days,10
+dimensionless,%,9
+μg/m^3,g/m^3,9
+ft^3/min,ft^3/h,9
+m/s,cm s^-1,9
+K/km,K/m,8
+nm,m,6
+min,h,6
+J,kJ,6
+cm^3 min^-1,cm^3 s^{-1},5
+kg/kg,g/kg,5
+deg,rad,4
+10^-6 m^-1,km^-1,4
+C,C,3
+days,year,3
+inches,cm,2
+ft^3/hr,ft^3/min,2
+cm/s,m s^-1,2
+K,Celsius,2
+hPa,Pa,1
+cm^3 min^-1,cm3 s-1,1
+C,K,1
+C,degC,1
+μg/m^3,mg/m^3,1
+min,hours,1
+ft^3/min,ft³/hour,1
+cm^3 min^-1,cm^3/h,1
+ft^3/min,ft³/h,1
+K,deg C,1
+K,°C,1
+ft^3/min,ft3/hr,1
+,%,1

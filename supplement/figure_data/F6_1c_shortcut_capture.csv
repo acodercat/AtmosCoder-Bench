@@ -1,0 +1,17 @@
+trap,family,capture_runs,total_runs,capture_configs,total_configs,includes_frontier
+holton_28,regime_boundary,18,27,7,9,yes
+air_215,formula_selection,12,27,6,9,no
+air_205,formula_selection,9,27,4,9,no
+air_108,sign_direction,8,27,4,9,no
+air_111,averaging_space,6,27,3,9,yes
+holton_11,definition_confusion,4,27,3,9,no
+2.13,sign_direction,3,27,3,9,no
+holton_2,sign_direction,3,27,2,9,no
+dn_10.36,formula_selection,3,27,2,9,no
+air_229,definition_confusion,3,27,2,9,no
+air_197,definition_confusion,1,27,1,9,no
+air_90,averaging_space,1,27,1,9,no
+snp_12,averaging_space,1,27,1,9,no
+p_37,definition_confusion,1,27,1,9,no
+holton_59,sign_direction,1,27,1,9,no
+air_318,formula_selection,1,27,1,9,no

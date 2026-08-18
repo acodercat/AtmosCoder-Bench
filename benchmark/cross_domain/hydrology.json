@@ -1,0 +1,1158 @@
+[
+  {
+    "id": "hyd_24",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "A 3 meter wide concrete rectangular channel with boundary roughness epsilon = 1 mm flows at a depth h0 and a slope of beta = 0.03 degrees. The flow rate in the channel is Q = 12 m^3/s. Using Manning’s equation V = (1/n) Rh^(2/3) S0^(1/2), where Rh is the hydraulic radius and S0 is the channel slope, and using n = 0.038 epsilon^(1/6), find the depth h0.",
+    "code": "import math\n\ndef solve(width=3.0, epsilon_mm=1.0, beta_deg=0.03, Q=12.0):\n    # Convert units\n    epsilon = epsilon_mm / 1000.0  # mm to m\n    \n    # Manning's n from roughness\n    n = 0.038 * epsilon**(1.0/6.0)\n    \n    # Slope S0 = sin(beta) (or tan; for small angles nearly equal). Use tan.\n    S0 = math.tan(math.radians(beta_deg))\n    \n    sqrtS = math.sqrt(S0)\n    \n    # Manning: Q = (1/n) * A * Rh^(2/3) * sqrt(S0)\n    # A = width * h0, P = width + 2*h0, Rh = A/P\n    def f(h0):\n        A = width * h0\n        P = width + 2.0 * h0\n        Rh = A / P\n        return (1.0 / n) * A * Rh**(2.0/3.0) * sqrtS - Q\n    \n    # Bisection\n    lo, hi = 1e-6, 100.0\n    for _ in range(200):\n        mid = 0.5 * (lo + hi)\n        if f(lo) * f(mid) <= 0:\n            hi = mid\n        else:\n            lo = mid\n    \n    h0 = 0.5 * (lo + hi)\n    \n    return {\"1\": {\"value\": h0, \"unit\": \"m\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "2.2527288772027987",
+        "unit": ""
+      }
+    ],
+    "category": "open_channel_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps7.md",
+      "label": "ps7-4b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_3",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "An aquifer has three different formations. Formation A has a thickness of 30 ft and a hydraulic conductivity of 7.0 ft/day. Formation B has a thickness of 15 ft and a conductivity of 78 ft/day. Formation C has a thickness of 22 ft and a conductivity of 17 ft/day. Assume that each individual formation is isotropic and homogeneous. What would be the flow per unit width through the aquifer if the gradient magnitude were 0.01?",
+    "code": "def solve(thick_A=30.0, K_A=7.0, thick_B=15.0, K_B=78.0,\n          thick_C=22.0, K_C=17.0, gradient=0.01):\n    # Horizontal flow through layered aquifer: transmissivities add\n    # Effective transmissivity T = sum(K_i * b_i)\n    T = K_A * thick_A + K_B * thick_B + K_C * thick_C  # ft^2/day\n\n    # Flow per unit width q = T * gradient (Darcy)\n    q = T * gradient  # ft^2/day (flow per unit width)\n\n    return {\n        \"1\": {\"value\": q, \"unit\": \"ft^2/day\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "17.54",
+        "unit": ""
+      }
+    ],
+    "category": "groundwater_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps2.md",
+      "label": "hyd-ps2-2c",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_1",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "An aquifer has three different formations. Formation A has a thickness of 30 ft and a hydraulic conductivity of 7.0 ft/day. Formation B has a thickness of 15 ft and a conductivity of 78 ft/day. Formation C has a thickness of 22 ft and a conductivity of 17 ft/day. Assume that each individual formation is isotropic and homogeneous. Compute both the overall horizontal and vertical conductivity.",
+    "code": "def solve(bA=30.0, KA=7.0, bB=15.0, KB=78.0, bC=22.0, KC=17.0):\n    # Total thickness\n    b_total = bA + bB + bC\n\n    # Horizontal (parallel) equivalent conductivity: weighted arithmetic mean\n    Kh = (KA * bA + KB * bB + KC * bC) / b_total\n\n    # Vertical (series) equivalent conductivity: weighted harmonic mean\n    Kv = b_total / (bA / KA + bB / KB + bC / KC)\n\n    return {\n        \"1\": {\"value\": Kh, \"unit\": \"ft/day\"},\n        \"2\": {\"value\": Kv, \"unit\": \"ft/day\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "26.17910447761194",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "11.607480821994512",
+        "unit": ""
+      }
+    ],
+    "category": "aquifer_properties",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps2.md",
+      "label": "hyd-ps2-2a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_9",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "The viscosity of liquids can be measured through the use of a rotating-cylinder viscosimeter. In this device, the outer cylinder is fixed and the inner cylinder is rotated with an angular frequency, ω. The torque, T, required to maintain a constant ω is measured and the dynamic viscosity, μ, is calculated from these two measurements. By neglecting end effects and assuming the velocity distribution in the gap to be linear, an equation relating μ, ω, T, l, R0, and Ri may be written as T = [2π Ri^3 l ω / (R0 − Ri)] μ. The following torque-angular velocity data were obtained with a rotating-cylinder viscosimeter with R0 = 6.0 cm, Ri = 5.9 cm, and l = 25.0 cm: Torque (N·m): 0.178, 0.353, 0.536, 0.715, 0.880, 1.066. Angular velocity (rad/s): 1.0, 2.0, 3.0, 4.0, 5.0, 6.0. Give your best estimate of the viscosity, μ.",
+    "code": "def solve(R0_cm=6.0, Ri_cm=5.9, l_cm=25.0,\n          torque=(0.178, 0.353, 0.536, 0.715, 0.880, 1.066),\n          omega=(1.0, 2.0, 3.0, 4.0, 5.0, 6.0)):\n    import math\n\n    # unit conversions to SI (meters)\n    R0 = R0_cm / 100.0\n    Ri = Ri_cm / 100.0\n    l = l_cm / 100.0\n\n    # T = [2*pi*Ri^3*l/(R0-Ri)] * mu * omega\n    # So T = k * mu * omega, linear through origin with slope (k*mu)\n    k = 2.0 * math.pi * Ri**3 * l / (R0 - Ri)\n\n    # least-squares slope through origin: slope = sum(x*y)/sum(x*x)\n    # here x = omega, y = torque\n    sxy = sum(o * t for o, t in zip(omega, torque))\n    sxx = sum(o * o for o in omega)\n    slope = sxy / sxx  # = k * mu\n\n    mu = slope / k\n\n    return {\"1\": {\"value\": mu, \"unit\": \"Pa·s\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.5500490721919492",
+        "unit": ""
+      }
+    ],
+    "category": "pipe_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps1.md",
+      "label": "hyd-ps1-3b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_5",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "A confined, homogeneous, and isotropic aquifer lies beneath a circular island of radius 100 m in a lake. A pumping well is located in the middle of the island and is fully screened across the entire aquifer. Flow is horizontal to the well. The confined aquifer is 8 m thick. The extraction rate is 75.4 m³/day. The hydraulic conductivity of the aquifer is 30 m/day. The porosity is 0.3. Assume no flow through the confining layer and steady-state conditions. What is the gradient of hydraulic head at the edge of the island?",
+    "code": "import math\n\ndef solve(radius_island=100.0, aquifer_thickness=8.0, extraction_rate=75.4,\n          hydraulic_conductivity=30.0, porosity=0.3):\n    # Steady-state radial flow to a fully penetrating well in a confined aquifer.\n    # Q = 2*pi*r*b*K*(dh/dr)  =>  dh/dr = Q / (2*pi*r*b*K)\n    Q = extraction_rate\n    b = aquifer_thickness\n    K = hydraulic_conductivity\n    r = radius_island\n\n    gradient = Q / (2.0 * math.pi * r * b * K)\n\n    return {\"1\": {\"value\": gradient, \"unit\": \"dimensionless (m/m)\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.0005000117795470379",
+        "unit": ""
+      }
+    ],
+    "category": "well_hydraulics",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "final_exam.md",
+      "label": "hyd-final-8a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_6",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "A confined, homogeneous, and isotropic aquifer lies beneath a circular island of radius 100 m in a lake. A pumping well is located in the middle of the island and is fully screened across the entire aquifer. Flow is horizontal to the well. The confined aquifer is 8 m thick. The extraction rate is 75.4 m³/day. The hydraulic conductivity of the aquifer is 30 m/day. The porosity is 0.3. Assume no flow through the confining layer and steady-state conditions. The lake contains 1 µg/L bromide, not enough to significantly change the density. Bromide is a conservative tracer, i.e. no chemical reaction or sorption, and does not exist in the groundwater before pumping. If both diffusion and dispersion are negligible, how long does it take for the bromide to reach the well after pumping commences?",
+    "code": "def solve(R=100.0, b=8.0, Q=75.4, K=30.0, n=0.3):\n    import math\n    # Confined aquifer radial flow to well; travel time from edge to well\n    # Radial velocity: v = Q/(2*pi*r*b*n) (seepage velocity)\n    # dr/dt = -Q/(2*pi*r*b*n)  (moving inward)\n    # Integrate: t = integral_0^R (2*pi*r*b*n)/Q dr = pi*R^2*b*n/Q\n    t = math.pi * R**2 * b * n / Q  # days\n    return {\"1\": {\"value\": t, \"unit\": \"days\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "999.976441460942",
+        "unit": ""
+      }
+    ],
+    "category": "solute_transport",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "final_exam.md",
+      "label": "hyd-final-8b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_8",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "When the pressure in a liquid gets below vapor pressure, vapor bubbles are formed. This phenomenon is called cavitation. If these bubbles are then dragged to regions of higher pressure, they may suddenly collapse and cause damage to the container walls. What diameter D of clean glass tubing is required to get a rise of water at 20°C due to capillary action of 10 m?",
+    "code": "def solve(h=10.0):\n    # Capillary rise: h = 4*sigma*cos(theta) / (rho*g*D)\n    # Solve for D = 4*sigma*cos(theta) / (rho*g*h)\n\n    # Properties of water at 20°C\n    sigma = 0.0728        # surface tension, N/m\n    rho = 998.0           # density, kg/m^3\n    g = 9.81              # gravitational acceleration, m/s^2\n    theta = 0.0           # contact angle for clean glass, degrees (cos=1)\n\n    import math\n    D = 4.0 * sigma * math.cos(math.radians(theta)) / (rho * g * h)\n\n    return {\"1\": {\"value\": D, \"unit\": \"m\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "2.974348288830464e-06",
+        "unit": ""
+      }
+    ],
+    "category": "hydrostatics_pressure",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps1.md",
+      "label": "hyd-ps1-2a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_15",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "If every person on Earth consumed as much water as the average American, how much water would be consumed each year? Assume the population of the Earth is 5 billion people and per capita water usage in the US is 1,340 gallons/day.",
+    "code": "def solve(population=5e9, per_capita_gallons_per_day=1340):\n    # Convert daily per-capita usage to annual usage\n    days_per_year = 365\n    per_capita_gallons_per_year = per_capita_gallons_per_day * days_per_year\n\n    # Total annual water consumption for entire population\n    total_gallons_per_year = population * per_capita_gallons_per_year\n\n    return {\n        \"1\": {\"value\": total_gallons_per_year, \"unit\": \"gallons/year\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "2445500000000000.0",
+        "unit": ""
+      }
+    ],
+    "category": "surface_water_balance",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps1.md",
+      "label": "ps1-1",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_26",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "A long wide rectangular straight channel has sand dunes on the bottom. The dunes have height H = 1 m and length λ = 30 m. The average channel depth is hm = 5 m and the flowrate per unit width is q = 5 m^2/s. The dune geometry can be simplified by assuming the downstream slope to be vertical. Account only for headloss in the flow expansion from dune crest to dune trough. Calculate the headloss due to the sudden flow expansion from dune crest to dune trough.",
+    "code": "def solve(H=1.0, lam=30.0, hm=5.0, q=5.0):\n    g = 9.81  # gravitational acceleration, m/s^2\n\n    # The mean depth hm = 5 m is the average over the dune.\n    # At the crest the depth is smaller, at the trough the depth is larger.\n    # Depth at crest: h1 = hm - H/2\n    # Depth at trough: h2 = hm + H/2\n    h1 = hm - H / 2.0   # depth over the crest (contracted section)\n    h2 = hm + H / 2.0   # depth over the trough (expanded section)\n\n    # velocities (flow per unit width q constant)\n    V1 = q / h1   # velocity at crest\n    V2 = q / h2   # velocity at trough\n\n    # Head loss due to sudden expansion (Borda-Carnot / Carnot-Borda loss):\n    # dH = (V1 - V2)^2 / (2 g)\n    dH = (V1 - V2) ** 2 / (2.0 * g)\n\n    return {\n        \"1\": {\"value\": dH, \"unit\": \"m\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.0020801305822774345",
+        "unit": ""
+      }
+    ],
+    "category": "open_channel_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps8.md",
+      "label": "hyd-ps8-1b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_17",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "Given observations of the piezometric heads in three observation wells: Well A has x-coordinate 0 m, y-coordinate 0 m, piezometric head 10 m; Well B has x-coordinate 300 m, y-coordinate 0 m, piezometric head 11.5 m; Well C has x-coordinate 0 m, y-coordinate 200 m, piezometric head 8.4 m. Assume the wells measure a homogeneous, isotropic, confined aquifer with constant thickness b = 20 m, effective porosity n = 0.2, and hydraulic conductivity K = 15 m/day. Approximate the piezometric surface between the wells as a plane. Find the hydraulic gradient, magnitude and direction.",
+    "code": "def solve(xA=0.0, yA=0.0, hA=10.0,\n          xB=300.0, yB=0.0, hB=11.5,\n          xC=0.0, yC=200.0, hC=8.4,\n          b=20.0, n=0.2, K=15.0):\n    import math\n\n    # Fit plane h = a*x + c*y + d through three points\n    # Using well A as reference:\n    # hB - hA = a*(xB-xA) + c*(yB-yA)\n    # hC - hA = a*(xC-xA) + c*(yC-yA)\n    # Solve 2x2 system\n    a11 = xB - xA\n    a12 = yB - yA\n    a21 = xC - xA\n    a22 = yC - yA\n    r1 = hB - hA\n    r2 = hC - hA\n\n    det = a11 * a22 - a12 * a21\n    a = (r1 * a22 - a12 * r2) / det   # dh/dx\n    c = (a11 * r2 - r1 * a21) / det   # dh/dy\n\n    # Gradient of head vector (dh/dx, dh/dy)\n    grad_mag = math.sqrt(a**2 + c**2)\n\n    # Hydraulic gradient magnitude (dimensionless slope)\n    # Direction of flow is opposite to grad h (from high to low head)\n    # Direction of the head gradient vector\n    # Report direction as angle measured from +x axis (degrees), for flow direction\n    flow_x = -a\n    flow_y = -c\n    angle_flow = math.degrees(math.atan2(flow_y, flow_x))\n    if angle_flow < 0:\n        angle_flow += 360.0\n\n    return {\n        \"1\": {\"value\": grad_mag, \"unit\": \"dimensionless\"},\n        \"2\": {\"value\": angle_flow, \"unit\": \"degrees (flow direction from +x axis, CCW)\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.009433981132056603",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "122.0053832080835",
+        "unit": ""
+      }
+    ],
+    "category": "groundwater_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps1.md",
+      "label": "ps1-5a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_2",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "An aquifer has three different formations. Formation A has a thickness of 30 ft and a hydraulic conductivity of 7.0 ft/day. Formation B has a thickness of 15 ft and a conductivity of 78 ft/day. Formation C has a thickness of 22 ft and a conductivity of 17 ft/day. Assume that each individual formation is isotropic and homogeneous. What is the aquifer transmissivity, assuming all three formations are saturated?",
+    "code": "def solve(thick_A=30.0, K_A=7.0, thick_B=15.0, K_B=78.0, thick_C=22.0, K_C=17.0):\n    # Transmissivity = sum of (K * thickness) for each formation\n    T_A = K_A * thick_A  # ft^2/day\n    T_B = K_B * thick_B\n    T_C = K_C * thick_C\n    T = T_A + T_B + T_C\n\n    return {\"1\": {\"value\": T, \"unit\": \"ft^2/day\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "1754.0",
+        "unit": ""
+      }
+    ],
+    "category": "aquifer_properties",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps2.md",
+      "label": "hyd-ps2-2b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_48",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "Water at 20°C flows at an average velocity of 80 cm/s through a horizontal rectangular duct. The duct is 1 m high and 2 m wide. A circular cylinder 40 cm in diameter is placed in the duct so that it spans the entire width of the duct. A differential manometer is set up so that the pressure difference between A and B can be measured. The distance between locations A and B is 3 m, and the specific gravity of the manometer fluid is 1.30. The manometer reading is d = 6.8 cm. The velocity profile is uniform at sections 1 and 2. The equivalent roughness of the duct walls is ε = 5.3 mm. What is the pressure difference between points A and B?",
+    "code": "def solve(velocity_cms=80.0, duct_height_m=1.0, duct_width_m=2.0,\n          cylinder_diameter_cm=40.0, distance_AB_m=3.0, sg_manometer=1.30,\n          manometer_reading_cm=6.8, roughness_mm=5.3):\n\n    # Constants\n    rho_water = 998.0  # kg/m^3 at 20 C\n    g = 9.81           # m/s^2\n\n    # Manometer reading\n    d = manometer_reading_cm / 100.0  # m\n    rho_manometer = sg_manometer * 1000.0  # kg/m^3\n\n    # Pressure difference from manometer (horizontal duct)\n    # dp = (rho_manometer - rho_water) * g * d\n    dp = (rho_manometer - rho_water) * g * d  # Pa\n\n    return {\n        \"1\": {\"value\": dp, \"unit\": \"Pa\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "201.45816000000005",
+        "unit": ""
+      }
+    ],
+    "category": "pipe_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps6.md",
+      "label": "ps6-P5a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_11",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "A confined, homogeneous, and isotropic aquifer lies beneath a circular island of radius 100 m in a lake. A pumping well is located in the middle of the island and is fully screened across the entire aquifer. Flow is horizontal to the well. The confined aquifer is 8 m thick. The extraction rate is 75.4 m^3/day. The hydraulic conductivity of the aquifer is 30 m/day. The porosity is 0.3. Assume no flow through the confining layer and steady-state conditions. What is the gradient of hydraulic head at the edge of the island?",
+    "code": "import math\n\ndef solve(radius=100.0, thickness=8.0, Q=75.4, K=30.0, porosity=0.3):\n    # Confined aquifer, radial steady-state flow to fully penetrating well.\n    # Q = 2*pi*r*b*K*(dh/dr)  =>  dh/dr = Q / (2*pi*r*b*K)\n    # Gradient at the edge of the island (r = radius)\n    T = K * thickness  # transmissivity, m^2/day\n    gradient = Q / (2.0 * math.pi * radius * thickness * K)\n    return {\n        \"1\": {\"value\": gradient, \"unit\": \"dimensionless (m/m)\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.0005000117795470379",
+        "unit": ""
+      }
+    ],
+    "category": "well_hydraulics",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps5.md",
+      "label": "ps5-2a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_12",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "A confined, homogeneous, and isotropic aquifer lies beneath a circular island of radius 100 m in a lake. A pumping well is located in the middle of the island and is fully screened across the entire aquifer. Flow is horizontal to the well. The confined aquifer is 8 m thick. The extraction rate is 75.4 m^3/day. The hydraulic conductivity of the aquifer is 30 m/day. The porosity is 0.3. Assume no flow through the confining layer and steady-state conditions. The lake contains 1 µg/L bromide, bromide is a conservative tracer with no chemical reaction or sorption, and bromide does not exist in the groundwater before pumping. If both diffusion and dispersion are negligible, how long does it take for the bromide to reach the well after pumping commences?",
+    "code": "import math\n\ndef solve(R=100.0, b=8.0, Q=75.4, K=30.0, n=0.3):\n    # Radial flow to a fully penetrating well in a confined aquifer.\n    # Seepage (pore) velocity at radius r: v(r) = Q / (2*pi*r*b*n)\n    # Travel time from island edge (R) to well (r=0):\n    #   t = integral_0^R (2*pi*r*b*n / Q) dr = pi*b*n*R^2 / Q\n    #\n    # Units: b [m], R [m], Q [m^3/day], n [-]  -> t in days\n    t_days = math.pi * b * n * R**2 / Q\n\n    return {\n        \"1\": {\"value\": t_days, \"unit\": \"days\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "999.976441460942",
+        "unit": ""
+      }
+    ],
+    "category": "solute_transport",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps5.md",
+      "label": "ps5-2b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_27",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "A long wide rectangular straight channel has sand dunes on the bottom. The dunes have height H = 1 m and length λ = 30 m. The average channel depth is hm = 5 m and the flowrate per unit width is q = 5 m^2/s. The dune geometry can be simplified by assuming the downstream slope to be vertical. Account only for headloss in the flow expansion from dune crest to dune trough. Estimate the average slope of the surface, Sf. To this end, calculate an average headloss per unit length of the channel by distributing the headloss from the sudden flow expansion evenly over the dune length. Neglect all other losses.",
+    "code": "def solve(H=1.0, lam=30.0, hm=5.0, q=5.0):\n    g = 9.81\n\n    # At the dune crest, depth is reduced by the dune height (measured from mean bed)\n    # The dune rises H above the trough. Mean depth hm is average over the dune.\n    # Depth at crest (over top of dune) and at trough (downstream, over trough)\n    # Simplify: crest depth = hm - H/2, trough depth = hm + H/2\n    h_crest = hm - H / 2.0\n    h_trough = hm + H / 2.0\n\n    # velocities from continuity q = V*h\n    V_crest = q / h_crest\n    V_trough = q / h_trough\n\n    # Sudden expansion (Borda-Carnot) head loss from crest to trough\n    dV = V_crest - V_trough\n    hL = dV**2 / (2.0 * g)\n\n    # Distribute over dune length\n    Sf = hL / lam\n\n    return {\"1\": {\"value\": Sf, \"unit\": \"-\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "6.933768607591448e-05",
+        "unit": ""
+      }
+    ],
+    "category": "open_channel_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps8.md",
+      "label": "hyd-ps8-1c",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_18",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "Given observations of the piezometric heads in three observation wells: Well A has x-coordinate 0 m, y-coordinate 0 m, piezometric head 10 m; Well B has x-coordinate 300 m, y-coordinate 0 m, piezometric head 11.5 m; Well C has x-coordinate 0 m, y-coordinate 200 m, piezometric head 8.4 m. Assume the wells measure a homogeneous, isotropic, confined aquifer with constant thickness b = 20 m, effective porosity n = 0.2, and hydraulic conductivity K = 15 m/day. Approximate the piezometric surface between the wells as a plane. Find the total discharge in the aquifer, per unit width.",
+    "code": "def solve(xA=0.0, yA=0.0, hA=10.0,\n          xB=300.0, yB=0.0, hB=11.5,\n          xC=0.0, yC=200.0, hC=8.4,\n          b=20.0, n=0.2, K=15.0):\n    # Fit a plane h = a*x + c*y + d through the three wells\n    # Using the two independent baselines from A\n    # h = hA + a*(x-xA) + c*(y-yA)\n    # Solve for a and c\n    # From B: hB - hA = a*(xB-xA) + c*(yB-yA)\n    # From C: hC - hA = a*(xC-xA) + c*(yC-yA)\n    dxB = xB - xA\n    dyB = yB - yA\n    dxC = xC - xA\n    dyC = yC - yA\n\n    det = dxB * dyC - dxC * dyB\n    a = ((hB - hA) * dyC - (hC - hA) * dyB) / det\n    c = (dxB * (hC - hA) - dxC * (hB - hA)) / det\n\n    # gradient components\n    grad_x = a\n    grad_y = c\n    grad_mag = (grad_x**2 + grad_y**2) ** 0.5  # dimensionless (m/m)\n\n    # Darcy flux (specific discharge) magnitude, m/day\n    q = K * grad_mag  # m/day (per unit area)\n\n    # Total discharge per unit width = q * b  (m^2/day)\n    Q_per_width = q * b\n\n    return {\n        \"1\": {\"value\": Q_per_width, \"unit\": \"m^2/day\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "2.830194339616981",
+        "unit": ""
+      }
+    ],
+    "category": "groundwater_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps1.md",
+      "label": "ps1-5b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_22",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "In a heterogeneous system, 1-D groundwater flow is perpendicular to layers of varying hydraulic conductivity. The flow across the system, q, is 1 m/day. The layer properties are K1 = 20 m/day, K2 = 5 m/day, K3 = 10 m/day; b1 = 10 m, b2 = 20 m, b3 = 30 m. Find the effective hydraulic conductivity, K_perpendicular, for an equivalent homogeneous system, that is, a system with the same total gradient and flow rate as the heterogeneous system.",
+    "code": "def solve(q=1.0, K1=20.0, K2=5.0, K3=10.0, b1=10.0, b2=20.0, b3=30.0):\n    # Flow perpendicular to layers: harmonic mean weighted by thickness\n    total_b = b1 + b2 + b3\n    sum_ratio = b1 / K1 + b2 / K2 + b3 / K3\n    K_perp = total_b / sum_ratio\n    return {\"1\": {\"value\": K_perp, \"unit\": \"m/day\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "8.0",
+        "unit": ""
+      }
+    ],
+    "category": "aquifer_properties",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps1.md",
+      "label": "ps1-8b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_51",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "Water at 20°C flows at an average velocity of 80 cm/s through a horizontal rectangular duct. The duct is 1 m high and 2 m wide. A circular cylinder 40 cm in diameter is placed in the duct so that it spans the entire width of the duct. A differential manometer is set up so that the pressure difference between A and B can be measured. The distance between locations A and B is 3 m, and the specific gravity of the manometer fluid is 1.30. The manometer reading is d = 6.8 cm. The velocity profile is uniform at sections 1 and 2. The equivalent roughness of the duct walls is ε = 5.3 mm. What is the corresponding drag coefficient, CD, of the cylinder?",
+    "code": "def solve(V=0.80,           # m/s average velocity\n          height=1.0,       # m duct height\n          width=2.0,        # m duct width\n          D_cyl=0.40,       # m cylinder diameter\n          L=3.0,            # m distance A to B\n          sg_mano=1.30,     # specific gravity of manometer fluid\n          d=6.8e-2,         # m manometer reading\n          eps=5.3e-3):      # m equivalent roughness\n    import math\n\n    # Water properties at 20 C\n    rho = 998.2         # kg/m^3\n    mu = 1.002e-3       # Pa.s\n    nu = mu / rho       # m^2/s\n    g = 9.81            # m/s^2\n\n    # Manometer: pressure difference between A and B\n    rho_mano = sg_mano * 1000.0\n    dP = (rho_mano - rho) * g * d   # Pa\n\n    # Duct geometry\n    A_duct = height * width          # cross-sectional area m^2\n    P_wet = 2.0 * (height + width)   # wetted perimeter m\n    Dh = 4.0 * A_duct / P_wet        # hydraulic diameter m\n\n    # Reynolds number based on hydraulic diameter\n    Re = V * Dh / nu\n\n    # Friction factor (Colebrook) - Darcy friction factor\n    def colebrook(Re, eps, Dh):\n        rel = eps / Dh\n        f = 0.02\n        for _ in range(100):\n            rhs = -2.0 * math.log10(rel / 3.7 + 2.51 / (Re * math.sqrt(f)))\n            f_new = 1.0 / (rhs ** 2)\n            if abs(f_new - f) < 1e-12:\n                f = f_new\n                break\n            f = f_new\n        return f\n\n    f = colebrook(Re, eps, Dh)\n\n    # Pressure drop due to wall friction over length L (Darcy-Weisbach)\n    dP_friction = f * (L / Dh) * (rho * V ** 2 / 2.0)\n\n    # Pressure drop due to cylinder drag\n    dP_drag = dP - dP_friction\n\n    # Drag force = dP_drag * duct cross-sectional area\n    F_drag = dP_drag * A_duct\n\n    # Frontal (projected) area of cylinder spanning the width\n    A_frontal = D_cyl * width\n\n    # Drag coefficient\n    CD = F_drag / (0.5 * rho * V ** 2 * A_frontal)\n\n    return {\"1\": {\"value\": CD, \"unit\": \"dimensionless\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "1.4155353120373289",
+        "unit": ""
+      }
+    ],
+    "category": "pipe_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps6.md",
+      "label": "ps6-P5d",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_29",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "Water in a rectangular channel of constant small slope flows into a gradual short contraction section. The upstream depth is h1 = 0.6 m, the upstream width is b1 = 1.5 m, and the flowrate is Q = 1 m^3/s. Calculate the minimum value of the downstream width, b2, so that the flow stays subcritical along the contraction. Calculate also the corresponding downstream depth, h2.",
+    "code": "def solve(h1=0.6, b1=1.5, Q=1.0):\n    g = 9.81\n\n    # Upstream conditions\n    A1 = b1 * h1\n    V1 = Q / A1\n    # Specific energy upstream\n    E1 = h1 + V1**2 / (2 * g)\n\n    # For minimum downstream width (limiting case), flow reaches critical\n    # condition at the narrowest section, meaning specific energy at\n    # contraction equals minimum specific energy for that width.\n    # At critical: E_min = (3/2) * h_c, and h_c = (q^2/g)^(1/3), q = Q/b2\n    # Energy is conserved (short contraction, negligible losses): E1 = E2 = E_min\n    #\n    # So critical depth h_c = (2/3) * E1\n    hc = (2.0 / 3.0) * E1\n\n    # q = Q/b2 = sqrt(g * hc^3)  =>  b2 = Q / sqrt(g * hc^3)\n    qc = (g * hc**3) ** 0.5\n    b2_min = Q / qc\n\n    # Corresponding downstream depth (at limiting minimum width) is critical depth\n    h2 = hc\n\n    return {\n        \"1\": {\"value\": b2_min, \"unit\": \"m\"},\n        \"2\": {\"value\": h2, \"unit\": \"m\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "1.0866928777002711",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "0.44194930007592825",
+        "unit": ""
+      }
+    ],
+    "category": "open_channel_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps8.md",
+      "label": "hyd-ps8-2b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_20",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "Three piezometers A, B, and C are located 1000 m apart in a line in an unconfined aquifer. Fill in the blank spaces in the following table. Piezometer A: ground surface = 450 msl m, depth of piezometer = blank, depth to water = 27 m, pressure head = 53 m, elevation head = blank, total head = blank. Piezometer B: ground surface = 435 msl m, depth of piezometer = blank, depth to water = blank, pressure head = blank, elevation head = 335 m, total head = 400 m. Piezometer C: ground surface = 430 msl m, depth of piezometer = 70 m, depth to water = 50 m, pressure head = blank, elevation head = blank, total head = blank. Hydraulic gradient between adjacent piezometers is also blank. Calculate the pressure heads and elevation heads at the base of the piezometers.",
+    "code": "def solve(\n    spacing_m=1000.0,\n    # Piezometer A\n    A_ground=450.0,\n    A_depth_to_water=27.0,\n    A_pressure_head=53.0,\n    # Piezometer B\n    B_ground=435.0,\n    B_elevation_head=335.0,\n    B_total_head=400.0,\n    # Piezometer C\n    C_ground=430.0,\n    C_depth=70.0,\n    C_depth_to_water=50.0,\n):\n    # --- Piezometer A ---\n    # Depth of piezometer: the water level in piezometer is measured from top.\n    # depth to water + pressure head = depth of piezometer (base)\n    A_depth = A_depth_to_water + A_pressure_head          # depth of piezometer\n    # Elevation head = elevation of base of piezometer = ground - depth\n    A_elevation_head = A_ground - A_depth\n    # Total head = elevation head + pressure head\n    A_total_head = A_elevation_head + A_pressure_head\n\n    # --- Piezometer B ---\n    # elevation head = ground - depth  => depth = ground - elevation head\n    B_depth = B_ground - B_elevation_head\n    # pressure head = total head - elevation head\n    B_pressure_head = B_total_head - B_elevation_head\n    # depth to water = depth - pressure head\n    B_depth_to_water = B_depth - B_pressure_head\n\n    # --- Piezometer C ---\n    # pressure head = depth - depth to water\n    C_pressure_head = C_depth - C_depth_to_water\n    # elevation head = ground - depth\n    C_elevation_head = C_ground - C_depth\n    # total head = elevation head + pressure head\n    C_total_head = C_elevation_head + C_pressure_head\n\n    # --- Hydraulic gradients between adjacent piezometers ---\n    grad_AB = (A_total_head - B_total_head) / spacing_m\n    grad_BC = (B_total_head - C_total_head) / spacing_m\n\n    return {\n        \"1\": {\"value\": A_depth, \"unit\": \"m\"},              # A depth of piezometer\n        \"2\": {\"value\": A_elevation_head, \"unit\": \"m\"},     # A elevation head\n        \"3\": {\"value\": A_total_head, \"unit\": \"m\"},         # A total head\n        \"4\": {\"value\": B_depth, \"unit\": \"m\"},              # B depth of piezometer\n        \"5\": {\"value\": B_depth_to_water, \"unit\": \"m\"},     # B depth to water\n        \"6\": {\"value\": B_pressure_head, \"unit\": \"m\"},      # B pressure head\n        \"7\": {\"value\": C_pressure_head, \"unit\": \"m\"},      # C pressure head\n        \"8\": {\"value\": C_elevation_head, \"unit\": \"m\"},     # C elevation head\n        \"9\": {\"value\": C_total_head, \"unit\": \"m\"},         # C total head\n        \"10\": {\"value\": grad_AB, \"unit\": \"dimensionless\"}, # gradient A-B\n        \"11\": {\"value\": grad_BC, \"unit\": \"dimensionless\"}, # gradient B-C\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "80.0",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "370.0",
+        "unit": ""
+      },
+      {
+        "sub": "3",
+        "value": "423.0",
+        "unit": ""
+      },
+      {
+        "sub": "4",
+        "value": "100.0",
+        "unit": ""
+      },
+      {
+        "sub": "5",
+        "value": "35.0",
+        "unit": ""
+      },
+      {
+        "sub": "6",
+        "value": "65.0",
+        "unit": ""
+      },
+      {
+        "sub": "7",
+        "value": "20.0",
+        "unit": ""
+      },
+      {
+        "sub": "8",
+        "value": "360.0",
+        "unit": ""
+      },
+      {
+        "sub": "9",
+        "value": "380.0",
+        "unit": ""
+      },
+      {
+        "sub": "10",
+        "value": "0.023",
+        "unit": ""
+      },
+      {
+        "sub": "11",
+        "value": "0.02",
+        "unit": ""
+      }
+    ],
+    "category": "groundwater_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps1.md",
+      "label": "ps1-6",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_30",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "Flow from a reservoir passes over a rounded crest into a rectangular channel, the spillway, running down the face of a 100 m dam. The level in the reservoir is H above the elevation of the spillway crest. The spillway is b = 10 m wide and the slope of the face of the dam is 1.2 vertical on 1.0 horizontal. The spillway has a flow resistance given by Chezy’s Equation with C = 50 in SI units. Assume that the flow from the reservoir passes through critical depth at the spillway crest, leading to a discharge over the dam per unit width q = 0.54 sqrt(g) H^(3/2). Evaluate q for H = 3 m.",
+    "code": "def solve(H=3.0, b=10.0, C=50.0, dam_height=100.0, slope_v=1.2, slope_h=1.0):\n    g = 9.81  # m/s^2\n    # discharge per unit width\n    q = 0.54 * (g ** 0.5) * (H ** 1.5)\n    return {\n        \"1\": {\"value\": q, \"unit\": \"m^2/s\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "8.788406681532212",
+        "unit": ""
+      }
+    ],
+    "category": "open_channel_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps8.md",
+      "label": "hyd-ps8-3a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_21",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "In a heterogeneous system, 1-D groundwater flow is perpendicular to layers of varying hydraulic conductivity. The flow across the system, q, is 1 m/day. The layer properties are K1 = 20 m/day, K2 = 5 m/day, K3 = 10 m/day; b1 = 10 m, b2 = 20 m, b3 = 30 m. Using Darcy's Law, find the change in head, delta h, across each layer. What is the total change in head across the entire system?",
+    "code": "def solve(q=1.0, K1=20.0, K2=5.0, K3=10.0, b1=10.0, b2=20.0, b3=30.0):\n    # q in m/day, K in m/day, b in m\n    # Darcy's Law for flow perpendicular to layers:\n    # q = K_i * (delta_h_i / b_i)  =>  delta_h_i = q * b_i / K_i\n\n    dh1 = q * b1 / K1\n    dh2 = q * b2 / K2\n    dh3 = q * b3 / K3\n\n    total = dh1 + dh2 + dh3\n\n    return {\n        \"1\": {\"value\": dh1, \"unit\": \"m\"},\n        \"2\": {\"value\": dh2, \"unit\": \"m\"},\n        \"3\": {\"value\": dh3, \"unit\": \"m\"},\n        \"4\": {\"value\": total, \"unit\": \"m\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.5",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "4.0",
+        "unit": ""
+      },
+      {
+        "sub": "3",
+        "value": "3.0",
+        "unit": ""
+      },
+      {
+        "sub": "4",
+        "value": "7.5",
+        "unit": ""
+      }
+    ],
+    "category": "groundwater_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps1.md",
+      "label": "ps1-8a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_32",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "Flow from a reservoir passes over a rounded crest into a rectangular spillway channel running down the face of a 100 m dam. The spillway is b = 10 m wide. For a discharge of q = 9.0 m^3/s per meter width, the depth at the toe of the dam as the flow enters a horizontal concrete lined channel, the stilling basin, is measured to be h1 = 0.4 m. Determine the downstream depth, h2, and the corresponding velocity, V2, of the unassisted hydraulic jump forming in the stilling basin.",
+    "code": "def solve(b=10.0, q=9.0, h1=0.4):\n    g = 9.81  # gravitational acceleration, m/s^2\n\n    # velocity at toe (per meter width discharge)\n    V1 = q / h1\n\n    # upstream Froude number\n    Fr1 = V1 / (g * h1) ** 0.5\n\n    # conjugate depth from hydraulic jump equation\n    h2 = (h1 / 2.0) * (-1.0 + (1.0 + 8.0 * Fr1 ** 2) ** 0.5)\n\n    # downstream velocity (continuity)\n    V2 = q / h2\n\n    return {\n        \"1\": {\"value\": h2, \"unit\": \"m\"},\n        \"2\": {\"value\": V2, \"unit\": \"m/s\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "6.228405997580175",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "1.4449925074724783",
+        "unit": ""
+      }
+    ],
+    "category": "open_channel_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps8.md",
+      "label": "hyd-ps8-3c",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_33",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "A baffled stilling basin consists of a rectangular channel with a continuous baffle of height H = 0.5 m spanning the width of the channel. The inflow depth and velocity are h1 = 1.0 m and V1 = 30 m/s, respectively, and the drag coefficient for the baffle is CD = 0.6. The problem is plane; treat it per unit width. For a baffle location near the start of the jump, with an approach velocity near V1, determine the drag force exerted by the flow on the baffle.",
+    "code": "def solve(H=0.5, h1=1.0, V1=30.0, CD=0.6):\n    # Physical constants\n    rho = 1000.0  # water density, kg/m^3\n\n    # Drag force per unit width on the baffle\n    # F_D = CD * (1/2) * rho * V1^2 * H   (per unit width)\n    # Approach velocity near V1, baffle height H is the projected area per unit width\n    FD = CD * 0.5 * rho * V1**2 * H  # N per m width\n\n    return {\n        \"1\": {\"value\": FD, \"unit\": \"N/m\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "135000.0",
+        "unit": ""
+      }
+    ],
+    "category": "open_channel_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps8.md",
+      "label": "hyd-ps8-4a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_36",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "Close to the middle reach of a natural channel, a cofferdam enclosure is constructed in order to enable the concrete foundations for a bridge pier to be constructed. The cofferdam is 15 m wide and 50 m long and has rounded corners to minimize its effect on the flow in the channel. The channel width is b = 50 m, the channel depths upstream and downstream of the cofferdam are h1 = 6.6 m and h3 = 6.5 m, respectively, and the discharge is Q = 1000 m^3/s. Estimate the total force on the cofferdam structure from the flow in the channel.",
+    "code": "def solve(cofferdam_width=15.0, cofferdam_length=50.0, b=50.0,\n          h1=6.6, h3=6.5, Q=1000.0):\n    g = 9.81       # m/s^2\n    rho = 1000.0   # kg/m^3\n\n    # Full channel width upstream and downstream (cofferdam does not block whole width here;\n    # apply momentum equation over control volume spanning channel width b)\n\n    # Cross-sectional areas (full channel, width b)\n    A1 = b * h1\n    A3 = b * h3\n\n    # Velocities\n    V1 = Q / A1\n    V3 = Q / A3\n\n    # Hydrostatic pressure forces on the two end sections\n    # F = rho * g * (h/2) * A  (centroid depth = h/2 for rectangular section)\n    F1 = rho * g * (h1 / 2.0) * A1\n    F3 = rho * g * (h3 / 2.0) * A3\n\n    # Momentum flux terms\n    M1 = rho * Q * V1\n    M3 = rho * Q * V3\n\n    # Momentum equation: F1 - F3 - F_cofferdam = M3 - M1\n    # => F_cofferdam = F1 - F3 - (M3 - M1)\n    F_cofferdam = (F1 - F3) - (M3 - M1)\n\n    return {\n        \"1\": {\"value\": F_cofferdam, \"unit\": \"N\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "274657.4533799533",
+        "unit": ""
+      }
+    ],
+    "category": "open_channel_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps8.md",
+      "label": "hyd-ps8-5a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_37",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "Close to the middle reach of a natural channel, a cofferdam enclosure is constructed in order to enable the concrete foundations for a bridge pier to be constructed. The cofferdam is 15 m wide and 50 m long and has rounded corners to minimize its effect on the flow in the channel. The channel width is b = 50 m, the channel depths upstream and downstream of the cofferdam are h1 = 6.6 m and h3 = 6.5 m, respectively, and the discharge is Q = 1000 m^3/s. Estimate the headloss caused by the cofferdam, ΔH1-3.",
+    "code": "def solve(cofferdam_width=15.0, cofferdam_length=50.0, b=50.0,\n          h1=6.6, h3=6.5, Q=1000.0):\n    g = 9.81  # m/s^2\n\n    # Upstream section (1): full channel width\n    A1 = b * h1\n    V1 = Q / A1\n    H1 = h1 + V1**2 / (2 * g)\n\n    # Downstream section (3): full channel width\n    A3 = b * h3\n    V3 = Q / A3\n    H3 = h3 + V3**2 / (2 * g)\n\n    # Headloss between sections 1 and 3\n    dH = H1 - H3\n\n    return {\n        \"1\": {\"value\": dH, \"unit\": \"m\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.08548831978399285",
+        "unit": ""
+      }
+    ],
+    "category": "open_channel_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps8.md",
+      "label": "hyd-ps8-5b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_38",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "Close to the middle reach of a natural channel, a cofferdam enclosure is constructed in order to enable the concrete foundations for a bridge pier to be constructed. The cofferdam is 15 m wide and 50 m long and has rounded corners to minimize its effect on the flow in the channel. The channel width is b = 50 m, the channel depths upstream and downstream of the cofferdam are h1 = 6.6 m and h3 = 6.5 m, respectively, and the discharge is Q = 1000 m^3/s. Estimate the depth, h2, and the velocity, V2, of the flow where the channel width is a minimum due to the presence of the cofferdam.",
+    "code": "def solve(cofferdam_width=15.0, cofferdam_length=50.0, b=50.0, h1=6.6, h3=6.5, Q=1000.0):\n    g = 9.81\n\n    # Upstream section (full channel width)\n    A1 = b * h1\n    V1 = Q / A1\n\n    # Constricted section width (channel width minus cofferdam width)\n    b2 = b - cofferdam_width\n\n    # Apply energy equation between section 1 (upstream) and section 2 (constriction),\n    # neglecting losses:\n    # h1 + V1^2/(2g) = h2 + V2^2/(2g)\n    # with V2 = Q/(b2*h2)\n    E1 = h1 + V1**2 / (2 * g)\n\n    # Solve for h2: E1 = h2 + Q^2/(2*g*b2^2*h2^2)\n    # This is cubic in h2; find the subcritical (larger) root by iteration.\n    def energy_residual(h2):\n        V2 = Q / (b2 * h2)\n        return h2 + V2**2 / (2 * g) - E1\n\n    # Bisection for subcritical root: between critical depth and E1\n    hc = (Q**2 / (g * b2**2))**(1.0 / 3.0)  # critical depth in constriction\n    lo, hi = hc, E1\n    # ensure sign change\n    for _ in range(200):\n        mid = 0.5 * (lo + hi)\n        f_mid = energy_residual(mid)\n        f_hi = energy_residual(hi)\n        if f_mid == 0:\n            break\n        if (f_mid > 0) == (f_hi > 0):\n            hi = mid\n        else:\n            lo = mid\n    h2 = 0.5 * (lo + hi)\n    V2 = Q / (b2 * h2)\n\n    return {\n        \"1\": {\"value\": h2, \"unit\": \"m\"},\n        \"2\": {\"value\": V2, \"unit\": \"m/s\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "5.853855374132642",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "4.880788257544194",
+        "unit": ""
+      }
+    ],
+    "category": "open_channel_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps8.md",
+      "label": "hyd-ps8-5c",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_39",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "Water flow in open channels can be controlled and measured with a sluice gate. Water flows under the gate in a wide channel. Sections 1 (depth h1) and 2 (depth h2) are respectively located at moderate distances upstream and downstream of the gate. At these sections, the flow is uniform and well behaved. The depth directly under the gate, d, is 1.00 m. The coefficient of contraction for the outlet of the gate is 0.61. Bottom friction can be neglected. If h1 is measured and found to be 3.00 m, what is the discharge per unit width, Q?",
+    "code": "def solve(d=1.00, Cc=0.61, h1=3.00):\n    g = 9.81  # gravitational acceleration, m/s^2\n\n    # Contracted depth downstream of gate\n    h2 = Cc * d\n\n    # Energy (Bernoulli) between sections 1 and 2, neglecting friction:\n    # h1 + q^2/(2 g h1^2) = h2 + q^2/(2 g h2^2)\n    # Solve for q:\n    # h1 - h2 = q^2/(2g) * (1/h2^2 - 1/h1^2)\n    numerator = h1 - h2\n    denominator = (1.0/(h2**2) - 1.0/(h1**2)) / (2.0 * g)\n    q_squared = numerator / denominator\n    q = q_squared ** 0.5\n\n    return {\n        \"1\": {\"value\": q, \"unit\": \"m^2/s\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "4.266256768456914",
+        "unit": ""
+      }
+    ],
+    "category": "open_channel_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps4.md",
+      "label": "ps4-3a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_40",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "A hydraulic jump occurs in a rectangular channel, where a rather abrupt change occurs in the depth of the flow. The upstream depth and velocity are h1 = 1 m and V1 = 10 m/s. Use continuity and momentum conservation, with no friction, to calculate the downstream depth and velocity, h2 and V2.",
+    "code": "def solve(h1=1.0, V1=10.0):\n    g = 9.81  # gravitational acceleration, m/s^2\n\n    # Upstream Froude number\n    Fr1 = V1 / (g * h1) ** 0.5\n\n    # Hydraulic jump relation (conjugate depth ratio)\n    h2 = h1 / 2.0 * (-1.0 + (1.0 + 8.0 * Fr1 ** 2) ** 0.5)\n\n    # Continuity: V1*h1 = V2*h2\n    V2 = V1 * h1 / h2\n\n    return {\n        \"1\": {\"value\": h2, \"unit\": \"m\"},\n        \"2\": {\"value\": V2, \"unit\": \"m/s\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "4.042836100598515",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "2.4735111073435716",
+        "unit": ""
+      }
+    ],
+    "category": "open_channel_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps4.md",
+      "label": "ps4-4a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_42",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "A water flowrate of Q = 10 m^3/s is being discharged in a very long rectangular channel of width b = 2 m and tall sidewalls. The channel is made of concrete, with a finished surface. The bottom slope is S0 = 5 · 10^-3. Halfway down the channel, water has to go under a gate. The gate is tall enough so that flow cannot spill over it. The opening under the gate is hg = 1 m and spans the entire width of the channel. The contraction coefficient is CV = 0.61. Find the water depth upstream the gate, h1, necessary to drive the flowrate Q = 10 m^3/s under the gate.",
+    "code": "def solve(Q=10.0, b=2.0, S0=5e-3, hg=1.0, CV=0.61):\n    g = 9.81\n\n    # Contracted depth downstream of gate (vena contracta)\n    h2 = CV * hg  # m\n\n    # Flow rate per unit width\n    q = Q / b\n\n    # Velocity at contracted section\n    V2 = Q / (b * h2)\n\n    # Sluice gate energy relation (neglecting losses):\n    # Upstream specific energy = downstream specific energy\n    # h1 + V1^2/(2g) = h2 + V2^2/(2g)\n    # with V1 = Q/(b*h1)\n\n    E2 = h2 + V2**2 / (2.0 * g)\n\n    # Solve for subcritical upstream depth h1 from:\n    # h1 + q^2/(2 g h1^2) = E2\n    # h1^3 - E2*h1^2 + q^2/(2g) = 0\n    # Find the largest (subcritical) real root.\n\n    def f(h):\n        return h + q**2 / (2.0 * g * h**2) - E2\n\n    # Bracket: subcritical root lies above critical depth\n    hc = (q**2 / g) ** (1.0 / 3.0)\n\n    # Search upward from hc for a sign change\n    lo = hc\n    # f(hc) should be negative (E2 > minimum energy), find upper bound\n    hi = hc\n    step = 0.01\n    # increase hi until f changes sign from f(lo)\n    flo = f(lo)\n    while f(hi) * flo > 0 and hi < 1000.0:\n        hi += step\n\n    # Bisection\n    a, bb = lo, hi\n    fa = f(a)\n    for _ in range(200):\n        m = 0.5 * (a + bb)\n        fm = f(m)\n        if fa * fm <= 0:\n            bb = m\n        else:\n            a = m\n            fa = fm\n    h1 = 0.5 * (a + bb)\n\n    return {\"1\": {\"value\": h1, \"unit\": \"m\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "3.9528247813454787",
+        "unit": ""
+      }
+    ],
+    "category": "open_channel_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps9.md",
+      "label": "ps9-2b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_44",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "A steady flow of q = discharge per unit width = 3.13 m^3/s per m proceeds in a very long, wide, and mildly sloping rectangular channel towards the brink of a drop-structure. As the flow approaches the brink, it passes through critical depth, hc, a short distance, approximately 3–4 hc, upstream of the brink. At the brink the depth of flow is hb (< hc). Using the momentum principle between the critical flow section and a section located right after the flow passes over the brink as a free jet, estimate the depth of flow and the velocity at the brink, hbm and Vbm.",
+    "code": "def solve(q=3.13):\n    g = 9.81  # gravitational acceleration, m/s^2\n\n    # Critical depth for rectangular channel: hc = (q^2/g)^(1/3)\n    hc = (q**2 / g)**(1.0/3.0)\n    Vc = q / hc\n\n    # Momentum principle between critical section and brink section.\n    # Assume hydrostatic pressure at critical section, and at the brink the\n    # flow leaves as a free jet (negligible pressure). Neglect friction/weight\n    # component over the short reach.\n    #\n    # Momentum equation (per unit width), taking pressure force + momentum flux:\n    #   (1/2) g hc^2 + q^2/hc = (1/2) g hb^2 + q^2/hb\n    # With hb << hc at the brink, and treating the jet pressure as zero:\n    #   (1/2) g hc^2 + q^2/hc = q^2/hb\n    #\n    # Solve for hb:\n    #   hb = q^2 / ( (1/2) g hc^2 + q^2/hc )\n\n    hbm = q**2 / (0.5 * g * hc**2 + q**2 / hc)\n    Vbm = q / hbm\n\n    return {\n        \"1\": {\"value\": hbm, \"unit\": \"m\"},\n        \"2\": {\"value\": Vbm, \"unit\": \"m/s\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.666369785129584",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "4.697091719714351",
+        "unit": ""
+      }
+    ],
+    "category": "open_channel_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps9.md",
+      "label": "ps9-6c",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_19",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "Given observations of the piezometric heads in three observation wells: Well A has x-coordinate 0 m, y-coordinate 0 m, piezometric head 10 m; Well B has x-coordinate 300 m, y-coordinate 0 m, piezometric head 11.5 m; Well C has x-coordinate 0 m, y-coordinate 200 m, piezometric head 8.4 m. Approximate the piezometric surface between the wells as a plane. Assume this same aquifer is anisotropic with conductivity matrix K = [[20, 6], [6, 10]]. Determine the specific discharge, q, and the angle, alpha, between q and the hydraulic gradient.",
+    "code": "def solve(xA=0.0, yA=0.0, hA=10.0,\n          xB=300.0, yB=0.0, hB=11.5,\n          xC=0.0, yC=200.0, hC=8.4,\n          Kxx=20.0, Kxy=6.0, Kyx=6.0, Kyy=10.0):\n    import math\n\n    # Fit a plane h = a*x + b*y + c through the three wells to get the gradient.\n    # Using points A, B, C.\n    # From A: c = hA (since xA=yA=0 in general we solve linear system)\n    # Solve linear system for a, b, c\n    # h = a*x + b*y + c\n    # Build matrix\n    M = [\n        [xA, yA, 1.0],\n        [xB, yB, 1.0],\n        [xC, yC, 1.0],\n    ]\n    rhs = [hA, hB, hC]\n\n    # Solve 3x3 by Gaussian elimination\n    def solve_linear(A, b):\n        n = len(A)\n        # augment\n        M = [row[:] + [b[i]] for i, row in enumerate(A)]\n        for col in range(n):\n            # pivot\n            piv = max(range(col, n), key=lambda r: abs(M[r][col]))\n            M[col], M[piv] = M[piv], M[col]\n            pv = M[col][col]\n            for j in range(col, n + 1):\n                M[col][j] /= pv\n            for r in range(n):\n                if r != col:\n                    factor = M[r][col]\n                    for j in range(col, n + 1):\n                        M[r][j] -= factor * M[col][j]\n        return [M[i][n] for i in range(n)]\n\n    a, b, c = solve_linear(M, rhs)\n\n    # dh/dx = a, dh/dy = b\n    dhdx = a\n    dhdy = b\n\n    # Hydraulic gradient vector J = grad(h) = (dhdx, dhdy)\n    Jx = dhdx\n    Jy = dhdy\n\n    # Specific discharge q = -K * grad(h)\n    qx = -(Kxx * Jx + Kxy * Jy)\n    qy = -(Kyx * Jx + Kyy * Jy)\n\n    q_mag = math.hypot(qx, qy)\n\n    # Hydraulic gradient magnitude\n    grad_mag = math.hypot(Jx, Jy)\n\n    # The flow direction is along q. The gradient direction (downhill flow) is -grad(h).\n    # Angle between q and the hydraulic gradient direction of flow (-grad h).\n    # Define the \"flow-driving\" gradient vector as -grad(h) (points down-gradient).\n    Gx = -Jx\n    Gy = -Jy\n    G_mag = math.hypot(Gx, Gy)\n\n    # Angle between q and (-grad h)\n    dot = qx * Gx + qy * Gy\n    cos_ang = dot / (q_mag * G_mag)\n    cos_ang = max(-1.0, min(1.0, cos_ang))\n    alpha = math.degrees(math.acos(cos_ang))\n\n    return {\n        \"1\": {\"value\": q_mag, \"unit\": \"m/d (units of K)\"},\n        \"2\": {\"value\": alpha, \"unit\": \"degrees\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.0721387551874857",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "14.117919505991889",
+        "unit": ""
+      }
+    ],
+    "category": "groundwater_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps1.md",
+      "label": "ps1-5c",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_25",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "A long wide rectangular straight channel has sand dunes on the bottom. The dunes have height H = 1 m and length λ = 30 m. The average channel depth is hm = 5 m and the flowrate per unit width is q = 5 m^2/s. The dune geometry can be simplified by assuming the downstream slope to be vertical. Account only for headloss in the flow expansion from dune crest to dune trough. Assume the water surface to be straight and sloping by an angle sin β = Sf relative to horizontal, with Sf = S0 = average slope of the bottom. Estimate the velocity head over the dune crest and over the dune trough.",
+    "code": "def solve(H=1.0, lam=30.0, hm=5.0, q=5.0):\n    g = 9.81  # gravitational acceleration, m/s^2\n\n    # Dune geometry: mean depth hm, dune height H\n    # Crest is highest point of bed -> smallest depth\n    # Trough is lowest point of bed -> largest depth\n    # Using mean depth as reference, bed varies by +/- H/2\n    h_crest = hm - H / 2.0   # depth over crest, m\n    h_trough = hm + H / 2.0  # depth over trough, m\n\n    # Continuity: velocity = q / depth\n    v_crest = q / h_crest    # m/s\n    v_trough = q / h_trough  # m/s\n\n    # Velocity heads\n    hv_crest = v_crest**2 / (2.0 * g)    # m\n    hv_trough = v_trough**2 / (2.0 * g)  # m\n\n    return {\n        \"1\": {\"value\": hv_crest, \"unit\": \"m\"},\n        \"2\": {\"value\": hv_trough, \"unit\": \"m\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.06292395011389236",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "0.04212264429111801",
+        "unit": ""
+      }
+    ],
+    "category": "open_channel_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps8.md",
+      "label": "hyd-ps8-1a",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_28",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "A long wide rectangular straight channel has sand dunes on the bottom. The dunes have height H = 1 m and length λ = 30 m. The average channel depth is hm = 5 m and the flowrate per unit width is q = 5 m^2/s. The dune geometry can be simplified by assuming the downstream slope to be vertical. Account only for headloss in the flow expansion from dune crest to dune trough, distributing that headloss evenly over the dune length and neglecting all other losses. Calculate Manning’s n for this channel.",
+    "code": "def solve(H=1.0, lam=30.0, hm=5.0, q=5.0):\n    g = 9.81\n    \n    # Crest depth (contracted) and trough depth (expanded)\n    h_crest = hm - H/2.0\n    h_trough = hm + H/2.0\n    \n    # Velocities (flow per unit width q constant)\n    V_crest = q / h_crest      # V1 at contracted section (crest)\n    V_trough = q / h_trough    # V2 at expanded section (trough)\n    \n    # Borda-Carnot sudden expansion headloss\n    dE = (V_crest - V_trough)**2 / (2.0*g)\n    \n    # Distribute headloss over dune length -> energy slope\n    Sf = dE / lam\n    \n    # Manning for wide channel: hydraulic radius ~ mean depth\n    R = hm\n    V = q / hm\n    \n    # V = (1/n) R^(2/3) Sf^(1/2)  ->  n = R^(2/3) Sf^(1/2) / V\n    n = R**(2.0/3.0) * Sf**0.5 / V\n    \n    return {\n        \"1\": {\"value\": n, \"unit\": \"s/m^(1/3)\"}\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "0.024348077479344598",
+        "unit": ""
+      }
+    ],
+    "category": "open_channel_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps8.md",
+      "label": "hyd-ps8-1d",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_34",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "A baffled stilling basin consists of a rectangular channel with a continuous baffle of height H = 0.5 m spanning the width of the channel. The inflow depth and velocity are h1 = 1.0 m and V1 = 30 m/s, respectively, and the drag coefficient for the baffle is CD = 0.6. The problem is plane; treat it per unit width. Neglecting boundary friction and gravity, determine the depth, h2, and velocity, V2, corresponding to subcritical flow downstream of the baffle-assisted hydraulic jump.",
+    "code": "def solve(H=0.5, h1=1.0, V1=30.0, CD=0.6):\n    g = 9.80665  # m/s^2\n\n    q = V1 * h1  # discharge per unit width, m^2/s\n\n    # Momentum equation per unit width (divide by rho):\n    # 0.5*g*h1^2 - 0.5*g*h2^2 - 0.5*CD*V1^2*H = q*(V2 - V1)\n    # with V2 = q/h2\n    #\n    # Rearrange into f(h2) = 0:\n    # 0.5*g*h1^2 - 0.5*g*h2^2 - 0.5*CD*V1^2*H - q*(q/h2 - V1) = 0\n\n    def f(h2):\n        return (0.5 * g * h1**2\n                - 0.5 * g * h2**2\n                - 0.5 * CD * V1**2 * H\n                - q * (q / h2 - V1))\n\n    # Solve for subcritical downstream depth (the larger root).\n    # Bracket search: subcritical means h2 > critical depth.\n    hc = (q**2 / g) ** (1.0 / 3.0)\n\n    # Search for a root with h2 > hc using bisection.\n    lo = hc\n    hi = hc\n    # expand upper bound until sign change\n    f_lo = f(lo)\n    hi = hc * 1.0001\n    f_hi = f(hi)\n    # increase hi until we find opposite sign or large bound\n    step = hc\n    while f_lo * f_hi > 0 and hi < 1e6:\n        hi += step\n        f_hi = f(hi)\n\n    # bisection\n    a, b = lo, hi\n    fa = f(a)\n    for _ in range(200):\n        m = 0.5 * (a + b)\n        fm = f(m)\n        if fa * fm <= 0:\n            b = m\n        else:\n            a = m\n            fa = fm\n    h2 = 0.5 * (a + b)\n    V2 = q / h2\n\n    return {\n        \"1\": {\"value\": h2, \"unit\": \"m\"},\n        \"2\": {\"value\": V2, \"unit\": \"m/s\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "11.899213514208228",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "2.521175030952976",
+        "unit": ""
+      }
+    ],
+    "category": "open_channel_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps8.md",
+      "label": "hyd-ps8-4b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_35",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "A baffled stilling basin consists of a rectangular channel with a continuous baffle of height H = 0.5 m spanning the width of the channel. The inflow depth and velocity are h1 = 1.0 m and V1 = 30 m/s, respectively, and the drag coefficient for the baffle is CD = 0.6. The problem is plane; treat it per unit width. For the baffle-assisted hydraulic jump, determine the headloss and the rate of energy dissipated in HP = 745 Watts.",
+    "code": "def solve(H=0.5, h1=1.0, V1=30.0, CD=0.6, HP=745.0):\n    g = 9.81      # m/s^2\n    rho = 1000.0  # kg/m^3\n\n    # Per unit width analysis\n    q = V1 * h1  # unit discharge (m^2/s)\n\n    # Drag force per unit width on baffle (based on approach velocity V1)\n    # F_D = CD * (1/2 * rho * V1^2) * H\n    FD = CD * 0.5 * rho * V1**2 * H  # N per unit width\n\n    # Momentum equation per unit width (dividing by rho*g):\n    # (1/2) h1^2 + q^2/(g h1) = (1/2) h2^2 + q^2/(g h2) + FD/(rho*g)\n    # Let M(h) = (1/2) h^2 + q^2/(g h)  (specific force)\n    # M(h1) - FD/(rho*g) = M(h2)\n\n    M1 = 0.5 * h1**2 + q**2 / (g * h1)\n    FD_term = FD / (rho * g)   # units of m^2\n\n    target_M2 = M1 - FD_term\n\n    # Solve for h2: 0.5*h2^2 + q^2/(g*h2) = target_M2\n    # This has typically a subcritical root (larger h2). Solve numerically.\n    def M(h):\n        return 0.5 * h**2 + q**2 / (g * h)\n\n    # Bracket for the subcritical root: h2 > critical depth\n    hc = (q**2 / g)**(1.0/3.0)\n\n    # Search on the subcritical branch (h > hc), M decreases as h decreases toward hc\n    # then increases with h. On subcritical branch M increases with h.\n    lo = hc\n    hi = hc\n    # expand hi until M(hi) >= target\n    while M(hi) < target_M2:\n        hi *= 2.0\n        if hi > 1e6:\n            break\n    # bisection between hc and hi to find where M(h) = target_M2 (subcritical branch)\n    for _ in range(200):\n        mid = 0.5 * (lo + hi)\n        if M(mid) < target_M2:\n            lo = mid\n        else:\n            hi = mid\n    h2 = 0.5 * (lo + hi)\n\n    V2 = q / h2\n\n    # Headloss (energy loss) between sections\n    E1 = h1 + V1**2 / (2 * g)\n    E2 = h2 + V2**2 / (2 * g)\n    headloss = E1 - E2  # m\n\n    # Rate of energy dissipated per unit width:\n    # Power = rho * g * q * headloss  (Watts per unit width)\n    power_W = rho * g * q * headloss\n\n    # Convert to given HP units (HP = 745 W)\n    power_HP = power_W / HP\n\n    return {\n        \"1\": {\"value\": headloss, \"unit\": \"m\"},\n        \"2\": {\"value\": power_HP, \"unit\": \"HP\"},\n    }",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "34.65039203352308",
+        "unit": ""
+      },
+      {
+        "sub": "2",
+        "value": "13688.067618074958",
+        "unit": ""
+      }
+    ],
+    "category": "open_channel_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps8.md",
+      "label": "hyd-ps8-4c",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  },
+  {
+    "id": "hyd_41",
+    "book": "MIT OCW Hydrology & Hydraulics (1.72 Groundwater Hydrology; 1.731 Water Resource Systems; 1.060 Engineering Mechanics II — Fluid Mechanics), CC BY-NC-SA",
+    "problem": "A water flowrate of Q = 10 m^3/s is being discharged in a very long rectangular channel of width b = 2 m and tall sidewalls. The channel is made of concrete, with a finished surface. The bottom slope is S0 = 10^-3. Halfway down the channel, water has to go under a gate. The gate is tall enough so that flow cannot spill over it. The opening under the gate is hg = 1 m and spans the entire width of the channel. The contraction coefficient is CV = 0.61. Find the water depth upstream the gate, h1, necessary to drive the flowrate Q = 10 m^3/s under the gate.",
+    "code": "def solve(Q=10.0, b=2.0, S0=1e-3, hg=1.0, CV=0.61):\n    g = 9.81  # gravitational acceleration, m/s^2\n\n    q = Q / b            # unit discharge, m^2/s\n    h2 = CV * hg         # contracted depth downstream of gate, m\n    V2 = q / h2          # velocity at vena contracta, m/s\n\n    # Specific energy at vena contracta (energy conservation across gate)\n    E2 = h2 + V2**2 / (2.0 * g)\n\n    # Solve energy equation for upstream subcritical depth h1:\n    # h1 + q^2/(2 g h1^2) = E2\n    # Find root h1 > critical depth (subcritical branch)\n    hc = (q**2 / g)**(1.0/3.0)  # critical depth\n\n    def f(h):\n        return h + q**2 / (2.0 * g * h**2) - E2\n\n    # Bisection on subcritical branch: h1 between hc and large value\n    lo = hc\n    hi = E2  # upstream depth cannot exceed available energy\n    # ensure sign change\n    flo = f(lo)\n    fhi = f(hi)\n    for _ in range(200):\n        mid = 0.5 * (lo + hi)\n        fmid = f(mid)\n        if flo * fmid <= 0:\n            hi = mid\n            fhi = fmid\n        else:\n            lo = mid\n            flo = fmid\n\n    h1 = 0.5 * (lo + hi)\n\n    return {\"1\": {\"value\": h1, \"unit\": \"m\"}}",
+    "sub_answers": [
+      {
+        "sub": "1",
+        "value": "3.9528247813454787",
+        "unit": ""
+      }
+    ],
+    "category": "open_channel_flow",
+    "topic": "",
+    "knowledge_points": [],
+    "verified": true,
+    "numeric_variantable": false,
+    "domain": "hydrology",
+    "provenance": {
+      "source": "ps9.md",
+      "label": "ps9-1b",
+      "gt_method": "cross_model_consensus_K2",
+      "witnesses": [
+        "gpt55-reasoning",
+        "deepseek-v4-pro-reasoning"
+      ]
+    }
+  }
+]

@@ -1,0 +1,6 @@
+stage,count,criterion
+variant instance-runs,83040,1730 variants × 16 configs × 3 runs
+failed runs,10430,"gradable-or-not, all failure kinds"
+parent-echo runs,173,answer == parent's on every discriminative sub (>5% apart)
+strict-memorisation runs,92,echo AND the model solves the parent on the core set
+problems confirmed leaked,12,≥2 independent models show strict memorisation
