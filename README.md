@@ -15,8 +15,8 @@ parsed for answers: the score comes from running the code.
   <img alt="Instances: 4346" src="https://img.shields.io/badge/graded%20instances-4%2C346-orange">
 </p>
 
-> **Paper**: *Execution-grounded evaluation reveals limits of language-model judgement in
-> atmospheric science* (under review). Preprint and citation entry will be linked here on
+> **Paper**: *Execution-grounded evaluation reveals hidden failures in language-model
+> calculations for environmental science* (under review). Preprint and citation entry will be linked here on
 > posting.
 >
 > **Raw results**: the per-run model outputs behind every reported number (~5 GB, 273 result
