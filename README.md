@@ -18,6 +18,11 @@ parsed for answers: the score comes from running the code.
 > **Paper**: *Execution-grounded evaluation reveals limits of language-model judgement in
 > atmospheric science* (under review). Preprint and citation entry will be linked here on
 > posting.
+>
+> **Raw results**: the per-run model outputs behind every reported number (~5 GB, 273 result
+> files) are on [Google Drive](https://drive.google.com/file/d/1zkm3Uj77uWmHAw6T8s_lU6kos6vquCAC/view?usp=sharing).
+> Unpack the archive as `experiments/` at the repository root and the analysis commands below
+> reproduce every statistic offline, without any model calls.
 
 ## Findings
 
@@ -194,11 +199,8 @@ and unit-aware: a correct answer in a commensurate unit passes.
 | `supplement/` | Figure-generation scripts, the numerical table behind every figure (`figure_data/`), and generated figure descriptions (`FIGURES.md`). |
 | `figures/` | Construction-pipeline and protocol schematics. |
 
-Per-run model outputs (~5 GB, 273 result files) are not tracked here. The complete archive is
-on [Google Drive](https://drive.google.com/file/d/1zkm3Uj77uWmHAw6T8s_lU6kos6vquCAC/view?usp=sharing);
-unpack it as `experiments/` at the repository root and the `eval.analysis` commands above run
-against it unchanged. It will also be deposited in a versioned public data repository on
-publication.
+Per-run model outputs are not tracked here; see the Google Drive archive linked at the top.
+It will also be deposited in a versioned public data repository on publication.
 
 ## Construction
 
