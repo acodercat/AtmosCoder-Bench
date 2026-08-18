@@ -19,6 +19,23 @@ parsed for answers: the score comes from running the code.
 > atmospheric science* (under review). Preprint and citation entry will be linked here on
 > posting.
 
+## Findings
+
+1. **Multiple-choice scores overstate computational ability.** On the same 670 problems,
+   picking a letter scores 30–45 points higher than computing the answer. Correcting for
+   guessing and grading tolerance leaves 20–39 points; removing the source benchmark's own
+   defective answer keys still leaves 12–27.
+2. **Most failures are not missing knowledge.** Models usually identify the correct formula,
+   then fail to apply it consistently over many steps: truncated iterations, constraints and
+   signs lost midway through a derivation, or code that executes a different method than the
+   prose describes.
+3. **The bottleneck for frontier models is judgement, not calculation.** When one stated
+   condition makes the standard method invalid, models tend to apply it anyway. The failure
+   rate on such trap problems falls from 36% to 3% as capability rises, but reaches zero for
+   no model, and enabling reasoning narrows the gap without closing it.
+
+Sections below give the numbers; `docs/results/` has the full analysis for each experiment.
+
 ## How it works
 
 ![Evaluation protocol](figures/Evaluation%20protocol.png)
