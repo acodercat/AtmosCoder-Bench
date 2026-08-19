@@ -1,0 +1,28 @@
+{
+  "title": "AtmosCoder-Bench: Execution-grounded evaluation of large language models on atmospheric-science computation",
+  "description": "Benchmark and evaluation harness accompanying the manuscript \"Execution-grounded evaluation reveals hidden failures in language-model calculations for environmental science\" (under review). Each problem provides only the problem statement (textbook-supplied formulas are stripped); the model writes a Python solve() function, the harness executes it in an isolated sandbox, and the numerical output is graded against certified ground truth at 5% relative tolerance with unit reconciliation. The archive contains the 436 core problems (4,346 graded instances), the execution/grading pipeline, the analysis code behind every reported statistic, and the documentation. Raw per-run model outputs (~5 GB) are deposited separately; see the README. Model API credentials are not included (see models.example.toml).",
+  "creators": [
+    {
+      "name": "The AtmosCoder-Bench Authors"
+    }
+  ],
+  "license": "MIT",
+  "upload_type": "software",
+  "access_right": "open",
+  "keywords": [
+    "large language models",
+    "benchmark",
+    "code generation",
+    "atmospheric science",
+    "environmental science",
+    "execution-grounded evaluation",
+    "scientific computing"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/acodercat/AtmosCoder-Bench",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}
