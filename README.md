@@ -9,7 +9,7 @@ certified ground truth at 5% relative tolerance with unit reconciliation. The pr
 parsed for answers: the score comes from running the code.
 
 <p align="left">
-  <a href="https://doi.org/10.5281/zenodo.22007566"><img alt="DOI" src="https://zenodo.org/badge/1337885098.svg"></a>
+  <a href="https://doi.org/10.5281/zenodo.22007566"><img alt="DOI" src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.22007566-blue.svg"></a>
   <img alt="Python 3.13+" src="https://img.shields.io/badge/python-3.13%2B-blue">
   <img alt="License: MIT" src="https://img.shields.io/badge/code-MIT-green">
   <img alt="Problems: 436" src="https://img.shields.io/badge/core%20problems-436-orange">
