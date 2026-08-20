@@ -9,6 +9,7 @@ certified ground truth at 5% relative tolerance with unit reconciliation. The pr
 parsed for answers: the score comes from running the code.
 
 <p align="left">
+  <a href="https://arxiv.org/abs/2608.18726"><img alt="arXiv: 2608.18726" src="https://img.shields.io/badge/arXiv-2608.18726-b31b1b.svg"></a>
   <a href="https://doi.org/10.5281/zenodo.22007566"><img alt="DOI" src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.22007566-blue.svg"></a>
   <img alt="Python 3.13+" src="https://img.shields.io/badge/python-3.13%2B-blue">
   <img alt="License: MIT" src="https://img.shields.io/badge/code-MIT-green">
@@ -16,9 +17,8 @@ parsed for answers: the score comes from running the code.
   <img alt="Instances: 4346" src="https://img.shields.io/badge/graded%20instances-4%2C346-orange">
 </p>
 
-> **Paper**: *Execution-grounded evaluation reveals hidden failures in language-model
-> calculations for environmental science* (under review). Preprint and citation entry will be linked here on
-> posting.
+> **Paper**: *Execution-grounded evaluation reveals limits of language-model judgment in
+> atmospheric science* ([arXiv:2608.18726](https://arxiv.org/abs/2608.18726)).
 >
 > **Raw results**: the per-run model outputs behind every reported number (~5 GB, 273 result
 > files) are on [Google Drive](https://drive.google.com/file/d/1zkm3Uj77uWmHAw6T8s_lU6kos6vquCAC/view?usp=sharing).
@@ -228,5 +228,12 @@ per-problem source attribution.
 ## Citation
 
 ```bibtex
-% Citation entry will be added on posting.
+@misc{ran2026execution,
+  title         = {Execution-grounded evaluation reveals limits of language-model judgment in atmospheric science},
+  author        = {Ran, Maohao and Ma, Chendong and Zhang, Yanting and Jiang, Dailing and Huang, Yusen and Gao, Meng and Song, Jun},
+  year          = {2026},
+  eprint        = {2608.18726},
+  archivePrefix = {arXiv},
+  url           = {https://arxiv.org/abs/2608.18726}
+}
 ```
