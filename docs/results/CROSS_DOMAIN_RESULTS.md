@@ -14,6 +14,7 @@ The core benchmark is atmospheric. This suite tests a different claim: **that th
 - **Protocol**: `code` — the model writes an executable `solve()`; Python computes the graded number. Identical to the core-set code protocol.
 - **Models**: five non-reasoning configurations chosen to overlap with the core-set table, so the two are directly comparable.
 - **Metric**: accuracy = passed / (passed + failed); no excluded errors occurred in any run.
+- **Grading note (2026-09-06)**: the cross-domain sets were built by the consensus route, which stored every `sub_answers[].unit` as `""`. Grading is unit-aware only when *both* sides declare a unit, so a correct answer returned in a commensurate unit (kPa vs Pa, % vs fraction, h vs s) was recorded as a fail. Units were backfilled from the stored reference solvers (no value changed; `eval.verify` still 100 %), every stored run was re-graded offline from its `details` in the authors' working repository (`eval.analysis.backfill_detail_units` + `eval.analysis.regrade_in_place`, no model calls), and **10 of 655 verdicts flipped fail→pass** — all in ecology, soil and environmental chemistry, none in hydrology. Every number below is from the re-graded runs. No ranking or qualitative finding changed.
 - **Runs**: single run per model (the core set uses 3), so figures carry roughly ±1–2 points of decoding noise.
 
 | domain | n | source |
@@ -29,11 +30,11 @@ Ground truth is blind multi-model consensus (author Opus 4.8; independent witnes
 
 | model | Hydrology (37) | Env. chemistry (21) | Ecology (19) | Soil (54) | **Overall (131)** | Tokens |
 |---|--:|--:|--:|--:|--:|--:|
-| gpt-5.5 | 94.6 | 90.5 | 89.5 | 94.4 | **93.1** | 80 k |
-| Kimi K2.6 | 94.6 | 95.2 | 78.9 | 94.4 | **92.4** | 417 k |
-| DeepSeek-V4-flash | 86.5 | 81.0 | 89.5 | 96.3 | **90.1** | 92 k |
+| gpt-5.5 | 94.6 | 95.2 | 94.7 | 96.3 | **95.4** | 80 k |
+| Kimi K2.6 | 94.6 | 95.2 | 89.5 | 96.3 | **94.7** | 417 k |
+| DeepSeek-V4-flash | 86.5 | 81.0 | 94.7 | 98.1 | **91.6** | 92 k |
 | Qwen-3.6-27B | 75.7 | 95.2 | 89.5 | 94.4 | **88.5** | 178 k |
-| Qwen-2.5-72B | 37.8 | 14.3 | 57.9 | 50.0 | **42.0** | 107 k |
+| Qwen-2.5-72B | 37.8 | 14.3 | 68.4 | 50.0 | **43.5** | 107 k |
 
 *Tokens: o200k-normalized totals for one pass over all 131 problems (prompt + completion + reasoning, disjoint), counted from stored text rather than provider-reported usage. The DeepSeek-V4-flash figure was previously quoted as 128 k, which was that provider's own count and so did not match the basis this footnote declares; it is 92 k on the uniform recount, and the four other rows are unchanged.*
 
@@ -47,13 +48,13 @@ This is the result the suite exists to produce. Core-set figures are the code-pr
 
 | model | Core (436, atmospheric) | Cross-domain (131) | Δ |
 |---|--:|--:|--:|
-| gpt-5.5 | 90.8 ± 1.4 | 93.1 | +2.3 |
-| Kimi K2.6 | 90.1 ± 0.3 | 92.4 | +2.3 |
-| DeepSeek-V4-flash | 81.7 ± 1.4 | 90.1 | +8.4 |
+| gpt-5.5 | 90.8 ± 1.4 | 95.4 | +4.6 |
+| Kimi K2.6 | 90.1 ± 0.3 | 94.7 | +4.6 |
+| DeepSeek-V4-flash | 81.7 ± 1.4 | 91.6 | +9.9 |
 | Qwen-3.6-27B | 79.4 ± 0.7 | 88.5 | +9.1 |
-| Qwen-2.5-72B | 41.1 ± 1.8 | 42.0 | +0.9 |
+| Qwen-2.5-72B | 41.1 ± 1.8 | 43.5 | +2.4 |
 
-**The ordering is preserved exactly** — all five models keep their core-set rank — and the two anchors reproduce almost exactly: the strongest model moves +2.3 points and the weakest +0.9. Qwen-2.5-72B scoring **42.0 % in hydrology, environmental chemistry, ecology and soil mechanics after scoring 41.1 % in atmospheric science** is the sharpest single piece of evidence: a model's score is set by the construction protocol, not by the field.
+**The ordering is preserved exactly** — all five models keep their core-set rank — and the two anchors reproduce almost exactly: the strongest model moves +4.6 points and the weakest +2.4. Qwen-2.5-72B scoring **43.5 % in hydrology, environmental chemistry, ecology and soil mechanics after scoring 41.1 % in atmospheric science** is the sharpest single piece of evidence: a model's score is set by the construction protocol, not by the field.
 
 The mid-range models gain ~10 points, consistent with the cross-domain suite being somewhat easier on average — it is drawn from course problem sets and an undergraduate textbook rather than graduate atmospheric monographs. Easier, but not saturated: see Finding 2.
 
@@ -61,8 +62,8 @@ The mid-range models gain ~10 points, consistent with the cross-domain suite bei
 
 Three numbers characterise the suite's resolving power:
 
-- **51-point spread** between weakest and strongest model (42.0 → 93.1).
-- **27 % of problems split the strong four** — 35 of 131 are solved by some strong models and missed by others. These are what actually separate the leaders; the remaining 96 are solved by all four.
+- **52-point spread** between weakest and strongest model (43.5 → 95.4).
+- **22 % of problems split the strong four** — 29 of 131 are solved by some strong models and missed by others. These are what actually separate the leaders; the remaining 102 are solved by all four.
 - **Zero problems are failed by all four strong models.**
 
 That last number matters more than it looks. An item no capable model can solve is usually not a hard item but a broken one — ill-posed, under-specified, or carrying wrong ground truth. Reaching zero was not automatic: it is the state the suite arrived at *after* the repair pass in Finding 4, and it is the cleanest available evidence that no known-defective problems remain.
@@ -73,12 +74,12 @@ Ranking domains by mean accuracy gives different answers for weak and strong mod
 
 | domain | all 5 models | strong 4 | Qwen-2.5-72B | weak–strong gap |
 |---|--:|--:|--:|--:|
-| Environmental chemistry | 75.2 | 90.5 | 14.3 | **76** |
-| Hydrology | 77.3 | 87.2 | 37.8 | 49 |
-| Soil | 85.6 | 94.4 | 50.0 | 44 |
-| Ecology | 81.1 | 86.8 | 57.9 | 29 |
+| Environmental chemistry | 76.2 | 91.7 | 14.3 | **77** |
+| Hydrology | 77.8 | 87.8 | 37.8 | 50 |
+| Soil | 87.0 | 96.3 | 50.0 | 46 |
+| Ecology | 87.4 | 92.1 | 68.4 | 24 |
 
-**Environmental chemistry is the most discriminative domain in the suite** — a 76-point gap between the weak model and the strong average, versus 29 for ecology. Its problems are long multi-step reactor and treatment calculations in which one mis-chained intermediate destroys the final number, so partial competence earns nothing. Ecology sits at the other extreme: its problems are mostly short budget and rate calculations that a weaker model can still get right, which compresses the field (86.8 % strong vs 57.9 % weak).
+**Environmental chemistry is the most discriminative domain in the suite** — a 77-point gap between the weak model and the strong average, versus 24 for ecology. Its problems are long multi-step reactor and treatment calculations in which one mis-chained intermediate destroys the final number, so partial competence earns nothing. Ecology sits at the other extreme: its problems are mostly short budget and rate calculations that a weaker model can still get right, which compresses the field (92.1 % strong vs 68.4 % weak).
 
 For benchmark design the implication is that **ecology-style short-budget problems are poor discriminators and environmental-chemistry-style multi-step chains are excellent ones** — worth knowing when choosing what to mine from a new domain.
 
@@ -110,7 +111,7 @@ The failure was therefore **localised, not systemic** — one under-specified as
 
 ## Finding 5 — Near-identical accuracy at 5× the token cost
 
-gpt-5.5 and Kimi K2.6 finish within 0.7 points of each other (93.1 vs 92.4) while Kimi K2.6 spends **417 k tokens against gpt-5.5's 80 k** — a 5.2× difference for statistically indistinguishable accuracy. Qwen-3.6-27B and DeepSeek-V4-flash tie on accuracy (88.5 vs 90.1, within a point) while Qwen-3.6-27B spends 1.9× the tokens. Accuracy alone ranks these models; accuracy per token separates them sharply, and the ordering is not the same.
+gpt-5.5 and Kimi K2.6 finish within 0.7 points of each other (95.4 vs 94.7) while Kimi K2.6 spends **417 k tokens against gpt-5.5's 80 k** — a 5.2× difference for statistically indistinguishable accuracy. Qwen-3.6-27B and DeepSeek-V4-flash sit within about three points of each other (88.5 vs 91.6) while Qwen-3.6-27B spends 1.9× the tokens. Accuracy alone ranks these models; accuracy per token separates them sharply, and the ordering is not the same.
 
 ---
 

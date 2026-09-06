@@ -8,7 +8,7 @@
       {
         "sub": "1",
         "value": "2.2527288772027987",
-        "unit": ""
+        "unit": "m"
       }
     ],
     "category": "open_channel_flow",
@@ -36,7 +36,7 @@
       {
         "sub": "1",
         "value": "17.54",
-        "unit": ""
+        "unit": "ft^2/day"
       }
     ],
     "category": "groundwater_flow",
@@ -64,12 +64,12 @@
       {
         "sub": "1",
         "value": "26.17910447761194",
-        "unit": ""
+        "unit": "ft/day"
       },
       {
         "sub": "2",
         "value": "11.607480821994512",
-        "unit": ""
+        "unit": "ft/day"
       }
     ],
     "category": "aquifer_properties",
@@ -97,7 +97,7 @@
       {
         "sub": "1",
         "value": "0.5500490721919492",
-        "unit": ""
+        "unit": "Pa·s"
       }
     ],
     "category": "pipe_flow",
@@ -125,7 +125,7 @@
       {
         "sub": "1",
         "value": "0.0005000117795470379",
-        "unit": ""
+        "unit": "dimensionless (m/m)"
       }
     ],
     "category": "well_hydraulics",
@@ -153,7 +153,7 @@
       {
         "sub": "1",
         "value": "999.976441460942",
-        "unit": ""
+        "unit": "days"
       }
     ],
     "category": "solute_transport",
@@ -181,7 +181,7 @@
       {
         "sub": "1",
         "value": "2.974348288830464e-06",
-        "unit": ""
+        "unit": "m"
       }
     ],
     "category": "hydrostatics_pressure",
@@ -209,7 +209,7 @@
       {
         "sub": "1",
         "value": "2445500000000000.0",
-        "unit": ""
+        "unit": "gallons/year"
       }
     ],
     "category": "surface_water_balance",
@@ -237,7 +237,7 @@
       {
         "sub": "1",
         "value": "0.0020801305822774345",
-        "unit": ""
+        "unit": "m"
       }
     ],
     "category": "open_channel_flow",
@@ -265,12 +265,12 @@
       {
         "sub": "1",
         "value": "0.009433981132056603",
-        "unit": ""
+        "unit": "dimensionless"
       },
       {
         "sub": "2",
         "value": "122.0053832080835",
-        "unit": ""
+        "unit": "degrees (flow direction from +x axis, CCW)"
       }
     ],
     "category": "groundwater_flow",
@@ -298,7 +298,7 @@
       {
         "sub": "1",
         "value": "1754.0",
-        "unit": ""
+        "unit": "ft^2/day"
       }
     ],
     "category": "aquifer_properties",
@@ -326,7 +326,7 @@
       {
         "sub": "1",
         "value": "201.45816000000005",
-        "unit": ""
+        "unit": "Pa"
       }
     ],
     "category": "pipe_flow",
@@ -354,7 +354,7 @@
       {
         "sub": "1",
         "value": "0.0005000117795470379",
-        "unit": ""
+        "unit": "dimensionless (m/m)"
       }
     ],
     "category": "well_hydraulics",
@@ -382,7 +382,7 @@
       {
         "sub": "1",
         "value": "999.976441460942",
-        "unit": ""
+        "unit": "days"
       }
     ],
     "category": "solute_transport",
@@ -410,7 +410,7 @@
       {
         "sub": "1",
         "value": "6.933768607591448e-05",
-        "unit": ""
+        "unit": "-"
       }
     ],
     "category": "open_channel_flow",
@@ -438,7 +438,7 @@
       {
         "sub": "1",
         "value": "2.830194339616981",
-        "unit": ""
+        "unit": "m^2/day"
       }
     ],
     "category": "groundwater_flow",
@@ -466,7 +466,7 @@
       {
         "sub": "1",
         "value": "8.0",
-        "unit": ""
+        "unit": "m/day"
       }
     ],
     "category": "aquifer_properties",
@@ -494,7 +494,7 @@
       {
         "sub": "1",
         "value": "1.4155353120373289",
-        "unit": ""
+        "unit": "dimensionless"
       }
     ],
     "category": "pipe_flow",
@@ -522,12 +522,12 @@
       {
         "sub": "1",
         "value": "1.0866928777002711",
-        "unit": ""
+        "unit": "m"
       },
       {
         "sub": "2",
         "value": "0.44194930007592825",
-        "unit": ""
+        "unit": "m"
       }
     ],
     "category": "open_channel_flow",
@@ -555,57 +555,57 @@
       {
         "sub": "1",
         "value": "80.0",
-        "unit": ""
+        "unit": "m"
       },
       {
         "sub": "2",
         "value": "370.0",
-        "unit": ""
+        "unit": "m"
       },
       {
         "sub": "3",
         "value": "423.0",
-        "unit": ""
+        "unit": "m"
       },
       {
         "sub": "4",
         "value": "100.0",
-        "unit": ""
+        "unit": "m"
       },
       {
         "sub": "5",
         "value": "35.0",
-        "unit": ""
+        "unit": "m"
       },
       {
         "sub": "6",
         "value": "65.0",
-        "unit": ""
+        "unit": "m"
       },
       {
         "sub": "7",
         "value": "20.0",
-        "unit": ""
+        "unit": "m"
       },
       {
         "sub": "8",
         "value": "360.0",
-        "unit": ""
+        "unit": "m"
       },
       {
         "sub": "9",
         "value": "380.0",
-        "unit": ""
+        "unit": "m"
       },
       {
         "sub": "10",
         "value": "0.023",
-        "unit": ""
+        "unit": "dimensionless"
       },
       {
         "sub": "11",
         "value": "0.02",
-        "unit": ""
+        "unit": "dimensionless"
       }
     ],
     "category": "groundwater_flow",
@@ -633,7 +633,7 @@
       {
         "sub": "1",
         "value": "8.788406681532212",
-        "unit": ""
+        "unit": "m^2/s"
       }
     ],
     "category": "open_channel_flow",
@@ -661,22 +661,22 @@
       {
         "sub": "1",
         "value": "0.5",
-        "unit": ""
+        "unit": "m"
       },
       {
         "sub": "2",
         "value": "4.0",
-        "unit": ""
+        "unit": "m"
       },
       {
         "sub": "3",
         "value": "3.0",
-        "unit": ""
+        "unit": "m"
       },
       {
         "sub": "4",
         "value": "7.5",
-        "unit": ""
+        "unit": "m"
       }
     ],
     "category": "groundwater_flow",
@@ -704,12 +704,12 @@
       {
         "sub": "1",
         "value": "6.228405997580175",
-        "unit": ""
+        "unit": "m"
       },
       {
         "sub": "2",
         "value": "1.4449925074724783",
-        "unit": ""
+        "unit": "m/s"
       }
     ],
     "category": "open_channel_flow",
@@ -737,7 +737,7 @@
       {
         "sub": "1",
         "value": "135000.0",
-        "unit": ""
+        "unit": "N/m"
       }
     ],
     "category": "open_channel_flow",
@@ -765,7 +765,7 @@
       {
         "sub": "1",
         "value": "274657.4533799533",
-        "unit": ""
+        "unit": "N"
       }
     ],
     "category": "open_channel_flow",
@@ -793,7 +793,7 @@
       {
         "sub": "1",
         "value": "0.08548831978399285",
-        "unit": ""
+        "unit": "m"
       }
     ],
     "category": "open_channel_flow",
@@ -821,12 +821,12 @@
       {
         "sub": "1",
         "value": "5.853855374132642",
-        "unit": ""
+        "unit": "m"
       },
       {
         "sub": "2",
         "value": "4.880788257544194",
-        "unit": ""
+        "unit": "m/s"
       }
     ],
     "category": "open_channel_flow",
@@ -854,7 +854,7 @@
       {
         "sub": "1",
         "value": "4.266256768456914",
-        "unit": ""
+        "unit": "m^2/s"
       }
     ],
     "category": "open_channel_flow",
@@ -882,12 +882,12 @@
       {
         "sub": "1",
         "value": "4.042836100598515",
-        "unit": ""
+        "unit": "m"
       },
       {
         "sub": "2",
         "value": "2.4735111073435716",
-        "unit": ""
+        "unit": "m/s"
       }
     ],
     "category": "open_channel_flow",
@@ -915,7 +915,7 @@
       {
         "sub": "1",
         "value": "3.9528247813454787",
-        "unit": ""
+        "unit": "m"
       }
     ],
     "category": "open_channel_flow",
@@ -943,12 +943,12 @@
       {
         "sub": "1",
         "value": "0.666369785129584",
-        "unit": ""
+        "unit": "m"
       },
       {
         "sub": "2",
         "value": "4.697091719714351",
-        "unit": ""
+        "unit": "m/s"
       }
     ],
     "category": "open_channel_flow",
@@ -976,12 +976,12 @@
       {
         "sub": "1",
         "value": "0.0721387551874857",
-        "unit": ""
+        "unit": "m/d (units of K)"
       },
       {
         "sub": "2",
         "value": "14.117919505991889",
-        "unit": ""
+        "unit": "degrees"
       }
     ],
     "category": "groundwater_flow",
@@ -1009,12 +1009,12 @@
       {
         "sub": "1",
         "value": "0.06292395011389236",
-        "unit": ""
+        "unit": "m"
       },
       {
         "sub": "2",
         "value": "0.04212264429111801",
-        "unit": ""
+        "unit": "m"
       }
     ],
     "category": "open_channel_flow",
@@ -1042,7 +1042,7 @@
       {
         "sub": "1",
         "value": "0.024348077479344598",
-        "unit": ""
+        "unit": "s/m^(1/3)"
       }
     ],
     "category": "open_channel_flow",
@@ -1070,12 +1070,12 @@
       {
         "sub": "1",
         "value": "11.899213514208228",
-        "unit": ""
+        "unit": "m"
       },
       {
         "sub": "2",
         "value": "2.521175030952976",
-        "unit": ""
+        "unit": "m/s"
       }
     ],
     "category": "open_channel_flow",
@@ -1103,12 +1103,12 @@
       {
         "sub": "1",
         "value": "34.65039203352308",
-        "unit": ""
+        "unit": "m"
       },
       {
         "sub": "2",
         "value": "13688.067618074958",
-        "unit": ""
+        "unit": "HP"
       }
     ],
     "category": "open_channel_flow",
@@ -1136,7 +1136,7 @@
       {
         "sub": "1",
         "value": "3.9528247813454787",
-        "unit": ""
+        "unit": "m"
       }
     ],
     "category": "open_channel_flow",

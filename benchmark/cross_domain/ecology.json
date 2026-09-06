@@ -8,12 +8,12 @@
       {
         "sub": "1",
         "value": "0.351",
-        "unit": ""
+        "unit": "V"
       },
       {
         "sub": "2",
         "value": "-67.73247",
-        "unit": ""
+        "unit": "kJ/mol"
       }
     ],
     "category": "ecosystem_energetics",
@@ -41,7 +41,7 @@
       {
         "sub": "1",
         "value": "1000.0",
-        "unit": ""
+        "unit": "pygmy Krakens"
       }
     ],
     "category": "population_dynamics",
@@ -69,7 +69,7 @@
       {
         "sub": "1",
         "value": "33000.0",
-        "unit": ""
+        "unit": "g C"
       }
     ],
     "category": "residence_time_flux",
@@ -97,7 +97,7 @@
       {
         "sub": "1",
         "value": "109.28061504667785",
-        "unit": ""
+        "unit": "per mil"
       }
     ],
     "category": "biogeochemical_cycles",
@@ -125,22 +125,22 @@
       {
         "sub": "1",
         "value": "2.0",
-        "unit": ""
+        "unit": "trophic level"
       },
       {
         "sub": "2",
         "value": "2.0",
-        "unit": ""
+        "unit": "trophic level"
       },
       {
         "sub": "3",
         "value": "3.0",
-        "unit": ""
+        "unit": "trophic level"
       },
       {
         "sub": "4",
         "value": "4.0",
-        "unit": ""
+        "unit": "trophic level"
       }
     ],
     "category": "community_ecology",
@@ -168,7 +168,7 @@
       {
         "sub": "1",
         "value": "999.9999999999999",
-        "unit": ""
+        "unit": "cells ml^-1"
       }
     ],
     "category": "nutrient_budgets",
@@ -196,7 +196,7 @@
       {
         "sub": "1",
         "value": "-346.3958486548228",
-        "unit": ""
+        "unit": "kJ mol^-1"
       }
     ],
     "category": "ecosystem_energetics",
@@ -224,7 +224,7 @@
       {
         "sub": "1",
         "value": "0.53",
-        "unit": ""
+        "unit": "offspring per individual"
       }
     ],
     "category": "population_dynamics",
@@ -252,7 +252,7 @@
       {
         "sub": "1",
         "value": "250.0",
-        "unit": ""
+        "unit": "L"
       }
     ],
     "category": "residence_time_flux",
@@ -280,7 +280,7 @@
       {
         "sub": "1",
         "value": "1.29",
-        "unit": ""
+        "unit": "g C hour^-1"
       }
     ],
     "category": "ecosystem_energetics",
@@ -308,7 +308,7 @@
       {
         "sub": "1",
         "value": "1.0566037735849056",
-        "unit": ""
+        "unit": "time units (age intervals)"
       }
     ],
     "category": "population_dynamics",
@@ -336,7 +336,7 @@
       {
         "sub": "1",
         "value": "820674.2124226746",
-        "unit": ""
+        "unit": "km^3 year^-1"
       }
     ],
     "category": "residence_time_flux",
@@ -364,12 +364,12 @@
       {
         "sub": "1",
         "value": "75.0",
-        "unit": ""
+        "unit": "g C m^-2 day^-1"
       },
       {
         "sub": "2",
         "value": "125.0",
-        "unit": ""
+        "unit": "g C m^-2 day^-1"
       }
     ],
     "category": "ecosystem_energetics",
@@ -397,7 +397,7 @@
       {
         "sub": "1",
         "value": "0.5",
-        "unit": ""
+        "unit": "day^-1"
       }
     ],
     "category": "population_dynamics",
@@ -425,7 +425,7 @@
       {
         "sub": "1",
         "value": "7.885514018691589",
-        "unit": ""
+        "unit": "%"
       }
     ],
     "category": "ecosystem_energetics",
@@ -453,7 +453,7 @@
       {
         "sub": "1",
         "value": "1.3862943611198906",
-        "unit": ""
+        "unit": "day"
       }
     ],
     "category": "population_dynamics",
@@ -481,7 +481,7 @@
       {
         "sub": "1",
         "value": "55.25925925925925",
-        "unit": ""
+        "unit": "%"
       }
     ],
     "category": "ecosystem_energetics",
@@ -509,7 +509,7 @@
       {
         "sub": "1",
         "value": "1.3404825737265416",
-        "unit": ""
+        "unit": "%"
       }
     ],
     "category": "ecosystem_energetics",
@@ -537,7 +537,7 @@
       {
         "sub": "1",
         "value": "57.14285714285714",
-        "unit": ""
+        "unit": "%"
       }
     ],
     "category": "ecosystem_energetics",

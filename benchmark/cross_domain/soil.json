@@ -8,7 +8,7 @@
       {
         "sub": "1",
         "value": "170.71067811865476",
-        "unit": ""
+        "unit": "kN/m^2"
       }
     ],
     "category": "effective_stress",
@@ -36,7 +36,7 @@
       {
         "sub": "1",
         "value": "1958.3333333333335",
-        "unit": ""
+        "unit": "kg/m^3"
       }
     ],
     "category": "phase_relations",
@@ -64,7 +64,7 @@
       {
         "sub": "1",
         "value": "0.0022703361056266255",
-        "unit": ""
+        "unit": "cm/sec"
       }
     ],
     "category": "permeability_seepage",
@@ -92,7 +92,7 @@
       {
         "sub": "1",
         "value": "0.2405507369420145",
-        "unit": ""
+        "unit": "ft"
       }
     ],
     "category": "consolidation_settlement",
@@ -120,37 +120,37 @@
       {
         "sub": "1",
         "value": "1.2857142857142858",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "2",
         "value": "6.8",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "3",
         "value": "2.411764705882353",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "4",
         "value": "13.18181818181818",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "5",
         "value": "8.679245283018869",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "6",
         "value": "4.736842105263158",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "7",
         "value": "0.25333333333333335",
-        "unit": ""
+        "unit": "kN/m^2"
       }
     ],
     "category": "shear_strength",
@@ -178,7 +178,7 @@
       {
         "sub": "1",
         "value": "29.289321881345245",
-        "unit": ""
+        "unit": "kN/m^2"
       }
     ],
     "category": "effective_stress",
@@ -206,7 +206,7 @@
       {
         "sub": "1",
         "value": "1803.2535297728668",
-        "unit": ""
+        "unit": "kg/m^3"
       }
     ],
     "category": "phase_relations",
@@ -234,7 +234,7 @@
       {
         "sub": "1",
         "value": "0.14997905053433833",
-        "unit": ""
+        "unit": "in.^2"
       }
     ],
     "category": "permeability_seepage",
@@ -262,7 +262,7 @@
       {
         "sub": "1",
         "value": "0.6957841039943858",
-        "unit": ""
+        "unit": "dimensionless"
       }
     ],
     "category": "consolidation_settlement",
@@ -290,22 +290,22 @@
       {
         "sub": "1",
         "value": "38.21901330567901",
-        "unit": ""
+        "unit": "kPa"
       },
       {
         "sub": "2",
         "value": "27.55169264964857",
-        "unit": ""
+        "unit": "deg"
       },
       {
         "sub": "3",
         "value": "0.6271614214638959",
-        "unit": ""
+        "unit": "kPa"
       },
       {
         "sub": "4",
         "value": "14.79173829530066",
-        "unit": ""
+        "unit": "deg"
       }
     ],
     "category": "shear_strength",
@@ -333,32 +333,32 @@
       {
         "sub": "1",
         "value": "0.0",
-        "unit": ""
+        "unit": "kPa"
       },
       {
         "sub": "2",
         "value": "0.0042170270126038936",
-        "unit": ""
+        "unit": "kPa"
       },
       {
         "sub": "3",
         "value": "0.014194879915761557",
-        "unit": ""
+        "unit": "kPa"
       },
       {
         "sub": "4",
         "value": "0.017743551620425645",
-        "unit": ""
+        "unit": "kPa"
       },
       {
         "sub": "5",
         "value": "0.0136658408336098",
-        "unit": ""
+        "unit": "kPa"
       },
       {
         "sub": "6",
         "value": "0.005128956935141626",
-        "unit": ""
+        "unit": "kPa"
       }
     ],
     "category": "effective_stress",
@@ -386,7 +386,7 @@
       {
         "sub": "1",
         "value": "0.5028391489361701",
-        "unit": ""
+        "unit": "dimensionless"
       }
     ],
     "category": "phase_relations",
@@ -414,7 +414,7 @@
       {
         "sub": "1",
         "value": "0.013769531249999996",
-        "unit": ""
+        "unit": "cm/sec"
       }
     ],
     "category": "permeability_seepage",
@@ -442,47 +442,47 @@
       {
         "sub": "1",
         "value": "1.5171269408557544",
-        "unit": ""
+        "unit": "cm"
       },
       {
         "sub": "2",
         "value": "0.6742171875",
-        "unit": ""
+        "unit": "dimensionless"
       },
       {
         "sub": "3",
         "value": "0.639941875",
-        "unit": ""
+        "unit": "dimensionless"
       },
       {
         "sub": "4",
         "value": "0.624781640625",
-        "unit": ""
+        "unit": "dimensionless"
       },
       {
         "sub": "5",
         "value": "0.602370859375",
-        "unit": ""
+        "unit": "dimensionless"
       },
       {
         "sub": "6",
         "value": "0.5746869531249998",
-        "unit": ""
+        "unit": "dimensionless"
       },
       {
         "sub": "7",
         "value": "0.5318428124999999",
-        "unit": ""
+        "unit": "dimensionless"
       },
       {
         "sub": "8",
         "value": "0.46658789062500006",
-        "unit": ""
+        "unit": "dimensionless"
       },
       {
         "sub": "9",
         "value": "0.39408242187500014",
-        "unit": ""
+        "unit": "dimensionless"
       }
     ],
     "category": "consolidation_settlement",
@@ -510,7 +510,7 @@
       {
         "sub": "1",
         "value": "22.88538047615857",
-        "unit": ""
+        "unit": "degrees"
       }
     ],
     "category": "shear_strength",
@@ -538,27 +538,27 @@
       {
         "sub": "1",
         "value": "0.03134317567927439",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "2",
         "value": "0.026042416988106838",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "3",
         "value": "0.016027990422317583",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "4",
         "value": "0.008412879639354177",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "5",
         "value": "0.0042170270126038936",
-        "unit": ""
+        "unit": "kN/m^2"
       }
     ],
     "category": "effective_stress",
@@ -586,7 +586,7 @@
       {
         "sub": "1",
         "value": "46.3488176075933",
-        "unit": ""
+        "unit": "%"
       }
     ],
     "category": "phase_relations",
@@ -614,7 +614,7 @@
       {
         "sub": "1",
         "value": "0.00962926635123213",
-        "unit": ""
+        "unit": "cm/s"
       }
     ],
     "category": "permeability_seepage",
@@ -642,12 +642,12 @@
       {
         "sub": "1",
         "value": "388.40580693395646",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "2",
         "value": "4.572169593101313",
-        "unit": ""
+        "unit": "dimensionless"
       }
     ],
     "category": "consolidation_settlement",
@@ -675,7 +675,7 @@
       {
         "sub": "1",
         "value": "50.90808259233078",
-        "unit": ""
+        "unit": "kN/m^2"
       }
     ],
     "category": "shear_strength",
@@ -703,7 +703,7 @@
       {
         "sub": "1",
         "value": "0.22720193019014326",
-        "unit": ""
+        "unit": "kN/m^2"
       }
     ],
     "category": "effective_stress",
@@ -731,7 +731,7 @@
       {
         "sub": "1",
         "value": "0.18609576427255978",
-        "unit": ""
+        "unit": "m^3"
       }
     ],
     "category": "phase_relations",
@@ -759,7 +759,7 @@
       {
         "sub": "1",
         "value": "0.011863122857647493",
-        "unit": ""
+        "unit": "cm/s"
       }
     ],
     "category": "permeability_seepage",
@@ -787,12 +787,12 @@
       {
         "sub": "1",
         "value": "0.33219280948873653",
-        "unit": ""
+        "unit": "dimensionless"
       },
       {
         "sub": "2",
         "value": "0.14999999999999888",
-        "unit": ""
+        "unit": "dimensionless"
       }
     ],
     "category": "consolidation_settlement",
@@ -820,7 +820,7 @@
       {
         "sub": "1",
         "value": "0.33138289478229227",
-        "unit": ""
+        "unit": "kN/m^2"
       }
     ],
     "category": "effective_stress",
@@ -848,7 +848,7 @@
       {
         "sub": "1",
         "value": "2070.4",
-        "unit": ""
+        "unit": "kg"
       }
     ],
     "category": "phase_relations",
@@ -876,7 +876,7 @@
       {
         "sub": "1",
         "value": "90.22315265974657",
-        "unit": ""
+        "unit": "kN/m^2"
       }
     ],
     "category": "effective_stress",
@@ -904,7 +904,7 @@
       {
         "sub": "1",
         "value": "126.69",
-        "unit": ""
+        "unit": "lb/ft^3"
       }
     ],
     "category": "phase_relations",
@@ -932,7 +932,7 @@
       {
         "sub": "1",
         "value": "2.6608111599070012",
-        "unit": ""
+        "unit": "dimensionless"
       }
     ],
     "category": "phase_relations",
@@ -960,7 +960,7 @@
       {
         "sub": "1",
         "value": "0.6119865667786103",
-        "unit": ""
+        "unit": "dimensionless"
       }
     ],
     "category": "phase_relations",
@@ -988,12 +988,12 @@
       {
         "sub": "1",
         "value": "0.6313213703099511",
-        "unit": ""
+        "unit": "dimensionless"
       },
       {
         "sub": "2",
         "value": "2.6101141924959217",
-        "unit": ""
+        "unit": "dimensionless"
       }
     ],
     "category": "phase_relations",
@@ -1021,7 +1021,7 @@
       {
         "sub": "1",
         "value": "22.194285714285645",
-        "unit": ""
+        "unit": "%"
       }
     ],
     "category": "phase_relations",
@@ -1049,7 +1049,7 @@
       {
         "sub": "1",
         "value": "39.713123971890106",
-        "unit": ""
+        "unit": "%"
       }
     ],
     "category": "phase_relations",
@@ -1077,7 +1077,7 @@
       {
         "sub": "1",
         "value": "5.1431713358543415e-09",
-        "unit": ""
+        "unit": "cm/sec"
       }
     ],
     "category": "permeability_seepage",
@@ -1105,7 +1105,7 @@
       {
         "sub": "1",
         "value": "1.09955080930129e-07",
-        "unit": ""
+        "unit": "cm/sec"
       }
     ],
     "category": "permeability_seepage",
@@ -1133,7 +1133,7 @@
       {
         "sub": "1",
         "value": "97.20000000000002",
-        "unit": ""
+        "unit": "m^3/day"
       }
     ],
     "category": "permeability_seepage",
@@ -1161,7 +1161,7 @@
       {
         "sub": "1",
         "value": "0.451008",
-        "unit": ""
+        "unit": "m^3/day per meter length"
       }
     ],
     "category": "permeability_seepage",
@@ -1189,7 +1189,7 @@
       {
         "sub": "1",
         "value": "50.10992937542462",
-        "unit": ""
+        "unit": "ft^3/day/ft"
       }
     ],
     "category": "permeability_seepage",
@@ -1217,12 +1217,12 @@
       {
         "sub": "1",
         "value": "12.732395447351628",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "2",
         "value": "-12.732395447351628",
-        "unit": ""
+        "unit": "kN/m^2"
       }
     ],
     "category": "effective_stress",
@@ -1250,32 +1250,32 @@
       {
         "sub": "1",
         "value": "27.45509210526316",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "2",
         "value": "24.0345",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "3",
         "value": "3.4205921052631574",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "4",
         "value": "48.04318421052631",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "5",
         "value": "41.202",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "6",
         "value": "6.841184210526315",
-        "unit": ""
+        "unit": "kN/m^2"
       }
     ],
     "category": "effective_stress",
@@ -1303,17 +1303,17 @@
       {
         "sub": "1",
         "value": "0.0",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "2",
         "value": "0.0",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "3",
         "value": "0.0",
-        "unit": ""
+        "unit": "kN/m^2"
       }
     ],
     "category": "effective_stress",
@@ -1341,17 +1341,17 @@
       {
         "sub": "1",
         "value": "99.0",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "2",
         "value": "0.0",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "3",
         "value": "99.0",
-        "unit": ""
+        "unit": "kN/m^2"
       }
     ],
     "category": "effective_stress",
@@ -1379,17 +1379,17 @@
       {
         "sub": "1",
         "value": "349.25",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "2",
         "value": "127.53",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "3",
         "value": "221.72",
-        "unit": ""
+        "unit": "kN/m^2"
       }
     ],
     "category": "effective_stress",
@@ -1417,7 +1417,7 @@
       {
         "sub": "1",
         "value": "4.492917847025495",
-        "unit": ""
+        "unit": "m"
       }
     ],
     "category": "effective_stress",
@@ -1445,7 +1445,7 @@
       {
         "sub": "1",
         "value": "0.5693398985691138",
-        "unit": ""
+        "unit": "dimensionless"
       }
     ],
     "category": "consolidation_settlement",
@@ -1473,12 +1473,12 @@
       {
         "sub": "1",
         "value": "0.16689779984854605",
-        "unit": ""
+        "unit": "dimensionless"
       },
       {
         "sub": "2",
         "value": "0.2273193966337028",
-        "unit": ""
+        "unit": "dimensionless"
       }
     ],
     "category": "consolidation_settlement",
@@ -1506,7 +1506,7 @@
       {
         "sub": "1",
         "value": "0.02505494065564068",
-        "unit": ""
+        "unit": "m"
       }
     ],
     "category": "consolidation_settlement",
@@ -1534,7 +1534,7 @@
       {
         "sub": "1",
         "value": "0.7351297644403638",
-        "unit": ""
+        "unit": "dimensionless"
       }
     ],
     "category": "consolidation_settlement",
@@ -1562,7 +1562,7 @@
       {
         "sub": "1",
         "value": "31.26461479631588",
-        "unit": ""
+        "unit": "kN/m^2"
       }
     ],
     "category": "shear_strength",
@@ -1590,7 +1590,7 @@
       {
         "sub": "1",
         "value": "15.713861048008214",
-        "unit": ""
+        "unit": "degrees"
       }
     ],
     "category": "shear_strength",
@@ -1618,7 +1618,7 @@
       {
         "sub": "1",
         "value": "52.856930524004106",
-        "unit": ""
+        "unit": "degrees"
       }
     ],
     "category": "shear_strength",
@@ -1646,12 +1646,12 @@
       {
         "sub": "1",
         "value": "176.39792487545364",
-        "unit": ""
+        "unit": "kN/m^2"
       },
       {
         "sub": "2",
         "value": "49.604185829504466",
-        "unit": ""
+        "unit": "kN/m^2"
       }
     ],
     "category": "shear_strength",
@@ -1679,7 +1679,7 @@
       {
         "sub": "1",
         "value": "192.0",
-        "unit": ""
+        "unit": "kN/m^2"
       }
     ],
     "category": "shear_strength",
@@ -1707,7 +1707,7 @@
       {
         "sub": "1",
         "value": "176.98261953729093",
-        "unit": ""
+        "unit": "kN/m^2"
       }
     ],
     "category": "shear_strength",

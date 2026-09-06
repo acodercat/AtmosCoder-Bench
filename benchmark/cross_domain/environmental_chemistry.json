@@ -8,7 +8,7 @@
       {
         "sub": "1",
         "value": "0.610170007079858",
-        "unit": ""
+        "unit": "fraction"
       }
     ],
     "category": "water_treatment_design",
@@ -36,7 +36,7 @@
       {
         "sub": "1",
         "value": "1.024",
-        "unit": ""
+        "unit": "m^2/s"
       }
     ],
     "category": "solute_transport",
@@ -64,7 +64,7 @@
       {
         "sub": "1",
         "value": "1.9047619047619047",
-        "unit": ""
+        "unit": "mg/L"
       }
     ],
     "category": "reactor_mass_balance",
@@ -97,7 +97,7 @@
       {
         "sub": "2",
         "value": "0.243",
-        "unit": ""
+        "unit": "dimensionless"
       }
     ],
     "category": "phase_partitioning",
@@ -128,12 +128,12 @@
       {
         "sub": "1",
         "value": "156.25",
-        "unit": ""
+        "unit": "m^2"
       },
       {
         "sub": "2",
         "value": "625.0",
-        "unit": ""
+        "unit": "m^3"
       }
     ],
     "category": "water_treatment_design",
@@ -161,7 +161,7 @@
       {
         "sub": "1",
         "value": "15143.314832004547",
-        "unit": ""
+        "unit": "s"
       }
     ],
     "category": "solute_transport",
@@ -189,7 +189,7 @@
       {
         "sub": "1",
         "value": "2.485339738238448",
-        "unit": ""
+        "unit": "dimensionless"
       }
     ],
     "category": "reactor_mass_balance",
@@ -217,17 +217,17 @@
       {
         "sub": "1",
         "value": "63.39391990789875",
-        "unit": ""
+        "unit": "ft"
       },
       {
         "sub": "2",
         "value": "31.696959953949374",
-        "unit": ""
+        "unit": "ft"
       },
       {
         "sub": "3",
         "value": "8.315999999999999",
-        "unit": ""
+        "unit": "ft"
       }
     ],
     "category": "water_treatment_design",
@@ -255,7 +255,7 @@
       {
         "sub": "1",
         "value": "266.4",
-        "unit": ""
+        "unit": "g"
       }
     ],
     "category": "solute_transport",
@@ -283,7 +283,7 @@
       {
         "sub": "1",
         "value": "0.27972027972027974",
-        "unit": ""
+        "unit": "mg COD / mg VSS-day"
       }
     ],
     "category": "water_treatment_design",
@@ -311,7 +311,7 @@
       {
         "sub": "1",
         "value": "8000.0",
-        "unit": ""
+        "unit": "s"
       }
     ],
     "category": "solute_transport",
@@ -339,7 +339,7 @@
       {
         "sub": "1",
         "value": "241.31249999999997",
-        "unit": ""
+        "unit": "kg VSS/d"
       }
     ],
     "category": "water_treatment_design",
@@ -367,7 +367,7 @@
       {
         "sub": "1",
         "value": "0.16279069767441862",
-        "unit": ""
+        "unit": "dimensionless"
       }
     ],
     "category": "water_treatment_design",
@@ -395,7 +395,7 @@
       {
         "sub": "1",
         "value": "300.83625000000006",
-        "unit": ""
+        "unit": "kg O2/d"
       }
     ],
     "category": "water_treatment_design",
@@ -423,12 +423,12 @@
       {
         "sub": "1",
         "value": "3.0157201754605376",
-        "unit": ""
+        "unit": "m"
       },
       {
         "sub": "2",
         "value": "4.773602565353416",
-        "unit": ""
+        "unit": "m"
       }
     ],
     "category": "water_treatment_design",
@@ -456,7 +456,7 @@
       {
         "sub": "1",
         "value": "2.869999610030028",
-        "unit": ""
+        "unit": "g O2 per g FOG"
       }
     ],
     "category": "water_treatment_design",
@@ -484,7 +484,7 @@
       {
         "sub": "1",
         "value": "0.789141414141414",
-        "unit": ""
+        "unit": "hr"
       }
     ],
     "category": "water_treatment_design",
@@ -512,7 +512,7 @@
       {
         "sub": "1",
         "value": "761.0932004721808",
-        "unit": ""
+        "unit": "s"
       }
     ],
     "category": "solute_transport",
@@ -540,7 +540,7 @@
       {
         "sub": "1",
         "value": "0.8055177386092672",
-        "unit": ""
+        "unit": "mg/L"
       }
     ],
     "category": "reaction_kinetics",
@@ -568,17 +568,17 @@
       {
         "sub": "1",
         "value": "3.525024729927434",
-        "unit": ""
+        "unit": "m^2/s"
       },
       {
         "sub": "2",
         "value": "5.228860339690357",
-        "unit": ""
+        "unit": "m^2/s"
       },
       {
         "sub": "3",
         "value": "6.193063222364701",
-        "unit": ""
+        "unit": "m^2/s"
       }
     ],
     "category": "solute_transport",
@@ -606,7 +606,7 @@
       {
         "sub": "1",
         "value": "16.666666666666664",
-        "unit": ""
+        "unit": "%"
       }
     ],
     "category": "phase_partitioning",

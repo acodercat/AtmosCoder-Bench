@@ -174,7 +174,7 @@
 
 **Claim.** The construction protocol, not the subject matter, sets the score.
 
-**Caption.** (a) Accuracy on the atmospheric core set (x; 3-run mean) against the 131-problem cross-domain suite built by the identical pipeline for hydrology, environmental chemistry, ecology and soil mechanics (y; single run). All five models hug the y = x diagonal and keep their exact ordering; the weakest model scores 41.1% in atmospheric science and 42.0% across four unrelated fields. (b) Per-domain gap between the four strong models' mean and the weak reference: long multi-step reactor/treatment chains (environmental chemistry) discriminate hardest, short budget-style problems (ecology) least - a guide for what to mine when extending the benchmark.
+**Caption.** (a) Accuracy on the atmospheric core set (x; 3-run mean) against the 131-problem cross-domain suite built by the identical pipeline for hydrology, environmental chemistry, ecology and soil mechanics (y; single run). All five models hug the y = x diagonal and keep their exact ordering; the weakest model scores 41.1% in atmospheric science and 43.5% across four unrelated fields. (b) Per-domain gap between the four strong models' mean and the weak reference: long multi-step reactor/treatment chains (environmental chemistry) discriminate hardest, short budget-style problems (ecology) least - a guide for what to mine when extending the benchmark.
 
 **Data.** `F10_cross_domain.csv`, `F10b_domain_gaps.csv` + core accuracies from `F4_token_accuracy.csv`
 

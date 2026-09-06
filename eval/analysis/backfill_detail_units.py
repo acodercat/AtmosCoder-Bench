@@ -15,6 +15,10 @@ from artifacts already on disk:
   needed reconciliation keep `actual_unit: ""` (unknown-but-irrelevant at the
   recorded tolerance).
 
+Since 2026-09-06 pass 2 also re-executes the stored solver for EVERY failed numeric sub that
+lacks `actual_unit` (case (c) below), so a run over a large experiment is slower and adds
+`actual_unit` to many records; verdicts are never rewritten here — see regrade_in_place.
+
 Idempotent; rewrites files in place (git is the backup).
 
     uv run python -m eval.analysis.backfill_detail_units            # all live experiment dirs
@@ -145,7 +149,7 @@ def backfill_file(path, unit_map, tolerance):
     if not isinstance(results, list):
         return None
     mode = (data.get("metrics") or {}).get("mode", "code")
-    stats = {"records": 0, "subs_units": 0, "recovered": 0, "unrecovered": 0, "unknown_id": 0}
+    stats = {"records": 0, "subs_units": 0, "recovered": 0, "flipped": 0, "unrecovered": 0, "unknown_id": 0}
     changed = False
     for record in results:
         details = record.get("details")
@@ -168,14 +172,19 @@ def backfill_file(path, unit_map, tolerance):
                     stats["unknown_id"] += 1
         # pass 2: recover actual units where they change the offline grade —
         # (a) subs recorded passed=True that the offline rule cannot yet pass
-        #     (the pass hinged on the model's declared unit), and
+        #     (the pass hinged on the model's declared unit),
         # (b) subs recorded passed=False that the offline rule would wrongly
         #     pass with an unknown ("") unit (the runtime unit blocked a
-        #     reconcile the empty unit permits, e.g. % vs a declared kelvin).
+        #     reconcile the empty unit permits, e.g. % vs a declared kelvin), and
+        # (c) every other failed numeric sub — when the benchmark itself carried
+        #     no unit at run time (the consensus-built sets), reconciliation could
+        #     never fire, so a right answer in a commensurate unit was recorded as
+        #     a fail; with the benchmark unit now known, the model's unit decides.
         needs_actual = [d for d in details
                         if "sub" in d and isinstance(d.get("actual"), (int, float))
                         and "actual_unit" not in d
-                        and bool(d.get("passed")) != sub_passes(d, tolerance)]
+                        and (bool(d.get("passed")) != sub_passes(d, tolerance)
+                             or not d.get("passed"))]
         recovered = None
         if needs_actual:
             recovered = (actual_units_from_code(record) if mode == "code"
@@ -185,8 +194,11 @@ def backfill_file(path, unit_map, tolerance):
             if unit is not None:
                 detail["actual_unit"] = unit
                 changed = True
-            if sub_passes(detail, tolerance) == bool(detail.get("passed")):
+            offline = sub_passes(detail, tolerance)
+            if offline == bool(detail.get("passed")):
                 stats["recovered"] += 1
+            elif offline and not detail.get("passed"):
+                stats["flipped"] += 1   # case (c): a recorded fail the unit-aware rule now passes
             else:
                 stats["unrecovered"] += 1
     if changed:
@@ -212,6 +224,9 @@ def main():
                 flag = f"  !! {stats['unrecovered']} reconciliation-passed subs UNRECOVERED"
             if stats["unknown_id"]:
                 flag += f"  ?? {stats['unknown_id']} subs with no benchmark unit"
+            if stats["flipped"]:
+                flag += (f"  >> {stats['flipped']} recorded-fail subs now pass under the unit-aware rule "
+                         f"(re-derive verdicts with eval.analysis.regrade_in_place)")
             print(f"{path}: exp_units+{stats['subs_units']} actual_units+{stats['recovered']}{flag}")
 
 
