@@ -23,6 +23,11 @@
       "identifier": "https://github.com/acodercat/AtmosCoder-Bench",
       "relation": "isSupplementTo",
       "scheme": "url"
+    },
+    {
+      "identifier": "arXiv:2608.18726",
+      "relation": "isSupplementTo",
+      "scheme": "arxiv"
     }
   ]
 }

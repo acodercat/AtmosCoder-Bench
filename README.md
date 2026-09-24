@@ -17,8 +17,8 @@ parsed for answers: the score comes from running the code.
   <img alt="Instances: 4346" src="https://img.shields.io/badge/graded%20instances-4%2C346-orange">
 </p>
 
-> **Paper**: *Execution-grounded evaluation reveals limits of language-model judgment in
-> atmospheric science* ([arXiv:2608.18726](https://arxiv.org/abs/2608.18726)).
+> **Paper**: *Execution-grounded evaluation reveals hidden failures in language-model
+> calculations for environmental science* ([arXiv:2608.18726](https://arxiv.org/abs/2608.18726)).
 >
 > **Raw results**: the per-run model outputs behind every reported number (~5 GB, 273 result
 > files) are on [Google Drive](https://drive.google.com/file/d/1zkm3Uj77uWmHAw6T8s_lU6kos6vquCAC/view?usp=sharing).
@@ -229,7 +229,7 @@ per-problem source attribution.
 
 ```bibtex
 @misc{ran2026execution,
-  title         = {Execution-grounded evaluation reveals limits of language-model judgment in atmospheric science},
+  title         = {Execution-grounded evaluation reveals hidden failures in language-model calculations for environmental science},
   author        = {Ran, Maohao and Ma, Chendong and Zhang, Yanting and Jiang, Dailing and Huang, Yusen and Gao, Meng and Song, Jun},
   year          = {2026},
   eprint        = {2608.18726},
