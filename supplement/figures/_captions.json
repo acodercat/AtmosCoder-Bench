@@ -146,7 +146,7 @@
  },
  "F5_composite": {
   "claim": "Main-figure composite: the leaderboard, the per-problem cost of answering in prose, and the token-efficiency field, on one canvas.",
-  "caption": "Composite of the three headline panels at print size. a, Core-set leaderboard (as F5_main_results). b, Distribution of output tokens spent on a single problem under the code and direct protocols (as F2c_protocol_spend). c, Cost-efficiency map over the tokens-per-correct-answer field (as F4b_efficiency_map). Every panel is drawn from the same CSVs as its standalone counterpart at identical type size; (R) abbreviates a reasoning setting, spelt out by the panel-a legend. See those entries for the full captions.",
+  "caption": "Composite of the three headline panels at print size. a, Core-set leaderboard (as F5_main_results). b, Distribution of output tokens spent on a single problem under the code and direct protocols (as F2c_protocol_spend). c, Cost-efficiency map over the tokens-per-correct-answer field (as F4b_efficiency_map). Every panel is drawn from the same CSVs as its standalone counterpart at identical type size; (r) abbreviates a reasoning setting, spelt out by the panel-a legend. See those entries for the full captions.",
   "data": "`F5a_main_accuracy.csv`, `F4d_spend_hist.csv`, `F4d_spend_quantiles.csv`, `F4_token_accuracy.csv`"
  },
  "F24_difficulty_category_trellis": {

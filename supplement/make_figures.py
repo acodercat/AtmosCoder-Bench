@@ -710,7 +710,7 @@ def f2c(into=None):
         ax.text(5.46, i + 0.02, f"{rd / rc:.1f}\u00d7", fontsize=FS_TICK, va="center", ha="right",
                 color=INK, zorder=200,
                 path_effects=[pe.withStroke(linewidth=2.4, foreground="white")])
-        disp_m = m.replace(" (reasoning)", " (R)") if into is not None else m
+        disp_m = m.replace(" (reasoning)", " (r)") if into is not None else m
         ax.text(1.68, i + 0.02, disp_m, fontsize=FS_TICK, va="center", ha="right", color=INK, zorder=200,
                 path_effects=[pe.withStroke(linewidth=2.4, foreground="white")])
 
@@ -826,8 +826,8 @@ def f4():
             ax.annotate("", xy=(x * 1.40, y), xytext=(x, y), zorder=3,
                         arrowprops=dict(arrowstyle="->,head_width=0.14,head_length=0.28",
                                         color=GREY, lw=0.8, shrinkA=4, shrinkB=0))
-    short = {"Gemini-3.1-Pro (reasoning)": "Gemini-3.1-Pro (R) \u2020",
-             "gpt-5.5 (reasoning)": "gpt-5.5 (R) \u2020"}
+    short = {"Gemini-3.1-Pro (reasoning)": "Gemini-3.1-Pro (r) \u2020",
+             "gpt-5.5 (reasoning)": "gpt-5.5 (r) \u2020"}
     for label, (dx, dy, ha) in F4_LABEL.items():
         x, y = pt[label]
         ax.annotate(short.get(label, label), (x, y), xytext=(dx, dy),
@@ -1239,8 +1239,8 @@ def f5(into=None):
         ax.text(v + max(sd, 0.4) + 1.1, y, f'{v:.1f}',
                 va="center", fontsize=FS_ANNOT, color=INK)
     names = [r["model"] for r in rows]
-    if into is not None:                       # composite: (R) buys the bars an extra ~11 mm
-        names = [m.replace(" (reasoning)", " (R)") for m in names]
+    if into is not None:                       # composite: (r) buys the bars an extra ~11 mm
+        names = [m.replace(" (reasoning)", " (r)") for m in names]
     ax.set_yticks(ys); ax.set_yticklabels(names)
     ax.tick_params(axis="y", length=0)
     ax.invert_yaxis(); ax.set_xlim(0, 108)
@@ -1440,7 +1440,7 @@ def f5comp():
          (as F5_main_results). b, Distribution of output tokens spent on a single problem under
          the code and direct protocols (as F2c_protocol_spend). c, Cost-efficiency map over the
          tokens-per-correct-answer field (as F4b_efficiency_map). Every panel is drawn from the
-         same CSVs as its standalone counterpart at identical type size; (R) abbreviates a
+         same CSVs as its standalone counterpart at identical type size; (r) abbreviates a
          reasoning setting, spelt out by the panel-a legend. See those entries for the full
          captions.""",
          "`F5a_main_accuracy.csv`, `F4d_spend_hist.csv`, `F4d_spend_quantiles.csv`, "
@@ -1475,7 +1475,7 @@ def f61a():
            "DeepSeek-V4-flash": (7, 4, "left"), "gpt-5.5": (-8, 1, "right"),
            "Gemini-3.1-Pro (reasoning)": (0, -10, "center")}
     for m, (dx, dy, ha) in lab.items():
-        name = "Gemini-3.1-Pro (R)" if m.startswith("Gemini") else m
+        name = "Gemini-3.1-Pro (r)" if m.startswith("Gemini") else m
         ax.annotate(name, pt[m], xytext=(dx, dy), textcoords="offset points",
                     fontsize=FS_TICK, ha=ha, va="center", color=INK, zorder=5)
     ax.set_xlabel(f"Core-set accuracy (%)\n(N = {len(rows)} configurations)"); ax.set_ylabel("Trap Gap (pp)")
@@ -1589,10 +1589,10 @@ def f61d():
     configs = ["gemini-3.1-pro", "gpt55-reasoning", "gpt55", "deepseek-v4-flash-reasoning",
                "qwen3.6-27b-reasoning", "qwen3.6-27b", "deepseek-v4-flash",
                "qwen3.5-9b-reasoning", "qwen3.5-9b"]
-    disp = {"gemini-3.1-pro": "Gemini-3.1-Pro (R)", "gpt55-reasoning": "gpt-5.5 (R)",
-            "gpt55": "gpt-5.5", "deepseek-v4-flash-reasoning": "DeepSeek-V4-flash (R)",
-            "qwen3.6-27b-reasoning": "Qwen-3.6-27B (R)", "qwen3.6-27b": "Qwen-3.6-27B",
-            "deepseek-v4-flash": "DeepSeek-V4-flash", "qwen3.5-9b-reasoning": "Qwen-3.5-9B (R)",
+    disp = {"gemini-3.1-pro": "Gemini-3.1-Pro (r)", "gpt55-reasoning": "gpt-5.5 (r)",
+            "gpt55": "gpt-5.5", "deepseek-v4-flash-reasoning": "DeepSeek-V4-flash (r)",
+            "qwen3.6-27b-reasoning": "Qwen-3.6-27B (r)", "qwen3.6-27b": "Qwen-3.6-27B",
+            "deepseek-v4-flash": "DeepSeek-V4-flash", "qwen3.5-9b-reasoning": "Qwen-3.5-9B (r)",
             "qwen3.5-9b": "Qwen-3.5-9B"}
     state_ix = {"pass": 0, "fail": 1, "captured": 2}
 
@@ -1713,7 +1713,7 @@ def f62():
 # ---------------------------------------------------------------- F6.3 (prompt sensitivity)
 def f63():
     rows = load("F6_3_prompt_sensitivity.csv")
-    disp = {"Gemini-3.1-Pro (reasoning)": "Gemini-3.1-Pro (R)"}
+    disp = {"Gemini-3.1-Pro (reasoning)": "Gemini-3.1-Pro (r)"}
     hue = dict(zip([r["model"] for r in rows], [NAVY, TEAL, CYAN, RED]))
     fig, (a, b) = plt.subplots(1, 2, figsize=(WIDTH_2COL, 2.9),
                                gridspec_kw=dict(width_ratios=[1.35, 1], wspace=0.30), layout="constrained")
